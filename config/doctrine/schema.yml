@@ -1,0 +1,185 @@
+Expensedata:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    renewal_expenses:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    expense_inflation:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    initial_expenses:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    loadings:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+      
+Marketdata:
+  actAs: 
+   Timestampable: ~ 
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    uploaded_at:      { type: timestamp, notnull: true }
+    month_array:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    discounting_array:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    dhfactors_matrix:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+      
+Quotehistory:
+  actAs: 
+    Timestampable: ~ 
+  columns:
+    id:                      { type: integer, primary: true, autoincrement: true }
+    client_id:               { type: integer }
+    financialadvisor_id:               { type: integer }
+      
+System:
+  columns:
+     id:                      { type: integer, primary: true, autoincrement: true }
+      
+UserProfile:
+  actAs: 
+    Timestampable: ~ 
+    Searchable:
+       fields: [name, surname]  
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    sfuser_id:        { type: integer }
+    gender_id:        { type: integer }
+    spouse_gender_id: { type: integer }
+    name:
+      type: string(30)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    surname:
+      type: string(30)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    dob:         { type: timestamp, notnull: true }
+    telephone:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    mobile:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    idnumber:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    fax:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    postaladdress:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    streetaddress:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    spousename:
+      type: string(30)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    spousesurname:
+      type: string(30)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    spousedob:         { type: timestamp, notnull: true }
+    spouse_gender_id:  { type: integer }
+    spouseidnumber:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    company:
+      type: string(30)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    status:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    sfGuardUser:      { class: sfGuardUser, onDelete: CASCADE, local: sfuser_id, foreign: id }
+    Gender:           { class: Gender, local: gender_id, foreign: id }
+    SpouseGender:     { class: Gender, local: spouse_gender_id, foreign: id }
+
+Gender:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: string(255), notnull: true }

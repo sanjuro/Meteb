@@ -1,0 +1,7 @@
+signinSuccess:
+  has_layout:     true
+  layout:         layout_login
+  
+signoutSuccess:
+  has_layout:     true
+  layout:         layout_login
