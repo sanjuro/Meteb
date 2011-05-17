@@ -77,3 +77,10 @@ fieldset {
     padding: 5px;
     margin: 0px;
 }
+table {
+	width: 100%;	
+	}
+thead {
+    background-color: #000033;
+    color: #FFF;
+	}
