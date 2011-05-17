@@ -80,6 +80,8 @@ UserProfile:
     sfuser_id:        { type: integer }
     gender_id:        { type: integer }
     spouse_gender_id: { type: integer }
+    status_id:        { type: integer }
+    user_profile_id:  { type: integer }
     name:
       type: string(30)
       fixed: false
@@ -167,17 +169,17 @@ UserProfile:
       primary: false
       notnull: true
       autoincrement: false
-    status:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
   relations:
     sfGuardUser:      { class: sfGuardUser, onDelete: CASCADE, local: sfuser_id, foreign: id }
     Gender:           { class: Gender, local: gender_id, foreign: id }
     SpouseGender:     { class: Gender, local: spouse_gender_id, foreign: id }
+    ClientStatus:     { class: ClientStatus, local: status_id, foreign: id }
+    Parent:           { class: ClientStatus, local: user_profile_id, foreign: id }
+    
+ClientStatus:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: string(255), notnull: true }
 
 Gender:
   columns:

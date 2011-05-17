@@ -1,23 +1,35 @@
 body {
-    background-color: #000033;
-    background-image: url("/images/repeat2.jpg");
-    background-repeat: repeat-x;
  	font: 13px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;
  	line-height: 16px;
  	min-width: 960px;
+ 	margin: 0px;
+ 	padding: 0px;
+}
+a:hover {
+	text-decoration: underline;
+	}
+#headerwrapper {
+    background-image: url("/images/repeat2.jpg");
+    background-repeat: repeat-x;
+}
+#navigationwrapper {
+	background-color:#000033;
+	height: 50px;
+	}
+#header, #navigation, #content, #footer {
+	margin: 0 auto;
+	width: 1000px;
 }
 #header {
     background-image: url("/images/logoTop3.jpg");
     background-repeat: no-repeat;
     height: 125px;
+	}
+#navigation {
+     color: #FFF;
+     font-weight: bold;
+     padding-top: 10px;
 }
-#wrapper {
-	background-color: #FFF;
-	margin: 0 auto;
-	width: 960px;
-}
-
-
 #centercolumn {
 	padding: 0 10px;
 	width: 70%;
@@ -76,4 +88,15 @@ fieldset {
     border: 5px solid #000033;
     padding: 5px;
     margin: 0px;
+}
+
+ul#backendnavigation li {
+	display: inline;
+	padding-right: 10px;
+	}
+	
+ul#backendnavigation li a{
+	color: #FFF;	
+	font-size: 14px;
+	text-decoration: none;
 }

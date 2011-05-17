@@ -19,6 +19,8 @@ abstract class BaseUserProfileForm extends BaseFormDoctrine
       'sfuser_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)),
       'gender_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Gender'), 'add_empty' => true)),
       'spouse_gender_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('SpouseGender'), 'add_empty' => true)),
+      'status_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('ClientStatus'), 'add_empty' => true)),
+      'user_profile_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Parent'), 'add_empty' => true)),
       'name'             => new sfWidgetFormInputText(),
       'surname'          => new sfWidgetFormInputText(),
       'dob'              => new sfWidgetFormDateTime(),
@@ -33,7 +35,6 @@ abstract class BaseUserProfileForm extends BaseFormDoctrine
       'spousedob'        => new sfWidgetFormDateTime(),
       'spouseidnumber'   => new sfWidgetFormInputText(),
       'company'          => new sfWidgetFormInputText(),
-      'status'           => new sfWidgetFormInputText(),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
     ));
@@ -43,6 +44,8 @@ abstract class BaseUserProfileForm extends BaseFormDoctrine
       'sfuser_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'required' => false)),
       'gender_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Gender'), 'required' => false)),
       'spouse_gender_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('SpouseGender'), 'required' => false)),
+      'status_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('ClientStatus'), 'required' => false)),
+      'user_profile_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Parent'), 'required' => false)),
       'name'             => new sfValidatorString(array('max_length' => 30)),
       'surname'          => new sfValidatorString(array('max_length' => 30)),
       'dob'              => new sfValidatorDateTime(),
@@ -57,7 +60,6 @@ abstract class BaseUserProfileForm extends BaseFormDoctrine
       'spousedob'        => new sfValidatorDateTime(),
       'spouseidnumber'   => new sfValidatorString(array('max_length' => 20)),
       'company'          => new sfValidatorString(array('max_length' => 30)),
-      'status'           => new sfValidatorInteger(),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),
     ));

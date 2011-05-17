@@ -80,7 +80,28 @@ fieldset {
 table {
 	width: 100%;	
 	}
-thead {
+	
+#sf_admin_container th {
+    background-color: #000033;
+    color: #FFFFFF;
+}
+
+#sf_admin_container th a, #sf_admin_container th a:hover {
+	color: #FFF;
+	}
+	
+#sf_admin_container th a:hover {
+	text-decoration: underline;
+	}
+	
+#sf_admin_container fieldset h2 {
     background-color: #000033;
     color: #FFF;
+    font-size: 11px;
+    margin: 0;
+    padding: 3px;
+}
+
+ul.sf_admin_actions {
+	padding-left: 0px;
 	}

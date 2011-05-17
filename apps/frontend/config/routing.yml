@@ -13,3 +13,16 @@ default:
 signout:
   url:   /
   param: { module: sfGuardAuth, action: signin }
+  
+#client
+client_new:
+  url:     /client/new
+  param:   { module: client, action: new }
+  requirements: { sf_method: get }
+  
+client_create:
+  url:     /client.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: UserProfile, type: object }
+  param:   { module: client, action: create, sf_format: html }
+  requirements: { sf_method: post }

@@ -1,0 +1,5 @@
+ClientStatus:
+ status_active:
+   title:       active
+ status_inactive:
+   title:       inactive

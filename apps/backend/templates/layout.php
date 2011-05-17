@@ -13,19 +13,15 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-    <div id="wrapper">
-        <div id="header">
-        </div>
-        <div id="content">
-        	<div id="rightcolumn">
+        <div id="headerwrapper">
+        	<div id="header">
+        	        	
         	</div>
-        	<div id="center">
-        	
-			    	<div id="topnaviation">
-					<?php if ($sf_user->isAuthenticated()): ?>
-					
-					  <div id="navigation">
-					
+        </div>
+        <div id="navigationwrapper">
+
+			    	<div id="navigation">
+					<?php if ($sf_user->isAuthenticated()): ?>					
 					    <ul id="backendnavigation">
 						  <li><?php echo link_to(__('Profiles'), 'userprofile') ?></li>
 					      <?php if ($sf_user->isSuperAdmin()): ?>
@@ -35,12 +31,18 @@
 					      <?php endif; ?>					
 					      <li><?php echo link_to(__('Logout'), 'sf_guard_signout', array(), array( "class" => "logout")) ?></li>
 					
-					    </ul>
-					
-					  </div>
-					
-					<?php endif; ?>	
-			    	</div>
+					    </ul>		
+					<?php endif; ?>						
+					</div>
+
+		</div>
+        <div id="contentwrapper">
+        
+        	<div id="content">
+        	
+        	<div id="rightcolumn">
+        	</div>
+        	<div id="center">    
 			    	
 					<?php if ($sf_user->hasFlash('notice')): ?>
 					          <div class="flash_notice">
@@ -65,8 +67,11 @@
         	       
         	       <div class="clearer"></div>
         	</div>
+        	
+        	</div>
         </div>        
-        <div id="footer">
+        <div id="footerwrapper">
+        	<div id="footer"></div>
         </div>
     </div>
   </body>

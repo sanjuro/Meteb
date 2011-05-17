@@ -199,8 +199,8 @@
 #sf_admin_container fieldset h2
 {
   padding: 3px;
-  color: #333;
-  background-color: #ccf;
+  color: #FFF;
+  background-color: #000033;
   font-size: 11px;
   margin: 0;
 }
@@ -209,7 +209,6 @@
 {
   margin-bottom: 3px;
   border: 1px solid #ddd;
-  border-bottom: 0px;
   background-color: #fff;
 }
 
