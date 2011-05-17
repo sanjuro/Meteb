@@ -1,0 +1,84 @@
+body {
+    background-color: #000033;
+    background-image: url("/images/repeat2.jpg");
+    background-repeat: repeat-x;
+ 	font: 13px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;
+ 	line-height: 16px;
+ 	min-width: 960px;
+}
+#header {
+    background-image: url("/images/logoTop3.jpg");
+    background-repeat: no-repeat;
+    height: 125px;
+}
+#wrapper {
+	background-color: #FFF;
+	margin: 0 auto;
+	width: 960px;
+}
+
+
+#centercolumn {
+	padding: 0 10px;
+	width: 70%;
+}
+
+#rightcolumn {
+	width: 25%;
+	padding: 0 10px;
+}
+
+.column {
+	float: left;
+}
+
+.clearer {
+	clear: both;
+}
+
+
+#rightcolumn ul {
+	list-style-type: none;
+	padding: 0px;
+}
+
+#rightcolumn li {
+    background-color: #CCCCCC;
+    display: block;
+    margin: 0;
+    padding: 5px;
+}
+#rightcolumn li a{
+    color: #000033;
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+}
+#rightcolumn li a:hover{
+    background-color: #999999;
+    color: #D92315;
+    text-decoration: none;
+}
+
+.sideNav{
+    background-color: #000033;
+    color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px;
+    }
+    
+    
+    
+fieldset {
+    background-color: #CCCCCC;
+    border: 5px solid #000033;
+    padding: 5px;
+    margin: 0px;
+}
+
+thead {
+    background-color: #000033;
+    color: #FFF;
+	}

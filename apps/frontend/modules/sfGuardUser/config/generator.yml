@@ -1,0 +1,36 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           sfGuardUser
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          sf_guard_user
+    with_doctrine_route:   true
+
+    config:
+      fields:
+        password_again: { label: "Password (again)" }
+        is_activated: { label: Activated?, help: Whether the user has activated the job, or not }
+        is_public:    { label: Public?, help: Whether the job can also be published on affiliate websites, or not }
+
+      list:
+        title:   '<h2>Users</h2>'
+        display: [=username, created_at, last_login]
+        max_per_page: 10        
+                
+      filter:
+        class: false
+      form:
+        class:  sfGuardUserAdminForm
+        display:
+          "User":                   [first_name, last_name, email_address, username, password, password_again]
+          "Permissions and groups": [is_active, groups_list, permissions_list]
+
+      edit:
+        title: '<h3>Editing User "%%username%%"</h3>'
+
+      new:
+        title: New User

@@ -37,5 +37,5 @@ all:
     enabled_modules: [default, sfGuardAuth, sfGuardUser, sfGuardGroup, sfGuardPermission ]
     
   .actions:
-    login_module:    sfGuardUser
+    login_module:    sfGuardAuth
     login_action:    signin
