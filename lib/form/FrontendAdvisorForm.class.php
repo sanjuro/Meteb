@@ -28,7 +28,7 @@ class FrontendAdvisorForm extends BasesfGuardUserForm
 	 */
 	if(!$this->isNew()) 	
 	{
-		$userProfileObjs = $this->getObject()->getUserProfile()->execute(); 
+		$userProfileObjs = $this->getObject()->getUserProfile(); 
 	}else{
 		$userProfileObjs = array();
 	}

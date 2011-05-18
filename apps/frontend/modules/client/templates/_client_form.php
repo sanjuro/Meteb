@@ -14,6 +14,11 @@
  </ul>
  
 <?php echo form_tag_for($form, '@client') ?>
+
+	<?php if (!$form->getObject()->isNew()): ?>
+	  <input type="hidden" name="sf_method" value="PUT" />
+	<?php endif; ?>
+	
 	  <?php echo $form['_csrf_token'] ?>
       <fieldset id="sf_fieldset_user"> 
          <h2>User Details</h2>

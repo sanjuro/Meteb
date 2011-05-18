@@ -20,12 +20,12 @@ class advisorActions extends sfActions
   	$sfGuardUser = $this->getUser()->getGuardUser();
   	
   	$UserProfile = $sfGuardUser->getUserProfile();
-  	
+
   	$this->pager = new sfDoctrinePager(
-	    'UserProfile',
+	    'sfGuardUser',
 	    20
 	);
-	$this->pager->setQuery(Doctrine::getTable('UserProfile')->getAllAdvisors()); 
+	$this->pager->setQuery(Doctrine::getTable('sfGuardUser')->getAllAdvisors()); 
 	$this->pager->setPage($request->getParameter('page', 1));	 
 	$this->pager->init();
   	
@@ -48,9 +48,9 @@ class advisorActions extends sfActions
   */
   public function executeCreate(sfWebRequest $request)
   {
-	  $this->form = new FrontendAdvisorForm();
-	  $this->processForm($request, $this->form);
-	  $this->setTemplate('new');
+   $this->form = new FrontendAdvisorForm();
+   $this->processForm($request, $this->form);
+   $this->setTemplate('new');
   }
   
  /**

@@ -28,28 +28,36 @@ client_new:
 client_create:
   url:     /client.:sf_format
   class:   sfDoctrineRoute
-  options: { model: UserProfile, type: object }
+  options: { model: sfGuardUser, type: object }
   param:   { module: client, action: create, sf_format: html }
   requirements: { sf_method: post }
   
 client_show:
   url:     /client/show.:sf_format
   class:   sfDoctrineRoute
-  options: { model: UserProfile, type: object }
+  options: { model: sfGuardUser, type: object }
   param:   { module: client, action: edit, sf_format: html }
   requirements: { sf_method: post }
   
 client_edit:
-  url:     /client/edit.:sf_format
+  url:     /client/edit/:id.:sf_format
   class:   sfDoctrineRoute
-  options: { model: UserProfile, type: object }
+  options: { model: sfGuardUser, type: object }
   param:   { module: client, action: edit, sf_format: html }
-  requirements: { sf_method: post }
+  requirements: 
+    sf_method: [ post, get ]
+    
+client_update:
+  url:     /client/:id.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: sfGuardUser, type: object }
+  param:   { module: client, action: update, sf_format: html }
+  requirements: { sf_method: put }
   
 client_delete:
   url:     /client/delete.:sf_format
   class:   sfDoctrineRoute
-  options: { model: UserProfile, type: object }
+  options: { model: sfGuardUser, type: object }
   param:   { module: client, action: delete, sf_format: html }
   requirements: { sf_method: post }
   
@@ -67,27 +75,35 @@ advisor_new:
 advisor_create:
   url:     /advisor.:sf_format
   class:   sfDoctrineRoute
-  options: { model: UserProfile, type: object }
+  options: { model: sfGuardUser, type: object }
   param:   { module: advisor, action: create, sf_format: html }
   requirements: { sf_method: post }
   
 advisor_show:
   url:     /advisor/show.:sf_format
   class:   sfDoctrineRoute
-  options: { model: UserProfile, type: object }
+  options: { model: sfGuardUser, type: object }
   param:   { module: advisor, action: edit, sf_format: html }
   requirements: { sf_method: post }
   
 advisor_edit:
-  url:     /advisor/edit.:sf_format
+  url:     /advisor/edit/:id.:sf_format
   class:   sfDoctrineRoute
-  options: { model: UserProfile, type: object }
+  options: { model: sfGuardUser, type: object }
   param:   { module: advisor, action: edit, sf_format: html }
-  requirements: { sf_method: post }
+  requirements: 
+    sf_method: [ post, get ]
+  
+advisor_update:
+  url:     /advisor/:id.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: sfGuardUser, type: object }
+  param:   { module: advisor, action: update, sf_format: html }
+  requirements: { sf_method: put }
   
 advisor_delete:
   url:     /advisor/delete.:sf_format
   class:   sfDoctrineRoute
-  options: { model: UserProfile, type: object }
+  options: { model: sfGuardUser, type: object }
   param:   { module: advisor, action: delete, sf_format: html }
   requirements: { sf_method: post }

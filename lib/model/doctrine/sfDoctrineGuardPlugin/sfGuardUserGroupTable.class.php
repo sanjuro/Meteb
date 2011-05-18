@@ -16,4 +16,5 @@ class sfGuardUserGroupTable extends PluginsfGuardUserGroupTable
     {
         return Doctrine_Core::getTable('sfGuardUserGroup');
     }
+    
 }

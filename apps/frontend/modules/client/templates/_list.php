@@ -14,10 +14,10 @@
   <?php foreach ($clients as $i => $client): ?>
     <tr class="<?php echo fmod($i, 2) ? 'even' : 'odd' ?>" valign="middle" onmouseover="this.style.backgroundColor='#F2F2F2';" onmouseout="this.style.backgroundColor='#DDDDDD';" style="background-color: rgb(242, 242, 242); ">
       <td>
-      	<?php echo $client->getIdnumber() ?>
+      	<?php echo $client['UserProfile'][0]['idnumber'] ?>
       </td>
       <td>
-     	 <?php echo $client->getName().' '.$client->getSurname() ?>
+     	 <?php echo $client['UserProfile'][0]['name'].' '.$client['UserProfile'][0]['surname'] ?>
       </td>
       <td>
 	  	<ul class="sf_admin_actions" style="display:inline;">

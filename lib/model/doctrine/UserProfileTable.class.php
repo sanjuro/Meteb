@@ -18,6 +18,25 @@ class UserProfileTable extends Doctrine_Table
     }
     
     /**
+     * Returns all clients
+     *
+ 	 * @param $userProfileId integer User Profile Id to find clients
+     *
+     * @return query The query to return results
+     */
+	public function getAllClients()
+	{
+	  $q = Doctrine_Query::create()
+	      ->from('UserProfile up')
+	      ->leftJoin('up.sfGuardUser sfgu')
+	      ->leftJoin('sfgu.sfGuardUserGroup sfug')
+	      ->where('sfug.group_id = 3');
+	 
+	    return $q;
+
+	}
+    
+    /**
      * Returns all clients associated to a user
      *
  	 * @param $userProfileId integer User Profile Id to find clients
@@ -28,6 +47,48 @@ class UserProfileTable extends Doctrine_Table
 	{
 	  $q = Doctrine_Query::create()
 	      ->from('UserProfile up')
+	      ->leftJoin('up.sfGuardUser sfgu')
+	      ->leftJoin('sfgu.sfGuardUserGroup sfug')
+	      ->where('sfug.group_id = 3')
+	      ->where('up.parent_user_profile_id = ?', $userProfileId);
+	 
+	    return $q;
+
+	}
+	
+    /**
+     * Returns all advisors associated
+     *
+ 	 * @param 
+     *
+     * @return query The query to return results
+     */
+	public function getAllAdvisors()
+	{
+	  $q = Doctrine_Query::create()
+	      ->from('UserProfile up')
+	      ->leftJoin('up.sfGuardUser sfgu')
+	      ->leftJoin('sfgu.sfGuardUserGroup sfug')
+	      ->where('sfug.group_id = 2');
+	 
+	    return $q;
+
+	}
+	
+    /**
+     * Returns all advisors associated to a user
+     *
+ 	 * @param $userProfileId integer User Profile Id to find clients
+     *
+     * @return query The query to return results
+     */
+	public function getAdvisorsForUser($userProfileId)
+	{
+	  $q = Doctrine_Query::create()
+	      ->from('UserProfile up')
+	      ->leftJoin('up.sfGuardUser sfgu')
+	      ->leftJoin('sfgu.sfGuardUserGroup sfug')
+	      ->where('sfug.group_id = 2')
 	      ->where('up.parent_user_profile_id = ?', $userProfileId);
 	 
 	    return $q;

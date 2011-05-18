@@ -18,14 +18,14 @@ class clientActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
   	$sfGuardUser = $this->getUser()->getGuardUser();
-  	
+  	  	
   	$UserProfile = $sfGuardUser->getUserProfile();
-  	
+  	  	
   	$this->pager = new sfDoctrinePager(
-	    'UserProfile',
+	    'sfGuardUser',
 	    20
 	);
-	$this->pager->setQuery(Doctrine::getTable('UserProfile')->getClientsForUser($UserProfile[0]->id)); 
+	$this->pager->setQuery(Doctrine::getTable('sfGuardUser')->getAllClients()); 
 	$this->pager->setPage($request->getParameter('page', 1));	 
 	$this->pager->init();
   	
@@ -59,7 +59,7 @@ class clientActions extends sfActions
   * @param sfRequest $request A request object
   */
   public function executeEdit(sfWebRequest $request)
-  {
+  {  	
    $this->form = new FrontendClientForm($this->getRoute()->getObject());
   }
   
