@@ -15,6 +15,11 @@ signout:
   param: { module: sfGuardAuth, action: signin }
   
 #client
+client_index:
+  url:     /clients
+  param:   { module: client, action: index }
+  requirements: { sf_method: get }
+  
 client_new:
   url:     /client/new
   param:   { module: client, action: new }
@@ -25,4 +30,25 @@ client_create:
   class:   sfDoctrineRoute
   options: { model: UserProfile, type: object }
   param:   { module: client, action: create, sf_format: html }
+  requirements: { sf_method: post }
+  
+client_show:
+  url:     /client/show.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: UserProfile, type: object }
+  param:   { module: client, action: edit, sf_format: html }
+  requirements: { sf_method: post }
+  
+client_edit:
+  url:     /client/edit.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: UserProfile, type: object }
+  param:   { module: client, action: edit, sf_format: html }
+  requirements: { sf_method: post }
+  
+client_delete:
+  url:     /client/delete.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: UserProfile, type: object }
+  param:   { module: client, action: delete, sf_format: html }
   requirements: { sf_method: post }

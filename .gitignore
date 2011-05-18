@@ -1,0 +1,8 @@
+*~
+*.tmproj
+.DS_Store
+.buildpath
+.project
+.settings/
+cache/*
+log/*

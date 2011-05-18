@@ -81,7 +81,7 @@ UserProfile:
     gender_id:        { type: integer }
     spouse_gender_id: { type: integer }
     status_id:        { type: integer }
-    user_profile_id:  { type: integer }
+    parent_user_profile_id:  { type: integer }
     name:
       type: string(30)
       fixed: false
@@ -174,7 +174,7 @@ UserProfile:
     Gender:           { class: Gender, local: gender_id, foreign: id }
     SpouseGender:     { class: Gender, local: spouse_gender_id, foreign: id }
     ClientStatus:     { class: ClientStatus, local: status_id, foreign: id }
-    Parent:           { class: ClientStatus, local: user_profile_id, foreign: id }
+    ParentUserProfile:{ class: ClientStatus, local: parent_user_profile_id, foreign: id }
     
 ClientStatus:
   columns:

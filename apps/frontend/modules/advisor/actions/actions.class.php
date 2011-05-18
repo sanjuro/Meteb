@@ -1,14 +1,14 @@
 <?php
 
 /**
- * client actions.
+ * advisor actions.
  *
  * @package    meteb
- * @subpackage client
+ * @subpackage advisor
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class clientActions extends sfActions
+class advisorActions extends sfActions
 {
  /**
   * Executes index action
@@ -25,7 +25,7 @@ class clientActions extends sfActions
 	    'UserProfile',
 	    20
 	);
-	$this->pager->setQuery(Doctrine::getTable('UserProfile')->getClientsForUser($UserProfile[0]->id)); 
+	$this->pager->setQuery(Doctrine::getTable('UserProfile')->getAllAdvisors()); 
 	$this->pager->setPage($request->getParameter('page', 1));	 
 	$this->pager->init();
   	
@@ -38,7 +38,7 @@ class clientActions extends sfActions
   */
   public function executeNew(sfWebRequest $request)
   {		 
-  	$this->form = new FrontendClientForm();
+  	$this->form = new FrontendAdvisorForm();
   }
 
  /**
@@ -48,7 +48,7 @@ class clientActions extends sfActions
   */
   public function executeCreate(sfWebRequest $request)
   {
-	  $this->form = new FrontendClientForm();
+	  $this->form = new FrontendAdvisorForm();
 	  $this->processForm($request, $this->form);
 	  $this->setTemplate('new');
   }
@@ -60,7 +60,7 @@ class clientActions extends sfActions
   */
   public function executeEdit(sfWebRequest $request)
   {
-   $this->form = new FrontendClientForm($this->getRoute()->getObject());
+   $this->form = new FrontendAdvisorForm($this->getRoute()->getObject());
   }
   
   /**
@@ -70,7 +70,7 @@ class clientActions extends sfActions
   */ 
   public function executeUpdate(sfWebRequest $request)
   {
-   $this->form = new FrontendClientForm($this->getRoute()->getObject());
+   $this->form = new FrontendAdvisorForm($this->getRoute()->getObject());
    $this->processForm($request, $this->form);
    $this->setTemplate('edit');
   }
@@ -87,7 +87,7 @@ class clientActions extends sfActions
    $client = $this->getRoute()->getObject();
    $client->delete();
  
-   $this->redirect('client/index');
+   $this->redirect('advisor/index');
   }
  
   /**
@@ -106,12 +106,12 @@ class clientActions extends sfActions
 	   {
 	    $client = $form->save();
 	 
-	    $this->getUser()->setFlash('notice', 'The client was added.');
+	    $this->getUser()->setFlash('notice', 'The advisor was added.');
 	    
-	    $this->redirect('client_show', $client);
+	    $this->redirect('advisor_show', $client);
 	  }else {
-	  	$this->getUser()->setFlash('error', 'There was some errors capturing your client.');
+	  	$this->getUser()->setFlash('error', 'There was a few errors while capturing the advisor details.');
 	  	
 	  }
- } 
+ }
 }

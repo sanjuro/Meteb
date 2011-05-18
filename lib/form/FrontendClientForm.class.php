@@ -1,40 +1,31 @@
 <?php
 
 /**
- * Client form.
+ * FrontendClientForm form.
  *
  * @package    meteb
  * @subpackage form
- * @author     Shadlet Wentzel
+ * @author     Shadley Wentzel
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class ClientForm extends BasesfGuardUserForm
+class FrontendClientForm extends BasesfGuardUserForm
 {
-  public $currentNetwork;
-	
   public function configure()
   {
   	parent::configure();
-  	
-    if ($this->getOption("network") instanceof Network && ($this->getOption("network")))
-	{
-	    $this->currentNetwork = $this->getOption("network");
-	}else{
-		throw new InvalidArgumentException("You must pass a network object as an option to this form!");	
-	}
-  	
+	
     unset(
-      $this['id'], $this['algorithm'],$this['user_profile_id'],
+      $this['id'], $this['algorithm'],
       $this['first_name'], $this['last_name'],
       $this['salt'], $this['is_active'],
       $this['is_super_admin'], $this['last_login'],
       $this['created_at'], $this['updated_at'],
       $this['groups_list'], $this['permissions_list']
     );
-    
-    /**
-     * Embed UserProfile Form
-     */
+
+	/**
+	 * Embed UserProfile Form
+	 */
 	if(!$this->isNew()) 	
 	{
 		$userProfileObjs = $this->getObject()->getUserProfile()->execute(); 
@@ -63,12 +54,12 @@ class ClientForm extends BasesfGuardUserForm
 	}
 	// embed the contacts forms
     $this->embedForm('userProfiles', $userProfilesForm);
+    
   }
-  
+
   public function bind(array $taintedValues = null, array $taintedFiles = null)
   {
-
-	if ($this->sfGuardUser)
+	if ($this->isNew())
 	{
     $userProfilesForm = new sfForm();
   
@@ -82,8 +73,34 @@ class ClientForm extends BasesfGuardUserForm
     }
 	
     $this->embedForm('userProfiles', $userProfilesForm);
-	}
+	}	
 	
     parent::bind($taintedValues, $taintedFiles);
   }
+  
+  
+  protected function doSave($con = null)
+  { 
+    if (is_null($con))
+    {
+      $con = $this->getConnection();
+    }    
+    
+    $this->updateObject();
+	
+    $this->object->save($con);      
+
+    $sfGuardUserGroup = new sfGuardUserGroup();
+	$sfGuardUserGroup->setUserId($this->object->getId());
+	$sfGuardUserGroup->setGroupId(3);
+	$sfGuardUserGroup->save();
+	
+   	
+    // $this->values['userProfiles']['parent_user_profile_id'] = 
+	    
+    // embedded forms
+   	parent::saveEmbeddedForms($con); 
+
+  }
+  
 }
