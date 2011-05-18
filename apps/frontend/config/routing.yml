@@ -52,3 +52,42 @@ client_delete:
   options: { model: UserProfile, type: object }
   param:   { module: client, action: delete, sf_format: html }
   requirements: { sf_method: post }
+  
+#advisor
+advisor_index:
+  url:     /advisors
+  param:   { module: advisor, action: index }
+  requirements: { sf_method: get }
+  
+advisor_new:
+  url:     /advisor/new
+  param:   { module: advisor, action: new }
+  requirements: { sf_method: get }
+  
+advisor_create:
+  url:     /advisor.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: UserProfile, type: object }
+  param:   { module: advisor, action: create, sf_format: html }
+  requirements: { sf_method: post }
+  
+advisor_show:
+  url:     /advisor/show.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: UserProfile, type: object }
+  param:   { module: advisor, action: edit, sf_format: html }
+  requirements: { sf_method: post }
+  
+advisor_edit:
+  url:     /advisor/edit.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: UserProfile, type: object }
+  param:   { module: advisor, action: edit, sf_format: html }
+  requirements: { sf_method: post }
+  
+advisor_delete:
+  url:     /advisor/delete.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: UserProfile, type: object }
+  param:   { module: advisor, action: delete, sf_format: html }
+  requirements: { sf_method: post }

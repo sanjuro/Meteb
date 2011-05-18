@@ -73,11 +73,29 @@ class FrontendClientForm extends BasesfGuardUserForm
     }
 	
     $this->embedForm('userProfiles', $userProfilesForm);
-	}	
+	}
+	
 	
     parent::bind($taintedValues, $taintedFiles);
   }
   
+  public function updateObject($values = null)
+  { 
+    if (is_null($values))
+    {
+      $values = $this->values;
+    }
+    
+    $values['username'] = $values['email_address'];
+	
+	$values = $this->processValues($values);
+		 
+	$this->object->fromArray($values);
+	   	 
+	$this->updateObjectEmbeddedForms($values);
+	   	 
+	return $this->object;	
+  }
   
   protected function doSave($con = null)
   { 
@@ -96,7 +114,7 @@ class FrontendClientForm extends BasesfGuardUserForm
 	$sfGuardUserGroup->save();
 	
    	
-    // $this->values['userProfiles']['parent_user_profile_id'] = 
+    $values['userProfiles'][0]['sfuser_id'] = $this->object->getId();
 	    
     // embedded forms
    	parent::saveEmbeddedForms($con); 

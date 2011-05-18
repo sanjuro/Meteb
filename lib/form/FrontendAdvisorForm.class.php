@@ -1,37 +1,82 @@
 <?php
 
 /**
- * Client form.
+ * FrontendAdvisorForm form.
  *
  * @package    meteb
  * @subpackage form
  * @author     Shadley Wentzel
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class FrontendAdvisorForm extends BaseUserProfileForm
+class FrontendAdvisorForm extends BasesfGuardUserForm
 {
-  public $sfGuardUser;
-	
   public function configure()
   {
   	parent::configure();
-  	
-	$this->embedRelation('sfGuardUser');
 	
-    if ($this->getOption("sfGuardUser") instanceof sfGuardUser)
-	{
-	    $this->sfGuardUser = $this->getOption("sfGuardUser");
-	}
-  	
     unset(
-      $this['id'], $this['algorithm'],$this['user_profile_id'],
+      $this['id'], $this['algorithm'],
       $this['first_name'], $this['last_name'],
       $this['salt'], $this['is_active'],
       $this['is_super_admin'], $this['last_login'],
       $this['created_at'], $this['updated_at'],
       $this['groups_list'], $this['permissions_list']
     );
+
+	/**
+	 * Embed UserProfile Form
+	 */
+	if(!$this->isNew()) 	
+	{
+		$userProfileObjs = $this->getObject()->getUserProfile()->execute(); 
+	}else{
+		$userProfileObjs = array();
+	}
+	
+	if (count($userProfileObjs) < 1){
+	      $userProfileObj = new UserProfile();  
+	      $userProfileObjs[] = $userProfileObj;
+	}
+	
+	$userProfilesForm = new sfForm();
+	  
+	$count = 0;    
+	
+  	if(!$this->isNew())
+	{	
+		foreach( $userProfileObjs as $key => $userProfileObj )
+		{	 
+			  $userProfilesForm->embedForm($key, new FrontendUserProfileForm( $userProfileObj ) );
+	     
+		}  
+	}else{
+		 $userProfilesForm->embedForm( 0, new FrontendUserProfileForm( $userProfileObj ) );
+	}
+	// embed the contacts forms
+    $this->embedForm('userProfiles', $userProfilesForm);
     
+  }
+
+  public function bind(array $taintedValues = null, array $taintedFiles = null)
+  {
+	if ($this->isNew())
+	{
+    $userProfilesForm = new sfForm();
+  
+    foreach($taintedValues['userProfiles'] as $key => $new_occurrence)
+    {
+      $userProfileObj = new UserProfile();
+      $userProfileObj->setsfGuardUser($this->getObject());  
+      $userProfileObj_form = new FrontendUserProfileForm($userProfileObj);
+	
+      $userProfilesForm->embedForm( $key, $userProfileObj_form );
+    }
+	
+    $this->embedForm('userProfiles', $userProfilesForm);
+	}
+	
+	
+    parent::bind($taintedValues, $taintedFiles);
   }
   
   public function updateObject($values = null)
@@ -40,16 +85,16 @@ class FrontendAdvisorForm extends BaseUserProfileForm
     {
       $values = $this->values;
     }
-    	
-    $values['sfuser_id'] = $this->sfGuardUser->getId();
     
-    $values['sfGuardUser']['username'] = $values['idnumber'];
-    
-    $values['sfGuardUser']['first_name'] = $values['name'];
-    
-    $values['sfGuardUser']['last_name'] = $values['surname'];
-    
-    parent::updateObject($values);
+    $values['username'] = $values['email_address'];
+	
+	$values = $this->processValues($values);
+		 
+	$this->object->fromArray($values);
+	   	 
+	$this->updateObjectEmbeddedForms($values);
+	   	 
+	return $this->object;	
   }
   
   protected function doSave($con = null)
@@ -57,29 +102,23 @@ class FrontendAdvisorForm extends BaseUserProfileForm
     if (is_null($con))
     {
       $con = $this->getConnection();
-    }
+    }    
     
-    if ($this->sfGuardUser && $this->sfGuardUser->getId())  
-    {	   
-	    $this->object = $this->sfGuardUser;
-    	
-    	$sfGuardUserGroup = new sfGuardUserGroup();
-	    $sfGuardUserGroup->setUserId($this->sfGuardUser->getId());
-	    $sfGuardUserGroup->setGroupId(2);
-	    $sfGuardUserGroup->save();
-
-    }else {
-   	 	$this->updateObject();
+    $this->updateObject();
 	
-    	$this->object->save($con);      
+    $this->object->save($con);      
 
-    	$sfGuardUserGroup = new sfGuardUserGroup();
-	    $sfGuardUserGroup->setUserId($this->sfGuardUser->getId());
-	    $sfGuardUserGroup->setGroupId(2);
-	    $sfGuardUserGroup->save();
+    $sfGuardUserGroup = new sfGuardUserGroup();
+	$sfGuardUserGroup->setUserId($this->object->getId());
+	$sfGuardUserGroup->setGroupId(2);
+	$sfGuardUserGroup->save();
+	
+   	
+    $values['userProfiles'][0]['sfuser_id'] = $this->object->getId();
 	    
-    	// embedded forms
-   	 	parent::saveEmbeddedForms($con); 
-    }
+    // embedded forms
+   	parent::saveEmbeddedForms($con); 
+
   }
+  
 }
