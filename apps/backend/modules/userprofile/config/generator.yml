@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:  ~
       list:    
-       display: [ title, url, url, created_at]
+       display: [ idnumber, name, surname]
        title: '<h2>User Profiles</h2>'
       filter:  
         class: false

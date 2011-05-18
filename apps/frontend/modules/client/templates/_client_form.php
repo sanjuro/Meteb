@@ -1,6 +1,8 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
  
+<?php use_helper('jQuery')?> 
+
 <?php use_stylesheet('/sfDoctrinePlugin/css/default.css') ?>
  
 <?php echo $form->renderGlobalErrors() ?>
@@ -24,6 +26,16 @@
 				<?php echo $form['userProfiles'][0]['idnumber'] ?>
 			</div>			
 			<?php echo $form['userProfiles'][0]['idnumber']->renderError() ?>
+		 </div>
+		 <div class="sf_admin_form_row">			
+			<div>
+				<?php echo $form['userProfiles'][0]['parent_user_profile_id']->renderLabel() ?>
+			</div>
+			
+			<div  class="content" >
+				<?php echo $form['userProfiles'][0]['parent_user_profile_id'] ?>
+			</div>			
+			<?php echo $form['userProfiles'][0]['parent_user_profile_id']->renderError() ?>
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>

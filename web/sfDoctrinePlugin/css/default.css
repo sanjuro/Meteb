@@ -1,12 +1,14 @@
 #sf_admin_container a
 {
-  color: #464646;
+  color: #FFF;
   text-decoration: none;
 }
-
+#sf_admin_container td a {
+	color:#000;
+	}
 #sf_admin_container a:hover
 {
-  color: #000;
+  color: #FFF;
   text-decoration: underline;
 }
 
@@ -19,7 +21,7 @@
 
 #sf_admin_container th
 {
-  background-color: #e7eef6;
+  background-color: #000033;
   white-space: nowrap;
 }
 

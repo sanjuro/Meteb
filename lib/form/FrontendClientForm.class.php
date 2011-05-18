@@ -22,7 +22,7 @@ class FrontendClientForm extends BasesfGuardUserForm
       $this['created_at'], $this['updated_at'],
       $this['groups_list'], $this['permissions_list']
     );
-
+  
 	/**
 	 * Embed UserProfile Form
 	 */
@@ -91,6 +91,8 @@ class FrontendClientForm extends BasesfGuardUserForm
 	$values = $this->processValues($values);
 		 
 	$this->object->fromArray($values);
+	
+    $values['userProfiles'][0]['sfuser_id'] = $this->object->getId();
 	   	 
 	$this->updateObjectEmbeddedForms($values);
 	   	 
@@ -113,9 +115,7 @@ class FrontendClientForm extends BasesfGuardUserForm
 	$sfGuardUserGroup->setGroupId(3);
 	$sfGuardUserGroup->save();
 	
-   	
-    $values['userProfiles'][0]['sfuser_id'] = $this->object->getId();
-	    
+   		    
     // embedded forms
    	parent::saveEmbeddedForms($con); 
 
