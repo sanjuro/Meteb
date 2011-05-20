@@ -40,7 +40,7 @@ client_show:
   requirements: { sf_method: post }
   
 client_edit:
-  url:     /client/edit/:id.:sf_format
+  url:     /client/:id.:sf_format
   class:   sfDoctrineRoute
   options: { model: sfGuardUser, type: object }
   param:   { module: client, action: edit, sf_format: html }
