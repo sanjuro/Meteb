@@ -23,6 +23,8 @@ class FrontendClientForm extends BasesfGuardUserForm
       $this['groups_list'], $this['permissions_list']
     );
   
+    
+    
 	/**
 	 * Embed UserProfile Form
 	 */
