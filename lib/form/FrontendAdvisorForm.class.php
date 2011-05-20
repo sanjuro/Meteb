@@ -114,11 +114,36 @@ class FrontendAdvisorForm extends BasesfGuardUserForm
 	$sfGuardUserGroup->save();
 	
    	
-    $values['userProfiles'][0]['sfuser_id'] = $this->object->getId();
-	    
-    // embedded forms
-   	parent::saveEmbeddedForms($con); 
+    $this->saveEmbeddedForms($con); 
 
+  }
+  
+  public function saveEmbeddedForms($con = null, $forms = null)
+  {
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    if (null === $forms)
+    {
+      $forms = $this->embeddedForms;
+    }
+
+    foreach ($forms as $form)
+    {
+      if ($form instanceof sfFormObject)
+      {
+
+      	$form->saveEmbeddedForms($con);
+      	$form->getObject()->setSfGuardUser($this->object);
+        $form->getObject()->save($con);
+      }
+      else
+      {
+        $this->saveEmbeddedForms($con, $form->getEmbeddedForms());
+      }
+    }
   }
   
 }

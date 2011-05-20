@@ -26,7 +26,7 @@ class FrontendClientForm extends BasesfGuardUserForm
 	/**
 	 * Embed UserProfile Form
 	 */
-	if(!$this->isNew()) 	
+    if(!$this->isNew()) 	
 	{   
 		$userProfileObjs = $this->getObject()->getUserProfile(); 
 	}else{
@@ -86,18 +86,24 @@ class FrontendClientForm extends BasesfGuardUserForm
       $values = $this->values;
     }
     
-    $values['username'] = $values['email_address'];
+    $values['first_name'] = $values['userProfiles'][0]['name'];
+    
+    $values['last_name'] = $values['userProfiles'][0]['surname'];
 	
 	$values = $this->processValues($values);
 		 
 	$this->object->fromArray($values);
 	
-    $values['userProfiles'][0]['sfuser_id'] = $this->object->getId();
+    // $values['userProfiles'][0]['sfuser_id'] = $this->object->getId();
 	   	 
-	$this->updateObjectEmbeddedForms($values);
+	// $this->updateObjectEmbeddedForms($values);
 	   	 
-	return $this->object;	
+	// return $this->object;
+
+	 parent::updateObject();
   }
+  
+
   
   protected function doSave($con = null)
   { 
@@ -117,8 +123,37 @@ class FrontendClientForm extends BasesfGuardUserForm
 	
    		    
     // embedded forms
-   	parent::saveEmbeddedForms($con); 
+    $this->saveEmbeddedForms($con); 
 
+  }
+  
+  
+  public function saveEmbeddedForms($con = null, $forms = null)
+  {
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    if (null === $forms)
+    {
+      $forms = $this->embeddedForms;
+    }
+
+    foreach ($forms as $form)
+    {
+      if ($form instanceof sfFormObject)
+      {
+
+      	$form->saveEmbeddedForms($con);
+      	$form->getObject()->setSfGuardUser($this->object);
+        $form->getObject()->save($con);
+      }
+      else
+      {
+        $this->saveEmbeddedForms($con, $form->getEmbeddedForms());
+      }
+    }
   }
   
 }
