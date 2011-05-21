@@ -32,6 +32,16 @@ class clientActions extends sfActions
   }
   
  /**
+  * Executes dashboard action
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeDashboard(sfWebRequest $request)
+  {		 
+  	$this->form = new FrontendClientForm();
+  }
+  
+ /**
   * Executes new action
   *
   * @param sfRequest $request A request object

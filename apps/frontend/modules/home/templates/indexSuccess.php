@@ -27,98 +27,22 @@ placerat iaculis. Curabitur posuere, pede vitae lacinia accumsan, enim nibh elem
 neque arcu, ultrices commodo, pellentesque sit amet, ultricies ut, ipsum. Mauris et eros eget erat dapibus mollis. Mauris laoreet posuere odio.
 Nam ipsum ligula, ullamcorper eu, fringilla at, lacinia ut, augue. Nullam nunc.
 
-<div class="CollapsiblePanel CollapsiblePanelClosed" id="CollapsiblePanel3">
-        <div tabindex="0" class="CollapsiblePanelTab">Upload Data</div>
-        <div class="CollapsiblePanelContent" style="display: none; visibility: visible; height: 0px;">Content
-          <form class="clean">
-            <ol>
-              <li>
-                <fieldset>
-                  <legend>Upload Data</legend>
-                  <ol>
-                    <li>
-                      <label for="textfield1">Textfield 1</label>
-                      <input type="text" value="" name="textfield1" id="textfield1">
-                    </li>
-                  </ol>
-                </fieldset>
-              </li>
-            </ol>
-            <p style="text-align: right;">
-              <input type="reset" value="CANCEL">
-              <input type="submit" value="OK">
-            </p>
-          </form>
-        </div>
-      </div>
-      
-<div class="CollapsiblePanel CollapsiblePanelClosed" id="CollapsiblePanel4">
-        <div tabindex="0" class="CollapsiblePanelTab">Add New Financial Advisor</div>
-        <div class="CollapsiblePanelContent" style="display: none; visibility: visible; height: 0px;">Content
-          <form class="clean">
-            <ol>
-              <li style="">
-                <fieldset>
-                  <legend>Login Details</legend>
-                  <ol>
-                    <li style="">
-                      <label for="id">Identity Number</label>
-                      <input type="text" value="" name="id" id="id">
-                    </li>
-                    <li style="">
-                      <label for="pass">Password</label>
-                      <input type="text" value="" name="pass" id="pass">
-                    </li>
-                  </ol>
-                </fieldset>
-              </li>
-              <li>
-                <fieldset>
-                  <legend>Details</legend>
-                  <ol>
-                    <li style="">
-                      <label for="surname">Surname</label>
-                      <input type="text" value="" name="surname" id="surname">
-                    </li>
-                    <li style="">
-                      <label for="firstName">First Name/s</label>
-                      <input type="text" value="" name="firstName" id="firstName">
-                    </li>
-                    <li style="">
-                      <label for="companyName">Company</label>
-                      <input type="text" value="" name="companyName" id="companyName">
-                    </li>
-                  </ol>
-                </fieldset>
-              </li>
-              <li>
-                <fieldset>
-                  <legend>Contact Details</legend>
-                  <ol>
-                    <li>
-                      <label for="tel">Telephone/Cell</label>
-                      <input type="text" value="" name="tel" id="tel">
-                    </li>
-                    <li style="">
-                      <label for="email">Email Address</label>
-                      <input type="text" value="" name="email" id="email">
-                    </li>
-                  </ol>
-                </fieldset>
-              </li>
-            </ol>
-            <p style="text-align: right;">
-              <input type="reset" value="RESET">
-              <input type="submit" value="EDIT">
-            </p>
-          </form>
-</div>
-      </div>
+<div class="dashboard_button"><?php echo link_to(image_tag('add_fa_button.png'), url_for('advisor_new'));?></div>
+
+<div class="dashboard_button"><?php echo link_to(image_tag('add_cl_button.png'), url_for('client_new'));?></div>
+
+<br>
+
+<div class="dashboard_button"><?php echo link_to(image_tag('view_fa_button'), url_for('advisor_index'));?></div>
+
+<div class="dashboard_button"><?php echo link_to(image_tag('view_q_button'), url_for('advisor_new'));?></div>
+
+<br>
 <?php endif; ?>
 
 
-<?php if ($sf_user->hasGroup('advisor')): ?>
-<h1>EB Admin Page</h1>
+<?php if ($sf_user->hasGroup('financialadvisor')): ?>
+<h1>EB Advisor Page</h1>
 
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis ligula lorem, consequat eget, tristique nec, auctor quis, purus. 
 Vivamus ut sem. Fusce aliquam nunc vitae purus. Aenean viverra malesuada libero. Fusce ac quam. Donec neque. Nunc venenatis enim nec quam. 
@@ -126,6 +50,20 @@ Cras faucibus, justo vel accumsan aliquam, tellus dui fringilla quam, in condime
 placerat iaculis. Curabitur posuere, pede vitae lacinia accumsan, enim nibh elementum orci, ut volutpat eros sapien nec sapien. Suspendisse 
 neque arcu, ultrices commodo, pellentesque sit amet, ultricies ut, ipsum. Mauris et eros eget erat dapibus mollis. Mauris laoreet posuere odio.
 Nam ipsum ligula, ullamcorper eu, fringilla at, lacinia ut, augue. Nullam nunc.
+
+<div class="dashboard_button"><?php echo link_to(image_tag('add_cl_button.png'), url_for('client_new'));?></div>
+
+<div class="dashboard_button"><?php echo link_to(image_tag('add_data_button.png'), url_for('advisor_new'));?></div>
+
+<br>
+
+<div class="dashboard_button"><?php echo link_to(image_tag('add_q_button.png'), url_for('advisor_index'));?></div>
+
+<div class="dashboard_button"><?php echo link_to(image_tag('view_q_button.png'), url_for('advisor_new'));?></div>
+
+<br>
+
+<div class="clearer" style="height:30px;"></div>
 <?php endif; ?>
 
 
@@ -137,5 +75,13 @@ Vivamus ut sem. Fusce aliquam nunc vitae purus. Aenean viverra malesuada libero.
 Cras faucibus, justo vel accumsan aliquam, tellus dui fringilla quam, in condimentum augue lorem non tellus. Pellentesque id arcu non sem 
 placerat iaculis. Curabitur posuere, pede vitae lacinia accumsan, enim nibh elementum orci, ut volutpat eros sapien nec sapien. Suspendisse 
 neque arcu, ultrices commodo, pellentesque sit amet, ultricies ut, ipsum. Mauris et eros eget erat dapibus mollis. Mauris laoreet posuere odio.
- Nam ipsum ligula, ullamcorper eu, fringilla at, lacinia ut, augue. Nullam nunc.
+Nam ipsum ligula, ullamcorper eu, fringilla at, lacinia ut, augue. Nullam nunc. 
+ 
+<div class="dashboard_button"><?php echo link_to(image_tag('view_p_button'), url_for('advisor_new'));?></div>
+
+<div class="dashboard_button"><?php echo link_to(image_tag('view_q_button'), url_for('client_new'));?></div>
+
+<br>
+
+<div class="clearer" style="height:30px;"></div>
 <?php endif; ?>

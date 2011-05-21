@@ -25,7 +25,16 @@
 			    	<div id="topnaviation">
 						
 			    	</div>
-			    	
+			    				    	
+			       <div id="rightcolumn" class="column">
+			       		Welcome, <?php echo $sf_user->getUsername() ?>
+			       		<b><?php echo link_to('Logout', 'sf_guard_signout', array(), array( "class" => "logout")) ?></b>
+			       		<br>
+			       		<?php include_partial('navigation/navigation'); ?>
+			       </div>
+			       
+			       <div id="centercolumn" class="column">	
+			       
 					<?php if ($sf_user->hasFlash('notice')): ?>
 					          <div class="flash_notice">
 					            <?php echo $sf_user->getFlash('notice') ?>
@@ -38,19 +47,11 @@
 					            <?php echo $sf_user->getFlash('error') ?>
 					         </div>
 					<?php endif; ?>
-			    	
-			       <div id="rightcolumn" class="column">
-			       		Welcome, <?php echo $sf_user->getUsername() ?>
-			       		<b><?php echo link_to('Logout', 'sf_guard_signout', array(), array( "class" => "logout")) ?></b>
-			       		<br>
-			       		<?php include_partial('navigation/navigation'); ?>
-			       </div>
-			       
-			       <div id="centercolumn" class="column">			       
+					       
         	      	 <?php echo $sf_content ?>        	      	 
 			       </div>
         	       
-        	       <div class="clearer"></div>
+        	       <div class="clearer" ></div>
         	</div>
         </div>        
         <div id="footer">

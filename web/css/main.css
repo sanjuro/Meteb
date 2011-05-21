@@ -77,6 +77,12 @@ fieldset {
     padding: 5px;
     margin: 0px;
 }
+
+input:focus {
+	    border-color: #000033;
+	    outline: none;
+	}
+
 table {
 	width: 100%;	
 	}
@@ -105,3 +111,17 @@ table {
 ul.sf_admin_actions {
 	padding-left: 0px;
 	}
+.dashboard_button {
+	float: left;
+	margin-top:10px;
+	margin-right:20px;
+	}
+	
+.flash_error {
+	background-color: #FDF4EF;
+	border-top: 1px solid #FF3333;
+	border-bottom: 1px solid #FF3333;
+	padding: 10px 20px;
+	}
+	
+	
