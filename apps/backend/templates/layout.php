@@ -13,66 +13,93 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-        <div id="headerwrapper">
-        	<div id="header">
-        	        	
-        	</div>
-        </div>
+  
+     <div id="wrapper">
+
         <div id="navigationwrapper">
 
-			    	<div id="navigation">
+			<div class="navigation">
 					<?php if ($sf_user->isAuthenticated()): ?>					
-					    <ul id="backendnavigation">
+					    <ul class="backendnavigation">
 						  <li><?php echo link_to(__('Profiles'), 'userprofile') ?></li>
 					      <?php if ($sf_user->isSuperAdmin()): ?>
 					      <li><?php echo link_to(__('Users'), 'sf_guard_user', array(), array( "class" => "users")) ?></li>
 					      <li><?php echo link_to(__('Groups'), 'sf_guard_group', array(), array( "class" => "group")) ?></li>
 					       <li><?php echo link_to(__('Permissions'), 'sf_guard_permission', array(), array( "class" => "group")) ?></li>
 					      <?php endif; ?>					
-					      <li><?php echo link_to(__('Logout'), 'sf_guard_signout', array(), array( "class" => "logout")) ?></li>
 					
 					    </ul>		
 					<?php endif; ?>						
-					</div>
-
+			</div>
+			
+			<div class="navigation right">
+					<?php if ($sf_user->isAuthenticated()): ?>					
+					    <ul class="backendnavigation">
+						    <li><?php echo link_to(__('Logout'), 'sf_guard_signout', array(), array( "class" => "logout")) ?></li>				
+					    </ul>		
+					<?php endif; ?>						
+			</div>
+	
+			<div class="clearer"></div>
 		</div>
-        <div id="contentwrapper">
-        
-        	<div id="content">
-        	
-        	<div id="rightcolumn">
-        	</div>
-        	<div id="center">    
-			    	
-					<?php if ($sf_user->hasFlash('notice')): ?>
-					          <div class="flash_notice">
-					            <?php echo $sf_user->getFlash('notice') ?>
-					          </div>
-					<?php endif; ?>
-					 
-				
-					<?php if ($sf_user->hasFlash('error')): ?>
-					          <div class="flash_error">
-					            <?php echo $sf_user->getFlash('error') ?>
-					         </div>
-					<?php endif; ?>
-			    	
-			       <div id="rightcolumn" class="column">
-			       		<?php include('navigation.php'); ?>
-			       </div>
-			       
-			       <div id="centercolumn" class="column">			       
-        	      	 <?php echo $sf_content ?>        	      	 
-			       </div>
-        	       
-        	       <div class="clearer"></div>
-        	</div>
-        	
-        	</div>
-        </div>        
-        <div id="footerwrapper">
-        	<div id="footer"></div>
+		
+        <div class="shadowHeader">
+        		<div class="shadowMidLeft">
+        		   <div id="header">
+			        	<h1>
+						  <?php if (!include_slot('pagetitle')): ?>
+						    Momentum
+						  <?php endif; ?>
+			        	</h1>
+		            </div>
+		      </div>
         </div>
-    </div>
+        	
+        <div class="shadowWrap">
+          <div class="shadowMidLeft">
+		        <div class="shadowMidContent">
+		        	 <div class="twocol">	 
+		        	 	<div id="adminWrap">
+			        	 	<div id="content">	 
+			        	 	
+					        	<div id="leftcol">    
+								    	
+										<?php if ($sf_user->hasFlash('notice')): ?>
+										          <div class="flash_notice">
+										            <?php echo $sf_user->getFlash('notice') ?>
+										          </div>
+										<?php endif; ?>
+										 
+									
+										<?php if ($sf_user->hasFlash('error')): ?>
+										          <div class="flash_error">
+										            <?php echo $sf_user->getFlash('error') ?>
+										         </div>
+										<?php endif; ?>
+								    	
+			       
+					        	      	<?php echo $sf_content ?>        	      	 
+					        	       
+					        	       <div class="clearer"></div>
+					        	</div>
+					        	
+					        	<div id="rightcol">
+					        		<?php include('navigation.php'); ?>
+					        	</div>
+			        	 	
+			        	 	</div>
+			        	 	
+			        	 </div>
+        			</div>
+        		</div>
+        				
+	        </div>
+        </div>
+        
+        <div class="shadowBottomLeft">
+				<div class="shadowMidLeft"></div>
+		</div>   
+		     
+	 </div>
   </body>
 </html>
