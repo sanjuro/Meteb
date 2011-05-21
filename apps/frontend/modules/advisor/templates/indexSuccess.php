@@ -1,4 +1,4 @@
-<h1>View Advisors</h1>
+<h2>View Advisors</h2>
 
 <?php include_partial('advisor/list', array('advisors' => $pager->getResults())) ?>
 

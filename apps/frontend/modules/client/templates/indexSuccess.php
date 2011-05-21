@@ -1,4 +1,4 @@
-<h1>View Clients</h1>
+<h2>View Clients</h2>
 
 <?php include_partial('client/list', array('clients' => $pager->getResults())) ?>
 

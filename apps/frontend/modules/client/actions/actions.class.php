@@ -58,9 +58,9 @@ class clientActions extends sfActions
   */
   public function executeCreate(sfWebRequest $request)
   {
-	  $this->form = new FrontendClientForm();
-	  $this->processForm($request, $this->form);
-	  $this->setTemplate('new');
+   $this->form = new FrontendClientForm();
+   $this->processForm($request, $this->form);
+   $this->setTemplate('new');
   }
   
  /**

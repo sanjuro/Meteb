@@ -5,6 +5,7 @@
 <div id="sf_admin_container">
 <div id="sf_admin_content">
 <div class="sf_admin_list">
+
 <table class="advisors">
   <tr>
   	<th>ID</th>

@@ -1,3 +1,12 @@
+client:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                sfGuardUser
+    module:               client
+    prefix_path:          /client
+    column:               id
+    with_wildcard_routes: true
+
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
@@ -14,52 +23,7 @@ signout:
   url:   /
   param: { module: sfGuardAuth, action: signin }
   
-#client
-client_index:
-  url:     /clients
-  param:   { module: client, action: index }
-  requirements: { sf_method: get }
-  
-client_new:
-  url:     /client/new
-  param:   { module: client, action: new }
-  requirements: { sf_method: get }
-  
-client_create:
-  url:     /client.:sf_format
-  class:   sfDoctrineRoute
-  options: { model: sfGuardUser, type: object }
-  param:   { module: client, action: create, sf_format: html }
-  requirements: { sf_method: post }
-  
-client_show:
-  url:     /client/show.:sf_format
-  class:   sfDoctrineRoute
-  options: { model: sfGuardUser, type: object }
-  param:   { module: client, action: edit, sf_format: html }
-  requirements: { sf_method: post }
-  
-client_edit:
-  url:     /client/edit/:id.:sf_format
-  class:   sfDoctrineRoute
-  options: { model: sfGuardUser, type: object }
-  param:   { module: client, action: edit, sf_format: html }
-  requirements: 
-    sf_method: [ post, get ]
-    
-client_update:
-  url:     /client/:id.:sf_format
-  class:   sfDoctrineRoute
-  options: { model: sfGuardUser, type: object }
-  param:   { module: client, action: update, sf_format: html }
-  requirements: { sf_method: put }
-  
-client_delete:
-  url:     /client/delete.:sf_format
-  class:   sfDoctrineRoute
-  options: { model: sfGuardUser, type: object }
-  param:   { module: client, action: delete, sf_format: html }
-  requirements: { sf_method: post }
+
   
 #advisor
 advisor_index:
