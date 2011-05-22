@@ -118,7 +118,7 @@ class clientActions extends sfActions
 	 
 	    $this->getUser()->setFlash('notice', 'The client was added.');
 	    
-	    $this->redirect($this->generateUrl('client_index'));
+	    $this->redirect($this->generateUrl('client'));
 	  }else {
 	  	$this->getUser()->setFlash('error', 'There was some errors capturing your client.');
 	  	

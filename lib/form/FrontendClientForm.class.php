@@ -118,10 +118,14 @@ class FrontendClientForm extends BasesfGuardUserForm
 	
     $this->object->save($con);      
 
+    if($this->isNew()) {
+    
     $sfGuardUserGroup = new sfGuardUserGroup();
 	$sfGuardUserGroup->setUserId($this->object->getId());
 	$sfGuardUserGroup->setGroupId(3);
 	$sfGuardUserGroup->save();
+	
+	}
 	
    		    
     // embedded forms

@@ -95,7 +95,7 @@ class sfValidatorDoctrineUnique extends sfValidatorSchema
 
       $q->addWhere('a.' . $colName . ' = ?', $values[$column]);
     }
-
+   
     $object = $q->fetchOne();
 
     // if no object or if we're updating the object, it's ok

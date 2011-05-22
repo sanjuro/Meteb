@@ -106,13 +106,16 @@ class FrontendAdvisorForm extends BasesfGuardUserForm
     
     $this->updateObject();
 	
-    $this->object->save($con);      
+    $this->object->save($con); 
+
+    if($this->isNew()) {
 
     $sfGuardUserGroup = new sfGuardUserGroup();
 	$sfGuardUserGroup->setUserId($this->object->getId());
 	$sfGuardUserGroup->setGroupId(2);
 	$sfGuardUserGroup->save();
 	
+    }	
    	
     $this->saveEmbeddedForms($con); 
 
