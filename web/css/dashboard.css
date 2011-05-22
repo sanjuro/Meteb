@@ -1,0 +1,40 @@
+#dashboard {
+    padding: 22px 18px 25px 15px;
+}
+
+#clientList {
+    float: left;
+    width: 32%;
+}
+#addClientButton {
+    float: right;
+    margin-top: -3px;
+}
+
+
+#clientActivity {
+    margin: 0 0 0 32%;
+}
+#activityBG {
+    background: url("/images/backend/2col.png") no-repeat scroll left bottom #FFFFFF;
+    margin: 0 0 0 23px;
+}
+#activityContent {
+    background: url("/images/backend/col-top.png") no-repeat scroll left top transparent;
+    padding: 0 0 0 25px;
+}
+#clientBlankSlate {
+    background: url("/images/backend/lank-slate.gif") repeat-x scroll left top #DCFCC6;
+    border-bottom: 2px solid #C9EBBE;
+    border-top: 2px solid #D7FAC4;
+    margin-bottom: 20px;
+    padding: 8px 20px 12px;
+}
+#clientBlankSlate div.instructions {
+    border-top: 1px solid #CEE8BC;
+    margin-top: 10px;
+    padding-top: 15px;
+}
+#clientBlankSlate .instructionsCTA {
+    padding-right: 15px;
+}

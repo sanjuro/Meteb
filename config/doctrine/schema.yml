@@ -1,3 +1,20 @@
+Activity:
+  actAs: 
+    Timestampable: ~ 
+    Searchable:
+       fields: [activitytype_id]  
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: string(255) }
+    activitytype_id:   { type: integer }
+  relations:
+    ActivityType:  { class: ActivityType, onDelete: CASCADE, local: activitytype_id, foreign: id }
+    
+ActivityType:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: string(255) }
+
 Expensedata:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
@@ -64,7 +81,10 @@ Quotehistory:
   columns:
     id:                      { type: integer, primary: true, autoincrement: true }
     client_id:               { type: integer }
-    financialadvisor_id:               { type: integer }
+    financialadvisor_id:     { type: integer }
+  relations:
+    Client:                  { class: sfGuardUser, onDelete: CASCADE, local: client_id, foreign: id }
+    Advisor:                 { class: sfGuardUser, onDelete: CASCADE, local: financialadvisor_id, foreign: id }
       
 System:
   columns:

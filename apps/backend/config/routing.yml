@@ -13,7 +13,7 @@ user_profile:
 # default rules
 homepage:
   url:   /
-  param: { module: userprofile, action: index }
+  param: { module: dashboard, action: index }
   
 userprofile:
   url:   /Userprofiles

@@ -16,16 +16,16 @@ abstract class BaseQuotehistoryForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                  => new sfWidgetFormInputHidden(),
-      'client_id'           => new sfWidgetFormInputText(),
-      'financialadvisor_id' => new sfWidgetFormInputText(),
+      'client_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Client'), 'add_empty' => true)),
+      'financialadvisor_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Advisor'), 'add_empty' => true)),
       'created_at'          => new sfWidgetFormDateTime(),
       'updated_at'          => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
       'id'                  => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'client_id'           => new sfValidatorInteger(array('required' => false)),
-      'financialadvisor_id' => new sfValidatorInteger(array('required' => false)),
+      'client_id'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Client'), 'required' => false)),
+      'financialadvisor_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Advisor'), 'required' => false)),
       'created_at'          => new sfValidatorDateTime(),
       'updated_at'          => new sfValidatorDateTime(),
     ));

@@ -58,12 +58,16 @@
         <div class="shadowWrap">
           <div class="shadowMidLeft">
 		        <div class="shadowMidContent">
-		        	 <div class="twocol">	 
+		       		 <?php if (include_slot('rightcol')): ?>
+		        	 <div class="twocol">	
+		        	
 		        	 	<div id="adminWrap">
-			        	 	<div id="content">	 
+			        	 		 
+
+			        	 	<div id="content">
 			        	 	
 					        	<div id="leftcol">    
-								    	
+							<?php endif; ?>
 										<?php if ($sf_user->hasFlash('notice')): ?>
 										          <div class="flash_notice">
 										            <?php echo $sf_user->getFlash('notice') ?>
@@ -81,16 +85,21 @@
 					        	      	<?php echo $sf_content ?>        	      	 
 					        	       
 					        	       <div class="clearer"></div>
-					        	</div>
-					        	
-					        	<div id="rightcol">
-					        		<?php include('navigation.php'); ?>
-					        	</div>
-			        	 	
+					        	       
+			        	 	<?php if (include_slot('rightcol')): ?>
+					        	</div>  
+
+							    <div id="rightcol">  
+							    		<?php include_component_slot('rightcol') ?>
+							    </div>   
+							    
 			        	 	</div>
+			        	 		
 			        	 	
 			        	 </div>
+			  
         			</div>
+        			<?php endif; ?>
         		</div>
         				
 	        </div>

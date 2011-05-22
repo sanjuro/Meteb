@@ -36,6 +36,8 @@ all:
     
     enabled_modules: [default, sfGuardAuth, sfGuardUser, sfGuardGroup, sfGuardPermission ]
     
+    standard_helpers: [Partial, Cache, I18N]
+    
   .actions:
     login_module:    sfGuardAuth
     login_action:    signin
