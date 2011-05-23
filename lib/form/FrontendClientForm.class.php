@@ -95,17 +95,10 @@ class FrontendClientForm extends BasesfGuardUserForm
 	$values = $this->processValues($values);
 		 
 	$this->object->fromArray($values);
-	
-    // $values['userProfiles'][0]['sfuser_id'] = $this->object->getId();
-	   	 
-	// $this->updateObjectEmbeddedForms($values);
-	   	 
-	// return $this->object;
 
 	 parent::updateObject();
   }
   
-
   
   protected function doSave($con = null)
   { 
@@ -116,13 +109,15 @@ class FrontendClientForm extends BasesfGuardUserForm
     
     $this->updateObject();
 	
-    $this->object->save($con);      
+    $this->object->save($con);  
 
-    $sfGuardUserGroup = new sfGuardUserGroup();
-	$sfGuardUserGroup->setUserId($this->object->getId());
-	$sfGuardUserGroup->setGroupId(3);
-	$sfGuardUserGroup->save();
-	
+    if ($this->isNew())
+    {
+	    $sfGuardUserGroup = new sfGuardUserGroup();
+		$sfGuardUserGroup->setUserId($this->object->getId());
+		$sfGuardUserGroup->setGroupId(3);
+		$sfGuardUserGroup->save();
+    }
    		    
     // embedded forms
     $this->saveEmbeddedForms($con); 

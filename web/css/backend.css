@@ -127,6 +127,9 @@ div.shadowBottomLeft div.shadowMidLeft {
     padding: 15px 18px 25px 15px;
     position: relative;
 }
+#sf_admin_container {
+    padding: 15px 18px 25px 15px;
+	}
 
 #leftcol {
     height: auto !important;
@@ -163,9 +166,10 @@ div.shadowBottomLeft div.shadowMidLeft {
 }
 
 .flash_error {
-    background: url("/images/backend/success.png") no-repeat scroll 11px 12px #E1FFD1;
-    border-bottom: 1px solid #C5F8AC;
-    border-top: 1px solid #C5F8AC;
+    background: url("/images/backend/error.png") no-repeat scroll 11px 12px #FF3333;
+    border-bottom: 1px solid #FF3333;
+    border-top: 1px solid #FF3333;
+    color: #FFF;
     margin: 0 0 20px;
     padding: 10px 10px 10px 35px;
 }

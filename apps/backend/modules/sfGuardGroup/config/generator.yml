@@ -12,7 +12,7 @@ generator:
 
     config:
       list:
-        title: '<h2>Group list</h2>'
+        title: 'Group list'
         display: [=name, description, created_at, updated_at]
         
       filter:
@@ -22,7 +22,7 @@ generator:
         display: [name, description, users_list, permissions_list]
 
       edit:
-        title: '<h2>Editing Group "%%name%%"</h2>'
+        title: 'Editing Group "%%name%%"'
 
       new:
-        title: '<h2>New Group</h2>'
+        title: 'New Group'

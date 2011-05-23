@@ -3,7 +3,7 @@
 <div id="dashboard">
 	<div id="clientList">
 			
-			<h1><div id="addClientButton"><a href="/admin/client/create"><img width="91" height="25" alt="Add a new Client" src="/images/backend/add_client_new.jpg"></a></div>Your Clients</h1>
+			<h1><div id="addClientButton"><a href="<?php echo url_for('client') ?>"><img width="91" height="25" alt="Add a new Client" src="/images/backend/add_client_new.jpg"></a></div>Your Clients</h1>
 
             
 			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader">

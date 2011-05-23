@@ -21,6 +21,9 @@
 			<div class="navigation">
 					<?php if ($sf_user->isAuthenticated()): ?>					
 					    <ul class="backendnavigation">
+						  <li><?php echo link_to(__('Dashboard'), 'homepage') ?></li>
+						  <li><?php echo link_to(__('Clients'), '@client') ?></li>
+						  <li><?php echo link_to(__('Advisor'), '@advisor') ?></li>
 						  <li><?php echo link_to(__('Profiles'), 'userprofile') ?></li>
 					      <?php if ($sf_user->isSuperAdmin()): ?>
 					      <li><?php echo link_to(__('Users'), 'sf_guard_user', array(), array( "class" => "users")) ?></li>
@@ -84,7 +87,7 @@
 			       
 					        	      	<?php echo $sf_content ?>        	      	 
 					        	       
-					        	       <div class="clearer"></div>
+					        	       <div class="clearer" style="height:20px;"></div>
 					        	       
 			        	 	<?php if (include_slot('rightcol')): ?>
 					        	</div>  
@@ -92,8 +95,8 @@
 							    <div id="rightcol">  
 							    		<?php include_component_slot('rightcol') ?>
 							    </div>   
-							    
-			        	 	</div>
+							   
+			        	 	 </div>
 			        	 		
 			        	 	
 			        	 </div>
