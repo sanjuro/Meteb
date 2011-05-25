@@ -37,8 +37,9 @@
 			
 			<div class="navigation right">
 					<?php if ($sf_user->isAuthenticated()): ?>					
-					    <ul class="backendnavigation">
-						    <li><?php echo link_to(__('Logout'), 'sf_guard_signout', array(), array( "class" => "logout")) ?></li>				
+					    <ul class="backendnavigation">		
+						    <li class="loggedin">Logged in as <?php echo $sf_user->getGuardUser()->getUsername() ?> |</li>		    	
+						    <li style="display:inline;"><?php echo link_to(__('Logout'), 'sf_guard_signout', array(), array( "class" => "logout")) ?></li>			
 					    </ul>		
 					<?php endif; ?>						
 			</div>

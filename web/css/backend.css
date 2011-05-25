@@ -340,3 +340,8 @@ table.activity td {
     color: #000033;
     text-decoration: underline;	
 }
+.loggedin {
+	color:#828282;
+	float:left;
+	font-weight:bold;	
+	}
