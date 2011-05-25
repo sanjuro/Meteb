@@ -1,5 +1,5 @@
 body {
-    background: url("/images/backend/page.gif") repeat-x scroll left top #E1E1E1;
+    background: url("../images/backend/page.gif") repeat-x scroll left top #E1E1E1;
     color: #333333;
     font: 12px arial,sans-serif;
     height: 100%;
@@ -46,7 +46,7 @@ a:hover {
 .shadowHeader {
 	background-color: #000033;
 	color: #FFF;
- 	background-image: url("/images/backend/tl.png");
+ 	background-image: url("../images/backend/tl.png");
     background-position: 0 0;
     background-repeat: no-repeat;
     margin-right: 14px;
@@ -55,7 +55,7 @@ a:hover {
 	
 .shadowHeader .shadowMidLeft {
 	background-color: #000033;
-	background-image: url("/images/backend/tr.png");
+	background-image: url("../images/backend/tr.png");
     background-position: right 0;
     background-repeat: no-repeat;
     margin-left: 14px;
@@ -88,7 +88,7 @@ a:hover {
     margin-right: 6px;
 }
 .shadowWrap .shadowMidLeft {
-    background: url("/images/backend/mr.png") repeat-y scroll right 0 transparent;
+    background: url("../images/backend/mr.png") repeat-y scroll right 0 transparent;
     margin-right: -6px;
 }
 .shadowWrap .shadowMidLeft .shadowMidContent {
@@ -103,22 +103,22 @@ a:hover {
 }
 
 .shadowBottomLeft {
-    background: url("/images/backend/bl.png") no-repeat scroll 0 0 transparent;
+    background: url("../images/backend/bl.png") no-repeat scroll 0 0 transparent;
     margin-right: 14px;
 	}
 div.shadowBottomLeft div.shadowMidLeft {
-    background: url("/images/backend/br.png") no-repeat scroll right 0 transparent;
+    background: url("../images/backend/br.png") no-repeat scroll right 0 transparent;
     margin-right: -14px;
     padding-bottom: 25px;
 	}
 
 .twocol {
-    background: url("/images/backend/2col.png") repeat-y scroll right bottom #FFFFFF;
+    background: url("../images/backend/2col.png") repeat-y scroll right bottom #FFFFFF;
     position: relative;
 }
 
 .twocol #content {
-    background: url("/images/backend/2col-top.png") no-repeat scroll right top transparent;
+    background: url("../images/backend/2col-top.png") no-repeat scroll right top transparent;
 }
 #adminWrap {
     background: none repeat scroll 0 0 transparent;
@@ -158,7 +158,7 @@ div.shadowBottomLeft div.shadowMidLeft {
 }
 
 #success, .success, .flash_notice {
-    background: url("/images/backend/success.png") no-repeat scroll 11px 12px #E1FFD1;
+    background: url("../images/backend/success.png") no-repeat scroll 11px 12px #E1FFD1;
     border-bottom: 1px solid #C5F8AC;
     border-top: 1px solid #C5F8AC;
     margin: 0 0 20px;
@@ -166,7 +166,7 @@ div.shadowBottomLeft div.shadowMidLeft {
 }
 
 .flash_error {
-    background: url("/images/backend/error.png") no-repeat scroll 11px 12px #FF3333;
+    background: url("../images/backend/error.png") no-repeat scroll 11px 12px #FF3333;
     border-bottom: 1px solid #FF3333;
     border-top: 1px solid #FF3333;
     color: #FFF;
@@ -280,7 +280,7 @@ table.tableHeader {
     margin-bottom: 10px;
 }
 th {
-    background: url("/images/backend/dash_sending_for.jpg") repeat-x scroll left top #D3E9F7;
+    background: url("../images/backend/dash_sending_for.jpg") repeat-x scroll left top #D3E9F7;
     border-bottom: 1px solid #C0DAE7;
     border-top: 1px solid #D2E7F8;
     color: #6194B8;
@@ -299,7 +299,7 @@ table.tableHeader th.headerLeft {
 }
 
 table.tableHeader th {
-    background: url("/images/backend/dash_sending_for.jpg") repeat-x scroll left top #D3E9F7;
+    background: url("../images/backend/dash_sending_for.jpg") repeat-x scroll left top #D3E9F7;
     border-bottom: 1px solid #C0DAE7;
     border-top: 1px solid #D2E7F8;
     color: #6194B8;
@@ -314,7 +314,7 @@ th.headerDarkGreyLeft {
 }
 
 th.headerDarkGreyLeft, th.headerDarkGreyRight {
-    background: url("/images/backend/dash_latest_activity.jpg") repeat-x scroll left top transparent;
+    background: url("../images/backend/dash_latest_activity.jpg") repeat-x scroll left top transparent;
     border-bottom: 1px solid #D3D3D3;
     border-top: 1px solid #E5E5E5;
     color: #767676;

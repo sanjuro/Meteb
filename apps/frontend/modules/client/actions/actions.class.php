@@ -116,9 +116,12 @@ class clientActions extends sfActions
 	   {
 	    $client = $form->save();
 	 
-	    $this->getUser()->setFlash('notice', 'The client was added.');
-	    
-	    $this->redirect($this->generateUrl('client_index'));
+	    if($form->isNew())
+	   		$this->getUser()->setFlash('notice', 'The client was added.');
+	    else 
+	    	$this->getUser()->setFlash('notice', 'The client was editted.');
+	      
+	    $this->redirect($this->generateUrl('client_edit', $client));
 	  }else {
 	  	$this->getUser()->setFlash('error', 'There was some errors capturing your client.');
 	  	
