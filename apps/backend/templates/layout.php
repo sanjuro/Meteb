@@ -5,7 +5,7 @@
     <?php include_metas() ?>
     <title>
 	  <?php if (!include_slot('title')): ?>
-	    Momentum
+	    Momentum Annuity Quoting System
 	  <?php endif; ?>
 	</title>
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -52,7 +52,7 @@
         		   <div id="header">
 			        	<h1>
 						  <?php if (!include_slot('pagetitle')): ?>
-						    Momentum
+						    Momentum Annuity Quoting System
 						  <?php endif; ?>
 			        	</h1>
 		            </div>
