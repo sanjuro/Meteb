@@ -78,7 +78,7 @@ class sfGuardUserTable extends PluginsfGuardUserTable
     /**
      * Returns all advisors associated to a user
      *
- 	 * @param $userProfileId integer User Profile Id to find clients
+ 	 * @param
      *
      * @return query The query to return results
      */
@@ -93,5 +93,35 @@ class sfGuardUserTable extends PluginsfGuardUserTable
 	 
 	    return $q;
 
+	}
+	
+    /**
+     * Returns all advisors for the admin generated query
+     *
+ 	 * @param $userProfileId integer User Profile Id to find clients
+     *
+     * @return query The query to return results
+     */
+	public function retrieveAdvisorsForParent(Doctrine_Query $q)
+	{
+	    $rootAlias = $q->getRootAlias();
+	    $q->leftJoin($rootAlias . '.sfGuardUserGroup sgug');
+	    $q->where('sgug.group_id = 2');
+	    return $q;
+	}
+	
+    /**
+     * Returns all clients for the admin generated query
+     *
+ 	 * @param $userProfileId integer User Profile Id to find clients
+     *
+     * @return query The query to return results
+     */
+	public function retrieveClientsForParent(Doctrine_Query $q)
+	{
+	    $rootAlias = $q->getRootAlias();
+	    $q->leftJoin($rootAlias . '.sfGuardUserGroup sgug');
+	    $q->where('sgug.group_id = 3');
+	    return $q;
 	}
 }

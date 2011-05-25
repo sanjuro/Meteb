@@ -12,5 +12,4 @@
  */
 class UserProfile extends BaseUserProfile
 {
-
 }

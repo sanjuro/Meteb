@@ -1,0 +1,81 @@
+#formCasing {
+    background: url("/images/backend/login-case.png") no-repeat scroll left top transparent;
+    padding: 20px 35px 1px 27px;
+}
+#formFooter {
+    background: url("/images/backend/login-footer.png") no-repeat scroll left top transparent;
+    height: 18px;
+}
+
+#additional {
+    margin: 100px auto 0;
+    width: 500px;
+}
+form dl {
+    margin: 15px 0;
+}
+form dt {
+    color: #A5A5A5;
+    float: left !important;
+    font-size: 14px !important;
+    line-height: 24px;
+    padding-top: 5px;
+    width: 80px !important;
+}
+form dd {
+    color: #A5A5A5;
+    font-size: 12px;
+    line-height: 24px;
+    margin: 0 0 10px 80px;
+}
+label {
+	font-size: 14px;
+	width: 120px;
+	}
+dd span {
+    color: #CCCCCC;
+}
+h1 {
+    font-size: 24px;
+    line-height: 26px;
+    margin: 7px 0 8px;
+    padding: 0 0 12px;
+    text-align: left;
+}
+h2 {
+    color: #2BA02C;
+    font-size: 14px;
+}
+input.input {
+    border: 1px solid #DCDCDC;
+    border-radius: 4px 4px 4px 4px;
+    color: #444444;
+    font: 14px arial,helvetica,sans-serif;
+    padding: 8px 5px;
+}
+input.input:focus {
+    border: 1px solid #BFBFBF;
+    outline: medium none;
+}
+input.button {
+    padding: 0;
+    vertical-align: middle;
+}
+input#signin_username {
+    width: 280px;
+}
+input#signin_password {
+    margin-right: 5px;
+    width: 150px;
+}
+input#signin_email {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+input#signin_forgot {
+    width: 280px;
+}
+input.checkbox {
+    border: 0 none;
+    padding: 0;
+}

@@ -16,4 +16,25 @@ class ActivityTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Activity');
     }
+    
+	/**
+	 * Static Function to add a new Activity Object using the Activity type
+	 * 
+	 * @param integer $sfGuardUserId The user who did the activity
+	 * @param integer $activityTypeId The type of Activity
+	 * @param integer $title Extra Title if needed
+	 * 
+	 * @return UserProfile UserProfile Object
+	 */	
+	 public static function addActivty($sfGuardUserId, $activityTypeId, $title = '')
+	 {
+		$activity = new Activity();
+		$activity->setSfuserId($sfGuardUserId);
+		$activity->setActivitytypeId($activityTypeId);
+		$activity->setTitle($title);
+		$activity->save();
+		  
+		return $activity; 	
+	 }
+    
 }

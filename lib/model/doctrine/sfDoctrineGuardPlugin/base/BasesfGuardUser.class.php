@@ -21,6 +21,7 @@
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
+ * @property Doctrine_Collection $Activity
  * @property Doctrine_Collection $Quotehistory
  * @property Doctrine_Collection $UserProfile
  * 
@@ -40,6 +41,7 @@
  * @method Doctrine_Collection   getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
+ * @method Doctrine_Collection   getActivity()              Returns the current record's "Activity" collection
  * @method Doctrine_Collection   getQuotehistory()          Returns the current record's "Quotehistory" collection
  * @method Doctrine_Collection   getUserProfile()           Returns the current record's "UserProfile" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
@@ -58,6 +60,7 @@
  * @method sfGuardUser           setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
+ * @method sfGuardUser           setActivity()              Sets the current record's "Activity" collection
  * @method sfGuardUser           setQuotehistory()          Sets the current record's "Quotehistory" collection
  * @method sfGuardUser           setUserProfile()           Sets the current record's "UserProfile" collection
  * 
@@ -154,6 +157,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasOne('sfGuardForgotPassword as ForgotPassword', array(
              'local' => 'id',
              'foreign' => 'user_id'));
+
+        $this->hasMany('Activity', array(
+             'local' => 'id',
+             'foreign' => 'sfuser_id'));
 
         $this->hasMany('Quotehistory', array(
              'local' => 'id',

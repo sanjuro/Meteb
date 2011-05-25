@@ -1,10 +1,26 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/07-Databases
 
-all:
+prod:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn:      mysql:host=localhost;dbname=meteb
+      dsn:      mysql:host=127.0.0.1;dbname=meteb
+      username: meteb
+      password: 1qa2ws3ed4rf
+
+dev:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=127.0.0.1;dbname=meteb
+      username: meteb
+      password: 1qa2ws3ed4rf
+
+test:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=127.0.0.1;dbname=meteb
       username: meteb
       password: 1qa2ws3ed4rf

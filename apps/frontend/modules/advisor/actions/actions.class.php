@@ -106,9 +106,12 @@ class advisorActions extends sfActions
 	   {
 	    $client = $form->save();
 	 
-	    $this->getUser()->setFlash('notice', 'The advisor was added.');
-	    
-	    $this->redirect('advisor_show', $client);
+	    if($form->isNew())
+	   		$this->getUser()->setFlash('notice', 'The advisor was added.');
+	    else 
+	    	$this->getUser()->setFlash('notice', 'The advisor was editted.');
+	      
+	    $this->redirect($this->generateUrl('advisor_edit', $client));
 	  }else {
 	  	$this->getUser()->setFlash('error', 'There was a few errors while capturing the advisor details.');
 	  	
