@@ -4,7 +4,6 @@ UserProfile:
     Gender:                  gender_male
     SpouseGender:            gender_female
     ClientStatus:            status_active
-    parent_user_profile_id:  userprofile_sanjuro
     name:                    shadley
     surname:                 wentzel
     dob:                     1981-12-04
@@ -15,7 +14,6 @@ UserProfile:
     Gender:                  gender_male
     SpouseGender:            gender_female
     ClientStatus:            status_active
-    parent_user_profile_id:  userprofile_admin
     name:                    admin
     surname:                 admin
     dob:                     1981-12-04
@@ -26,7 +24,6 @@ UserProfile:
     Gender:                  gender_male
     SpouseGender:            gender_female
     ClientStatus:            status_active
-    parent_user_profile_id:  userprofile_admin
     name:                    advisor
     surname:                 advisor
     dob:                     1981-12-04
@@ -37,7 +34,6 @@ UserProfile:
     Gender:                  gender_male
     SpouseGender:            gender_female
     ClientStatus:            status_active
-    parent_user_profile_id:  userprofile_advisor
     name:                    client
     surname:                 client
     dob:                     1981-12-04

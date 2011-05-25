@@ -7,6 +7,9 @@
  
 <?php echo $form->renderGlobalErrors() ?>
  
+<?php // foreach ($form->getErrorSchema() as $sField => $sError) : ?>
+<?php // echo $sField.': '.$sError.'<br />' ?>
+<?php // endforeach; ?>
 <?php echo form_tag_for($form, '@client') ?>
 
 	  <?php echo $form['_csrf_token'] ?>
@@ -25,13 +28,13 @@
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>
-				<?php echo $form['userProfiles'][0]['parent_user_profile_id']->renderLabel() ?>
+				<?php echo $form['userProfiles'][0]['parent_user_id']->renderLabel() ?>
 			</div>
 			
 			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['parent_user_profile_id'] ?>
+				<?php echo $form['userProfiles'][0]['parent_user_id'] ?>
 			</div>			
-			<?php echo $form['userProfiles'][0]['parent_user_profile_id']->renderError() ?>
+			<?php echo $form['userProfiles'][0]['parent_user_id']->renderError() ?>
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>

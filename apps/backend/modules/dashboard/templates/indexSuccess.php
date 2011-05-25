@@ -3,20 +3,29 @@
 <div id="dashboard">
 	<div id="clientList">
 			
-			<h1><div id="addClientButton"><a href="<?php echo url_for('client') ?>"><img width="91" height="25" alt="Add a new Client" src="/images/backend/add_client_new.jpg"></a></div>Your Clients</h1>
+			<h1><div id="addClientButton"><a href="<?php echo url_for('client_new') ?>"><img width="91" height="25" alt="Add a new Client" src="/images/backend/add_client_new.jpg"></a></div>Your Clients</h1>
 
             
-			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader">
+			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader" class="activityAction">
 			<tbody><tr class="noHighlight">
-				<th width="100%" class="headerLeft"><span>Clients you're sending for</span></th>
+				<th width="100%" class="headerLeft"><span>Clients you are administring</span></th>
 				<th nowrap="" class="headerRight">&nbsp;&nbsp;&nbsp;&nbsp;</th>
 			</tr>
-			
+			<?php if (count($clients) > 0 ): ?>
+			<?php foreach ($clients as $client) :?>
 			<tr onmouseout="hideDelete('nocs_0')" onmouseover="showDelete('nocs_0')" id="nocs_0" class="dashRow">
-				<td width="100%" class="rowLeft"><strong><a href="changeClient.aspx?ID=8507F3B357E30E04&amp;al=C67FD2F38AC4859C&amp;name=AoSD">AoSD</a></strong><span style="display:none" class="closedSpam"> Account closed (<a title="Learn more about spam complaints" onclick="javascript:return launchHelp(35)" href="/help/popup.aspx?t=35">due to abuse</a>)</span></td>
+				<td width="100%">
+					<a href="<?php echo url_for('client_edit', $client->sfGuardUser )?>"><?php echo $client['name'].' '.$client['surname']?></a>
+				</td>
 				<td nowrap="" class="rowRight"><span style="display: none;" id="nocs_0_delete"><a onclick="hideDelete('nocs_0')" title="Delete this client" href="client/deleteClient.aspx?ID=8507F3B357E30E04"><img width="10" height="11" alt="Delete" src="https://img.createsend1.com/img/icons/trash.gif"></a></span></td>
 			</tr>
-			
+			<?php endforeach; ?>
+			<?php else :?>
+			<tr onmouseout="hideDelete('nocs_0')" onmouseover="showDelete('nocs_0')" id="nocs_0" class="dashRow">
+				<td width="100%" class="rowLeft"><i></i><strong>no clients captured</strong></i></td>
+				<td></td>
+			</tr>
+			<?php endif;?>
 			</tbody></table> 
             
 			<div class="topPad"></div>

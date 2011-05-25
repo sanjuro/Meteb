@@ -280,6 +280,9 @@ label {
 table.tableHeader {
     margin-bottom: 10px;
 }
+table.tableHeader td {
+	height: 22px;
+	}
 th {
     background: url("../images/backend/dash_sending_for.jpg") repeat-x scroll left top #D3E9F7;
     border-bottom: 1px solid #C0DAE7;

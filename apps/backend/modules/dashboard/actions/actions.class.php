@@ -17,6 +17,6 @@ class dashboardActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-
+	$this->clients = $this->getUser()->getGuardUser()->getClientsForUser();
   }
 }

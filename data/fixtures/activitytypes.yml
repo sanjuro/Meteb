@@ -1,0 +1,5 @@
+ActivityType:
+ activitytype_addclient:
+   title:       addclient
+ activitytype_addquote:
+   title:       addquote

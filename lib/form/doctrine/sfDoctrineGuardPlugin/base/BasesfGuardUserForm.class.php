@@ -49,17 +49,14 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
       'groups_list'      => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
       'permissions_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
     ));
-    
-    if ($this->isNew())
-    {
-	    $this->validatorSchema->setPostValidator(
-	      new sfValidatorAnd(array(
-	        new sfValidatorDoctrineUnique(array('model' => 'sfGuardUser', 'column' => array('email_address'))),
-	        new sfValidatorDoctrineUnique(array('model' => 'sfGuardUser', 'column' => array('username'))),
-	      ))
-	    );
-    }
-	
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorAnd(array(
+        new sfValidatorDoctrineUnique(array('model' => 'sfGuardUser', 'column' => array('email_address'))),
+        new sfValidatorDoctrineUnique(array('model' => 'sfGuardUser', 'column' => array('username'))),
+      ))
+    );
+
     $this->widgetSchema->setNameFormat('sf_guard_user[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

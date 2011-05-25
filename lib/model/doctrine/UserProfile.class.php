@@ -12,5 +12,19 @@
  */
 class UserProfile extends BaseUserProfile
 {
-
+	/**
+	 * Function to extend the Save function of the User Profile Class
+	 * 
+	 * @param 
+	 * 
+	 * @return UserProfile UserProfile Object
+	 */	
+	 public function save(Doctrine_Connection $conn = null)
+	 {		
+		$result = parent::save();
+		
+		Activity::addActivty('',1,'');
+		
+		return $result;
+	 }
 }

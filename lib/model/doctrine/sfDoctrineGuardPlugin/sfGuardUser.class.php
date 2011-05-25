@@ -7,9 +7,25 @@
  * 
  * @package    meteb
  * @subpackage model
- * @author     Your name here
- * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
+ * @author     Shadley Wentzel
+ * @version    SVN: $Id: sfGuardUserClass.php 7490 2010-03-29 19:53:27Z swentzel $
  */
 class sfGuardUser extends PluginsfGuardUser
 {
+	/**
+	 * Function to fetch all the clients associated to a certain
+	 * user this should only be for advisors or admisn
+	 * 
+	 * @param 
+	 * @return UserProfile UserProfile Object
+	 */	
+	 public function getClientsForUser()
+	 {
+		 $q = Doctrine_Query::create()
+		   ->from('UserProfile up')
+		   ->leftJoin('up.sfGuardUser sgu')
+		   ->where('parent_user_id = ?', $this->getId());
+		  
+		return $q->execute(); 	
+	 }
 }
