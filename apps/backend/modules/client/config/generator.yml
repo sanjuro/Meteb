@@ -21,6 +21,6 @@ generator:
       filter:
         class: false
       form:
-        class:     FrontendClientForm
+        class:     BackendClientForm
       edit:    ~
       new:     ~

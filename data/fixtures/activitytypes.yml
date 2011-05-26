@@ -1,5 +1,9 @@
 ActivityType:
  activitytype_addclient:
-   title:       addclient
+   title:       Add Client
  activitytype_addquote:
-   title:       addquote
+   title:       Add Quote
+ activitytype_editclient:
+   title:       Edit Client
+ activitytype_editquote:
+   title:       Edit Quote

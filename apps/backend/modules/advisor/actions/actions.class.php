@@ -49,7 +49,7 @@ class advisorActions extends autoAdvisorActions
 
 
   public function executeNew(sfWebRequest $request)
-  {
+  { 
     $this->form = $this->configuration->getForm('', array('currentUser' => $this->getUser()));
     $this->sf_guard_user = $this->form->getObject();
   }
@@ -67,7 +67,7 @@ class advisorActions extends autoAdvisorActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->sf_guard_user = $this->getRoute()->getObject();
-    $this->form = $this->configuration->getForm($this->sf_guard_user,array('currentUser' => $this->getUser()));
+    $this->form = $this->configuration->getForm($this->sf_guard_user, array('currentUser' => $this->getUser()));
   }
 
   public function executeUpdate(sfWebRequest $request)

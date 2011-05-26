@@ -22,9 +22,18 @@
 					<?php if ($sf_user->isAuthenticated()): ?>					
 					    <ul class="backendnavigation">
 						  <li><?php echo link_to(__('Dashboard'), 'homepage') ?></li>
+						  <li><?php echo link_to(__('My Profile'), 'homepage') ?></li>
+						  <li><?php echo link_to(__('Quotes'), 'homepage') ?></li>
+						  
+						  <?php if ($sf_user->hasGroup('administrator') || $sf_user->hasGroup('advisor')): ?>
 						  <li><?php echo link_to(__('Clients'), '@client') ?></li>
+						  <?php endif; ?>
+						 
+						  <?php if ($sf_user->hasGroup('administrator')): ?>		
 						  <li><?php echo link_to(__('Advisor'), '@advisor') ?></li>
 						  <li><?php echo link_to(__('Profiles'), 'userprofile') ?></li>
+						  <?php endif; ?>
+						  
 					      <?php if ($sf_user->isSuperAdmin()): ?>
 					      <li><?php echo link_to(__('Users'), 'sf_guard_user', array(), array( "class" => "users")) ?></li>
 					      <li><?php echo link_to(__('Groups'), 'sf_guard_group', array(), array( "class" => "group")) ?></li>

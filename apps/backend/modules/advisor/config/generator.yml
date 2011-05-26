@@ -21,6 +21,6 @@ generator:
       filter:
         class: false
       form:
-        class:     FrontendAdvisorForm
+        class:     BackendAdvisorForm
       edit:    ~
       new:     ~

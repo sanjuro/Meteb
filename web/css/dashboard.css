@@ -2,11 +2,11 @@
     padding: 22px 18px 25px 15px;
 }
 
-#clientList {
+#clientList, #quoteList {
     float: left;
     width: 32%;
 }
-#addClientButton {
+#addClientButton, #addQuoteButton {
     float: right;
     margin-top: -3px;
 }

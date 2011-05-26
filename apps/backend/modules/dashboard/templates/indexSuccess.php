@@ -1,7 +1,10 @@
 <?php use_stylesheet('dashboard.css') ?>
 
 <div id="dashboard">
-	<div id="clientList">
+		
+		<?php if(!$sf_user->hasGroup('client')): ?>
+		
+		<div id="clientList">
 			
 			<h1><div id="addClientButton"><a href="<?php echo url_for('client_new') ?>"><img width="91" height="25" alt="Add a new Client" src="/images/backend/add_client_new.jpg"></a></div>Your Clients</h1>
 
@@ -32,6 +35,43 @@
 
             
 		</div>
+		<?php endif; ?>
+		
+		<?php if($sf_user->hasGroup('client')): ?>
+		
+		<div id="quoteList">
+			
+			<h1><div id="addQuoteButton"><a href="<?php echo url_for('quote_new') ?>"><img width="91" height="25" alt="Add a new Client" src="/images/backend/add_quote_new.gif"></a></div>Your Quotes</h1>
+
+            
+			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader" class="activityAction">
+			<tbody><tr class="noHighlight">
+				<th width="100%" class="headerLeft"><span>Your Quotes</span></th>
+				<th nowrap="" class="headerRight">&nbsp;&nbsp;&nbsp;&nbsp;</th>
+			</tr>
+			<?php if (count($quotes) > 0 ): ?>
+			<?php foreach ($quotes as $quote) :?>
+			<tr onmouseout="hideDelete('nocs_0')" onmouseover="showDelete('nocs_0')" id="nocs_0" class="dashRow">
+				<td width="100%">
+					<a href="<?php echo url_for('quote_edit', $quote )?>"><?php echo $quote['created_by'].' '.$quote['date']?></a>
+				</td>
+				<td nowrap="" class="rowRight"><span style="display: none;" id="nocs_0_delete"><a onclick="hideDelete('nocs_0')" title="Delete this client" href="client/deleteClient.aspx?ID=8507F3B357E30E04"><img width="10" height="11" alt="Delete" src="https://img.createsend1.com/img/icons/trash.gif"></a></span></td>
+			</tr>
+			<?php endforeach; ?>
+			<?php else :?>
+			<tr onmouseout="hideDelete('nocs_0')" onmouseover="showDelete('nocs_0')" id="nocs_0" class="dashRow">
+				<td width="100%" class="rowLeft"><i></i><strong>no quotes captured</strong></i></td>
+				<td></td>
+			</tr>
+			<?php endif;?>
+			</tbody></table> 
+            
+			<div class="topPad"></div>
+
+            
+		</div>
+		<?php endif; ?>
+		
 		<div id="clientActivity">
 			
 			<div id="activityBG">
@@ -41,9 +81,9 @@
 					
 					<div id="clientBlankSlate">
 						
-						<h1>Welcome to the Quote Monitor</h1>
+						<h1>Welcome to the Momentum Annuity Quoting System</h1>
 						
-						<p>You're currently in the Manage Clients section of your account. To get you started, add as many clients as you like.</p>
+						<p>You're currently on the Main Dashboard. To get you started, you could add some quotes.</p>
 						
 						<div class="instructions">
 							
@@ -74,12 +114,21 @@
 					</tr>
 					</tbody></table>
 					
-					<table width="100%" cellspacing="0" cellpadding="0" class="activity">
+					<table width="100%" cellspacing="0" cellpadding="0" class="activity">					
+					<tbody>
+					<?php if(!empty($activitys)): ?>
+						<?php foreach($activitys as $activity) :?>
+							<tr>
+								<td width="100%" class="activityAction"><?php echo $activity['ActivityType']['title']?> <b>by</b> <?php echo $activity['sfGuardUser']['username']?> <b>at</b> <?php echo $activity['created_at'] ?></td>
+							</tr>
+						<?php endforeach; ?>
+					<?php else: ?>
+						<tr>
+							<td width="100%" class="activityAction">You haven't done anything in your account lately, but as soon as you do we'll keep track of it here.</td>
+						</tr>
+					<?php endif;?>
 					
 					
-					<tbody><tr>
-						<td width="100%" class="activityAction">You haven't done anything in your account lately, but as soon as you do we'll keep track of it here.</td>
-					</tr>
 					<tr>
 						<td><br><br><br><br><br><br><br><br><br></td>
 					</tr>	

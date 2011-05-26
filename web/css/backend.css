@@ -230,7 +230,10 @@ ul.backendnavigation li a{
     padding: 0 3px 0 9px;
     text-decoration: none;
 }
-
+ul.backendnavigation li a:hover {
+	font-weifht: bold;
+	text-decoration: underline;
+	}
 #sf_admin_container ul li.sf_admin_action_new a {
     color: #000033;
     text-decoration: none;

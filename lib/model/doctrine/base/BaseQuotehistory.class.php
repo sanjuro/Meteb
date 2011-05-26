@@ -7,20 +7,20 @@
  * 
  * @property integer $id
  * @property integer $client_id
- * @property integer $financialadvisor_id
+ * @property integer $created_by
  * @property sfGuardUser $Client
- * @property sfGuardUser $Advisor
+ * @property sfGuardUser $Parent
  * 
- * @method integer      getId()                  Returns the current record's "id" value
- * @method integer      getClientId()            Returns the current record's "client_id" value
- * @method integer      getFinancialadvisorId()  Returns the current record's "financialadvisor_id" value
- * @method sfGuardUser  getClient()              Returns the current record's "Client" value
- * @method sfGuardUser  getAdvisor()             Returns the current record's "Advisor" value
- * @method Quotehistory setId()                  Sets the current record's "id" value
- * @method Quotehistory setClientId()            Sets the current record's "client_id" value
- * @method Quotehistory setFinancialadvisorId()  Sets the current record's "financialadvisor_id" value
- * @method Quotehistory setClient()              Sets the current record's "Client" value
- * @method Quotehistory setAdvisor()             Sets the current record's "Advisor" value
+ * @method integer      getId()         Returns the current record's "id" value
+ * @method integer      getClientId()   Returns the current record's "client_id" value
+ * @method integer      getCreatedBy()  Returns the current record's "created_by" value
+ * @method sfGuardUser  getClient()     Returns the current record's "Client" value
+ * @method sfGuardUser  getParent()     Returns the current record's "Parent" value
+ * @method Quotehistory setId()         Sets the current record's "id" value
+ * @method Quotehistory setClientId()   Sets the current record's "client_id" value
+ * @method Quotehistory setCreatedBy()  Sets the current record's "created_by" value
+ * @method Quotehistory setClient()     Sets the current record's "Client" value
+ * @method Quotehistory setParent()     Sets the current record's "Parent" value
  * 
  * @package    meteb
  * @subpackage model
@@ -40,7 +40,7 @@ abstract class BaseQuotehistory extends sfDoctrineRecord
         $this->hasColumn('client_id', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('financialadvisor_id', 'integer', null, array(
+        $this->hasColumn('created_by', 'integer', null, array(
              'type' => 'integer',
              ));
     }
@@ -53,8 +53,8 @@ abstract class BaseQuotehistory extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('sfGuardUser as Advisor', array(
-             'local' => 'financialadvisor_id',
+        $this->hasOne('sfGuardUser as Parent', array(
+             'local' => 'created_by',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 

@@ -1,3 +1,18 @@
+#quote
+quote_new:
+  url:     /quote/new.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: Quote, type: object }
+  param:   { module: quote, action: new, sf_format: html }
+  requirements: { sf_method: get }
+  
+quote_edit:
+  url:     /quote/:id/edit.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: Quote, type: object }
+  param:   { module: quote, action: edit, sf_format: html }
+  requirements: { sf_method: get }
+
 advisor:
   class: sfDoctrineRouteCollection
   options:

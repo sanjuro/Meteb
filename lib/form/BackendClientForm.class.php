@@ -1,24 +1,25 @@
 <?php
 
 /**
- * FrontendAdvisorForm form.
+ * BackendClientForm form.
  *
  * @package    meteb
  * @subpackage form
  * @author     Shadley Wentzel
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class FrontendAdvisorForm extends BasesfGuardUserForm
+class BackendClientForm extends BasesfGuardUserForm
 {
   public function configure()
   {
-    parent::configure();
+  	parent::configure();
   	
   	if ($this->getOption("currentUser") instanceof sfUser && ($this->getOption("currentUser")))
 	{
-	    $currentUser = $this->getOption("currentUser");	    
+	    $currentUser = $this->getOption("currentUser");
+	    
 	}
-  
+	
     unset(
       $this['id'], $this['algorithm'],
       $this['first_name'], $this['last_name'],
@@ -27,12 +28,14 @@ class FrontendAdvisorForm extends BasesfGuardUserForm
       $this['created_at'], $this['updated_at'],
       $this['groups_list'], $this['permissions_list']
     );
-
+  
+    
+    
 	/**
 	 * Embed UserProfile Form
 	 */
-	if(!$this->isNew()) 	
-	{
+    if(!$this->isNew()) 	
+	{   
 		$userProfileObjs = $this->getObject()->getUserProfile(); 
 	}else{
 		$userProfileObjs = array();
@@ -51,11 +54,11 @@ class FrontendAdvisorForm extends BasesfGuardUserForm
 	{	
 		foreach( $userProfileObjs as $key => $userProfileObj )
 		{	 
-			  $userProfilesForm->embedForm($key, new FrontendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
+			  $userProfilesForm->embedForm($key, new BackendUserProfileForm( $userProfileObj ) );
 	     
 		}  
 	}else{
-		 $userProfilesForm->embedForm( 0, new FrontendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
+		 $userProfilesForm->embedForm( 0, new BackendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
 	}
 	// embed the contacts forms
     $this->embedForm('userProfiles', $userProfilesForm);
@@ -91,16 +94,17 @@ class FrontendAdvisorForm extends BasesfGuardUserForm
       $values = $this->values;
     }
     
-    $values['username'] = $values['email_address'];
+    $values['first_name'] = $values['userProfiles'][0]['name'];
+    
+    $values['last_name'] = $values['userProfiles'][0]['surname'];
 	
 	$values = $this->processValues($values);
 		 
 	$this->object->fromArray($values);
-	   	 
-	$this->updateObjectEmbeddedForms($values);
-	   	 
-	return $this->object;	
+
+	 parent::updateObject();
   }
+  
   
   protected function doSave($con = null)
   { 
@@ -111,20 +115,25 @@ class FrontendAdvisorForm extends BasesfGuardUserForm
     
     $this->updateObject();
 	
-    $this->object->save($con); 
+    $this->object->save($con);  
 
 
-    if ($this->isNew())
-    {
-	    $sfGuardUserGroup = new sfGuardUserGroup();
-		$sfGuardUserGroup->setUserId($this->object->getId());
-		$sfGuardUserGroup->setGroupId(2);
-		$sfGuardUserGroup->save();
-    }
+    if($this->isNew()) {
+    
+    $sfGuardUserGroup = new sfGuardUserGroup();
+	$sfGuardUserGroup->setUserId($this->object->getId());
+	$sfGuardUserGroup->setGroupId(3);
+	$sfGuardUserGroup->save();
+	
+	}
 	
 
+   		    
+    // embedded forms
     $this->saveEmbeddedForms($con); 
+
   }
+  
   
   public function saveEmbeddedForms($con = null, $forms = null)
   {

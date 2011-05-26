@@ -2,10 +2,10 @@ Activity:
   actAs: 
     Timestampable: ~ 
   columns:
-    id:               { type: integer, primary: true, autoincrement: true }
+    id:                 { type: integer, primary: true, autoincrement: true }
     sfuser_id:          { type: integer }
-    title:            { type: string(255) }
-    activitytype_id:  { type: integer }
+    title:              { type: string(255) }
+    activitytype_id:    { type: integer }
   relations:
     ActivityType:      { class: ActivityType, local: activitytype_id, foreign: id }
     sfGuardUser:       { class: sfGuardUser, onDelete: CASCADE, local: sfuser_id, foreign: id }
@@ -75,18 +75,29 @@ Marketdata:
       notnull: true
       autoincrement: false
       
-Quotehistory:
+Quote:
   actAs: 
     Timestampable: ~ 
   columns:
     id:                      { type: integer, primary: true, autoincrement: true }
     client_id:               { type: integer }
     created_by:              { type: integer }
-   
-    
+    second_life:             { type: integer }
+    guarantee_period:        { type: integer }
+    spouse_reversion:        { type: decimal(10), scale: 5 }
+    pri:                     { type: decimal(10), scale: 3 }
+    purchase_price:          { type: decimal(15), scale: 2 }
+    initial_gross_annuity:   { type: decimal(15), scale: 2 }
+    initial_net_annuity:     { type: decimal(15), scale: 2 }
+    commence_at:             { type: timestamp, notnull: true } 
+    first_annuity_increase:  { type: timestamp, notnull: true } 
+    guaranteed_terms:        { type: integer }
+    premium_charge:          { type: decimal(15), scale: 5 }
+    fund_charge:             { type: decimal(15), scale: 5 }
+    administrative_charge:   { type: decimal(15), scale: 5 }
   relations:
     Client:                  { class: sfGuardUser, onDelete: CASCADE, local: client_id, foreign: id }
-    Parent:                 { class: sfGuardUser, onDelete: CASCADE, local: created_by, foreign: id }
+    Parent:                  { class: sfGuardUser, onDelete: CASCADE, local: created_by, foreign: id }
       
 System:
   columns:

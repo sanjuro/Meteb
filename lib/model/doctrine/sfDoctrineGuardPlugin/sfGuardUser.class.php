@@ -28,4 +28,39 @@ class sfGuardUser extends PluginsfGuardUser
 		  
 		return $q->execute(); 	
 	 }
+	 
+	/**
+	 * Function to fetch all the activtys associated to a certain
+	 * user this should only be for advisors or admisn
+	 * 
+	 * @param 
+	 * @return array All Activity Objects found
+	 */	
+	 public function getActivitysForUser()
+	 {
+		 $q = Doctrine_Query::create()
+		   ->from('Activity a')
+		   ->leftJoin('a.ActivityType at')
+		   ->leftJoin('a.sfGuardUser sgu')
+		   ->where('a.sfuser_id = ?', $this->getId());
+		  
+		return $q->execute(); 	
+	 }
+	 
+	/**
+	 * Function to fetch all the quotes associated to a certain
+	 * user this should only be for advisors or admisn
+	 * 
+	 * @param 
+	 * @return array All Quote Objects found
+	 */	
+	 public function getQuotesForUser()
+	 {
+		 $q = Doctrine_Query::create()
+		   ->from('Quote q')
+		   ->leftJoin('q.Client c')
+		   ->where('q.client_id = ?', $this->getId());
+		  
+		return $q->execute(); 	
+	 }
 }

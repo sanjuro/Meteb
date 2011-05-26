@@ -22,7 +22,7 @@
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
  * @property Doctrine_Collection $Activity
- * @property Doctrine_Collection $Quotehistory
+ * @property Doctrine_Collection $Quote
  * @property Doctrine_Collection $UserProfile
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
@@ -42,7 +42,7 @@
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
  * @method Doctrine_Collection   getActivity()              Returns the current record's "Activity" collection
- * @method Doctrine_Collection   getQuotehistory()          Returns the current record's "Quotehistory" collection
+ * @method Doctrine_Collection   getQuote()                 Returns the current record's "Quote" collection
  * @method Doctrine_Collection   getUserProfile()           Returns the current record's "UserProfile" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
@@ -61,7 +61,7 @@
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
  * @method sfGuardUser           setActivity()              Sets the current record's "Activity" collection
- * @method sfGuardUser           setQuotehistory()          Sets the current record's "Quotehistory" collection
+ * @method sfGuardUser           setQuote()                 Sets the current record's "Quote" collection
  * @method sfGuardUser           setUserProfile()           Sets the current record's "UserProfile" collection
  * 
  * @package    meteb
@@ -162,7 +162,7 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'sfuser_id'));
 
-        $this->hasMany('Quotehistory', array(
+        $this->hasMany('Quote', array(
              'local' => 'id',
              'foreign' => 'client_id'));
 

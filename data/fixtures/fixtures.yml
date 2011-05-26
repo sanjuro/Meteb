@@ -35,7 +35,7 @@ sfGuardGroup:
     name:           administrator
     description:    Administrator group
   group_financialadvisor:
-    name:           financialadvisor
+    name:           advisor
     description:    Financial Advisor
   group_client:
     name:           client

@@ -1,14 +1,14 @@
 <?php
 
 /**
- * FrontendAdvisorForm form.
+ * BackendAdvisorForm form.
  *
  * @package    meteb
  * @subpackage form
  * @author     Shadley Wentzel
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class FrontendAdvisorForm extends BasesfGuardUserForm
+class BackendAdvisorForm extends BasesfGuardUserForm
 {
   public function configure()
   {
@@ -51,11 +51,11 @@ class FrontendAdvisorForm extends BasesfGuardUserForm
 	{	
 		foreach( $userProfileObjs as $key => $userProfileObj )
 		{	 
-			  $userProfilesForm->embedForm($key, new FrontendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
+			  $userProfilesForm->embedForm($key, new BackendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
 	     
 		}  
 	}else{
-		 $userProfilesForm->embedForm( 0, new FrontendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
+		 $userProfilesForm->embedForm( 0, new BackendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
 	}
 	// embed the contacts forms
     $this->embedForm('userProfiles', $userProfilesForm);
