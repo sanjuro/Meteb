@@ -38,7 +38,7 @@ class advisorActions extends sfActions
   */
   public function executeNew(sfWebRequest $request)
   {		 
-  	$this->form = new FrontendAdvisorForm();
+  	$this->form = new FrontendAdvisorForm('', array('currentUser' => $this->getUser()));
   }
 
  /**
@@ -48,7 +48,7 @@ class advisorActions extends sfActions
   */
   public function executeCreate(sfWebRequest $request)
   {
-   $this->form = new FrontendAdvisorForm();
+   $this->form = new FrontendAdvisorForm('', array('currentUser' => $this->getUser()));
    $this->processForm($request, $this->form);
    $this->setTemplate('new');
   }
@@ -60,7 +60,7 @@ class advisorActions extends sfActions
   */
   public function executeEdit(sfWebRequest $request)
   {
-   $this->form = new FrontendAdvisorForm($this->getRoute()->getObject());
+   $this->form = new FrontendAdvisorForm($this->getRoute()->getObject(), array('currentUser' => $this->getUser()));
   }
   
   /**
@@ -70,7 +70,7 @@ class advisorActions extends sfActions
   */ 
   public function executeUpdate(sfWebRequest $request)
   {
-   $this->form = new FrontendAdvisorForm($this->getRoute()->getObject());
+   $this->form = new FrontendAdvisorForm($this->getRoute()->getObject(), array('currentUser' => $this->getUser()));
    $this->processForm($request, $this->form);
    $this->setTemplate('edit');
   }

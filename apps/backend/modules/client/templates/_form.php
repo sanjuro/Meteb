@@ -15,7 +15,7 @@
 	  <?php echo $form['_csrf_token'] ?>
 
       <fieldset id="sf_fieldset_user"> 
-         <h2>User Details</h2>
+         <h2>Client Details</h2>
 		 <div class="sf_admin_form_row">			
 			<div>
 				<?php echo $form['userProfiles'][0]['idnumber']->renderLabel() ?>

@@ -71,20 +71,19 @@ class BackendProfileForm extends BasesfGuardUserForm
   {
 	if ($this->isNew())
 	{
-    $userProfilesForm = new sfForm();
-  
-    foreach($taintedValues['userProfiles'] as $key => $new_occurrence)
-    {
-      $userProfileObj = new UserProfile();
-      $userProfileObj->setsfGuardUser($this->getObject());  
-      $userProfileObj_form = new BackendUserProfileForm($userProfileObj);
-	
-      $userProfilesForm->embedForm( $key, $userProfileObj_form );
-    }
-	
-    $this->embedForm('userProfiles', $userProfilesForm);
-	}
-	
+	    $userProfilesForm = new sfForm();
+	  
+	    foreach($taintedValues['userProfiles'] as $key => $new_occurrence)
+	    {
+	      $userProfileObj = new UserProfile();
+	      $userProfileObj->setsfGuardUser($this->getObject());  
+	      $userProfileObj_form = new BackendUserProfileForm($userProfileObj);
+		
+	      $userProfilesForm->embedForm( $key, $userProfileObj_form );
+	    }
+		
+	    $this->embedForm('userProfiles', $userProfilesForm);
+	}	
 	
     parent::bind($taintedValues, $taintedFiles);
   }

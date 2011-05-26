@@ -77,7 +77,7 @@ placerat iaculis. Curabitur posuere, pede vitae lacinia accumsan, enim nibh elem
 neque arcu, ultrices commodo, pellentesque sit amet, ultricies ut, ipsum. Mauris et eros eget erat dapibus mollis. Mauris laoreet posuere odio.
 Nam ipsum ligula, ullamcorper eu, fringilla at, lacinia ut, augue. Nullam nunc. 
  
-<div class="dashboard_button"><?php echo link_to(image_tag('view_p_button'), url_for('advisor_new'));?></div>
+<div class="dashboard_button"><?php echo link_to(image_tag('view_p_button'), url_for('profile_edit', $sf_user->getGuardUser()));?></div>
 
 <div class="dashboard_button"><?php echo link_to(image_tag('view_q_button'), url_for('client_new'));?></div>
 

@@ -7,7 +7,7 @@
  
 <?php echo $form->renderGlobalErrors() ?>
  
-<?php echo form_tag_for($form, '@client') ?>
+<?php echo form_tag_for($form, '@advisor') ?>
 
 	  <?php echo $form['_csrf_token'] ?>
       <fieldset id="sf_fieldset_user"> 
@@ -23,14 +23,11 @@
 			<?php echo $form['userProfiles'][0]['idnumber']->renderError() ?>
 		 </div>
 		 <div class="sf_admin_form_row">			
-			<div>
-				<?php echo $form['userProfiles'][0]['parent_user_profile_id']->renderLabel() ?>
-			</div>
 			
 			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['parent_user_profile_id'] ?>
+				<?php echo $form['userProfiles'][0]['parent_user_id'] ?>
 			</div>			
-			<?php echo $form['userProfiles'][0]['parent_user_profile_id']->renderError() ?>
+			<?php echo $form['userProfiles'][0]['parent_user_id']->renderError() ?>
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>

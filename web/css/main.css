@@ -117,11 +117,19 @@ ul.sf_admin_actions {
 	margin-right:20px;
 	}
 	
+#success, .success, .flash_notice {
+    background: url("../images/backend/success.png") no-repeat scroll 11px 12px #E1FFD1;
+    border-bottom: 1px solid #C5F8AC;
+    border-top: 1px solid #C5F8AC;
+    margin: 0 0 20px;
+    padding: 10px 10px 10px 35px;
+}
+
 .flash_error {
-	background-color: #FDF4EF;
-	border-top: 1px solid #FF3333;
-	border-bottom: 1px solid #FF3333;
-	padding: 10px 20px;
-	}
-	
-	
+    background: url("../images/backend/error.png") no-repeat scroll 11px 12px #FF3333;
+    border-bottom: 1px solid #FF3333;
+    border-top: 1px solid #FF3333;
+    color: #FFF;
+    margin: 0 0 20px;
+    padding: 10px 10px 10px 35px;
+}

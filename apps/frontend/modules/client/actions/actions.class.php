@@ -48,7 +48,7 @@ class clientActions extends sfActions
   */
   public function executeNew(sfWebRequest $request)
   {		 
-  	$this->form = new FrontendClientForm();
+  	$this->form = new FrontendClientForm('', array('currentUser' => $this->getUser()));
   }
 
  /**
@@ -58,7 +58,7 @@ class clientActions extends sfActions
   */
   public function executeCreate(sfWebRequest $request)
   {
-   $this->form = new FrontendClientForm();
+   $this->form = new FrontendClientForm('', array('currentUser' => $this->getUser()));
    $this->processForm($request, $this->form);
    $this->setTemplate('new');
   }
@@ -70,7 +70,7 @@ class clientActions extends sfActions
   */
   public function executeEdit(sfWebRequest $request)
   {  	
-   $this->form = new FrontendClientForm($this->getRoute()->getObject());
+   $this->form = new FrontendClientForm($this->getRoute()->getObject(), array('currentUser' => $this->getUser()));
   }
   
   /**
@@ -80,7 +80,7 @@ class clientActions extends sfActions
   */ 
   public function executeUpdate(sfWebRequest $request)
   {
-   $this->form = new FrontendClientForm($this->getRoute()->getObject());
+   $this->form = new FrontendClientForm($this->getRoute()->getObject(), array('currentUser' => $this->getUser()));
    $this->processForm($request, $this->form);
    $this->setTemplate('edit');
   }
@@ -116,18 +116,14 @@ class clientActions extends sfActions
 	   {
 	    $client = $form->save();
 	 
-<<<<<<< HEAD
-	    $this->getUser()->setFlash('notice', 'The client was added.');
-	    
-	    $this->redirect($this->generateUrl('client'));
-=======
+
 	    if($form->isNew())
 	   		$this->getUser()->setFlash('notice', 'The client was added.');
 	    else 
 	    	$this->getUser()->setFlash('notice', 'The client was editted.');
 	      
 	    $this->redirect($this->generateUrl('client_edit', $client));
->>>>>>> 59f772dcfc403951a3d568390a97b104fbddbade
+
 	  }else {
 	  	$this->getUser()->setFlash('error', 'There was some errors capturing your client.');
 	  	
