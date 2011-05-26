@@ -4,12 +4,23 @@ class FrontendUserProfileForm extends BaseUserProfileForm
 {
   public function configure()
   {
-    unset(
+    parent::configure();
+  	
+  	if ($this->getOption("currentUser") instanceof sfUser && ($this->getOption("currentUser")))
+	{
+	    $currentUser = $this->getOption("currentUser");	    
+	}
+  	
+  	unset(
       $this['user_profile_id'], $this['created_at'], $this['updated_at']
     );
     
-     $this->widgetSchema['parent_user_profile_id'] = new sfWidgetFormChoice(
-     	array( 'label' => 'Parent', 'choices' => $this->getAvailibleParents()));
+    if (isset($currentUser) && ( $currentUser->hasGroup('admin') || $currentUser->isSuperAdmin()) ){
+	    $this->widgetSchema['parent_user_id'] = new sfWidgetFormChoice(
+	     	array( 'label' => 'Parent', 'choices' => $this->getAvailibleParents()));
+    }else{
+    	$this->widgetSchema['parent_user_id'] = new sfWidgetFormInputHidden();
+    }
      	
 	$this->widgetSchema['dob'] = new sfWidgetFormJQueryDate();
 	

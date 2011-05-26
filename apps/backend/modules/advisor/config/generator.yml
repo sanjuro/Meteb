@@ -22,9 +22,5 @@ generator:
         class: false
       form:
         class:     FrontendAdvisorForm
-        display:  
-          Content: [ =subject, body ]
-          Admin:   [ networkuser_id, network_id, created_at, updated_at ]
-      edit: 
-        title: '<h3>Editing Advisor "%%subject%%"</h3>'
+      edit:    ~
       new:     ~

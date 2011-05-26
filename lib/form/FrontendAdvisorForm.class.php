@@ -12,8 +12,13 @@ class FrontendAdvisorForm extends BasesfGuardUserForm
 {
   public function configure()
   {
-  	parent::configure();
-	
+    parent::configure();
+  	
+  	if ($this->getOption("currentUser") instanceof sfUser && ($this->getOption("currentUser")))
+	{
+	    $currentUser = $this->getOption("currentUser");	    
+	}
+  	
     unset(
       $this['id'], $this['algorithm'],
       $this['first_name'], $this['last_name'],
@@ -50,7 +55,7 @@ class FrontendAdvisorForm extends BasesfGuardUserForm
 	     
 		}  
 	}else{
-		 $userProfilesForm->embedForm( 0, new FrontendUserProfileForm( $userProfileObj ) );
+		 $userProfilesForm->embedForm( 0, new FrontendUserProfileForm( $userProfileObj, array('$currentUser' => $currentUser) ) );
 	}
 	// embed the contacts forms
     $this->embedForm('userProfiles', $userProfilesForm);

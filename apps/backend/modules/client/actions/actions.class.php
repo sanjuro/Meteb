@@ -50,13 +50,13 @@ class clientActions extends autoClientActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = $this->configuration->getForm();
+    $this->form = $this->configuration->getForm('',array('currentUser' => $this->getUser()));
     $this->sf_guard_user = $this->form->getObject();   
   }
 
   public function executeCreate(sfWebRequest $request)
   {
-    $this->form = $this->configuration->getForm();
+    $this->form = $this->configuration->getForm('',array('currentUser' => $this->getUser()));
     $this->sf_guard_user = $this->form->getObject();
 
     $this->processForm($request, $this->form);
@@ -67,13 +67,13 @@ class clientActions extends autoClientActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->sf_guard_user = $this->getRoute()->getObject();
-    $this->form = $this->configuration->getForm($this->sf_guard_user);
+    $this->form = $this->configuration->getForm($this->sf_guard_user,array('currentUser' => $this->getUser()));
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->sf_guard_user = $this->getRoute()->getObject();
-    $this->form = $this->configuration->getForm($this->sf_guard_user);
+    $this->form = $this->configuration->getForm($this->sf_guard_user,array('currentUser' => $this->getUser()));
 
     $this->processForm($request, $this->form);
     
