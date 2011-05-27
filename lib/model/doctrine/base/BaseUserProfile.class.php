@@ -20,9 +20,9 @@
  * @property string $fax
  * @property string $postaladdress
  * @property string $streetaddress
- * @property string $spousename
- * @property string $spousesurname
- * @property timestamp $spousedob
+ * @property string $spouse_name
+ * @property string $spouse_surname
+ * @property timestamp $spouse_dob
  * @property string $spouseidnumber
  * @property string $company
  * @property sfGuardUser $sfGuardUser
@@ -46,9 +46,9 @@
  * @method string       getFax()              Returns the current record's "fax" value
  * @method string       getPostaladdress()    Returns the current record's "postaladdress" value
  * @method string       getStreetaddress()    Returns the current record's "streetaddress" value
- * @method string       getSpousename()       Returns the current record's "spousename" value
- * @method string       getSpousesurname()    Returns the current record's "spousesurname" value
- * @method timestamp    getSpousedob()        Returns the current record's "spousedob" value
+ * @method string       getSpouseName()       Returns the current record's "spouse_name" value
+ * @method string       getSpouseSurname()    Returns the current record's "spouse_surname" value
+ * @method timestamp    getSpouseDob()        Returns the current record's "spouse_dob" value
  * @method string       getSpouseidnumber()   Returns the current record's "spouseidnumber" value
  * @method string       getCompany()          Returns the current record's "company" value
  * @method sfGuardUser  getSfGuardUser()      Returns the current record's "sfGuardUser" value
@@ -71,9 +71,9 @@
  * @method UserProfile  setFax()              Sets the current record's "fax" value
  * @method UserProfile  setPostaladdress()    Sets the current record's "postaladdress" value
  * @method UserProfile  setStreetaddress()    Sets the current record's "streetaddress" value
- * @method UserProfile  setSpousename()       Sets the current record's "spousename" value
- * @method UserProfile  setSpousesurname()    Sets the current record's "spousesurname" value
- * @method UserProfile  setSpousedob()        Sets the current record's "spousedob" value
+ * @method UserProfile  setSpouseName()       Sets the current record's "spouse_name" value
+ * @method UserProfile  setSpouseSurname()    Sets the current record's "spouse_surname" value
+ * @method UserProfile  setSpouseDob()        Sets the current record's "spouse_dob" value
  * @method UserProfile  setSpouseidnumber()   Sets the current record's "spouseidnumber" value
  * @method UserProfile  setCompany()          Sets the current record's "company" value
  * @method UserProfile  setSfGuardUser()      Sets the current record's "sfGuardUser" value
@@ -188,7 +188,7 @@ abstract class BaseUserProfile extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 100,
              ));
-        $this->hasColumn('spousename', 'string', 30, array(
+        $this->hasColumn('spouse_name', 'string', 30, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
@@ -197,7 +197,7 @@ abstract class BaseUserProfile extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 30,
              ));
-        $this->hasColumn('spousesurname', 'string', 30, array(
+        $this->hasColumn('spouse_surname', 'string', 30, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
@@ -206,7 +206,7 @@ abstract class BaseUserProfile extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 30,
              ));
-        $this->hasColumn('spousedob', 'timestamp', null, array(
+        $this->hasColumn('spouse_dob', 'timestamp', null, array(
              'type' => 'timestamp',
              'notnull' => true,
              ));

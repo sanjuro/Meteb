@@ -7,13 +7,16 @@
  * 
  * @property integer $id
  * @property string $title
+ * @property Doctrine_Collection $Quote
  * @property Doctrine_Collection $UserProfile
  * 
  * @method integer             getId()          Returns the current record's "id" value
  * @method string              getTitle()       Returns the current record's "title" value
+ * @method Doctrine_Collection getQuote()       Returns the current record's "Quote" collection
  * @method Doctrine_Collection getUserProfile() Returns the current record's "UserProfile" collection
  * @method Gender              setId()          Sets the current record's "id" value
  * @method Gender              setTitle()       Sets the current record's "title" value
+ * @method Gender              setQuote()       Sets the current record's "Quote" collection
  * @method Gender              setUserProfile() Sets the current record's "UserProfile" collection
  * 
  * @package    meteb
@@ -41,6 +44,10 @@ abstract class BaseGender extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('Quote', array(
+             'local' => 'id',
+             'foreign' => 'spouse_sex'));
+
         $this->hasMany('UserProfile', array(
              'local' => 'id',
              'foreign' => 'gender_id'));

@@ -12,5 +12,283 @@
  */
 class Quote extends BaseQuote
 {
+	/**
+	 * This function calculates the annuity amount that can be purchased given a purchase amount
+	 * No allowance is made for commission and tax
+	 * A Newton-Rhapson approximation method is used. Convergence usually occurs after 2 iterations
+	 * An unnecessary third iteration is usually performed, but this adds accuracy.
+	 * 
+	 * @param void
+	 * 
+	 * @return annuity
+	 * 
+	 * @return UserProfile UserProfile Object
+	 */	
+	public function calc_annuity()
+	{
+		$shock = 0.00001;
+		$runs = 0;
+		$annuity = $this->purchase_price/12/15;
+		$diff = 1;
+		
+		while (abs($diff) > 0.01 && $runs <= 10)
+		{
+			$purchase_price_1 = calc_pp($annuity);
+			$purchase_price_2 = calc_pp($annuity + $shock);
+			$diff = $this->purchase_price - $purchase_price_1;
+			$annuity = $annuity + $diff / ( ($purchase_price_2-$purchase_price_1) / $shock );
+			$runs++;
+		}
+		if ($runs <= 10)
+			return $annuity;
+		else
+			return "error";
+	}
+	
+	/**
+	 * This function does a quote and calculates a purchase price from an annuity amount
+	 * No allowance is made for commission and tax
+	 * 
+	 * @param void
+	 * 
+	 * @return annuity Value of Annuity
+	 * 
+	 * @return UserProfile UserProfile Object
+	 */
+	public function calc_pp($annuity)
+	{	
+	// The required data is read from the database
 
+		$marketResult = $this->get_latest_marketdata();
+		$exspenseResult = $this->get_expenses();
+		$mortalityResult = $this->get_mortality_rates();
+		$max_age = 112;
+
+	/** 
+	 *  The calculations are performed. These are based on an excel spreadsheet called "quotes engine.xlsx". Contact the administrator for more info.
+	 *  The calculations are done in the form of a table. This represents the spreadsheet from which the calculations are based.
+	 *  The number of rows depends on how fast the probability of survival reduces to zero.
+	 */ 
+
+		if ($annuity <= 40000)
+			$age_rating = -1;
+		else
+			$age_rating = -2;
+			
+		if ($this->getMainSex() == 1)
+			$main_sex = 2;
+		else
+			$main_sex = 3;
+			
+		if ($this->getSpouseSex() == 1)
+			$spouse_sex = 2;
+		else
+			$spouse_sex = 3;
+			
+		if ($annuity  <= 20000)
+			$mortality_improvement = 0.005;
+		elseif ($annuity  <= 40000)
+			$mortality_improvement = 0.015;
+		else
+			$mortality_improvement = 0.01;
+			
+		$main_dob = (strtotime($this->getDob()) + 2209168800)/86400;
+		
+		$spouse_dob = (strtotime($this->getSpouseDob()) + 2209168800)/86400;
+		
+		if ($this->pri == 0.035)
+			$column = 1;
+		elseif ($this->pri == 0.040)
+			$column = 2;
+		elseif ($this->pri == 0.045)
+			$column = 3;
+
+		$calcs[0][1]=(strtotime($marketResult['inception_date']) + 2209168800)/86400-365.25/12;
+		$calcs[0][2]=min(floor(($marketResult['month_array'][1][$column]-$main_dob)/365.25+$age_rating),$max_age);
+		$calcs[0][8]=1;
+		$calcs[0][9]=1;
+		$calcs[0][14]=1;
+		$calcs[0][17]=min(floor(($marketResult['month_array'][1][$column]-$spouse_dob)/365.25+$age_rating),$max_age);
+		$calcs[0][21]=1;
+		$calcs[0][22]=1;
+		$calcs[0][29]=0;
+
+		for ($row=1; $row<=1200; $row++)
+		{
+			$calcs[$row][1]=$calcs[$row-1][1]+365.25/12;
+			$calcs[$row][2]=min(floor(($calcs[$row][1]-$main_dob)/365.25+$age_rating),$max_age);
+			$calcs[$row][3]=$annuity ;
+			$calcs[$row][4]=$exspenseResult['renewal_expenses'] * 1.14;
+			$calcs[$row][5]=$mortalityResult[$calcs[$row][2]][$main_sex];
+			if ($calcs[$row][5]==1)
+				$calcs[$row][6]=1;
+			else
+				$calcs[$row][6]=pow(1-$mortality_improvement,$row/12);
+				
+			$calcs[$row][7]=$calcs[$row][5]*$calcs[$row][6];
+			
+			if ($calcs[$row][2]==$calcs[$row-1][2])
+				$calcs[$row][8]=$calcs[$row-1][8];
+			else
+				$calcs[$row][8]=$calcs[$row-1][8]*$calcs[$row-1][9];
+				
+			if ($calcs[$row][2]==$calcs[$row-1][2])
+				$calcs[$row][9]=$calcs[$row-1][9]-$calcs[$row][7]/12;
+			else
+				$calcs[$row][9]=1-$calcs[$row][7]/12;
+				
+			if ($row<=$this->gp)
+				$calcs[$row][10]=1;
+			else
+				$calcs[$row][10]=$calcs[$row][8]*$calcs[$row][9];
+				
+			$calcs[$row][10]=max($calcs[$row][10],0);
+			
+			$calcs[$row][11]=$calcs[$row][3]*$calcs[$row][10];
+			
+			if ($row<=360)
+				$calcs[$row][12]=$marketResult['dhfactors_matrix'][$row][$column]*$marketResult['discounting_array'][$row][$column];
+			else
+				$calcs[$row][12]=$marketResult['dhfactors_matrix'][360][$column]*$marketResult['discounting_array'][360][$column]*pow(1+$this->pri,(360-$row)/12);
+				
+			$calcs[$row][13]=$calcs[$row][4]*$calcs[$row][10];
+			//deterministic expense inflation ignored for now
+			$calcs[$row][15]=$calcs[$row][11]+$calcs[$row][13];
+
+			$calcs[$row][16] = $calcs[$row][3] * $this->spouse_reversion * $this->second_life;
+			$calcs[$row][17] = min(floor(($calcs[$row][1]-$spouse_dob)/365.25+$age_rating),$max_age);
+			$calcs[$row][18] = $mortalityResult[$calcs[$row][17]][$spouse_sex];
+			if ($calcs[$row][18]==1)
+				$calcs[$row][19]=1;
+			else
+				$calcs[$row][19]=pow(1-$mortality_improvement,$row/12);
+				
+			$calcs[$row][20]=$calcs[$row][18]*$calcs[$row][19];
+			if ($calcs[$row][17]==$calcs[$row-1][17])
+				$calcs[$row][21]=$calcs[$row-1][21];
+			else
+				$calcs[$row][21]=$calcs[$row-1][21]*$calcs[$row-1][22];
+				
+			if ($calcs[$row][17]==$calcs[$row-1][17])
+				$calcs[$row][22]=$calcs[$row-1][22]-$calcs[$row][20]/12;
+			else
+				$calcs[$row][22]=1-$calcs[$row][20]/12;
+				
+			$calcs[$row][23]=1-$calcs[$row][10];
+			$calcs[$row][24]=max($calcs[$row][21]*$calcs[$row][22]*$calcs[$row][23],0);
+			$calcs[$row][25]=$calcs[$row][16]*$calcs[$row][24];
+			$calcs[$row][26]=$calcs[$row][4]*$calcs[$row][24];
+			$calcs[$row][27]=$calcs[$row][25]+$calcs[$row][26];
+			$calcs[$row][28]=($calcs[$row][15]+$calcs[$row][27])*$calcs[$row][12];
+			$calcs[$row][29]=$calcs[$row-1][29]+$calcs[$row][28];
+
+			if ($calcs[$row][28]==0)
+			{
+				$calcs[1200][29]=$calcs[$row][29];
+				$row=1200;
+			}
+		}
+		
+		//The purchase is returned. This makes allowance for expenses and loadings
+
+		return ($calcs[1200][29]+$exspenseResult['initial_expenses']*1.14)/(1-$exspenseResult['loadings']*1.14);
+	}
+	
+	/** 
+	 *	This function retrieves the latest market data from the database
+	 *	Only the last row of data is retrieved, The market data is required to do a quote
+	 *
+	 * @param unknown_type $upload_date
+	 * @param unknown_type $inception_date
+	 * @param unknown_type $month_array
+	 * @param unknown_type $discounting_array
+	 * @param unknown_type $dhfactors_matrix
+	 * 
+	 * @return array Array of Market Data for calculation
+	 */	
+	public function get_latest_marketdata()
+	{
+		$marketResult = array();
+		
+		$q = Doctrine_Query::create()
+		   ->from('Marketdata m')
+		   ->orderBy('m.id DESC')
+		   ->limit(1);		
+		     
+		$marketData =  $q->fetchOne(); 
+		
+		$marketResult['id']= $marketData['id'];
+		$marketResult['upload_date'] = Meteb::text_to_matrix($marketData['upload_date']);// the array of month values from the database
+		$marketResult['inception_date'] = Meteb::text_to_matrix($marketData['inception_date']);// the array of month values from the database
+		$marketResult['month_array'] = Meteb::text_to_matrix($marketData['month_array']);// the array of month values from the database
+		$marketResult['discounting_array'] = Meteb::text_to_matrix($marketData['discounting_array']);// the array of discounting values from the database
+		$marketResult['dhfactors_matrix'] = Meteb::text_to_matrix($marketData['dhfactors_matrix']);// the matrix of dhfactors values from the database
+		
+		return $marketResult;
+
+	}
+
+	/** 
+	 *	This function retreives the expense data from the database
+	 *	There should only be one line of data, so only the one row is read
+	 *
+	 * @param unknown_type $upload_date
+	 * @param unknown_type $inception_date
+	 * @param unknown_type $month_array
+	 * @param unknown_type $discounting_array
+	 * @param unknown_type $dhfactors_matrix
+	 * 
+	 * @return array Array of Market Data for calculation
+	 */	
+	public function get_expenses()
+	{
+		$exspenseResult = array();
+		
+		$q = Doctrine_Query::create()
+		   ->from('Exspensedata e')
+		   ->where('e.id = ?', 1)
+		   ->limit(1);		
+		     
+		$exspenseResult = $q->fetchOne(); 		
+
+		$exspenseResult['id']= $expenseData['id'];
+		$exspenseResult['renewal_expenses'] = $expenseData['renewal_expenses'];
+		$exspenseResult['expense_inflation'] = $expenseData['expense_inflation'];
+		$exspenseResult['initial_expenses'] = $expenseData['initial_expenses'];
+		$exspenseResult['loadings'] = $expenseData['loadings'];
+		
+		
+		return $exspenseResult;
+	}
+
+	/** 
+	 *	This function retrieves the mortality rates from the database
+	 *	The mortality rates are in the form of a table of male and female rates sorted by age
+	 *	The PA90-1 tables were used
+	 *
+	 * @param unknown_type $upload_date
+	 * @param unknown_type $inception_date
+	 * @param unknown_type $month_array
+	 * @param unknown_type $discounting_array
+	 * @param unknown_type $dhfactors_matrix
+	 * 
+	 * @return array Array of Mortality Rates for calculation
+	 */	
+	public function get_mortality_rates()
+	{
+		$mortalityResult = array();
+		
+		$q = Doctrine_Query::create()
+		   ->from('MortalityRates mr');		
+		     
+		$mortalityData = $q->fetchArray(); 
+		
+		foreach($mortalityData as $key => $value){
+			$mortalityResult[$key]['age'] = $value['age'];
+			$mortalityResult[$key]['age'] = $value['mortality_male'];
+			$mortalityResult[$key]['age'] = $value['mortality_female'];
+		}
+		
+		return $mortalityResult;
+	}
 }

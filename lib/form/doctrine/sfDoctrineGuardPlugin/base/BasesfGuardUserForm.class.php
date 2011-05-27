@@ -58,7 +58,7 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
 	      ))
 	    );
     }
-
+    
     $this->widgetSchema->setNameFormat('sf_guard_user[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

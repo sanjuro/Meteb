@@ -7,8 +7,8 @@ UserProfile:
     name:                    shadley
     surname:                 wentzel
     dob:                     1981-12-04
-    spousename:              radhia
-    spousesurname:           wentzel
+    spouse_name:             radhia
+    spouse_surname:          wentzel
   userprofile_admin:
     sfGuardUser:             sfguarduser_admin
     Gender:                  gender_male
@@ -17,8 +17,8 @@ UserProfile:
     name:                    admin
     surname:                 admin
     dob:                     1981-12-04
-    spousename:              admin
-    spousesurname:           admin
+    spouse_name:             admin
+    spouse_surname:          admin
   userprofile_advisor:
     sfGuardUser:             sfguarduser_advisor
     Gender:                  gender_male
@@ -27,8 +27,8 @@ UserProfile:
     name:                    advisor
     surname:                 advisor
     dob:                     1981-12-04
-    spousename:              advisor
-    spousesurname:           advisor
+    spouse_name:             advisor
+    spouse_surname:          advisor
   userprofile_client:
     sfGuardUser:             sfguarduser_client
     Gender:                  gender_male
@@ -37,5 +37,5 @@ UserProfile:
     name:                    client
     surname:                 client
     dob:                     1981-12-04
-    spousename:              client
-    spousesurname:           client
+    spouse_name:             client
+    spouse_surname:          client

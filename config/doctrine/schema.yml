@@ -84,6 +84,12 @@ Quote:
     created_by:              { type: integer }
     second_life:             { type: integer }
     guarantee_period:        { type: integer }
+    main_sex:                { type: integer }
+    main_dob:                { type: timestamp, notnull: true }
+    second_life:             { type: integer }
+    spouse_sex:              { type: integer }
+    spouse_dob:              { type: timestamp, notnull: true }
+    gp:                      { type: integer }
     spouse_reversion:        { type: decimal(10), scale: 5 }
     pri:                     { type: decimal(10), scale: 3 }
     purchase_price:          { type: decimal(15), scale: 2 }
@@ -98,6 +104,7 @@ Quote:
   relations:
     Client:                  { class: sfGuardUser, onDelete: CASCADE, local: client_id, foreign: id }
     Parent:                  { class: sfGuardUser, onDelete: CASCADE, local: created_by, foreign: id }
+    SpouseGender:            { class: Gender, local: spouse_sex, foreign: id }
       
 System:
   columns:
@@ -172,21 +179,21 @@ UserProfile:
       primary: false
       notnull: true
       autoincrement: false
-    spousename:
+    spouse_name:
       type: string(30)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-    spousesurname:
+    spouse_surname:
       type: string(30)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-    spousedob:         { type: timestamp, notnull: true }
+    spouse_dob:         { type: timestamp, notnull: true }
     spouse_gender_id:  { type: integer }
     spouseidnumber:
       type: string(20)

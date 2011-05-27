@@ -185,23 +185,23 @@
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>
-				<?php echo $form['userProfiles'][0]['spousename']->renderLabel() ?>
+				<?php echo $form['userProfiles'][0]['spouse_name']->renderLabel() ?>
 			</div>
 			
 			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['spousename'] ?>
+				<?php echo $form['userProfiles'][0]['spouse_name'] ?>
 			</div>			
-			<?php echo $form['userProfiles'][0]['spousename']->renderError() ?>
+			<?php echo $form['userProfiles'][0]['spouse_name']->renderError() ?>
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>
-				<?php echo $form['userProfiles'][0]['spousesurname']->renderLabel() ?>
+				<?php echo $form['userProfiles'][0]['spouse_surname']->renderLabel() ?>
 			</div>
 			
 			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['spousesurname'] ?>
+				<?php echo $form['userProfiles'][0]['spouse_surname'] ?>
 			</div>			
-			<?php echo $form['userProfiles'][0]['spousesurname']->renderError() ?>
+			<?php echo $form['userProfiles'][0]['spouse_surname']->renderError() ?>
 		 </div>
 		 		 <div class="sf_admin_form_row">	 
 			<div>
@@ -214,12 +214,12 @@
 		 </div>		 
 		 <div class="sf_admin_form_row">	 
 			<div>
-				<?php echo $form['userProfiles'][0]['spousedob']->renderLabel() ?>
+				<?php echo $form['userProfiles'][0]['spouse_dob']->renderLabel() ?>
 			</div>			
 			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['spousedob'] ?>
+				<?php echo $form['userProfiles'][0]['spouse_dob'] ?>
 			</div>
-			<?php echo $form['userProfiles'][0]['spousedob']->renderError() ?>
+			<?php echo $form['userProfiles'][0]['spouse_dob']->renderError() ?>
 		 </div>
  	  </fieldset>
  	  

@@ -27,7 +27,7 @@
 						  <li><?php echo link_to(__('Clients'), '@client') ?></li>
 						  <?php endif; ?>
 						  
-						  <li><?php echo link_to(__('Quotes'), 'homepage') ?></li>
+						  <li><?php echo link_to(__('Quotes'), '@quote') ?></li>
 						 
 						  <?php if ($sf_user->hasGroup('administrator')): ?>		
 						  <li><?php echo link_to(__('Advisor'), '@advisor') ?></li>
