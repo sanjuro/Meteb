@@ -195,7 +195,7 @@
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>
-				<?php echo $form['userProfiles'][0]['spousesurname']->renderLabel() ?>
+				<?php echo $form['userProfiles'][0]['spouse_surname']->renderLabel() ?>
 			</div>
 			
 			<div  class="content" >

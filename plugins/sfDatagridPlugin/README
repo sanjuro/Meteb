@@ -1,0 +1,92 @@
+sfDatagrid plugin
+==============
+
+This plugins allow to create an ajax datagrid with sorting columns, line highlight, action on the line with a checkbox, data paging, column search, etc...
+		
+Depandencies
+---------------------
+
+Prototype must be loaded to the page
+
+Online documentation
+---------------------
+
+New Documentation : [http://wiki.zellerda.com/doku.php/sfdatagridplugin](http://wiki.zellerda.com/doku.php/sfdatagridplugin)
+
+Go to [http://symfony.swisscenter.com/datagrid](http://symfony.swisscenter.com/datagrid)
+
+To know How use the Old Admin Genrator go to [http://symfony.spyrit.net](http://symfony.spyrit.net)
+The new propel Admin generator is documented on Wiki
+
+Now Jquery Compatible
+-------------------------
+
+If you want to use Jquery Install sfJqueryReloadedPlugin
+
+$this->getActive()->loadHelpers(array('Form', 'JavascriptBase', 'Javascript', 'jQuery',....);
+
+and in app.yml
+
+    [yml]
+    all:
+      datagrid:
+        jsframwork: jquery # prototype or jquery 
+
+Now direct rendering for first call
+---------------------
+Use :
+
+    [php]
+    sfDatagrid::renderDirect($div,$moduleName,$actionName);
+
+
+AdminGenerator Step By Step :
+---------------------
+
+### SetUp the plugin 
+
+After download the plugin :
+
+* Clear your cache **symfony cc**
+* Open your AppConfiguration.php File
+
+    [php]
+    public function configure()
+    {
+  	  $this->getActive()->loadHelpers(array( 'JavascriptBase', 'Date', 'Url', 'I18N', 'Tag','Asset','Partial')); 
+    }
+
+* Init a new admin module 
+    [php]
+    symfony propel:generate-admin YOUR_APP YOUR_MODEL
+
+
+* Edit the yml and change the generator class to **sfPropelDatagridGenerator** and set theme **default**
+
+### Options for the list: part
+
+In the list part you could set :
+
+    [yml]
+    list:
+      display: [] #Like for default theme but using = do Nothing the link is for all cells
+      row_action: show # The action to redirect @MY_MODULE_{row_action}?id={my_object_id} by default is show if with_show = true else edit
+      hide_filters: [] # To hide filters for some column
+      sort: [] # Like by default
+      object_actions:  # Like default the link is desactivated on column and the partial _list_td_actions is loaded (without td see your cache)
+      batch_actions: # Like default
+      max_per_page: # Like default
+      actions: # Like default
+      columns_sorting: # If you want to change the render see after
+      
+
+* The column sorting allow you to define the column smth_img calling model->getSmthImg() with your render
+But sorting on an existin column like that:
+
+    [yml]
+    list:
+      display: [ smth_img ]
+      hide_filters: [ smth_img ] # I haven't making the same operation for filters for the moment
+      sort: [ smth_img, desc ] #Init sort on this col (optional of course)
+      columns_sorting:
+        smth_img: smth #Will translate sortin click smth_img to modelPeer::SMTH
