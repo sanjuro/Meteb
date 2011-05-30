@@ -253,6 +253,7 @@ class advisorActions extends autoAdvisorActions
   protected function buildQuery()
   {
     $tableMethod = $this->configuration->getTableMethod();
+    
     $query = Doctrine_Core::getTable('sfGuardUser')
       ->createQuery('a');
 

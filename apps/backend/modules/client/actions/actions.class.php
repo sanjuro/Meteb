@@ -260,11 +260,20 @@ class clientActions extends autoClientActions
   protected function buildQuery()
   {
     $tableMethod = $this->configuration->getTableMethod();
-    $query = Doctrine_Query::create()
-    		 ->from('sfGuardUser sfgu')
-    		 ->leftJoin('sfgu.UserProfile up')
-    		 ->where('up.parent_user_id = ?', $this->getUser()->getGuardUser()->getId());
-
+    
+    if ($this->getUser()->hasGroup('administrator')){
+	    $query = Doctrine_Query::create()
+	    		 ->from('sfGuardUser sfgu')
+	    		 ->leftJoin('sfgu.UserProfile up')
+	    		 ->leftJoin('sfgu.sfGuardUserGroup sfgg')
+	    		 ->where('sfgg.group_id = 3');
+  	}else{
+	    $query = Doctrine_Query::create()
+	    		 ->from('sfGuardUser sfgu')
+	    		 ->leftJoin('sfgu.UserProfile up')
+	    		 ->where('up.parent_user_id = ?', $this->getUser()->getGuardUser()->getId());
+  	}
+  	
     if ($tableMethod)
     {
       $query = Doctrine_Core::getTable('sfGuardUser')->$tableMethod($query);
