@@ -156,6 +156,34 @@ class clientActions extends autoClientActions
     $this->getUser()->setFlash('notice', 'The selected items have been deleted successfully.');
     $this->redirect('@client');
   }
+  
+  public function executeBatchDisable(sfWebRequest $request)
+  {
+    $ids = $request->getParameter('ids');
+ 
+    $q = Doctrine_Query::create()
+      ->from('sfGuardUser sfgu')
+      ->whereIn('sfgu.id', $ids);
+ 
+    foreach ($q->execute() as $sfGuardUser)
+    {
+      $sfGuardUser->setIsActive(false);
+    }
+ 
+    $this->getUser()->setFlash('notice', 'The selected clients have been disabled successfully.');
+ 
+    $this->redirect('@client');
+  }
+  
+  public function executeListDisable(sfWebRequest $request)
+  {
+    $sfGuardUser = $this->getRoute()->getObject();
+    $sfGuardUser->setIsActive(false);
+ 
+    $this->getUser()->setFlash('notice', 'The selected client has been disabled successfully.');
+ 
+    $this->redirect('@client');
+  }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
@@ -232,14 +260,16 @@ class clientActions extends autoClientActions
   protected function buildQuery()
   {
     $tableMethod = $this->configuration->getTableMethod();
-    $query = Doctrine_Core::getTable('sfGuardUser')
-      ->createQuery('a');
+    $query = Doctrine_Query::create()
+    		 ->from('sfGuardUser sfgu')
+    		 ->leftJoin('sfgu.UserProfile up')
+    		 ->where('up.parent_user_id = ?', $this->getUser()->getGuardUser()->getId());
 
     if ($tableMethod)
     {
       $query = Doctrine_Core::getTable('sfGuardUser')->$tableMethod($query);
     }
-
+	
     $this->addSortQuery($query);
 
     $event = $this->dispatcher->filter(new sfEvent($this, 'admin.build_query'), $query);

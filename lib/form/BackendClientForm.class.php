@@ -8,7 +8,7 @@
  * @author     Shadley Wentzel
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class BackendClientForm extends BasesfGuardUserForm
+class BackendClientForm extends sfGuardUserForm
 {
   public function configure()
   {
@@ -23,7 +23,7 @@ class BackendClientForm extends BasesfGuardUserForm
     unset(
       $this['id'], $this['algorithm'],
       $this['first_name'], $this['last_name'],
-      $this['salt'], $this['is_active'],
+      $this['salt'], 
       $this['is_super_admin'], $this['last_login'],
       $this['created_at'], $this['updated_at'],
       $this['groups_list'], $this['permissions_list']

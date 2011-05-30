@@ -17,7 +17,11 @@ generator:
       list:    
        display: [ first_name, last_name, email_address]
        title: 'Clients'
-       table_method: retrieveClientsForParent
+       batch_actions:
+         disable:     ~
+       object_actions:
+         _edit:       ~
+         disable:     ~
       filter:
         class: false
       form:

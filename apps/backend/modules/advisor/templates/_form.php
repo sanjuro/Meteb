@@ -28,16 +28,6 @@
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>
-				<?php echo $form['userProfiles'][0]['parent_user_id']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['parent_user_id'] ?>
-			</div>			
-			<?php echo $form['userProfiles'][0]['parent_user_id']->renderError() ?>
-		 </div>
-		 <div class="sf_admin_form_row">			
-			<div>
 				<?php echo $form['username']->renderLabel() ?>
 			</div>
 			
@@ -59,12 +49,21 @@
 		 <div class="sf_admin_form_row">			
 			<div>
 				<?php echo $form['email_address']->renderLabel() ?>
-			</div>
-			
+			</div>			
 			<div  class="content" >
 				<?php echo $form['email_address'] ?>
 			</div>			
 			<?php echo $form['email_address']->renderError() ?>
+		 </div>
+		 <div class="sf_admin_form_row">			
+			<div>
+				<?php echo $form['is_active']->renderLabel() ?>
+			</div>
+			
+			<div  class="content" >
+				<?php echo $form['is_active'] ?>
+			</div>			
+			<?php echo $form['is_active']->renderError() ?>
 		 </div>
 		 <div class="sf_admin_form_row">	
 			<div>
@@ -95,15 +94,6 @@
 		 </div>
 		 <div class="sf_admin_form_row">	 
 			<div>
-				<?php echo $form['userProfiles'][0]['company']->renderLabel() ?>
-			</div>			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['company'] ?>
-			</div>
-			<?php echo $form['userProfiles'][0]['company']->renderError() ?>
-		 </div>
-		 <div class="sf_admin_form_row">	 
-			<div>
 				<?php echo $form['userProfiles'][0]['gender_id']->renderLabel() ?>
 			</div>			
 			<div  class="content" >
@@ -120,6 +110,28 @@
 			</div>
 			<?php echo $form['userProfiles'][0]['status_id']->renderError() ?>
 		 </div>
+      </fieldset>
+      
+      <fieldset id="sf_fieldset_user">  
+      	<h2>Advisor Details</h2>
+		 <div class="sf_admin_form_row">	 
+			<div>
+				<?php echo $form['userProfiles'][0]['fsp_license_number']->renderLabel() ?>
+			</div>			
+			<div  class="content" >
+				<?php echo $form['userProfiles'][0]['fsp_license_number'] ?>
+			</div>
+			<?php echo $form['userProfiles'][0]['fsp_license_number']->renderError() ?>
+		 </div>
+		 <div class="sf_admin_form_row">	 
+			<div>
+				<?php echo $form['userProfiles'][0]['company']->renderLabel() ?>
+			</div>			
+			<div  class="content" >
+				<?php echo $form['userProfiles'][0]['company'] ?>
+			</div>
+			<?php echo $form['userProfiles'][0]['company']->renderError() ?>
+		 </div>		 
       </fieldset>
       
       <fieldset id="sf_fieldset_user">  
@@ -170,58 +182,6 @@
 			<?php echo $form['userProfiles'][0]['fax']->renderError() ?>
 		 </div>
       </fieldset>
-      
-      <fieldset id="sf_fieldset_user">  
-      	<h2>Spouse Details</h2>
-		 <div class="sf_admin_form_row">			
-			<div>
-				<?php echo $form['userProfiles'][0]['spouseidnumber']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['spouseidnumber'] ?>
-			</div>			
-			<?php echo $form['userProfiles'][0]['spouseidnumber']->renderError() ?>
-		 </div>
-		 <div class="sf_admin_form_row">			
-			<div>
-				<?php echo $form['userProfiles'][0]['spouse_name']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['spouse_name'] ?>
-			</div>			
-			<?php echo $form['userProfiles'][0]['spouse_name']->renderError() ?>
-		 </div>
-		 <div class="sf_admin_form_row">			
-			<div>
-				<?php echo $form['userProfiles'][0]['spouse_surname']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['spouse_surname'] ?>
-			</div>			
-			<?php echo $form['userProfiles'][0]['spouse_surname']->renderError() ?>
-		 </div>
-		 		 <div class="sf_admin_form_row">	 
-			<div>
-				<?php echo $form['userProfiles'][0]['spouse_gender_id']->renderLabel() ?>
-			</div>			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['spouse_gender_id'] ?>
-			</div>
-			<?php echo $form['userProfiles'][0]['spouse_gender_id']->renderError() ?>
-		 </div>		 
-		 <div class="sf_admin_form_row">	 
-			<div>
-				<?php echo $form['userProfiles'][0]['spouse_dob']->renderLabel() ?>
-			</div>			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['spouse_dob'] ?>
-			</div>
-			<?php echo $form['userProfiles'][0]['spouse_dob']->renderError() ?>
-		 </div>
- 	  </fieldset>
  	  
 <ul class="sf_admin_actions">
   <li class="sf_admin_action_delete"><?php echo link_to( 'Delete', 'client/delete?id='.$form->getObject()->getId(),  array('method' => 'delete', 'confirm' => 'Are you sure?')) ?></li>  

@@ -22,12 +22,26 @@ sfGuardUser:
     username: advisor
     password: advisor
     Groups:         [group_financialadvisor]
+  sfguarduser_jadvisor:
+    first_name:     Jack
+    last_name:      Advisor
+    email_address:  jadvisor@gmail.com
+    username: jackadvisor
+    password: jackadvisor
+    Groups:         [group_financialadvisor]
   sfguarduser_client:
     first_name:     Client
     last_name:      Client
     email_address:  client@gmail.com
     username: client
     password: client
+    Groups:         [group_client]
+  sfguarduser_jclient:
+    first_name:     Jack 
+    last_name:      Client
+    email_address:  jclient@gmail.com
+    username: jackclient
+    password: jackclient
     Groups:         [group_client]
     
 sfGuardGroup:

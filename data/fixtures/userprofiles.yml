@@ -22,19 +22,38 @@ UserProfile:
   userprofile_advisor:
     sfGuardUser:             sfguarduser_advisor
     Gender:                  gender_male
-    SpouseGender:            gender_female
     ClientStatus:            status_active
+    ParentUser:              sfguarduser_admin
     name:                    advisor
     surname:                 advisor
     dob:                     1981-12-04
-    spouse_name:             advisor
-    spouse_surname:          advisor
+  userprofile_jadvisor:
+    sfGuardUser:             sfguarduser_jadvisor
+    Gender:                  gender_male
+    SpouseGender:            gender_female
+    ClientStatus:            status_active
+    ParentUser:              sfguarduser_admin
+    name:                    jack
+    surname:                 advisor
+    dob:                     1981-12-04
   userprofile_client:
     sfGuardUser:             sfguarduser_client
     Gender:                  gender_male
     SpouseGender:            gender_female
     ClientStatus:            status_active
+    ParentUser:              sfguarduser_advisor
     name:                    client
+    surname:                 client
+    dob:                     1981-12-04
+    spouse_name:             client
+    spouse_surname:          client
+  userprofile_jclient:
+    sfGuardUser:             sfguarduser_jclient
+    Gender:                  gender_male
+    SpouseGender:            gender_female
+    ClientStatus:            status_active
+    ParentUser:              sfguarduser_jadvisor
+    name:                    jack
     surname:                 client
     dob:                     1981-12-04
     spouse_name:             client

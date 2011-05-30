@@ -46,7 +46,7 @@ abstract class BaseGender extends sfDoctrineRecord
         parent::setUp();
         $this->hasMany('Quote', array(
              'local' => 'id',
-             'foreign' => 'spouse_sex'));
+             'foreign' => 'main_sex'));
 
         $this->hasMany('UserProfile', array(
              'local' => 'id',

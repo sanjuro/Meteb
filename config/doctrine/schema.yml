@@ -104,6 +104,7 @@ Quote:
   relations:
     Client:                  { class: sfGuardUser, onDelete: CASCADE, local: client_id, foreign: id }
     Parent:                  { class: sfGuardUser, onDelete: CASCADE, local: created_by, foreign: id }
+    GEnder:                  { class: Gender, local: main_sex, foreign: id } 
     SpouseGender:            { class: Gender, local: spouse_sex, foreign: id }
       
 System:
@@ -122,6 +123,7 @@ UserProfile:
     spouse_gender_id: { type: integer }
     status_id:        { type: integer }
     parent_user_id:   { type: integer }
+    fsp_license_number:   { type: string(12) }
     name:
       type: string(30)
       fixed: false

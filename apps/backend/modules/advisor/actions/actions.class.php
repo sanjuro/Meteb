@@ -73,7 +73,7 @@ class advisorActions extends autoAdvisorActions
   public function executeUpdate(sfWebRequest $request)
   {
     $this->sf_guard_user = $this->getRoute()->getObject();
-    $this->form = $this->configuration->getForm($this->sf_guard_user);
+    $this->form = $this->configuration->getForm($this->sf_guard_user, array('currentUser' => $this->getUser()));
 
     $this->processForm($request, $this->form);
 
@@ -154,6 +154,34 @@ class advisorActions extends autoAdvisorActions
     }
 
     $this->getUser()->setFlash('notice', 'The selected items have been deleted successfully.');
+    $this->redirect('@advisor');
+  }
+  
+  public function executeBatchDisable(sfWebRequest $request)
+  {
+    $ids = $request->getParameter('ids');
+ 
+    $q = Doctrine_Query::create()
+      ->from('sfGuardUser sfgu')
+      ->whereIn('sfgu.id', $ids);
+ 
+    foreach ($q->execute() as $sfGuardUser)
+    {
+      $sfGuardUser->setIsActive(flase);
+    }
+ 
+    $this->getUser()->setFlash('notice', 'The selected advisors have been disabled successfully.');
+ 
+    $this->redirect('@advisor');
+  }
+  
+  public function executeListDisable(sfWebRequest $request)
+  {
+    $sfGuardUser = $this->getRoute()->getObject();
+    $sfGuardUser->setIsActive(false);
+ 
+    $this->getUser()->setFlash('notice', 'The selected advisor has been disabled successfully.');
+ 
     $this->redirect('@advisor');
   }
 

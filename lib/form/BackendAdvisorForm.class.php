@@ -8,7 +8,7 @@
  * @author     Shadley Wentzel
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class BackendAdvisorForm extends BasesfGuardUserForm
+class BackendAdvisorForm extends sfGuardUserForm
 {
   public function configure()
   {
@@ -22,7 +22,7 @@ class BackendAdvisorForm extends BasesfGuardUserForm
     unset(
       $this['id'], $this['algorithm'],
       $this['first_name'], $this['last_name'],
-      $this['salt'], $this['is_active'],
+      $this['salt'], 
       $this['is_super_admin'], $this['last_login'],
       $this['created_at'], $this['updated_at'],
       $this['groups_list'], $this['permissions_list']
@@ -51,11 +51,11 @@ class BackendAdvisorForm extends BasesfGuardUserForm
 	{	
 		foreach( $userProfileObjs as $key => $userProfileObj )
 		{	 
-			  $userProfilesForm->embedForm($key, new BackendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
+			  $userProfilesForm->embedForm($key, new BackendAdvisorUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
 	     
 		}  
 	}else{
-		 $userProfilesForm->embedForm( 0, new BackendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
+		 $userProfilesForm->embedForm( 0, new BackendAdvisorUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
 	}
 	// embed the contacts forms
     $this->embedForm('userProfiles', $userProfilesForm);
