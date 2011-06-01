@@ -13,6 +13,7 @@
 <?php echo form_tag_for($form, '@profile') ?>
 
 	  <?php echo $form['_csrf_token'] ?>
+	  <?php echo $form['userProfiles'][0]['parent_user_id'] ?>
 
       <fieldset id="sf_fieldset_user"> 
 
@@ -25,16 +26,6 @@
 				<?php echo $form['userProfiles'][0]['idnumber'] ?>
 			</div>			
 			<?php echo $form['userProfiles'][0]['idnumber']->renderError() ?>
-		 </div>
-		 <div class="sf_admin_form_row">			
-			<div>
-				<?php echo $form['userProfiles'][0]['parent_user_id']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['parent_user_id'] ?>
-			</div>			
-			<?php echo $form['userProfiles'][0]['parent_user_id']->renderError() ?>
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>
@@ -110,15 +101,6 @@
 				<?php echo $form['userProfiles'][0]['gender_id'] ?>
 			</div>
 			<?php echo $form['userProfiles'][0]['gender_id']->renderError() ?>
-		 </div>
-		 <div class="sf_admin_form_row">	 
-			<div>
-				<?php echo $form['userProfiles'][0]['status_id']->renderLabel() ?>
-			</div>			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['status_id'] ?>
-			</div>
-			<?php echo $form['userProfiles'][0]['status_id']->renderError() ?>
 		 </div>
       </fieldset>
       

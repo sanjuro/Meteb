@@ -10,13 +10,15 @@
  */
 class BackendClientForm extends sfGuardUserForm
 {
+  public $currentUser;
+	
   public function configure()
   {
   	parent::configure();
   	
   	if ($this->getOption("currentUser") instanceof sfUser && ($this->getOption("currentUser")))
 	{
-	    $currentUser = $this->getOption("currentUser");
+	    $this->currentUser = $this->getOption("currentUser");
 	    
 	}
 	
@@ -58,7 +60,7 @@ class BackendClientForm extends sfGuardUserForm
 	     
 		}  
 	}else{
-		 $userProfilesForm->embedForm( 0, new BackendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
+		 $userProfilesForm->embedForm( 0, new BackendUserProfileForm( $userProfileObj, array('currentUser' =>  $this->currentUser) ) );
 	}
 	// embed the contacts forms
     $this->embedForm('userProfiles', $userProfilesForm);
@@ -66,7 +68,7 @@ class BackendClientForm extends sfGuardUserForm
   }
 
   public function bind(array $taintedValues = null, array $taintedFiles = null)
-  {
+  { 
 	if ($this->isNew())
 	{
     $userProfilesForm = new sfForm();
@@ -81,8 +83,7 @@ class BackendClientForm extends sfGuardUserForm
     }
 	
     $this->embedForm('userProfiles', $userProfilesForm);
-	}
-	
+	}	
 	
     parent::bind($taintedValues, $taintedFiles);
   }

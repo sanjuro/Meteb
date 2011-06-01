@@ -23,12 +23,19 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
   	unset(
       $this['user_profile_id'], $this['created_at'], $this['updated_at'],
       $this['spouse_name'], $this['spouse_surname'], $this['spouseidnumber'],
-      $this['spouse_gender_id'], $this['spouse_dob'], $this['parent_user_id']
+      $this['spouse_gender_id'], $this['spouse_dob']
     );
+    
+    if (isset($this->currentUser) && ( $this->currentUser->hasGroup('administrator') || $this->currentUser->isSuperAdmin()) ){
+	    $this->widgetSchema['parent_user_id'] = new sfWidgetFormChoice(
+	     	array( 'label' => 'Parent', 'choices' => $this->getAvailibleParents()));
+    }else{
+    	$this->widgetSchema['parent_user_id'] = new sfWidgetFormInputHidden();
+    	
+    	$this->setDefault('parent_user_id', $this->currentUser->getGuardUser()->getId());
+    }
          	
 	$this->widgetSchema['dob'] = new sfWidgetFormJQueryDate();
-	
-	$this->widgetSchema['spousedob'] = new sfWidgetFormJQueryDate();
 
   }
   
@@ -49,6 +56,23 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
     $this->updateObjectEmbeddedForms($values);
 
     return $this->getObject();
+  }
+  
+  public function getAvailibleParents()
+  {
+	  $q = Doctrine_Query::create()
+	      ->from('UserProfile up')
+	      ->leftJoin('up.sfGuardUser sfgu')
+	      ->leftJoin('sfgu.sfGuardUserGroup sfug')
+	      ->where('sfug.group_id = 1');
+	      
+	  $choices = array();
+	  
+	  foreach($q->fetchArray() as $key => $parent){
+	  	$choices[$key] = $parent['name'].' '.$parent['surname'];
+	  }
+	  	  
+	  return $choices;
   }
 }
 ?>
