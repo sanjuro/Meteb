@@ -17,26 +17,28 @@ class BackendUserProfileForm extends BaseUserProfileForm
   	
   	if ($this->getOption("currentUser") instanceof sfUser && ($this->getOption("currentUser")))
 	{
-	    $this->currentUser = $this->getOption("currentUser");	    
+	    $currentUser = $this->getOption("currentUser");	    
 	}
   	
   	unset(
       $this['user_profile_id'], $this['created_at'], $this['updated_at'],
       $this['status_id']
     );
-    
+   
     if (isset($currentUser) && ( $currentUser->hasGroup('administrator') || $currentUser->isSuperAdmin()) ){
 	    $this->widgetSchema['parent_user_id'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Parent', 'choices' => $this->getAvailibleParents()));
     }else{
     	$this->widgetSchema['parent_user_id'] = new sfWidgetFormInputHidden();
     	
-    	$this->setDefault('parent_user_id', $this->currentUser->getGuardUser()->getId());
+    	$this->setDefault('parent_user_id', $currentUser->getGuardUser()->getId());
     }
      	
-	$this->widgetSchema['dob'] = new sfWidgetFormJQueryDate();
+	$this->widgetSchema['dob'] = new sfWidgetFormDateJQueryUI(
+			array("change_month" => true, "change_year" => true));
 	
-	$this->widgetSchema['spousedob'] = new sfWidgetFormJQueryDate();
+	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
+			array("change_month" => true, "change_year" => true));
 	
 
   }

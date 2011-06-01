@@ -30,8 +30,6 @@ class BackendClientForm extends sfGuardUserForm
       $this['created_at'], $this['updated_at'],
       $this['groups_list'], $this['permissions_list']
     );
-  
-    
     
 	/**
 	 * Embed UserProfile Form

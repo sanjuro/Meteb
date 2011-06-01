@@ -35,7 +35,9 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
     	$this->setDefault('parent_user_id', $this->currentUser->getGuardUser()->getId());
     }
          	
-	$this->widgetSchema['dob'] = new sfWidgetFormJQueryDate();
+    $this->setDefault('password', '');
+    
+	$this->widgetSchema['dob'] = new sfWidgetFormDateJQueryUI(array("change_month" => true, "change_year" => true));
 
   }
   

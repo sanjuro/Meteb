@@ -16,20 +16,17 @@ class FrontendClientForm extends sfGuardUserForm
   	
   	if ($this->getOption("currentUser") instanceof sfUser && ($this->getOption("currentUser")))
 	{
-	    $currentUser = $this->getOption("currentUser");
-	    
+	    $currentUser = $this->getOption("currentUser");	    
 	}
 	
     unset(
       $this['id'], $this['algorithm'],
       $this['first_name'], $this['last_name'],
-      $this['salt'], $this['is_active'],
+      $this['salt'], 
       $this['is_super_admin'], $this['last_login'],
       $this['created_at'], $this['updated_at'],
       $this['groups_list'], $this['permissions_list']
     );
-  
-    
     
 	/**
 	 * Embed UserProfile Form

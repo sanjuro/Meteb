@@ -69,6 +69,16 @@
 			</div>			
 			<?php echo $form['email_address']->renderError() ?>
 		 </div>
+		 <div class="sf_admin_form_row">			
+			<div>
+				<?php echo $form['is_active']->renderLabel() ?>
+			</div>
+			
+			<div  class="content" >
+				<?php echo $form['is_active'] ?>
+			</div>			
+			<?php echo $form['is_active']->renderError() ?>
+		 </div>
 		 <div class="sf_admin_form_row">	
 			<div>
 				<?php echo $form['userProfiles'][0]['name']->renderLabel() ?>

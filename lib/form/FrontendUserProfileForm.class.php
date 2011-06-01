@@ -24,12 +24,14 @@ class FrontendUserProfileForm extends BaseUserProfileForm
     }else{
     	$this->widgetSchema['parent_user_id'] = new sfWidgetFormInputHidden();
     	
-    	$this->setDefault('parent_user_id', $this->currentUser->getGuardUser()->getId());
+    	$this->setDefault('parent_user_id', $currentUser->getGuardUser()->getId());
     }
      	
-	$this->widgetSchema['dob'] = new sfWidgetFormJQueryDate();
+	$this->widgetSchema['dob'] = new sfWidgetFormDateJQueryUI(
+				array("change_month" => true, "change_year" => true));
 	
-	$this->widgetSchema['spousedob'] = new sfWidgetFormJQueryDate();
+	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
+			array("change_month" => true, "change_year" => true));
 
   }
   
