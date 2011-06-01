@@ -12,13 +12,15 @@
  */
 class BackendProfileForm extends BasesfGuardUserForm
 {
- public function configure()
+  public $currentUser;
+  
+  public function configure()
   {
   	parent::configure();
   	
   	if ($this->getOption("currentUser") instanceof sfUser && ($this->getOption("currentUser")))
 	{
-	    $currentUser = $this->getOption("currentUser");
+	     $this->currentUser = $this->getOption("currentUser");
 	    
 	}
 	
@@ -30,9 +32,7 @@ class BackendProfileForm extends BasesfGuardUserForm
       $this['created_at'], $this['updated_at'],
       $this['groups_list'], $this['permissions_list']
     );
-  
-    
-    
+      
 	/**
 	 * Embed UserProfile Form
 	 */
@@ -56,11 +56,11 @@ class BackendProfileForm extends BasesfGuardUserForm
 	{	
 		foreach( $userProfileObjs as $key => $userProfileObj )
 		{	 
-			  $userProfilesForm->embedForm($key, new BackendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
+			  $userProfilesForm->embedForm($key, new BackendUserProfileForm( $userProfileObj, array('currentUser' =>  $this->currentUser) ) );
 	     
 		}  
 	}else{
-		 $userProfilesForm->embedForm( 0, new BackendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
+		 $userProfilesForm->embedForm( 0, new BackendUserProfileForm( $userProfileObj, array('currentUser' =>  $this->currentUser) ) );
 	}
 	// embed the contacts forms
     $this->embedForm('userProfiles', $userProfilesForm);
@@ -77,7 +77,7 @@ class BackendProfileForm extends BasesfGuardUserForm
 	    {
 	      $userProfileObj = new UserProfile();
 	      $userProfileObj->setsfGuardUser($this->getObject());  
-	      $userProfileObj_form = new BackendUserProfileForm($userProfileObj);
+	      $userProfileObj_form = new BackendUserProfileForm( $userProfileObj, array('currentUser' =>  $this->currentUser) );
 		
 	      $userProfilesForm->embedForm( $key, $userProfileObj_form );
 	    }

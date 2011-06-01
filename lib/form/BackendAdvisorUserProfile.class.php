@@ -29,6 +29,8 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
     if (isset($this->currentUser) && ( $this->currentUser->hasGroup('administrator') || $this->currentUser->isSuperAdmin()) ){
 	    $this->widgetSchema['parent_user_id'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Parent', 'choices' => $this->getAvailibleParents()));
+	     	
+	    $this->validatorSchema['parent_user_id'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('ParentUser'), 'required' => false));
     }else{
     	$this->widgetSchema['parent_user_id'] = new sfWidgetFormInputHidden();
     	
@@ -71,7 +73,7 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
 	  $choices = array();
 	  
 	  foreach($q->fetchArray() as $key => $parent){
-	  	$choices[$key] = $parent['name'].' '.$parent['surname'];
+	  	$choices[$parent['id']] = $parent['name'].' '.$parent['surname'];
 	  }
 	  	  
 	  return $choices;

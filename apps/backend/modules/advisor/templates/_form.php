@@ -185,7 +185,7 @@
  	  
 <ul class="sf_admin_actions">
   <li class="sf_admin_action_delete"><?php echo link_to( 'Delete', 'client/delete?id='.$form->getObject()->getId(),  array('method' => 'delete', 'confirm' => 'Are you sure?')) ?></li>  
-  <li class="sf_admin_action_list"><a href="/frontend_dev.php/client">Back to list</a></li>  
+  <li class="sf_admin_action_list"><a href="<?php echo url_for('@advisor') ?>">Back to list</a></li>  
   <li class="sf_admin_action_save"><input type="submit" value="Save"></li>  </ul>
 </form>
 

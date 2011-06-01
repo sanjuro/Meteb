@@ -75,7 +75,7 @@ class BackendClientForm extends sfGuardUserForm
     {
       $userProfileObj = new UserProfile();
       $userProfileObj->setsfGuardUser($this->getObject());  
-      $userProfileObj_form = new FrontendUserProfileForm($userProfileObj);
+      $userProfileObj_form = new BackendUserProfileForm($userProfileObj, array('currentUser' =>  $this->currentUser));
 	
       $userProfilesForm->embedForm( $key, $userProfileObj_form );
     }

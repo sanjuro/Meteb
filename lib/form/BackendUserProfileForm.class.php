@@ -9,8 +9,6 @@
  */
 class BackendUserProfileForm extends BaseUserProfileForm
 {
-  public $currentUser;
-  	
   public function configure()
   {
     parent::configure();
@@ -28,8 +26,12 @@ class BackendUserProfileForm extends BaseUserProfileForm
     if (isset($currentUser) && ( $currentUser->hasGroup('administrator') || $currentUser->isSuperAdmin()) ){
 	    $this->widgetSchema['parent_user_id'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Parent', 'choices' => $this->getAvailibleParents()));
+	     	
+	    $this->validatorSchema['parent_user_id'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('ParentUser'), 'required' => false));
     }else{
     	$this->widgetSchema['parent_user_id'] = new sfWidgetFormInputHidden();
+    	
+    	$this->validatorSchema['parent_user_id'] = new sfValidatorString(array('min_length' => 4));
     	
     	$this->setDefault('parent_user_id', $currentUser->getGuardUser()->getId());
     }
@@ -40,7 +42,6 @@ class BackendUserProfileForm extends BaseUserProfileForm
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
 			array("change_month" => true, "change_year" => true));
 	
-
   }
   
   public function getAvailibleParents()
@@ -52,9 +53,9 @@ class BackendUserProfileForm extends BaseUserProfileForm
 	      ->where('sfug.group_id = 2');
 	      
 	  $choices = array();
-	  
+	 
 	  foreach($q->fetchArray() as $key => $parent){
-	  	$choices[$key] = $parent['name'].' '.$parent['surname'];
+	  	$choices[$parent['id']] = $parent['name'].' '.$parent['surname'];
 	  }
 	  	  
 	  return $choices;

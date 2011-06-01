@@ -10,13 +10,15 @@
  */
 class FrontendAdvisorForm extends sfGuardUserForm
 {
+  public $currentUser;
+	
   public function configure()
   {
     parent::configure();
   	
   	if ($this->getOption("currentUser") instanceof sfUser && ($this->getOption("currentUser")))
 	{
-	    $currentUser = $this->getOption("currentUser");	    
+	    $this->currentUser = $this->getOption("currentUser");	    
 	}
   
     unset(
@@ -51,11 +53,11 @@ class FrontendAdvisorForm extends sfGuardUserForm
 	{	
 		foreach( $userProfileObjs as $key => $userProfileObj )
 		{	 
-			  $userProfilesForm->embedForm($key, new FrontendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
+			  $userProfilesForm->embedForm($key, new FrontendUserProfileForm( $userProfileObj, array('currentUser' => $this->currentUser) ) );
 	     
 		}  
 	}else{
-		 $userProfilesForm->embedForm( 0, new FrontendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
+		 $userProfilesForm->embedForm( 0, new FrontendUserProfileForm( $userProfileObj, array('currentUser' => $this->currentUser) ) );
 	}
 	// embed the contacts forms
     $this->embedForm('userProfiles', $userProfilesForm);
@@ -72,7 +74,7 @@ class FrontendAdvisorForm extends sfGuardUserForm
     {
       $userProfileObj = new UserProfile();
       $userProfileObj->setsfGuardUser($this->getObject());  
-      $userProfileObj_form = new FrontendUserProfileForm($userProfileObj);
+      $userProfileObj_form = new FrontendUserProfileForm( $userProfileObj, array('currentUser' => $this->currentUser));
 	
       $userProfilesForm->embedForm( $key, $userProfileObj_form );
     }

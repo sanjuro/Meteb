@@ -12,13 +12,15 @@
  */
 class FrontendProfileForm extends BasesfGuardUserForm
 {
- public function configure()
+  public $currentUser;
+	
+  public function configure()
   {
   	parent::configure();
   	
   	if ($this->getOption("currentUser") instanceof sfUser && ($this->getOption("currentUser")))
 	{
-	    $currentUser = $this->getOption("currentUser");
+	     $this->currentUser = $this->getOption("currentUser");
 	    
 	}
 	
@@ -61,7 +63,7 @@ class FrontendProfileForm extends BasesfGuardUserForm
 	     
 		}  
 	}else{
-		 $userProfilesForm->embedForm( 0, new FrontendUserProfileForm( $userProfileObj, array('currentUser' => $currentUser) ) );
+		 $userProfilesForm->embedForm( 0, new FrontendUserProfileForm( $userProfileObj, array('currentUser' =>  $this->currentUser) ) );
 	}
 	// embed the contacts forms
     $this->embedForm('userProfiles', $userProfilesForm);
@@ -78,7 +80,7 @@ class FrontendProfileForm extends BasesfGuardUserForm
 	    {
 	      $userProfileObj = new UserProfile();
 	      $userProfileObj->setsfGuardUser($this->getObject());  
-	      $userProfileObj_form = new BackendUserProfileForm($userProfileObj);
+	      $userProfileObj_form = new BackendUserProfileForm($userProfileObj, array('currentUser' => $this->currentUser));
 		
 	      $userProfilesForm->embedForm( $key, $userProfileObj_form );
 	    }
