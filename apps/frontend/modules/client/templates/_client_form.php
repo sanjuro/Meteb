@@ -193,7 +193,7 @@
 			</div>
 			
 			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['spouses_urname'] ?>
+				<?php echo $form['userProfiles'][0]['spouse_surname'] ?>
 			</div>			
 			<?php echo $form['userProfiles'][0]['spouse_surname']->renderError() ?>
 		 </div>
