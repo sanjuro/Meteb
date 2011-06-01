@@ -56,7 +56,7 @@ class BackendClientForm extends sfGuardUserForm
 	{	
 		foreach( $userProfileObjs as $key => $userProfileObj )
 		{	 
-			  $userProfilesForm->embedForm($key, new BackendUserProfileForm( $userProfileObj ) );
+			  $userProfilesForm->embedForm($key, new BackendUserProfileForm( $userProfileObj, array('currentUser' =>  $this->currentUser) ) );
 	     
 		}  
 	}else{
