@@ -20,12 +20,36 @@
 				<td width="100%">
 					<a href="<?php echo url_for('client_edit', $client->sfGuardUser )?>"><?php echo $client['name'].' '.$client['surname']?></a>
 				</td>
-				<td nowrap="" class="rowRight"><span style="display: none;" id="nocs_0_delete"><a onclick="hideDelete('nocs_0')" title="Delete this client" href="client/deleteClient.aspx?ID=8507F3B357E30E04"><img width="10" height="11" alt="Delete" src="https://img.createsend1.com/img/icons/trash.gif"></a></span></td>
+				<td nowrap="" class="rowRight"><span style="display: none;" id="nocs_0_delete"><a onclick="hideDelete('nocs_0')" title="Delete this client" href=""><img width="10" height="11" alt="Delete" src="https://img.createsend1.com/img/icons/trash.gif"></a></span></td>
 			</tr>
 			<?php endforeach; ?>
 			<?php else :?>
 			<tr onmouseout="hideDelete('nocs_0')" onmouseover="showDelete('nocs_0')" id="nocs_0" class="dashRow">
 				<td width="100%" class="rowLeft"><i></i><strong>no clients captured</strong></i></td>
+				<td></td>
+			</tr>
+			<?php endif;?>
+			</tbody></table> 
+            
+			<div class="topPad"></div>
+			
+			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader" class="activityAction">
+			<tbody><tr class="noHighlight">
+				<th width="100%" class="headerLeft"><span>Advisors you are administring</span></th>
+				<th nowrap="" class="headerRight">&nbsp;&nbsp;&nbsp;&nbsp;</th>
+			</tr>
+			<?php if (!empty($advisors)): ?>
+			<?php foreach ($advisors as $advisor) :?>
+			<tr onmouseout="hideDelete('nocs_0')" onmouseover="showDelete('nocs_0')" id="nocs_0" class="dashRow">
+				<td width="100%">
+					<a href="<?php echo url_for('advisor_edit', $advisor->sfGuardUser )?>"><?php echo $advisor['name'].' '.$advisor['surname']?></a>
+				</td>
+				<td nowrap="" class="rowRight"><span style="display: none;" id="nocs_0_delete"><a onclick="hideDelete('nocs_0')" title="Delete this advisor" href=""><img width="10" height="11" alt="Delete" src="https://img.createsend1.com/img/icons/trash.gif"></a></span></td>
+			</tr>
+			<?php endforeach; ?>
+			<?php else :?>
+			<tr onmouseout="hideDelete('nocs_0')" onmouseover="showDelete('nocs_0')" id="nocs_0" class="dashRow">
+				<td width="100%" class="rowLeft"><i></i><strong>no advisors captured</strong></i></td>
 				<td></td>
 			</tr>
 			<?php endif;?>

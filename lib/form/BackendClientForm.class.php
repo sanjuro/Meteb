@@ -31,6 +31,9 @@ class BackendClientForm extends sfGuardUserForm
       $this['groups_list'], $this['permissions_list']
     );
     
+    $this->widgetSchema['password'] = new sfWidgetFormInputPassword();
+    $this->validatorSchema['password']->setOption('required', false);
+    
 	/**
 	 * Embed UserProfile Form
 	 */

@@ -26,15 +26,19 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
       $this['spouse_gender_id'], $this['spouse_dob']
     );
     
-    if (isset($this->currentUser) && ( $this->currentUser->hasGroup('administrator') || $this->currentUser->isSuperAdmin()) ){
+    if (isset($this->currentUser) && !$this->object->getSfGuardUser()->hasGroup('administrator') 
+    	&& ( $this->currentUser->hasGroup('administrator') || $currentUser->isSuperAdmin()) ){    
+    		
 	    $this->widgetSchema['parent_user_id'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Parent', 'choices' => $this->getAvailibleParents()));
 	     	
-	    $this->validatorSchema['parent_user_id'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('ParentUser'), 'required' => false));
+	     $this->validatorSchema['parent_user_id'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('ParentUser'), 'required' => false));
     }else{
     	$this->widgetSchema['parent_user_id'] = new sfWidgetFormInputHidden();
     	
-    	$this->setDefault('parent_user_id', $this->currentUser->getGuardUser()->getId());
+    	$this->validatorSchema['parent_user_id'] = new sfValidatorString(array('min_length' => 4));
+    	
+    	$this->setDefault('parent_user_id', $currentUser->getGuardUser()->getId());
     }
          	
     $this->setDefault('password', '');

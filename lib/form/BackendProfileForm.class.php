@@ -10,7 +10,7 @@
  * @author     Shadley Wentzel
  * @version    SVN: $Id: sfGuardUserClass.php 7490 2010-03-29 19:53:27Z swentzel $
  */
-class BackendProfileForm extends BasesfGuardUserForm
+class BackendProfileForm extends sfGuardUserForm
 {
   public $currentUser;
   
@@ -33,6 +33,9 @@ class BackendProfileForm extends BasesfGuardUserForm
       $this['groups_list'], $this['permissions_list']
     );
       
+    $this->widgetSchema['password'] = new sfWidgetFormInputPassword();
+    $this->validatorSchema['password']->setOption('required', false);
+    
 	/**
 	 * Embed UserProfile Form
 	 */

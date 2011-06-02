@@ -24,11 +24,14 @@ class BackendAdvisorForm extends sfGuardUserForm
     unset(
       $this['id'], $this['algorithm'],
       $this['first_name'], $this['last_name'],
-      $this['salt'],  $this['password'], 
+      $this['salt'], 
       $this['is_super_admin'], $this['last_login'],
       $this['created_at'], $this['updated_at'],
       $this['groups_list'], $this['permissions_list']
     );
+    
+    $this->widgetSchema['password'] = new sfWidgetFormInputPassword();
+    $this->validatorSchema['password']->setOption('required', false);
 
 	/**
 	 * Embed UserProfile Form
@@ -93,7 +96,9 @@ class BackendAdvisorForm extends sfGuardUserForm
       $values = $this->values;
     }
     
-    $values['username'] = $values['email_address'];
+    $values['first_name'] = $values['userProfiles'][0]['name'];
+    
+    $values['last_name'] = $values['userProfiles'][0]['surname'];
 	
 	$values = $this->processValues($values);
 		 

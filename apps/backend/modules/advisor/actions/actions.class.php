@@ -56,7 +56,7 @@ class advisorActions extends autoAdvisorActions
 
   public function executeCreate(sfWebRequest $request)
   {
-    $this->form = $this->configuration->getForm('',array('currentUser' => $this->getUser()));
+    $this->form = $this->configuration->getForm('', array('currentUser' => $this->getUser()));
     $this->sf_guard_user = $this->form->getObject();
 
     $this->processForm($request, $this->form);

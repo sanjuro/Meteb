@@ -30,11 +30,11 @@ class FrontendProfileForm extends BasesfGuardUserForm
       $this['salt'], $this['is_active'],
       $this['is_super_admin'], $this['last_login'],
       $this['created_at'], $this['updated_at'],
-      $this['groups_list'], $this['permissions_list'],
-      $this['password'], $this['username'], $this['parent_user_id']
+      $this['groups_list'], $this['permissions_list']
     );
   
-    
+    $this->widgetSchema['password'] = new sfWidgetFormInputPassword();
+    $this->validatorSchema['password']->setOption('required', false);
     
 	/**
 	 * Embed UserProfile Form

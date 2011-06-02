@@ -24,7 +24,28 @@ class sfGuardUser extends PluginsfGuardUser
 		 $q = Doctrine_Query::create()
 		   ->from('UserProfile up')
 		   ->leftJoin('up.sfGuardUser sgu')
-		   ->where('parent_user_id = ?', $this->getId());
+		   ->leftJoin('sgu.sfGuardUserGroup sfug')
+		   ->where('parent_user_id = ?', $this->getId())
+		   ->andWhere('sfug.group_id = ?', 3);
+		  
+		return $q->execute(); 	
+	 }
+	 
+	/**
+	 * Function to fetch all the advisors associated to a certain
+	 * user this should only be for advisors or admisn
+	 * 
+	 * @param 
+	 * @return UserProfile UserProfile Object
+	 */	
+	 public function getAdvisorsForUser()
+	 {
+		 $q = Doctrine_Query::create()
+		   ->from('UserProfile up')
+		   ->leftJoin('up.sfGuardUser sgu')
+		   ->leftJoin('sgu.sfGuardUserGroup sfug')
+		   ->where('parent_user_id = ?', $this->getId())
+		   ->andWhere('sfug.group_id = ?', 2);
 		  
 		return $q->execute(); 	
 	 }

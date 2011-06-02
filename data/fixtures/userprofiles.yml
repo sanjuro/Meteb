@@ -4,6 +4,7 @@ UserProfile:
     Gender:                  gender_male
     SpouseGender:            gender_female
     ClientStatus:            status_active
+    ParentUser:              sfguarduser_sanjuro
     name:                    shadley
     surname:                 wentzel
     dob:                     1981-12-04
@@ -14,6 +15,7 @@ UserProfile:
     Gender:                  gender_male
     SpouseGender:            gender_female
     ClientStatus:            status_active
+    ParentUser:              sfguarduser_admin
     name:                    admin
     surname:                 admin
     dob:                     1981-12-04

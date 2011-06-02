@@ -23,15 +23,17 @@ class FrontendUserProfileForm extends BaseUserProfileForm
       $this['status_id']
     );
     
-    if (isset($currentUser) && ( $currentUser->hasGroup('administrator') || $currentUser->isSuperAdmin()) ){
+    if (isset($currentUser) && !$this->object->getSfGuardUser()->hasGroup('administrator') 
+    	&& ( $currentUser->hasGroup('administrator') || $currentUser->isSuperAdmin()) ){    
+    		
 	    $this->widgetSchema['parent_user_id'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Parent', 'choices' => $this->getAvailibleParents()));
 	     	
-	    $this->validatorSchema['parent_user_id'] = new sfValidatorChoice(array('choices' => $this->getAvailibleParents()));
+	     $this->validatorSchema['parent_user_id'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('ParentUser'), 'required' => false));
     }else{
     	$this->widgetSchema['parent_user_id'] = new sfWidgetFormInputHidden();
     	
-    	$this->validatorSchema['parent_user_id'] = new sfValidatorString(array('min_length' => 4));
+    	$this->validatorSchema['parent_user_id'] = new sfValidatorString(array('min_length' => 1));
     	
     	$this->setDefault('parent_user_id', $currentUser->getGuardUser()->getId());
     }

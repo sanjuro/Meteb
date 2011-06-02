@@ -7,9 +7,9 @@
  
 <?php echo $form->renderGlobalErrors() ?>
  
-<?php // foreach ($form->getErrorSchema() as $sField => $sError) : ?>
-<?php // echo $sField.': '.$sError.'<br />' ?>
-<?php // endforeach; ?>
+<?php  // foreach ($form->getErrorSchema() as $sField => $sError) : ?>
+<?php  // echo $sField.': '.$sError.'<br />' ?>
+<?php  // endforeach; ?>
 <?php echo form_tag_for($form, '@profile') ?>
 
 	  <?php echo $form['_csrf_token'] ?>
@@ -26,6 +26,26 @@
 				<?php echo $form['userProfiles'][0]['idnumber'] ?>
 			</div>			
 			<?php echo $form['userProfiles'][0]['idnumber']->renderError() ?>
+		 </div>
+		 <div class="sf_admin_form_row">			
+			<div>
+				<?php echo $form['username']->renderLabel() ?>
+			</div>
+			
+			<div  class="content" >
+				<?php echo $form['username'] ?>
+			</div>			
+			<?php echo $form['username']->renderError() ?>
+		 </div>
+		 <div class="sf_admin_form_row">			
+			<div>
+				<?php echo $form['password']->renderLabel() ?>
+			</div>
+			
+			<div  class="content" >
+				<?php echo $form['password'] ?>
+			</div>			
+			<?php echo $form['password']->renderError() ?>
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>
@@ -186,7 +206,7 @@
  	  </fieldset>
  	  
 <ul class="sf_admin_actions">
-  <li class="sf_admin_action_list"><a href="<?php echo url_for('homepage') ?>">Back to Dashboard</a></li>  
+  <li class="sf_admin_action_list"><a href="<?php echo url_for('homepage') ?>">Back to Home</a></li>  
   <li class="sf_admin_action_save"><input type="submit" value="Save"></li>  </ul>
 </form>
 

@@ -19,6 +19,12 @@ class dashboardActions extends sfActions
   {
 	$this->clients = $this->getUser()->getGuardUser()->getClientsForUser();
 	
+	if($this->getUser()->hasGroup('administrator')){
+		$this->advisors = $this->getUser()->getGuardUser()->getAdvisorsForUser();
+	}else{
+		$this->advisors = '';
+	}	
+	
 	$this->activitys = $this->getUser()->getGuardUser()->getActivitysForUser();
 	
 	$this->quotes = $this->getUser()->getGuardUser()->getQuotesForUser();
