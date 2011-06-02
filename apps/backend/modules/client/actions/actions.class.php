@@ -157,6 +157,24 @@ class clientActions extends autoClientActions
     $this->redirect('@client');
   }
   
+  public function executeBatchEnable(sfWebRequest $request)
+  {
+    $ids = $request->getParameter('ids');
+ 
+    $q = Doctrine_Query::create()
+      ->from('sfGuardUser sfgu')
+      ->whereIn('sfgu.id', $ids);
+ 
+    foreach ($q->execute() as $sfGuardUser)
+    {
+      $sfGuardUser->setIsActive(true);
+    }
+ 
+    $this->getUser()->setFlash('notice', 'The selected clients have been enabled successfully.');
+ 
+    $this->redirect('@client');
+  }
+  
   public function executeBatchDisable(sfWebRequest $request)
   {
     $ids = $request->getParameter('ids');
@@ -171,6 +189,16 @@ class clientActions extends autoClientActions
     }
  
     $this->getUser()->setFlash('notice', 'The selected clients have been disabled successfully.');
+ 
+    $this->redirect('@client');
+  }
+  
+  public function executeListEnable(sfWebRequest $request)
+  {
+    $sfGuardUser = $this->getRoute()->getObject();
+    $sfGuardUser->setIsActive(true);
+ 
+    $this->getUser()->setFlash('notice', 'The selected client has been enabled successfully.');
  
     $this->redirect('@client');
   }

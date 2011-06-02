@@ -20,9 +20,11 @@ generator:
        table_method: retrieveAdvisorsForParent
        batch_actions:
          disable:     ~
+         enable:      ~
        object_actions:
          _edit:       ~
          disable:     ~
+         enable:      ~
       filter:
         class: false
       form:
