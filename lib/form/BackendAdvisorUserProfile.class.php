@@ -32,11 +32,11 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
 	    $this->widgetSchema['parent_user_id'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Parent', 'choices' => $this->getAvailibleParents()));
 	     	
-	     $this->validatorSchema['parent_user_id'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('ParentUser'), 'required' => false));
+	     $this->validatorSchema['parent_user_id'] = new sfValidatorChoice(array( 'choices' => array_keys($this->getAvailibleParents()), 'required' => false));
     }else{
     	$this->widgetSchema['parent_user_id'] = new sfWidgetFormInputHidden();
     	
-    	$this->validatorSchema['parent_user_id'] = new sfValidatorString(array('min_length' => 4));
+    	$this->validatorSchema['parent_user_id'] = new sfValidatorString(array('min_length' => 1));
     	
     	$this->setDefault('parent_user_id', $currentUser->getGuardUser()->getId());
     }

@@ -33,6 +33,7 @@
             
 			<div class="topPad"></div>
 			
+			<?php if ($sf_user->hasGroup('administrator')) :?>
 			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader" class="activityAction">
 			<tbody><tr class="noHighlight">
 				<th width="100%" class="headerLeft"><span>Advisors you are administring</span></th>
@@ -56,7 +57,7 @@
 			</tbody></table> 
             
 			<div class="topPad"></div>
-
+			<?php endif; ?>
             
 		</div>
 		<?php endif; ?>
