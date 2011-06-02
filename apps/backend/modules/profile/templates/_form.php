@@ -7,9 +7,9 @@
  
 <?php echo $form->renderGlobalErrors() ?>
  
-<?php  foreach ($form->getErrorSchema() as $sField => $sError) : ?>
-<?php  echo $sField.': '.$sError.'<br />' ?>
-<?php  endforeach; ?>
+<?php // foreach ($form->getErrorSchema() as $sField => $sError) : ?>
+<?php // echo $sField.': '.$sError.'<br />' ?>
+<?php // endforeach; ?>
 <?php echo form_tag_for($form, '@profile') ?>
 
 	  <?php echo $form['_csrf_token'] ?>

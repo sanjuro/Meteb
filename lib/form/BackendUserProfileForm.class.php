@@ -36,7 +36,12 @@ class BackendUserProfileForm extends BaseUserProfileForm
     	
     	$this->validatorSchema['parent_user_id'] = new sfValidatorString(array('min_length' => 1));
     	
-    	$this->setDefault('parent_user_id', $this->object->getParentUserId());
+    	if($this->isNew()){
+    		$this->setDefault('parent_user_id', $currentUser->getGuardUser()->getId());
+    	}else{
+    		$this->setDefault('parent_user_id', $this->object->getParentUserId());
+    	}
+    	
     }
      	
 	$this->widgetSchema['dob'] = new sfWidgetFormDateJQueryUI(

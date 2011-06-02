@@ -22,7 +22,7 @@
       <td>
 	  	<ul class="sf_admin_actions" style="display:inline;">
 		  <li class="sf_admin_action_edit"><?php echo link_to('Edit', url_for( 'client_edit', $client ) ) ?></li>  
- 		  <li class="sf_admin_action_delete"><?php echo link_to( 'Delete', url_for( 'client_delete', $client ) ) ?></li>  
+ 		  <li class="sf_admin_action_delete"><?php echo link_to( 'Disable', url_for( 'client_disable', $client ) ) ?></li>  
 	  	</ul>
       </td>
     </tr>
