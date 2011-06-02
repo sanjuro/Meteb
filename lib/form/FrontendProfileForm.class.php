@@ -10,7 +10,7 @@
  * @author     Shadley Wentzel
  * @version    SVN: $Id: sfGuardUserClass.php 7490 2010-03-29 19:53:27Z swentzel $
  */
-class FrontendProfileForm extends BasesfGuardUserForm
+class FrontendProfileForm extends sfGuardUserForm
 {
   public $currentUser;
 	

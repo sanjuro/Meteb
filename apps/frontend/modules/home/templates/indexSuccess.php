@@ -41,7 +41,7 @@ Nam ipsum ligula, ullamcorper eu, fringilla at, lacinia ut, augue. Nullam nunc.
 <?php endif; ?>
 
 
-<?php if ($sf_user->hasGroup('financialadvisor')): ?>
+<?php if ($sf_user->hasGroup('advisor')): ?>
 <h1>EB Advisor Page</h1>
 
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis ligula lorem, consequat eget, tristique nec, auctor quis, purus. 
