@@ -154,6 +154,24 @@ class advisorActions extends autoAdvisorActions
     $this->redirect('@advisor');
   }
   
+  public function executeBatchEnable(sfWebRequest $request)
+  {
+    $ids = $request->getParameter('ids');
+ 
+    $q = Doctrine_Query::create()
+      ->from('sfGuardUser sfgu')
+      ->whereIn('sfgu.id', $ids);
+ 
+    foreach ($q->execute() as $sfGuardUser)
+    {
+      $sfGuardUser->setIsActive(true);
+    }
+ 
+    $this->getUser()->setFlash('notice', 'The selected advisors have been enabled successfully.');
+ 
+    $this->redirect('@client');
+  }
+  
   public function executeBatchDisable(sfWebRequest $request)
   {
     $ids = $request->getParameter('ids');
@@ -170,6 +188,16 @@ class advisorActions extends autoAdvisorActions
     $this->getUser()->setFlash('notice', 'The selected advisors have been disabled successfully.');
  
     $this->redirect('@advisor');
+  }
+  
+  public function executeListEnable(sfWebRequest $request)
+  {
+    $sfGuardUser = $this->getRoute()->getObject();
+    $sfGuardUser->setIsActive(true);
+ 
+    $this->getUser()->setFlash('notice', 'The selected advisor has been enabled successfully.');
+ 
+    $this->redirect('@client');
   }
   
   public function executeListDisable(sfWebRequest $request)

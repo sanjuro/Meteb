@@ -7,7 +7,18 @@ profile:
     prefix_path:          /profile
     column:               id
     with_wildcard_routes: true
+  
+#advisor 
+advisor:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                sfGuardUser
+    module:               advisor
+    prefix_path:          /advisor
+    column:               id
+    with_wildcard_routes: true
     
+#client 
 client:
   class: sfDoctrineRouteCollection
   options:

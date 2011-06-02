@@ -19,9 +19,11 @@ generator:
        title: 'Clients'
        batch_actions:
          disable:     ~
+         enable:      ~
        object_actions:
          _edit:       ~
          disable:     ~
+         enable:      ~
       filter:
         class: false
       form:
