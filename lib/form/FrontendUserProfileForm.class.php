@@ -43,9 +43,18 @@ class FrontendUserProfileForm extends BaseUserProfileForm
 	
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
 			array("change_month" => true, "change_year" => true));
+			
+    // Only check if this is a new user being added
+    if($this->isNew()){
+	    $this->validatorSchema->setPostValidator(
+	      new sfValidatorAnd(array(
+	        new sfValidatorDoctrineUnique(array('model' => 'UserProfile', 'column' => array('idnumber'))),
+	      ))
+	    );
+    }
 
   }
-  
+    
   
   public function getAvailibleParents()
   {
