@@ -193,9 +193,17 @@ class clientActions extends autoClientActions
     $this->redirect('@client');
   }
   
+  public function executeListNewQuote(sfWebRequest $request)
+  {
+    $sfGuardUser = $this->getRoute()->getObject();
+    
+    $this->redirect('@quote_new');
+  }
+  
   public function executeListEnable(sfWebRequest $request)
   {
     $sfGuardUser = $this->getRoute()->getObject();
+    
     $sfGuardUser->setIsActive(true);
  
     $this->getUser()->setFlash('notice', 'The selected client has been enabled successfully.');

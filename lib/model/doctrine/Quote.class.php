@@ -20,8 +20,6 @@ class Quote extends BaseQuote
 	 * 
 	 * @param void
 	 * 
-	 * @return annuity
-	 * 
 	 * @return UserProfile UserProfile Object
 	 */	
 	public function calc_annuity()
@@ -49,11 +47,9 @@ class Quote extends BaseQuote
 	 * This function does a quote and calculates a purchase price from an annuity amount
 	 * No allowance is made for commission and tax
 	 * 
-	 * @param void
+	 * @param double $annuity 
 	 * 
-	 * @return annuity Value of Annuity
-	 * 
-	 * @return UserProfile UserProfile Object
+	 * @return double Purchase price
 	 */
 	public function calc_pp($annuity)
 	{	
@@ -238,7 +234,7 @@ class Quote extends BaseQuote
 	 * @param unknown_type $discounting_array
 	 * @param unknown_type $dhfactors_matrix
 	 * 
-	 * @return array Array of Market Data for calculation
+	 * @return array Array of Exspenses Data
 	 */	
 	public function get_expenses()
 	{

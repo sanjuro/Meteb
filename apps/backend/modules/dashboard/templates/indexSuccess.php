@@ -80,7 +80,7 @@
 				<td width="100%">
 					<a href="<?php echo url_for('quote_edit', $quote )?>"><?php echo $quote['created_by'].' '.$quote['date']?></a>
 				</td>
-				<td nowrap="" class="rowRight"><span style="display: none;" id="nocs_0_delete"><a onclick="hideDelete('nocs_0')" title="Delete this client" href="client/deleteClient.aspx?ID=8507F3B357E30E04"><img width="10" height="11" alt="Delete" src="https://img.createsend1.com/img/icons/trash.gif"></a></span></td>
+				<td nowrap="" class="rowRight"><span style="display: none;" id="nocs_0_delete"><a onclick="hideDelete('nocs_0')" title="Delete this client" href=""><img width="10" height="11" alt="Delete" src="https://img.createsend1.com/img/icons/trash.gif"></a></span></td>
 			</tr>
 			<?php endforeach; ?>
 			<?php else :?>
@@ -114,7 +114,7 @@
 							
 							<table width="100%" cellspacing="0" cellpadding="0">
 							<tbody><tr>
-								<td nowrap="" class="instructionsCTA"><a href="/createsend/step1.aspx"><img width="226" height="39" alt="Create your first campaign" src="/images/backend/create-first-campaign.gif"></a></td>
+								<td nowrap="" class="instructionsCTA"><a href="<?php echo url_for('@client') ?>"><img width="226" height="39" alt="Create your first quote" src="/images/backend/create-first-campaign.gif"></a></td>
 								<td width="100%"><p>Once you start creating and sending quotes, this page will list all the activity across your account.</p></td>
 							</tr>
 							</tbody></table>
