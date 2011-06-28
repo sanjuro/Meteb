@@ -157,6 +157,20 @@ class clientActions extends autoClientActions
     $this->redirect('@client');
   }
   
+  public function executeBatchNewQuote(sfWebRequest $request)
+  {
+    $ids = $request->getParameter('ids');
+  	
+    $q = Doctrine_Query::create()
+      ->from('sfGuardUser sfgu')
+      ->whereIn('sfgu.id', $ids);
+
+    foreach ($q->execute() as $sfGuardUser)
+    {
+   		$this->redirect('@quote_new');
+    }
+  }
+  
   public function executeBatchEnable(sfWebRequest $request)
   {
     $ids = $request->getParameter('ids');

@@ -20,11 +20,11 @@ generator:
        batch_actions:
          disable:     ~
          enable:      ~
-         newQuote:    ~
+         newQuote:    { lable: New Quote }
        object_actions:
          _edit:       ~
          disable:     ~
-         newQuote:    ~
+         newQuote:    { lable: New Quote }
       filter:
         class: false
       form:
