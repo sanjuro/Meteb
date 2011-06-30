@@ -14,7 +14,10 @@ generator:
     config:
       actions: ~
       fields:  ~
-      list:    ~
+      list:    
+        fields:
+        display: [client_id, created_by, created_at]
+        title: Quote Management
       filter:  ~
       form:    
         class:          BackendQuoteForm

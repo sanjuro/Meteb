@@ -19,7 +19,12 @@ class BackendQuoteForm extends BaseQuoteForm
 	    $currentUser = $this->getOption("currentUser");	    
 	}
 	
-     $userForQuote = $this->getOption("userForQuote");	    
+	if($this->getOption("userForQuote")){
+     $userForQuote = $this->getOption("userForQuote");	 
+
+     $userprofile = $userForQuote->getUserProfile();
+	}
+
 
 
     unset(
@@ -31,9 +36,20 @@ class BackendQuoteForm extends BaseQuoteForm
       $this['created_at'], $this['updated_at']
     );
     
-	$this->setDefaults(array(
+	$this->widgetSchema['main_dob'] = new sfWidgetFormDateJQueryUI(
+			array("change_month" => true, "change_year" => true));
+	
+	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
+			array("change_month" => true, "change_year" => true));
+    
+  	if($this->getOption("userForQuote")){
+		$this->setDefaults(array(
 			'client_id'      => $userForQuote->getId(),
-			 'main_sex'      => $userForQuote->getUserProfile()->getGenderId(),
+			'main_sex'       => $userprofile[0]->getGenderId(),
+			'main_dob'       => $userprofile[0]->getDob(),
+			'spouse_sex'     => $userprofile[0]->getSpouseGenderId(),
 		));
+	}
+
   }
 }
