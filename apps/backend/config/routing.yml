@@ -33,6 +33,13 @@ quote_edit:
   param:   { module: quote, action: edit, sf_format: html }
   requirements: { sf_method: get }
 
+quote_new_user:
+  url:     /New-Quote-For/:id.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: sfGuardUser, type: object }
+  param:   { module: quote, action: new, sf_format: html }
+  requirements: { sf_method: get }
+
 #advisor
 advisor:
   class: sfDoctrineRouteCollection

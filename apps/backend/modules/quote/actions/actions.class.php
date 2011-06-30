@@ -13,4 +13,20 @@ require_once dirname(__FILE__).'/../lib/quoteGeneratorHelper.class.php';
  */
 class quoteActions extends autoQuoteActions
 {
+	/**
+	 * This Action will handle creating a new quote for a client
+	 */
+	  public function executeNew(sfWebRequest $request)
+	  {
+	  	$userForQuote = $this->getRoute()->getObject();
+	  	 
+	  	if(!empty($userForQuote)){ 
+	  		$this->form = new BackendQuoteForm('', array('userForQuote' => $userForQuote));
+	  	}else{
+	  		$this->form = $this->configuration->getForm();
+	  	}
+	    
+	    $this->quote = $this->form->getObject();
+	  }
+	
 }
