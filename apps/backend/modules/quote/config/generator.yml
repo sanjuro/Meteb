@@ -18,7 +18,8 @@ generator:
         fields:
         display: [client_id, created_by, created_at]
         title: Quote Management
-      filter:  ~
+      filter:  
+        display: [client_id,  created_at]
       form:    
         class:          BackendQuoteForm
       edit:    ~
