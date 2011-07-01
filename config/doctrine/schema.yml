@@ -74,7 +74,14 @@ Marketdata:
       primary: false
       notnull: true
       autoincrement: false
-      
+  
+MortalityRate:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    age:              { type: integer } 
+    mortality_male:   { type: decimal(10), scale: 5 }
+    mortality_female: { type: decimal(10), scale: 5 }
+       
 Quote:
   actAs: 
     Timestampable: ~ 
