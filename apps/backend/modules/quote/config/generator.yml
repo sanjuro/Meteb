@@ -18,6 +18,10 @@ generator:
         fields:
         display: [client_id, created_by, created_at]
         title: Quote Management
+        object_actions:
+         _edit:       ~
+         _delete:     ~
+         pdf:         ~
       filter:  
         display: [client_id,  created_at]
       form:    

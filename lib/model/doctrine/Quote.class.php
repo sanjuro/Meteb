@@ -31,8 +31,8 @@ class Quote extends BaseQuote
 		
 		while (abs($diff) > 0.01 && $runs <= 10)
 		{
-			$purchase_price_1 = calc_pp($annuity);
-			$purchase_price_2 = calc_pp($annuity + $shock);
+			$purchase_price_1 = $this->calc_pp($annuity);
+			$purchase_price_2 = $this->calc_pp($annuity + $shock);
 			$diff = $this->purchase_price - $purchase_price_1;
 			$annuity = $annuity + $diff / ( ($purchase_price_2-$purchase_price_1) / $shock );
 			$runs++;
@@ -241,7 +241,7 @@ class Quote extends BaseQuote
 		$exspenseResult = array();
 		
 		$q = Doctrine_Query::create()
-		   ->from('Exspensedata e')
+		   ->from('Expensedata e')
 		   ->where('e.id = ?', 1)
 		   ->limit(1);		
 		     
