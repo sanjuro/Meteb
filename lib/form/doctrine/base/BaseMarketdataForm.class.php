@@ -17,6 +17,7 @@ abstract class BaseMarketdataForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'                => new sfWidgetFormInputHidden(),
       'uploaded_at'       => new sfWidgetFormDateTime(),
+      'inception_date'    => new sfWidgetFormDateTime(),
       'month_array'       => new sfWidgetFormTextarea(),
       'discounting_array' => new sfWidgetFormTextarea(),
       'dhfactors_matrix'  => new sfWidgetFormTextarea(),
@@ -27,6 +28,7 @@ abstract class BaseMarketdataForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'uploaded_at'       => new sfValidatorDateTime(),
+      'inception_date'    => new sfValidatorDateTime(),
       'month_array'       => new sfValidatorString(),
       'discounting_array' => new sfValidatorString(),
       'dhfactors_matrix'  => new sfValidatorString(),

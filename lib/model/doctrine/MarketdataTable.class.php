@@ -16,4 +16,37 @@ class MarketdataTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Marketdata');
     }
+    
+	/** 
+	 *	This function retrieves the latest market data from the database
+	 *	Only the last row of data is retrieved, The market data is required to do a quote
+	 *
+	 * @param unknown_type $upload_date
+	 * @param unknown_type $inception_date
+	 * @param unknown_type $month_array
+	 * @param unknown_type $discounting_array
+	 * @param unknown_type $dhfactors_matrix
+	 * 
+	 * @return array Array of Market Data for calculation
+	 */	
+	public function get_latest_marketdata()
+	{
+		$marketResult = array();
+		
+		$q = Doctrine_Query::create()
+		   ->from('Marketdata m')
+		   ->orderBy('m.id DESC')
+		   ->limit(1);		
+		     
+		$marketData =  $q->fetchOne(); 
+		
+		$marketResult['id']= $marketData['id'];
+		$marketResult['uploaded_at'] = Meteb::text_to_matrix($marketData['uploaded_at']);// the array of month values from the database
+		$marketResult['inception_date'] = Meteb::text_to_matrix($marketData['inception_date']);// the array of month values from the database
+		$marketResult['month_array'] = Meteb::text_to_matrix($marketData['month_array']);// the array of month values from the database
+		$marketResult['discounting_array'] = Meteb::text_to_matrix($marketData['discounting_array']);// the array of discounting values from the database
+		$marketResult['dhfactors_matrix'] = Meteb::text_to_matrix($marketData['dhfactors_matrix']);// the matrix of dhfactors values from the database
+		
+		return $marketResult;
+	}
 }

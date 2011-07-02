@@ -6,7 +6,7 @@
  * @package    meteb
  * @subpackage Quote form
  * @author     Shadley Wentzel
- * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ * @version    GIT:
  */
 class BackendQuoteForm extends BaseQuoteForm
 {
@@ -25,8 +25,6 @@ class BackendQuoteForm extends BaseQuoteForm
      $userprofile = $userForQuote->getUserProfile();
 	}
 
-
-
     unset(
       $this['id'], $this['created_by'],
       $this['initial_gross_annuity'], $this['initial_net_annuity'],
@@ -35,6 +33,9 @@ class BackendQuoteForm extends BaseQuoteForm
       $this['fund_charge'], $this['administrative_charge'],
       $this['created_at'], $this['updated_at']
     );
+    
+	$this->widgetSchema['second_life'] = new sfWidgetFormChoice(
+	     	array( 'label' => 'Second Life', 'choices' => array( 0 => 'no', 1 => 'yes')));
     
 	$this->widgetSchema['main_dob'] = new sfWidgetFormDateJQueryUI(
 			array("change_month" => true, "change_year" => true));

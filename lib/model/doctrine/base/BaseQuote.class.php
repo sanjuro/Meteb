@@ -20,6 +20,7 @@
  * @property decimal $purchase_price
  * @property decimal $initial_gross_annuity
  * @property decimal $initial_net_annuity
+ * @property decimal $commission
  * @property timestamp $commence_at
  * @property timestamp $first_annuity_increase
  * @property integer $guaranteed_terms
@@ -46,6 +47,7 @@
  * @method decimal     getPurchasePrice()          Returns the current record's "purchase_price" value
  * @method decimal     getInitialGrossAnnuity()    Returns the current record's "initial_gross_annuity" value
  * @method decimal     getInitialNetAnnuity()      Returns the current record's "initial_net_annuity" value
+ * @method decimal     getCommission()             Returns the current record's "commission" value
  * @method timestamp   getCommenceAt()             Returns the current record's "commence_at" value
  * @method timestamp   getFirstAnnuityIncrease()   Returns the current record's "first_annuity_increase" value
  * @method integer     getGuaranteedTerms()        Returns the current record's "guaranteed_terms" value
@@ -71,6 +73,7 @@
  * @method Quote       setPurchasePrice()          Sets the current record's "purchase_price" value
  * @method Quote       setInitialGrossAnnuity()    Sets the current record's "initial_gross_annuity" value
  * @method Quote       setInitialNetAnnuity()      Sets the current record's "initial_net_annuity" value
+ * @method Quote       setCommission()             Sets the current record's "commission" value
  * @method Quote       setCommenceAt()             Sets the current record's "commence_at" value
  * @method Quote       setFirstAnnuityIncrease()   Sets the current record's "first_annuity_increase" value
  * @method Quote       setGuaranteedTerms()        Sets the current record's "guaranteed_terms" value
@@ -147,6 +150,11 @@ abstract class BaseQuote extends sfDoctrineRecord
              'length' => 15,
              ));
         $this->hasColumn('initial_net_annuity', 'decimal', 15, array(
+             'type' => 'decimal',
+             'scale' => 2,
+             'length' => 15,
+             ));
+        $this->hasColumn('commission', 'decimal', 15, array(
              'type' => 'decimal',
              'scale' => 2,
              'length' => 15,

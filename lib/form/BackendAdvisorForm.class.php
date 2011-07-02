@@ -33,6 +33,8 @@ class BackendAdvisorForm extends sfGuardUserForm
     $this->widgetSchema['password'] = new sfWidgetFormInputPassword();
     $this->validatorSchema['password']->setOption('required', false);
 
+    
+    
 	/**
 	 * Embed UserProfile Form
 	 */

@@ -53,6 +53,7 @@ Marketdata:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
     uploaded_at:      { type: timestamp, notnull: true }
+    inception_date:   { type: timestamp, notnull: true }
     month_array:
       type: string()
       fixed: false
@@ -102,6 +103,7 @@ Quote:
     purchase_price:          { type: decimal(15), scale: 2 }
     initial_gross_annuity:   { type: decimal(15), scale: 2 }
     initial_net_annuity:     { type: decimal(15), scale: 2 }
+    commission:              { type: decimal(15), scale: 2 }
     commence_at:             { type: timestamp, notnull: true } 
     first_annuity_increase:  { type: timestamp, notnull: true } 
     guaranteed_terms:        { type: integer }
@@ -224,6 +226,18 @@ UserProfile:
     SpouseGender:     { class: Gender, local: spouse_gender_id, foreign: id }
     ClientStatus:     { class: ClientStatus, local: status_id, foreign: id }
     ParentUser:       { class: sfGuardUser, local: parent_user_id, foreign: id }
+    
+TaxRate:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    tax_rate:         { type: decimal(10), scale: 5 }
+    start_bracket:    { type: decimal(10), scale: 5 } 
+    
+TaxRebate:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    age:              { type: integer }
+    rebate:           { type: integer } 
     
 ClientStatus:
   columns:

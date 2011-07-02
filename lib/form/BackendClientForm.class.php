@@ -128,7 +128,6 @@ class BackendClientForm extends sfGuardUserForm
 	$sfGuardUserGroup->save();
 	
 	}
-	
 
    		    
     // embedded forms

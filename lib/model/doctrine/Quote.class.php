@@ -12,17 +12,63 @@
  */
 class Quote extends BaseQuote
 {
+	
+	
+	/**
+	 * Function to calculate the commission for a quote
+	 * 
+	 * @param void
+	 * 
+	 * @return double Purchase Price
+	 */	
+	public function calc_commission($pp, $commission, $net_to_gross=0)
+	{
+	//This function can be used to insert or remove commission to the purchase price
+	//If net_to_gross is zero, then commission is added (eg R1000 goes to R1015.23)
+	//If net_to_gross is one, then commission is removed (eg R1000 goes to R985)
+
+		if ($net_to_gross==0)
+			return $pp/(1-$commission); 
+		else
+			return $pp*(1-$commission);
+	}
+	
+
+	/**
+	 * Function to calculate the age
+	 * 
+	 * @param void
+	 * 
+	 * @return integer Age calculate
+	 */	
+  	public function calc_age($birthday, $to_date)
+	{
+	//This function calculates the age-last-birthday of a person
+	//The age is calculated from $birthday to $to_date
+
+    		list($year1,$month1,$day1) = explode("-",$birthday);
+		list($year2,$month2,$day2) = explode("-",$to_date);
+    		$year_diff  = $year2 - $year1;
+    		$month_diff = $month2 - $month1;
+    		$day_diff   = $day2 - $day1;
+    		if ($day_diff < 0 || $month_diff < 0)
+      		$year_diff--;
+    		return $year_diff;
+    }
+		
+
 	/**
 	 * This function calculates the annuity amount that can be purchased given a purchase amount
 	 * No allowance is made for commission and tax
 	 * A Newton-Rhapson approximation method is used. Convergence usually occurs after 2 iterations
 	 * An unnecessary third iteration is usually performed, but this adds accuracy.
 	 * 
-	 * @param void
+	 * @param double $pri The PRI for the quote
+	 * @param double $pp The Purchase Price for the quote
 	 * 
 	 * @return UserProfile UserProfile Object
 	 */	
-	public function calc_annuity()
+	public function calc_annuity($pri, $pp)
 	{
 		$shock = 0.00001;
 		$runs = 0;
@@ -31,9 +77,9 @@ class Quote extends BaseQuote
 		
 		while (abs($diff) > 0.01 && $runs <= 10)
 		{
-			$purchase_price_1 = $this->calc_pp($annuity);
-			$purchase_price_2 = $this->calc_pp($annuity + $shock);
-			$diff = $this->purchase_price - $purchase_price_1;
+			$purchase_price_1 = $this->calc_pp($pri, $annuity);
+			$purchase_price_2 = $this->calc_pp($pri, $annuity + $shock);
+			$diff = $pp - $purchase_price_1;
 			$annuity = $annuity + $diff / ( ($purchase_price_2-$purchase_price_1) / $shock );
 			$runs++;
 		}
@@ -42,20 +88,57 @@ class Quote extends BaseQuote
 		else
 			return "error";
 	}
+    
 	
+	/**
+	 * 
+	 * @param void
+	 * 
+	 * @return UserProfile UserProfile Object
+	 */	
+	public function calc_net_annuity($main_dob, $annuity)
+	{
+	//This function calculates the net (of tax) initial annuity amount from the gross initial annuity
+	//It gets the tax rates and rebates from the database (which must be updated every year)
+
+		$tax_rates = Doctrine::getTable('TaxRate')->get_tax_rates();
+		$tax_rebates = Doctrine::getTable('TaxRebate')->get_tax_rebates();
+		$marketResult = Doctrine::getTable('Marketdata')->get_latest_marketdata();
+
+		$tax_rates[0][3]=0;
+		for ($pos=1; $pos<=count($tax_rates)-1; $pos++)
+			$tax_rates[$pos][3]=$tax_rates[$pos-1][3]+$tax_rates[$pos-1][1]*($tax_rates[$pos][2]-$tax_rates[$pos-1][2]);
+
+		$annual_annuity=$annuity*12;
+		$main_dob=(strtotime($main_dob)+2209168800)/86400;
+		$age=floor(($month_array[1][1]-$main_dob)/365.25);
+		
+		$tax_before_rebate=0;
+		for ($pos=0; $pos<=count($tax_rates)-2; $pos++)
+			$tax_before_rebate=$tax_before_rebate+(($tax_rates[$pos][2]<$annual_annuity)*$tax_rates[$pos][1]*(min($tax_rates[$pos+1][2],$annual_annuity)-$tax_rates[$pos][2]));
+		$rebate=0;
+		for ($pos=1; $pos<=count($tax_rebates)-1; $pos++)
+			$rebate=$rebate+(($age>=$tax_rebates[$pos-1][1] && $age<$tax_rebates[$pos][1])*$tax_rebates[$pos][2]);
+		$tax_after_rebate=max($tax_before_rebate-$rebate,0);
+
+		return ($annual_annuity-$tax_after_rebate)/12;
+	}
+		
+    
 	/**
 	 * This function does a quote and calculates a purchase price from an annuity amount
 	 * No allowance is made for commission and tax
 	 * 
+	 * @param double $pri
 	 * @param double $annuity 
 	 * 
 	 * @return double Purchase price
 	 */
-	public function calc_pp($annuity)
+	public function calc_pp($pri, $annuity)
 	{	
 	// The required data is read from the database
 
-		$marketResult = $this->get_latest_marketdata();
+		$marketResult = Doctrine::getTable('Marketdata')->get_latest_marketdata();
 		$exspenseResult = $this->get_expenses();
 		$mortalityResult = $this->get_mortality_rates();
 		$max_age = 112;
@@ -71,15 +154,21 @@ class Quote extends BaseQuote
 		else
 			$age_rating = -2;
 			
+		$main_sex = $this->getMainSex();
+		/*
 		if ($this->getMainSex() == 1)
 			$main_sex = 2;
 		else
 			$main_sex = 3;
+		*/
 			
+		$spouse_sex = $this->getSpouseSex();
+		/*
 		if ($this->getSpouseSex() == 1)
 			$spouse_sex = 2;
 		else
 			$spouse_sex = 3;
+		*/
 			
 		if ($annuity  <= 20000)
 			$mortality_improvement = 0.005;
@@ -88,15 +177,15 @@ class Quote extends BaseQuote
 		else
 			$mortality_improvement = 0.01;
 			
-		$main_dob = (strtotime($this->getDob()) + 2209168800)/86400;
+		$main_dob = (strtotime($this->getMainDob()) + 2209168800)/86400;
 		
 		$spouse_dob = (strtotime($this->getSpouseDob()) + 2209168800)/86400;
 		
-		if ($this->pri == 0.035)
+		if ($pri == 0.035)
 			$column = 1;
-		elseif ($this->pri == 0.040)
+		elseif ($pri == 0.040)
 			$column = 2;
-		elseif ($this->pri == 0.045)
+		elseif ($pri == 0.045)
 			$column = 3;
 
 		$calcs[0][1]=(strtotime($marketResult['inception_date']) + 2209168800)/86400-365.25/12;
@@ -108,18 +197,22 @@ class Quote extends BaseQuote
 		$calcs[0][21]=1;
 		$calcs[0][22]=1;
 		$calcs[0][29]=0;
-
+		
 		for ($row=1; $row<=1200; $row++)
 		{
 			$calcs[$row][1]=$calcs[$row-1][1]+365.25/12;
 			$calcs[$row][2]=min(floor(($calcs[$row][1]-$main_dob)/365.25+$age_rating),$max_age);
-			$calcs[$row][3]=$annuity ;
+			$calcs[$row][3]=$annuity;
 			$calcs[$row][4]=$exspenseResult['renewal_expenses'] * 1.14;
-			$calcs[$row][5]=$mortalityResult[$calcs[$row][2]][$main_sex];
-			if ($calcs[$row][5]==1)
-				$calcs[$row][6]=1;
+			
+			$index1 = $calcs[$row][2];
+			
+			$calcs[$row][5]=$mortalityResult[$index1][$main_sex];
+			
+			if ($calcs[$row][5] == 1)
+				$calcs[$row][6] = 1;
 			else
-				$calcs[$row][6]=pow(1-$mortality_improvement,$row/12);
+				$calcs[$row][6] = pow(1-$mortality_improvement,$row/12);
 				
 			$calcs[$row][7]=$calcs[$row][5]*$calcs[$row][6];
 			
@@ -145,7 +238,7 @@ class Quote extends BaseQuote
 			if ($row<=360)
 				$calcs[$row][12]=$marketResult['dhfactors_matrix'][$row][$column]*$marketResult['discounting_array'][$row][$column];
 			else
-				$calcs[$row][12]=$marketResult['dhfactors_matrix'][360][$column]*$marketResult['discounting_array'][360][$column]*pow(1+$this->pri,(360-$row)/12);
+				$calcs[$row][12]=$marketResult['dhfactors_matrix'][360][$column]*$marketResult['discounting_array'][360][$column]*pow(1+$pri,(360-$row)/12);
 				
 			$calcs[$row][13]=$calcs[$row][4]*$calcs[$row][10];
 			//deterministic expense inflation ignored for now
@@ -153,7 +246,10 @@ class Quote extends BaseQuote
 
 			$calcs[$row][16] = $calcs[$row][3] * $this->spouse_reversion * $this->second_life;
 			$calcs[$row][17] = min(floor(($calcs[$row][1]-$spouse_dob)/365.25+$age_rating),$max_age);
-			$calcs[$row][18] = $mortalityResult[$calcs[$row][17]][$spouse_sex];
+			
+			$index1 = $calcs[$row][17];
+			
+			$calcs[$row][18] = $mortalityResult[$index1][$spouse_sex];
 			if ($calcs[$row][18]==1)
 				$calcs[$row][19]=1;
 			else
@@ -183,6 +279,7 @@ class Quote extends BaseQuote
 				$calcs[1200][29]=$calcs[$row][29];
 				$row=1200;
 			}
+			
 		}
 		
 		//The purchase is returned. This makes allowance for expenses and loadings
@@ -190,39 +287,119 @@ class Quote extends BaseQuote
 		return ($calcs[1200][29]+$exspenseResult['initial_expenses']*1.14)/(1-$exspenseResult['loadings']*1.14);
 	}
 	
-	/** 
-	 *	This function retrieves the latest market data from the database
-	 *	Only the last row of data is retrieved, The market data is required to do a quote
-	 *
-	 * @param unknown_type $upload_date
-	 * @param unknown_type $inception_date
-	 * @param unknown_type $month_array
-	 * @param unknown_type $discounting_array
-	 * @param unknown_type $dhfactors_matrix
+	
+	
+	/**
+	 * This function generates the quote calculations that will fill the
+	 * new quote docuemnt
 	 * 
-	 * @return array Array of Market Data for calculation
-	 */	
-	public function get_latest_marketdata()
+	 * @param double $pp The Purchase Price for the quote 
+	 * @param double $annuity The calculated Annuity
+	 * 
+	 * @return array Quote Data
+	 */
+	public function generate($pp = 0, $annuity = 0.00)
 	{
-		$marketResult = array();
-		
-		$q = Doctrine_Query::create()
-		   ->from('Marketdata m')
-		   ->orderBy('m.id DESC')
-		   ->limit(1);		
-		     
-		$marketData =  $q->fetchOne(); 
-		
-		$marketResult['id']= $marketData['id'];
-		$marketResult['upload_date'] = Meteb::text_to_matrix($marketData['upload_date']);// the array of month values from the database
-		$marketResult['inception_date'] = Meteb::text_to_matrix($marketData['inception_date']);// the array of month values from the database
-		$marketResult['month_array'] = Meteb::text_to_matrix($marketData['month_array']);// the array of month values from the database
-		$marketResult['discounting_array'] = Meteb::text_to_matrix($marketData['discounting_array']);// the array of discounting values from the database
-		$marketResult['dhfactors_matrix'] = Meteb::text_to_matrix($marketData['dhfactors_matrix']);// the matrix of dhfactors values from the database
-		
-		return $marketResult;
+		$quote_out = array();
+		//This function calculates the outputs required to populate a GGWPA quote tender
+		//A quote is done for a 3.50%, 4.00% and 4.50% PRI
+		//A quote can either be calculated from an annuity amount to a purchase price or vice versa
+		//Annuity Amount -> Purchase Price : Set $pp=0 and specify a value for $annuity
+		//Purchase Price -> Annuity Amount : Set $annuity=0 and specify a value for $pp
+	
+		//The following is just a list of all of the outputs that get generated
+		$quote_out["data_date"]="";
+		$quote_out["quote_date"]=date("Y-m-d",time());
+		$quote_out["commencement_date"]="";
+		$quote_out["first_payment_date"]="";
+		$quote_out["first_increase_date"]="";
+		$quote_out["pp1"]="";
+		$quote_out["pp2"]="";
+		$quote_out["pp3"]="";
+		$quote_out["gross_annuity_1"]="";
+		$quote_out["gross_annuity_2"]="";
+		$quote_out["gross_annuity_3"]="";
+		$quote_out["tax1"]="";
+		$quote_out["tax2"]="";
+		$quote_out["tax3"]="";
+		$quote_out["net_annuity_1"]="";
+		$quote_out["net_annuity_2"]="";
+		$quote_out["net_annuity_3"]="";
+		$quote_out["commission_sacrificed"]="";
+		$quote_out["main_age_next"]="";
+		$quote_out["spouse_age_next"]="";
+		$quote_out["premium_charge_1"]="";
+		$quote_out["premium_charge_2"]="";
+		$quote_out["premium_charge_3"]="";
+		$quote_out["admin_charge_1"]="";
+		$quote_out["admin_charge_2"]="";
+		$quote_out["admin_charge_3"]="";
+		$quote_out["expiry_date"]="";
 
+		//This part checks whether an annuity or pp is being calculated, it then does the appropriate calc for all three PRIs
+		if ($annuity==0)
+		{
+			$quote_out["pp1"]=$pp;
+			$quote_out["pp2"]=$pp;
+			$quote_out["pp3"]=$pp;
+
+			$quote_out["gross_annuity_1"]= $this->calc_annuity( 0.035, $pp);
+			$quote_out["gross_annuity_2"]= $this->calc_annuity( 0.040, $pp);
+			$quote_out["gross_annuity_3"]= $this->calc_annuity( 0.045, $pp);
+		}
+		else
+		{
+			$quote_out["gross_annuity_1"]=$annuity;
+			$quote_out["gross_annuity_2"]=$annuity;
+			$quote_out["gross_annuity_3"]=$annuity;
+
+			$quote_out["pp1"]= $this->calc_pp(0.035, $annuity);
+			$quote_out["pp2"]= $this->calc_pp(0.040, $annuity);
+			$quote_out["pp3"]= $this->calc_pp(0.045, $annuity);
+		}
+		
+		$main_dob = $this->getMainDob();
+
+		//Here the net annuity amount - which allows for tax to be deducted - is calculated for each PRI
+		$quote_out["net_annuity_1"]= $this->calc_net_annuity($main_dob, $quote_out["gross_annuity_1"]);
+		$quote_out["net_annuity_2"]= $this->calc_net_annuity($main_dob, $quote_out["gross_annuity_2"]);
+		$quote_out["net_annuity_3"]= $this->calc_net_annuity($main_dob, $quote_out["gross_annuity_3"]);
+
+		//Here we calculate the tax amount payable per month for each PRI
+		$quote_out["tax1"]=$quote_out["gross_annuity_1"]-$quote_out["net_annuity_1"];
+		$quote_out["tax2"]=$quote_out["gross_annuity_2"]-$quote_out["net_annuity_2"];
+		$quote_out["tax3"]=$quote_out["gross_annuity_3"]-$quote_out["net_annuity_3"];
+
+		//The first payment date is the last day of the inception month
+		//The first increase occurs one year after inception
+		$quote_out["first_payment_date"]=date("Y-m-d", strtotime($quote_out["commencement_date"]." +1 month -1 day"));
+		$quote_out["first_increase_date"]=date("Y-m-d", strtotime($quote_out["commencement_date"]." +1 year"));
+
+		//Maximum commission is 1.50% - a percentage of this can be sacrificed
+		$quote_out["commission_sacrificed"]=(0.015-$commission)/0.015;
+
+		//This calculates the next age that each of the main and spouse will obtain
+		$quote_out["main_age_next"]= $this->calc_age($main_dob,$quote_out["commencement_date"])+1;
+		$quote_out["spouse_age_next"]= $this->calc_age($spouse_dob,$quote_out["commencement_date"])+1;
+
+		//This calculates the premium and admin charges that get deducted from the latest expense data
+		//The admin charge is simply the monthly renewal expense making allowance for tax
+		//The premium charge is the upfront amount that gets deducted from the pp amking allowance for tax
+		//The upfront amount includes the initial expense, the admin loading and internal commission
+		get_expenses($renewal_expenses, $expense_inflation, $initial_expenses, $loadings);
+		$quote_out["premium_charge_1"]=($initial_expenses+$loadings*$quote_out["pp1"])*1.14;
+		$quote_out["premium_charge_2"]=($initial_expenses+$loadings*$quote_out["pp2"])*1.14;
+		$quote_out["premium_charge_3"]=($initial_expenses+$loadings*$quote_out["pp3"])*1.14;
+		$quote_out["admin_charge_1"]=$renewal_expenses*1.14;
+		$quote_out["admin_charge_2"]=$renewal_expenses*1.14;
+		$quote_out["admin_charge_3"]=$renewal_expenses*1.14;
+
+		//The expiry date is set to one week after the quote is generated
+		$quote_out["expiry_date"]=date("Y-m-d",strtotime(date("Y-m-d",time())." +1 week"));
+		
+		return $quote_out;
 	}
+	
 
 	/** 
 	 *	This function retreives the expense data from the database
@@ -238,6 +415,7 @@ class Quote extends BaseQuote
 	 */	
 	public function get_expenses()
 	{
+		$expenseData = array();
 		$exspenseResult = array();
 		
 		$q = Doctrine_Query::create()
@@ -245,7 +423,7 @@ class Quote extends BaseQuote
 		   ->where('e.id = ?', 1)
 		   ->limit(1);		
 		     
-		$exspenseResult = $q->fetchOne(); 		
+		$expenseData = $q->fetchOne(); 		
 
 		$exspenseResult['id']= $expenseData['id'];
 		$exspenseResult['renewal_expenses'] = $expenseData['renewal_expenses'];
@@ -253,7 +431,7 @@ class Quote extends BaseQuote
 		$exspenseResult['initial_expenses'] = $expenseData['initial_expenses'];
 		$exspenseResult['loadings'] = $expenseData['loadings'];
 		
-		
+	
 		return $exspenseResult;
 	}
 
@@ -275,14 +453,13 @@ class Quote extends BaseQuote
 		$mortalityResult = array();
 		
 		$q = Doctrine_Query::create()
-		   ->from('MortalityRates mr');		
+		   ->from('MortalityRate mr');		
 		     
 		$mortalityData = $q->fetchArray(); 
 		
 		foreach($mortalityData as $key => $value){
-			$mortalityResult[$key]['age'] = $value['age'];
-			$mortalityResult[$key]['age'] = $value['mortality_male'];
-			$mortalityResult[$key]['age'] = $value['mortality_female'];
+			$mortalityResult[$key]['1'] = $value['mortality_male'];
+			$mortalityResult[$key]['2'] = $value['mortality_female'];
 		}
 		
 		return $mortalityResult;

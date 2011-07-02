@@ -7,17 +7,20 @@
  * 
  * @property integer $id
  * @property timestamp $uploaded_at
+ * @property timestamp $inception_date
  * @property string $month_array
  * @property string $discounting_array
  * @property string $dhfactors_matrix
  * 
  * @method integer    getId()                Returns the current record's "id" value
  * @method timestamp  getUploadedAt()        Returns the current record's "uploaded_at" value
+ * @method timestamp  getInceptionDate()     Returns the current record's "inception_date" value
  * @method string     getMonthArray()        Returns the current record's "month_array" value
  * @method string     getDiscountingArray()  Returns the current record's "discounting_array" value
  * @method string     getDhfactorsMatrix()   Returns the current record's "dhfactors_matrix" value
  * @method Marketdata setId()                Sets the current record's "id" value
  * @method Marketdata setUploadedAt()        Sets the current record's "uploaded_at" value
+ * @method Marketdata setInceptionDate()     Sets the current record's "inception_date" value
  * @method Marketdata setMonthArray()        Sets the current record's "month_array" value
  * @method Marketdata setDiscountingArray()  Sets the current record's "discounting_array" value
  * @method Marketdata setDhfactorsMatrix()   Sets the current record's "dhfactors_matrix" value
@@ -38,6 +41,10 @@ abstract class BaseMarketdata extends sfDoctrineRecord
              'autoincrement' => true,
              ));
         $this->hasColumn('uploaded_at', 'timestamp', null, array(
+             'type' => 'timestamp',
+             'notnull' => true,
+             ));
+        $this->hasColumn('inception_date', 'timestamp', null, array(
              'type' => 'timestamp',
              'notnull' => true,
              ));

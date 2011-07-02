@@ -52,18 +52,49 @@ class Meteb
 	 */
 	public static function text_to_matrix($text)
 	{
-		$place=1;
+		$place = 1;
 
+		$array = '';
+		
 		while (strpos($text,")")>0)
 		{
 			$start = strpos($text,"(")+1;
 			$length = strpos($text,")") - $start;
-			$array[$place] = text_to_array(substr($text, $start, $length));
+			$array[$place] = Meteb::text_to_array(substr($text, $start, $length));
 			$text = substr($text, $start + $length + 1);
-			$place=$place+1;
+			$place = $place+1;
 		}
 		
 		return $array;
+	}
+	
+		/**
+	 * This function converts a string back to a matrix of values
+	 *
+	 * @param varchar $text
+	 * @return array Values broken into an array
+	 */
+	public static function text_to_array($text)
+	{	
+		/* 
+		$text = preg_replace('/{(.*?)}/', '$1_', $text);
+		$result = explode("_", $text);
+		
+		return $result;
+		*/
+		$place=1;
+
+		while (strpos($text,"}")>0)
+		{
+			$start = strpos($text,"{")+1;
+			$length = strpos($text,"}") - $start;
+			$array[$place] = substr($text, $start, $length);
+			$text = substr($text, $start + $length + 1);
+			$place=$place+1;
+		}
+
+		return $array;
+		
 	}
 }
 ?>
