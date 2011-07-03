@@ -33,7 +33,7 @@ class metebPDF extends DOMPDF{
 		$pdfobjectNumber = $PdfObject->getId();				
 
 		$this->setTemplatePageName('Metropolitan Life Quotation');
-		$this->setTemplateTitle('Quotation');
+		$this->setTemplateTitle('Golden Growth With-Profit Annuity');
 		$this->setPDFNumber($pdfobjectNumber);
 		$this->setPDFDate( $PdfObject->getCreatedAt());
 		$this->setPDFContent($PDFContent);
@@ -68,14 +68,28 @@ class metebPDF extends DOMPDF{
 		<style type="text/css">
 			body { color: #555555; font-family: Arial, Helvetica, sans-serif;  margin: 0; padding: 0;sans-serif; background-color: #f2f3f5; background-image: url(\'images/pdf/bodyGradient.png\'); background-repeat: repeat-x; background-position: left top; }
 			table { font-size: 12px; }
-			h1, h2, h3, h4, h5 { margin: 0 0 0 0; padding: 0 0 0 0; color: #066f75; font-weight: bold; }
-			h1 { font-size: 30px; }
+			h1 { color: #000033; font-size: 30px; }
 			h2 { margin: 0 0 0 0; color: #000000; font-size: 20px; font-weight: normal; }
 			h3, h4, h5 { margin: 0 0 7px 0; }
 			h3 { font-size: 18px; }
 			h4 { font-size: 14px; }
 			h5 { font-size: 12px; margin: 0 0 10px 0; color: #006699; }
-			p { margin: 0 0 12px 0; line-height: 15px; }
+			p { font-size:12px; margin: 0 0 12px 0; line-height: 15px; }
+			hr { height: 1px; line-height: 1px; border: none; border-top: 1px solid #dde2e6; margin: 5px 20px; }
+			ul, li { margin: 0 0 0 0; padding: 0 0 0 0; }
+			li { line-height: 15px; }
+			.bulletLarge { padding: 0 0 0 3px; }
+			.bulletLarge li { list-style-type: none; background-image: url(\'images/pdf/bulletLarge.png\'); background-repeat: no-repeat; background-position: left 5px; padding: 0 0 4px 15px; }
+			.bulletLarge li a { color: #3c3c3c; }
+			#headerwrapper { background-color: #f2f3f5; background-image: url(\'images/pdf/headerGradient.png\'); background-repeat: repeat-x; background-position: left top; height: 58px;   }
+			#header {  margin: 0 auto; width: 800px; padding: 0 30px;}
+			#main{ background-color: #FFF;border: 1px solid #DDE2E6; margin: 20px auto; width: 750px;}
+			#info {  background-image: url(\'images/pdf/'.$image.'.jpg\'); background-repeat: no-repeat; background-position: right top; height: 30px; padding: 20px;}
+			#pdfinfo{ padding: 20px; }
+			#pdfnumber { float: left; color: #000000; font-size: 20px;}
+			#pdfdate { width: 200px; text-align: right;}
+			#clientinfo {  font-size: 12px; padding: 20px 30px 20px 20px; }
+			#content { padding: 20px; }
 		</style>
 	</head>
 

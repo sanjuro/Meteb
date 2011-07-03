@@ -64,13 +64,16 @@ class quoteActions extends autoQuoteActions
         $pp = $quote->calc_pp($quote->getPri(), $annuity);
         
         $this->quote = $quote;
+        
+        $client = $this->quote->getClient();
+    	$userprofile = $client->getUserProfile(0);
     	
         $quote_calculations = $quote->generate($quote->getCommission(), $pp, $annuity);
 		
         // Get Partial for PDF
 		sfProjectConfiguration::getActive()->loadHelpers('Partial');
 				
-		$PDFContent = get_partial('quote/pdf', array( 'quote_calculations' => $quote_calculations) );        
+		$PDFContent = get_partial('quote/pdf', array( 'quote_calculations' => $quote_calculations, 'client' => $client, 'userprofile' => $userprofile) );        
         
         // Generate PDF
 		$metebPDF = new metebPDF();
