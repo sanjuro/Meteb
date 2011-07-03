@@ -14,6 +14,7 @@ abstract class BaseMarketdataFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'uploaded_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'inception_date'    => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'month_array'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'discounting_array' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'dhfactors_matrix'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -23,6 +24,7 @@ abstract class BaseMarketdataFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'uploaded_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'inception_date'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'month_array'       => new sfValidatorPass(array('required' => false)),
       'discounting_array' => new sfValidatorPass(array('required' => false)),
       'dhfactors_matrix'  => new sfValidatorPass(array('required' => false)),
@@ -49,6 +51,7 @@ abstract class BaseMarketdataFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'                => 'Number',
       'uploaded_at'       => 'Date',
+      'inception_date'    => 'Date',
       'month_array'       => 'Text',
       'discounting_array' => 'Text',
       'dhfactors_matrix'  => 'Text',

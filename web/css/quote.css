@@ -1,3 +1,8 @@
+#quoteDetails{
+    float: left;
+    width: 65%;
+}
+
 .quotedetails_label{
 	color: #333333;
 	font-size: 14px;

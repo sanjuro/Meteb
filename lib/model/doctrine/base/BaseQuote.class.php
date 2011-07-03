@@ -9,7 +9,6 @@
  * @property integer $client_id
  * @property integer $created_by
  * @property integer $second_life
- * @property integer $guarantee_period
  * @property integer $main_sex
  * @property timestamp $main_dob
  * @property integer $spouse_sex
@@ -36,7 +35,6 @@
  * @method integer     getClientId()               Returns the current record's "client_id" value
  * @method integer     getCreatedBy()              Returns the current record's "created_by" value
  * @method integer     getSecondLife()             Returns the current record's "second_life" value
- * @method integer     getGuaranteePeriod()        Returns the current record's "guarantee_period" value
  * @method integer     getMainSex()                Returns the current record's "main_sex" value
  * @method timestamp   getMainDob()                Returns the current record's "main_dob" value
  * @method integer     getSpouseSex()              Returns the current record's "spouse_sex" value
@@ -62,7 +60,6 @@
  * @method Quote       setClientId()               Sets the current record's "client_id" value
  * @method Quote       setCreatedBy()              Sets the current record's "created_by" value
  * @method Quote       setSecondLife()             Sets the current record's "second_life" value
- * @method Quote       setGuaranteePeriod()        Sets the current record's "guarantee_period" value
  * @method Quote       setMainSex()                Sets the current record's "main_sex" value
  * @method Quote       setMainDob()                Sets the current record's "main_dob" value
  * @method Quote       setSpouseSex()              Sets the current record's "spouse_sex" value
@@ -109,9 +106,6 @@ abstract class BaseQuote extends sfDoctrineRecord
         $this->hasColumn('second_life', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('guarantee_period', 'integer', null, array(
-             'type' => 'integer',
-             ));
         $this->hasColumn('main_sex', 'integer', null, array(
              'type' => 'integer',
              ));
@@ -154,10 +148,10 @@ abstract class BaseQuote extends sfDoctrineRecord
              'scale' => 2,
              'length' => 15,
              ));
-        $this->hasColumn('commission', 'decimal', 15, array(
+        $this->hasColumn('commission', 'decimal', 18, array(
              'type' => 'decimal',
-             'scale' => 2,
-             'length' => 15,
+             'scale' => 6,
+             'length' => 18,
              ));
         $this->hasColumn('commence_at', 'timestamp', null, array(
              'type' => 'timestamp',

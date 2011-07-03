@@ -91,7 +91,6 @@ Quote:
     client_id:               { type: integer }
     created_by:              { type: integer }
     second_life:             { type: integer }
-    guarantee_period:        { type: integer }
     main_sex:                { type: integer }
     main_dob:                { type: timestamp, notnull: true }
     second_life:             { type: integer }
@@ -103,7 +102,7 @@ Quote:
     purchase_price:          { type: decimal(15), scale: 2 }
     initial_gross_annuity:   { type: decimal(15), scale: 2 }
     initial_net_annuity:     { type: decimal(15), scale: 2 }
-    commission:              { type: decimal(15), scale: 2 }
+    commission:              { type: decimal(18), scale: 6 }
     commence_at:             { type: timestamp, notnull: true } 
     first_annuity_increase:  { type: timestamp, notnull: true } 
     guaranteed_terms:        { type: integer }

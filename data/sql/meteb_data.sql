@@ -25,15 +25,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `expensedata`
 --
 
-CREATE TABLE IF NOT EXISTS `expensedata` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `renewal_expenses` varchar(20) NOT NULL,
-  `expense_inflation` varchar(20) NOT NULL,
-  `initial_expenses` varchar(20) NOT NULL,
-  `loadings` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
 --
 -- Dumping data for table `expensedata`
 --
@@ -46,18 +37,6 @@ INSERT INTO `expensedata` (`id`, `renewal_expenses`, `expense_inflation`, `initi
 --
 -- Table structure for table `marketdata`
 --
-
-CREATE TABLE IF NOT EXISTS `marketdata` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `uploaded_at` datetime NOT NULL,
-  `inception_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `month_array` text NOT NULL,
-  `discounting_array` text NOT NULL,
-  `dhfactors_matrix` text NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 --
 -- Dumping data for table `marketdata`
@@ -73,14 +52,6 @@ INSERT INTO `marketdata` (`id`, `uploaded_at`, `inception_date`, `month_array`, 
 --
 -- Table structure for table `mortality_rate`
 --
-
-CREATE TABLE IF NOT EXISTS `mortality_rate` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `age` bigint(20) DEFAULT NULL,
-  `mortality_male` decimal(10,5) DEFAULT NULL,
-  `mortality_female` decimal(10,5) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=114 ;
 
 --
 -- Dumping data for table `mortality_rate`
@@ -207,13 +178,6 @@ INSERT INTO `mortality_rate` (`id`, `age`, `mortality_male`, `mortality_female`)
 -- Table structure for table `tax_rate`
 --
 
-CREATE TABLE IF NOT EXISTS `tax_rate` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `tax_rate` decimal(10,5) DEFAULT NULL,
-  `start_bracket` decimal(10,5) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
-
 --
 -- Dumping data for table `tax_rate`
 --
@@ -232,13 +196,6 @@ INSERT INTO `tax_rate` (`id`, `tax_rate`, `start_bracket`) VALUES
 --
 -- Table structure for table `tax_rebate`
 --
-
-CREATE TABLE IF NOT EXISTS `tax_rebate` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `age` bigint(20) DEFAULT NULL,
-  `rebate` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `tax_rebate`
