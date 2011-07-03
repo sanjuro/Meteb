@@ -168,15 +168,15 @@
 		</tr>
 		<tr>
 			<td>Premium Charges</td>
-			<td><?php echo $quote_calculations['premium_charge_1'] ?></td>
-			<td><?php echo $quote_calculations['premium_charge_2'] ?></td>
-			<td><?php echo $quote_calculations['premium_charge_3'] ?></td>
+			<td style="text-align:center;width: 130px;"><?php echo $quote_calculations['premium_charge_1'] ?></td>
+			<td style="text-align:center;width: 130px;"><?php echo $quote_calculations['premium_charge_2'] ?></td>
+			<td style="text-align:center;width: 130px;"><?php echo $quote_calculations['premium_charge_3'] ?></td>
 		</tr>
 		<tr>
 			<td>Administrative Charges</td>
-			<td><?php echo $quote_calculations['admin_charge_1'] ?></td>
-			<td><?php echo $quote_calculations['admin_charge_2'] ?></td>
-			<td><?php echo $quote_calculations['admin_charge_3'] ?></td>
+			<td style="text-align:center;width: 130px;"><?php echo $quote_calculations['admin_charge_1'] ?></td>
+			<td style="text-align:center;width: 130px;"><?php echo $quote_calculations['admin_charge_2'] ?></td>
+			<td style="text-align:center;width: 130px;"><?php echo $quote_calculations['admin_charge_3'] ?></td>
 		</tr>
 
 	</table>
