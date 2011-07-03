@@ -29,17 +29,19 @@ class quoteActions extends autoQuoteActions
 	    $this->quote = $this->form->getObject();
 	  }
 	  
-  	  public function executeListPdf(sfWebRequest $request)
+  	  public function executeListGenerate(sfWebRequest $request)
   	  {
         $quote = $this->getRoute()->getObject();
     
         $annuity = $quote->calc_annuity($quote->getPri(), $quote->getPurchasePrice());
      
         $pp = $quote->calc_pp($quote->getPri(), $annuity);
+        
+        $this->quote = $quote;
     	
-        $this->quote_details = $quote->generate($pp, $annuity);
-        Meteb::TKO($this->quote_details);
-        $this->redirect('@quote_new');
+        $this->quote_calculations = $quote->generate($quote->getCommission(), $pp, $annuity);
+        //Meteb::TKO($this->quote_calculations);
+        // Do Quote PDF here
       }
 	
 }

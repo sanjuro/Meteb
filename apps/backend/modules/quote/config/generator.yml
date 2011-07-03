@@ -21,7 +21,7 @@ generator:
         object_actions:
          _edit:       ~
          _delete:     ~
-         pdf:         ~
+         generate:         ~
       filter:  
         display: [client_id,  created_at]
       form:    

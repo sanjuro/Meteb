@@ -41,8 +41,8 @@ class MarketdataTable extends Doctrine_Table
 		$marketData =  $q->fetchOne(); 
 		
 		$marketResult['id']= $marketData['id'];
-		$marketResult['uploaded_at'] = Meteb::text_to_matrix($marketData['uploaded_at']);// the array of month values from the database
-		$marketResult['inception_date'] = Meteb::text_to_matrix($marketData['inception_date']);// the array of month values from the database
+		$marketResult['uploaded_at'] = $marketData['uploaded_at'];// the array of month values from the database
+		$marketResult['inception_date'] = $marketData['inception_date'];// the array of month values from the database
 		$marketResult['month_array'] = Meteb::text_to_matrix($marketData['month_array']);// the array of month values from the database
 		$marketResult['discounting_array'] = Meteb::text_to_matrix($marketData['discounting_array']);// the array of discounting values from the database
 		$marketResult['dhfactors_matrix'] = Meteb::text_to_matrix($marketData['dhfactors_matrix']);// the matrix of dhfactors values from the database

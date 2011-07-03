@@ -35,18 +35,16 @@ class Quote extends BaseQuote
 	
 
 	/**
-	 * Function to calculate the age
+	 * This function calculates the age-last-birthday of a person
+	 * The age is calculated from $birthday to $to_date
 	 * 
 	 * @param void
 	 * 
 	 * @return integer Age calculate
 	 */	
   	public function calc_age($birthday, $to_date)
-	{
-	//This function calculates the age-last-birthday of a person
-	//The age is calculated from $birthday to $to_date
-
-    		list($year1,$month1,$day1) = explode("-",$birthday);
+	{	
+		list($year1,$month1,$day1) = explode("-",$birthday);
 		list($year2,$month2,$day2) = explode("-",$to_date);
     		$year_diff  = $year2 - $year1;
     		$month_diff = $month2 - $month1;
@@ -101,9 +99,10 @@ class Quote extends BaseQuote
 	//This function calculates the net (of tax) initial annuity amount from the gross initial annuity
 	//It gets the tax rates and rebates from the database (which must be updated every year)
 
-		$tax_rates = Doctrine::getTable('TaxRate')->get_tax_rates();
+		$tax_rates = Doctrine::getTable('Taxrate')->get_tax_rates();
 		$tax_rebates = Doctrine::getTable('TaxRebate')->get_tax_rebates();
 		$marketResult = Doctrine::getTable('Marketdata')->get_latest_marketdata();
+		$month_array = $marketResult['month_array'];
 
 		$tax_rates[0][3]=0;
 		for ($pos=1; $pos<=count($tax_rates)-1; $pos++)
@@ -139,8 +138,8 @@ class Quote extends BaseQuote
 	// The required data is read from the database
 
 		$marketResult = Doctrine::getTable('Marketdata')->get_latest_marketdata();
-		$exspenseResult = $this->get_expenses();
-		$mortalityResult = $this->get_mortality_rates();
+		$exspenseResult = Doctrine::getTable('Expensedata')->get_expenses();
+		$mortalityResult = Doctrine::getTable('MortalityRate')->get_mortality_rates();
 		$max_age = 112;
 
 	/** 
@@ -298,9 +297,16 @@ class Quote extends BaseQuote
 	 * 
 	 * @return array Quote Data
 	 */
-	public function generate($pp = 0, $annuity = 0.00)
+	public function generate($commission, $pp = 0, $annuity = 0.00)
 	{
 		$quote_out = array();
+		
+		$main_dob = $this->getMainDob();
+	    $spouse_dob = $this->getSpouseDob();
+		
+		$marketResult = Doctrine::getTable('Marketdata')->get_latest_marketdata();
+		$exspenseResult = Doctrine::getTable('Expensedata')->get_expenses();
+		
 		//This function calculates the outputs required to populate a GGWPA quote tender
 		//A quote is done for a 3.50%, 4.00% and 4.50% PRI
 		//A quote can either be calculated from an annuity amount to a purchase price or vice versa
@@ -310,7 +316,7 @@ class Quote extends BaseQuote
 		//The following is just a list of all of the outputs that get generated
 		$quote_out["data_date"]="";
 		$quote_out["quote_date"]=date("Y-m-d",time());
-		$quote_out["commencement_date"]="";
+		$quote_out["commencement_date"]= $marketResult['inception_date'];
 		$quote_out["first_payment_date"]="";
 		$quote_out["first_increase_date"]="";
 		$quote_out["pp1"]="";
@@ -357,8 +363,6 @@ class Quote extends BaseQuote
 			$quote_out["pp2"]= $this->calc_pp(0.040, $annuity);
 			$quote_out["pp3"]= $this->calc_pp(0.045, $annuity);
 		}
-		
-		$main_dob = $this->getMainDob();
 
 		//Here the net annuity amount - which allows for tax to be deducted - is calculated for each PRI
 		$quote_out["net_annuity_1"]= $this->calc_net_annuity($main_dob, $quote_out["gross_annuity_1"]);
@@ -377,7 +381,7 @@ class Quote extends BaseQuote
 
 		//Maximum commission is 1.50% - a percentage of this can be sacrificed
 		$quote_out["commission_sacrificed"]=(0.015-$commission)/0.015;
-
+		
 		//This calculates the next age that each of the main and spouse will obtain
 		$quote_out["main_age_next"]= $this->calc_age($main_dob,$quote_out["commencement_date"])+1;
 		$quote_out["spouse_age_next"]= $this->calc_age($spouse_dob,$quote_out["commencement_date"])+1;
@@ -386,13 +390,13 @@ class Quote extends BaseQuote
 		//The admin charge is simply the monthly renewal expense making allowance for tax
 		//The premium charge is the upfront amount that gets deducted from the pp amking allowance for tax
 		//The upfront amount includes the initial expense, the admin loading and internal commission
-		get_expenses($renewal_expenses, $expense_inflation, $initial_expenses, $loadings);
-		$quote_out["premium_charge_1"]=($initial_expenses+$loadings*$quote_out["pp1"])*1.14;
-		$quote_out["premium_charge_2"]=($initial_expenses+$loadings*$quote_out["pp2"])*1.14;
-		$quote_out["premium_charge_3"]=($initial_expenses+$loadings*$quote_out["pp3"])*1.14;
-		$quote_out["admin_charge_1"]=$renewal_expenses*1.14;
-		$quote_out["admin_charge_2"]=$renewal_expenses*1.14;
-		$quote_out["admin_charge_3"]=$renewal_expenses*1.14;
+		
+		$quote_out["premium_charge_1"]=($exspenseResult['initial_expenses']+$exspenseResult['loadings']*$quote_out["pp1"])*1.14;
+		$quote_out["premium_charge_2"]=($exspenseResult['initial_expenses']+$exspenseResult['loadings']*$quote_out["pp2"])*1.14;
+		$quote_out["premium_charge_3"]=($exspenseResult['initial_expenses']+$exspenseResult['loadings']*$quote_out["pp3"])*1.14;
+		$quote_out["admin_charge_1"]=$exspenseResult['renewal_expenses']*1.14;
+		$quote_out["admin_charge_2"]=$exspenseResult['renewal_expenses']*1.14;
+		$quote_out["admin_charge_3"]=$exspenseResult['renewal_expenses']*1.14;
 
 		//The expiry date is set to one week after the quote is generated
 		$quote_out["expiry_date"]=date("Y-m-d",strtotime(date("Y-m-d",time())." +1 week"));
@@ -400,68 +404,4 @@ class Quote extends BaseQuote
 		return $quote_out;
 	}
 	
-
-	/** 
-	 *	This function retreives the expense data from the database
-	 *	There should only be one line of data, so only the one row is read
-	 *
-	 * @param unknown_type $upload_date
-	 * @param unknown_type $inception_date
-	 * @param unknown_type $month_array
-	 * @param unknown_type $discounting_array
-	 * @param unknown_type $dhfactors_matrix
-	 * 
-	 * @return array Array of Exspenses Data
-	 */	
-	public function get_expenses()
-	{
-		$expenseData = array();
-		$exspenseResult = array();
-		
-		$q = Doctrine_Query::create()
-		   ->from('Expensedata e')
-		   ->where('e.id = ?', 1)
-		   ->limit(1);		
-		     
-		$expenseData = $q->fetchOne(); 		
-
-		$exspenseResult['id']= $expenseData['id'];
-		$exspenseResult['renewal_expenses'] = $expenseData['renewal_expenses'];
-		$exspenseResult['expense_inflation'] = $expenseData['expense_inflation'];
-		$exspenseResult['initial_expenses'] = $expenseData['initial_expenses'];
-		$exspenseResult['loadings'] = $expenseData['loadings'];
-		
-	
-		return $exspenseResult;
-	}
-
-	/** 
-	 *	This function retrieves the mortality rates from the database
-	 *	The mortality rates are in the form of a table of male and female rates sorted by age
-	 *	The PA90-1 tables were used
-	 *
-	 * @param unknown_type $upload_date
-	 * @param unknown_type $inception_date
-	 * @param unknown_type $month_array
-	 * @param unknown_type $discounting_array
-	 * @param unknown_type $dhfactors_matrix
-	 * 
-	 * @return array Array of Mortality Rates for calculation
-	 */	
-	public function get_mortality_rates()
-	{
-		$mortalityResult = array();
-		
-		$q = Doctrine_Query::create()
-		   ->from('MortalityRate mr');		
-		     
-		$mortalityData = $q->fetchArray(); 
-		
-		foreach($mortalityData as $key => $value){
-			$mortalityResult[$key]['1'] = $value['mortality_male'];
-			$mortalityResult[$key]['2'] = $value['mortality_female'];
-		}
-		
-		return $mortalityResult;
-	}
 }

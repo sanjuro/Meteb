@@ -1,0 +1,19 @@
+.quotedetails_label{
+	color: #333333;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 20px;
+	margin-left: 20px;
+	text-align: right;
+	width: 100px;
+}
+.quotedetails_data {
+	color: #666666;
+	font-size: 14px;
+	margin-left: 20px;	
+	float: right;
+	width: 400px;
+}
+.red {
+	color: #D14836;
+}	
