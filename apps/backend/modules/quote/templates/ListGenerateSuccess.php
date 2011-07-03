@@ -81,9 +81,39 @@
 				<span class="quotedetails_label"><?php echo __('Gross Annuity 3')?></span>
 				<span class="quotedetails_data"><?php echo $quote_calculations['gross_annuity_3']?></span>
 				<br>
+				<span class="quotedetails_label"><?php echo __('Tax 1')?></span>
+				<span class="quotedetails_data"><?php echo $quote_calculations['tax1']?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Tax 2')?></span>
+				<span class="quotedetails_data"><?php echo $quote_calculations['tax2']?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Tax 3')?></span>
+				<span class="quotedetails_data"><?php echo $quote_calculations['tax3']?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Gross Annuity 3')?></span>
+				<span class="quotedetails_data"><?php echo $quote_calculations['gross_annuity_3']?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Net Annuity 1')?></span>
+				<span class="quotedetails_data"><?php echo $quote_calculations['net_annuity_1']?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Net Annuity 2')?></span>
+				<span class="quotedetails_data"><?php echo $quote_calculations['net_annuity_2']?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Net Annuity 3')?></span>
+				<span class="quotedetails_data"><?php echo $quote_calculations['net_annuity_3']?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Commision Sacrificed')?></span>
+				<span class="quotedetails_data"><?php echo $quote_calculations['commission_sacrificed']?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Main Age Next')?></span>
+				<span class="quotedetails_data"><?php echo $quote_calculations['main_age_next']?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Spouse Age Next')?></span>
+				<span class="quotedetails_data"><?php echo $quote_calculations['spouse_age_next']?></span>
+				<br>
 				
 				<p>
-					<a href=""><img width="91" height="25" alt="PDF" src="/images/backend/pdf_quote.png"></a>
+					<a href="<?php echo url_for('quote_pdf', $quote)?>"><img width="91" height="25" alt="PDF" src="/images/backend/pdf_quote.png"></a>
 				    <a href=""><img width="91" height="25" alt="Email" src="/images/backend/email_icon.png"></a>
 				</p>
 				

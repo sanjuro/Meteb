@@ -40,6 +40,13 @@ quote_new_user:
   param:   { module: quote, action: new, sf_format: html }
   requirements: { sf_method: get }
 
+quote_pdf:
+  url:     /Quote-PDF/:id
+  class:   sfDoctrineRoute
+  options: { model: Quote, type: object }
+  param:   { module: quote, action: pdf, sf_format: html }
+  requirements: { sf_method: get }
+
 #advisor
 advisor:
   class: sfDoctrineRouteCollection

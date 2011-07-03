@@ -3,5 +3,7 @@
 
 # default values
 all:
+  quote_dir:                       /uploads
+
   datagrid:
     jsframwork: jquery # prototype or jquery 

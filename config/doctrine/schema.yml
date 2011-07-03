@@ -112,7 +112,7 @@ Quote:
   relations:
     Client:                  { class: sfGuardUser, onDelete: CASCADE, local: client_id, foreign: id }
     Parent:                  { class: sfGuardUser, onDelete: CASCADE, local: created_by, foreign: id }
-    GEnder:                  { class: Gender, local: main_sex, foreign: id } 
+    Gender:                  { class: Gender, local: main_sex, foreign: id } 
     SpouseGender:            { class: Gender, local: spouse_sex, foreign: id }
       
 System:

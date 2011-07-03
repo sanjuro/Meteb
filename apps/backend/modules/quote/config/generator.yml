@@ -15,8 +15,11 @@ generator:
       actions: ~
       fields:  ~
       list:    
+        layout:  stacked
         fields:
         display: [client_id, created_by, created_at]
+        params:  |
+          Quote %%id%% for %%client%% created on %%created_at%%  by %%created_by%%
         title: Quote Management
         object_actions:
          _edit:       ~

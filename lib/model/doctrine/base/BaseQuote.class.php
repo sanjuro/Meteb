@@ -28,7 +28,7 @@
  * @property decimal $administrative_charge
  * @property sfGuardUser $Client
  * @property sfGuardUser $Parent
- * @property Gender $GEnder
+ * @property Gender $Gender
  * @property Gender $SpouseGender
  * 
  * @method integer     getId()                     Returns the current record's "id" value
@@ -54,7 +54,7 @@
  * @method decimal     getAdministrativeCharge()   Returns the current record's "administrative_charge" value
  * @method sfGuardUser getClient()                 Returns the current record's "Client" value
  * @method sfGuardUser getParent()                 Returns the current record's "Parent" value
- * @method Gender      getGEnder()                 Returns the current record's "GEnder" value
+ * @method Gender      getGender()                 Returns the current record's "Gender" value
  * @method Gender      getSpouseGender()           Returns the current record's "SpouseGender" value
  * @method Quote       setId()                     Sets the current record's "id" value
  * @method Quote       setClientId()               Sets the current record's "client_id" value
@@ -79,7 +79,7 @@
  * @method Quote       setAdministrativeCharge()   Sets the current record's "administrative_charge" value
  * @method Quote       setClient()                 Sets the current record's "Client" value
  * @method Quote       setParent()                 Sets the current record's "Parent" value
- * @method Quote       setGEnder()                 Sets the current record's "GEnder" value
+ * @method Quote       setGender()                 Sets the current record's "Gender" value
  * @method Quote       setSpouseGender()           Sets the current record's "SpouseGender" value
  * 
  * @package    meteb
@@ -194,7 +194,7 @@ abstract class BaseQuote extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('Gender as GEnder', array(
+        $this->hasOne('Gender', array(
              'local' => 'main_sex',
              'foreign' => 'id'));
 
