@@ -57,6 +57,8 @@ class BackendUserProfileForm extends BaseUserProfileForm
 	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false));
 	
 	$this->validatorSchema['spouseidnumber'] = new sfValidatorString(array('required' => false));
+	
+	$this->validatorSchema['spouse_gender_id'] = new sfValidatorString(array('required' => false));
 			
     // Only check if this is a new user being added
     if($this->isNew()){
