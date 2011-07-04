@@ -33,7 +33,7 @@ class metebPDF extends DOMPDF{
 		$pdfobjectNumber = $PdfObject->getId();				
 
 		$this->setTemplatePageName('Metropolitan Life Quotation');
-		$this->setTemplateTitle('Golden Growth With-Profit Annuity');
+		$this->setTemplateTitle('');
 		$this->setPDFNumber($pdfobjectNumber);
 		$this->setPDFDate( $PdfObject->getCreatedAt());
 		$this->setPDFContent($PDFContent);
@@ -102,7 +102,7 @@ class metebPDF extends DOMPDF{
 		</div>
 		<div id="main">
 			<div id="info">
-				
+				<h1>'.$TemplateTitle.'</h1>
 			</div>
 			<div id="pdfinfo">
 				<div style="float: right; text-align: right;">
