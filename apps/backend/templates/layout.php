@@ -15,12 +15,11 @@
   <body>
   
      <div id="wrapper">
+		
+        <div id="header">
 
-        <div id="navigationwrapper">
-
-			<div class="navigation">
 					<?php if ($sf_user->isAuthenticated()): ?>					
-					    <ul class="backendnavigation">
+					    <ul id="navigation">
 						  <li><?php echo link_to(__('Dashboard'), 'homepage') ?></li>
 						  
 						  <?php if ($sf_user->hasGroup('administrator') || $sf_user->hasGroup('advisor')): ?>
@@ -43,32 +42,17 @@
 					      <?php endif; ?>					
 					
 					    </ul>		
-					<?php endif; ?>						
-			</div>
-			
-			<div class="navigation right">
+					<?php endif; ?>	
+					
 					<?php if ($sf_user->isAuthenticated()): ?>					
-					    <ul class="backendnavigation">		
-						    <li class="loggedin">Logged in as <?php echo $sf_user->getGuardUser()->getUsername() ?> |</li>		    	
-						    <li style="display:inline;"><?php echo link_to(__('Logout'), 'sf_guard_signout', array(), array( "class" => "logout")) ?></li>			
-					    </ul>		
-					<?php endif; ?>						
-			</div>
-	
-			<div class="clearer"></div>
+							    <ul id="backendnavigation">		
+								    <li class="loggedin">Logged in as <?php echo $sf_user->getGuardUser()->getUsername() ?> |</li>		    	
+								    <li style="display:inline;"><?php echo link_to(__('Logout'), 'sf_guard_signout', array(), array( "class" => "logout")) ?></li>			
+							    </ul>		
+					<?php endif; ?>											
+
 		</div>
-		
-        <div class="shadowHeader">
-        		<div class="shadowMidLeft">
-        		   <div id="header">
-			        	<h1>
-						  <?php if (!include_slot('pagetitle')): ?>
-						    Momentum Annuity Quoting System
-						  <?php endif; ?>
-			        	</h1>
-		            </div>
-		      </div>
-        </div>
+
         	
         <div class="shadowWrap">
           <div class="shadowMidLeft">
@@ -123,7 +107,9 @@
         <div class="shadowBottomLeft">
 				<div class="shadowMidLeft"></div>
 		</div>   
-		     
+        <div id="footer">
+        	<p>&copy;   2011      All Rights Reserved - Momentum Life Limited is an authorised financial services and credit provider</p>
+        </div> 
 	 </div>
   </body>
 </html>

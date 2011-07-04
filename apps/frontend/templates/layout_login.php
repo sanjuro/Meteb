@@ -14,16 +14,16 @@
   </head>
   <body>
     <div id="wrapper">
-        <div id="header">
+        <div id="header">	
+        	<ul id="navigation">
+        		<li><?php echo link_to(__('Home'), url_for('@homepage')) ?></li>
+        		<li><?php echo link_to(__('Glossary'), url_for('@homepage')) ?></li>
+        	</ul>
         </div>
         <div id="content">
         	<div id="rightcolumn">
         	</div>
         	<div id="center">
-        	
-			    	<div id="topnaviation">
-						
-			    	</div>
 			    	
 					<?php if ($sf_user->hasFlash('notice')): ?>
 					          <div class="flash_notice">
@@ -44,6 +44,7 @@
         	</div>
         </div>        
         <div id="footer">
+        	<p>&copy;   2011      All Rights Reserved - Momentum Life Limited is an authorised financial services and credit provider</p>
         </div>
     </div>
   </body>

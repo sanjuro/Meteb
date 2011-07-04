@@ -1,9 +1,10 @@
 #dashboard {
-    padding: 22px 18px 25px 15px;
+    padding: 0px 18px 25px 15px;
 }
 
 #clientList, #quoteList {
     float: left;
+    padding-top: 20px;
     width: 32%;
 }
 #addClientButton, #addQuoteButton {
@@ -18,6 +19,7 @@
 #activityBG {
     background: url("/images/backend/2col.png") no-repeat scroll left bottom #FFFFFF;
     margin: 0 0 0 23px;
+    padding-top: 20px;
 }
 #activityContent {
     background: url("/images/backend/col-top.png") no-repeat scroll left top transparent;

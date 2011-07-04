@@ -1,8 +1,12 @@
 body {
-    background: url("../images/backend/page.gif") repeat-x scroll left top #E1E1E1;
+    background-color: #002E67;
+    background-image: url("/images/page_background.gif");
+    background-repeat: repeat-x;
     color: #333333;
-    font: 12px arial,sans-serif;
-    height: 100%;
+    font-size: 0.7em;
+	font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,sans-serif;
+ 	line-height: 16px;
+    min-height: 990px;
     margin: 0px;
     padding: 0px;
 
@@ -22,7 +26,12 @@ h1 {
 h2 {
 	text-align: left;
 }
-	
+a {
+	text-decoration: none;	
+}
+a:hover {
+	text-decoration: underline;
+	}
 #wrapper {
    margin: 0 auto 33px;
     max-width: 1800px;
@@ -31,17 +40,14 @@ h2 {
     width: 96%;
 }
 
-a:hover {
-	text-decoration: underline;
-	}
-
-#navigationwrapper {
-    max-width: 1800px;
-    min-width: 950px;
-    padding: 5px 10px 4px;
-    text-align: center;
-    width: 96%;
-	}
+#footer {
+    background-image: url("/images/page_footer_m.gif");
+    background-position: right center;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    font-size: 0.9em;
+    padding: 10px 0;	
+}
 
 .shadowHeader {
 	background-color: #000033;
@@ -64,11 +70,9 @@ a:hover {
 	
 
 #header {
-    font-size: 12px;
-
-    line-height: normal;
-    text-align: left;
-    width: 100%;
+    background-image: url("/images/headerLogo.jpg");
+    background-repeat: no-repeat;
+    height: 112px;
 	}
 	
 #header h1 {
@@ -79,9 +83,7 @@ a:hover {
 }
 
 .navigation {
-     color: #FFF;
-     font-weight: bold;
-     float: left;
+
 }
 
 .shadowWrap {
@@ -215,20 +217,26 @@ fieldset {
     padding: 5px;
     margin: 0px;
 }
-
-ul.backendnavigation li {
-	display: inline;
-	padding-right: 10px;
-	}
-	
-ul.backendnavigation li a{
-	color: #828282;	
-    background: url("https://img.createsend1.com/img/navigation/left_both.gif") no-repeat scroll left top transparent;
-    display: block;
+ul#navigation {
+	float: left;
+}
+ul#backendnavigation {
+	float:right;	
+}
+ul#navigation, ul#backendnavigation {
+    color: #FFFFFF;
+    font-size: 1.1em;
+    list-style-type: none !important;
+    margin-top: 65px;
+    padding-left: 300px;
+}
+ul#navigation li, ul#backendnavigation li {
     float: left;
-    font: bold 11px/16px arial,verdana,sans-serif;
-    padding: 0 3px 0 9px;
-    text-decoration: none;
+     list-style-type: none !important;
+    margin-right: 16px;
+}
+ul#navigation a, ul#backendnavigation a {
+	color: #FFF;	
 }
 ul.backendnavigation li a:hover {
 	font-weifht: bold;

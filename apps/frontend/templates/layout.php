@@ -16,15 +16,15 @@
   <body>
     <div id="wrapper">
         <div id="header">
+        	<ul id="navigation">
+        		<li><?php echo link_to('Home', url_for('@homepage')) ?></li>
+        		<li><?php echo link_to('Glossary', url_for('@homepage')) ?></li>
+        	</ul>
         </div>
         <div id="content">
         	<div id="rightcolumn">
         	</div>
         	<div id="center">
-        	
-			    	<div id="topnaviation">
-						
-			    	</div>
 			    				    	
 			       <div id="rightcolumn" class="column">
 			       		Welcome, <?php echo $sf_user->getUsername() ?>
@@ -55,6 +55,7 @@
         	</div>
         </div>        
         <div id="footer">
+        	<p>&copy;   2011      All Rights Reserved - Momentum Life Limited is an authorised financial services and credit provider</p>
         </div>
     </div>
   </body>

@@ -66,7 +66,7 @@ class metebPDF extends DOMPDF{
 		<title>'.$TemplatePageName.'</title>
 
 		<style type="text/css">
-			body { color: #555555; font-family: Arial, Helvetica, sans-serif;  margin: 0; padding: 0;sans-serif; background-color: #f2f3f5; background-image: url(\'images/pdf/bodyGradient.png\'); background-repeat: repeat-x; background-position: left top; }
+			body { color: #555555; font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,sans-serif;  margin: 0; padding: 0;sans-serif; background-color: #002E67; background-image: url(\'/images/pdf/page_background.gif\'); background-repeat: repeat-x; }
 			table { font-size: 12px; }
 			h1 { color: #000033; font-size: 30px; }
 			h2 { margin: 0 0 0 0; color: #000000; font-size: 20px; font-weight: normal; }

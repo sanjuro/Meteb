@@ -1,3 +1,8 @@
+#formWrapper {
+    margin: 0 auto;
+    padding-top:20px;
+    width: 40%;	
+}
 #formCasing {
     background: url("/images/backend/login-case.png") no-repeat scroll left top transparent;
     padding: 20px 35px 1px 27px;

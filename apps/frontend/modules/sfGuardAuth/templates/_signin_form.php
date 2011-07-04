@@ -1,9 +1,10 @@
 <?php use_helper('I18N') ?>
 
 <form class="login" action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
-  <span class="sideNav">Sign in to Meteb</span>
+
   <?php echo $form['_csrf_token'] ?>
   <fieldset class="formContainer">  
+  	<legend><?php echo __('Log in') ?></legend>
 	 <?php echo $form['username']->renderLabel() ?></th>
 	 <br>
 	 <?php echo $form['username'] ?>	
