@@ -71,7 +71,7 @@ class metebPDF extends DOMPDF{
 			h1 { color: #000033; font-size: 30px; }
 			h2 { margin: 0 0 0 0; color: #000000; font-size: 20px; font-weight: normal; }
 			h3, h4, h5 { margin: 0 0 7px 0; }
-			h3 { font-size: 18px; }
+			h3 { color: #E31818; font-size: 18px; }
 			h4 { font-size: 14px; }
 			h5 { font-size: 12px; margin: 0 0 10px 0; color: #006699; }
 			p { font-size:12px; margin: 0 0 12px 0; line-height: 15px; }
@@ -81,10 +81,10 @@ class metebPDF extends DOMPDF{
 			.bulletLarge { padding: 0 0 0 3px; }
 			.bulletLarge li { list-style-type: none; background-image: url(\'images/pdf/bulletLarge.png\'); background-repeat: no-repeat; background-position: left 5px; padding: 0 0 4px 15px; }
 			.bulletLarge li a { color: #3c3c3c; }
-			#headerwrapper { background-color: #f2f3f5; background-image: url(\'images/pdf/headerGradient.png\'); background-repeat: repeat-x; background-position: left top; height: 58px;   }
-			#header {  margin: 0 auto; width: 800px; padding: 0 30px;}
+			#headerwrapper { background-image: url(\'images/pdf/headerGradient.png\'); background-repeat: repeat-x; background-position: left top; height: 112px;   }
+			#header {  margin: 0 auto; width: 800px; padding: 0 30px 10px 30px; height: 125px;}
 			#main{ background-color: #FFF;border: 1px solid #DDE2E6; margin: 20px auto; width: 750px;}
-			#info {  background-image: url(\'images/pdf/'.$image.'.jpg\'); background-repeat: no-repeat; background-position: right top; height: 30px; padding: 20px;}
+			#info {   height: 30px; padding: 20px;}
 			#pdfinfo{ padding: 20px; }
 			#pdfnumber { float: left; color: #000000; font-size: 20px;}
 			#pdfdate { width: 200px; text-align: right;}
@@ -97,20 +97,17 @@ class metebPDF extends DOMPDF{
 
 		<div id="headerwrapper">
 			<div id="header">
-				<a href="http://www.ebannuities.co.za"><img src="images/pdf/logo.png" alt="Metropolitan Employee Benefits" border="0"></a>
+				<a href="http://www.ebannuities.co.za"><img src="images/pdf/quotebackground.jpg" alt="Metropolitan Employee Benefits" border="0"></a>
 			</div>
 		</div>
 		<div id="main">
-			<div id="info">
-				<h1>'.$TemplateTitle.'</h1>
-			</div>
 			<div id="pdfinfo">
 				<div style="float: right; text-align: right;">
 					<font id="date" >'.$PDFDate.'</font>
 					<br>
 					<font id="vatno" class="lighter">VAT Reg. No. '.sfConfig::get('app_vat_number').'</font>
 				</div>
-				<div id="pdfnumber" style="float: right;">'.(!empty($PDFNumber)?'No. '.$PDFNumber:'').'</div>
+				<div id="pdfnumber" style="float: right;">Gross Annuity Quote '.(!empty($PDFNumber)?'No. '.$PDFNumber:'').'</div>
 			</div>';
 					
 			$html .='<div id="content">
