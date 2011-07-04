@@ -102,7 +102,7 @@ class metebPDF extends DOMPDF{
 		</div>
 		<div id="main">
 			<div id="info">
-				<h1>'.$TemplateTitle.'</h1>
+				
 			</div>
 			<div id="pdfinfo">
 				<div style="float: right; text-align: right;">
