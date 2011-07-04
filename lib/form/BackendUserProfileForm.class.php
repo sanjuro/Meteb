@@ -50,6 +50,14 @@ class BackendUserProfileForm extends BaseUserProfileForm
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
 			array("change_month" => true, "change_year" => true));
 			
+	$this->validatorSchema['spouse_name'] = new sfValidatorString(array('required' => false));
+	
+	$this->validatorSchema['spouse_surname'] = new sfValidatorString(array('required' => false));
+	
+	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false));
+	
+	$this->validatorSchema['spouseidnumber'] = new sfValidatorString(array('required' => false));
+			
     // Only check if this is a new user being added
     if($this->isNew()){
 	    $this->validatorSchema->setPostValidator(
