@@ -34,6 +34,15 @@ class BackendQuoteForm extends BaseQuoteForm
       $this['created_at'], $this['updated_at']
     );
     
+	$this->widgetSchema['gp'] = new sfWidgetFormChoice(
+	     	array( 'label' => 'Guanrateed Period', 'choices' => array( 0 => '0 months', 1 => '60 months', 2 => '120 months')));
+
+	$this->widgetSchema['pri'] = new sfWidgetFormInputText(
+	     	array( 'label' => 'Post Retirement Interest rate'));
+	     	
+	$this->widgetSchema['spouse_reversion'] = new sfWidgetFormChoice(
+	     	array( 'label' => 'Second Life', 'choices' => array( 0 => '0%', 1 => '25%', 2 => '50%', 3 => '75%', 4 => '100%')));
+    
 	$this->widgetSchema['second_life'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Second Life', 'choices' => array( 0 => 'no', 1 => 'yes')));
     

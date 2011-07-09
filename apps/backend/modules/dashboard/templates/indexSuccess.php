@@ -130,9 +130,7 @@
 					<tbody><tr class="noHighlight">
 						<th class="headerDarkGreyLeft"><span>Recent updates across your account</span></th>
 						<th class="headerDarkGreyRight">
-                        	<span>
-                                <a href="/rss/accountActivity.aspx?ID=2A48713CA1F75E15&amp;d=r">Subscribe</a>
-                                <a href="/rss/accountActivity.aspx?ID=2A48713CA1F75E15&amp;d=r"><img width="11" height="11" class="supporting" alt="RSS feed" src="https://img.createsend1.com/img/icons/activity-rss.gif"></a> 
+                        	<span>                               
                                 <div class="clearit"></div>
                             </span>
                         </th>

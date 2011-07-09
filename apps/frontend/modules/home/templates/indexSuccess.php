@@ -33,7 +33,7 @@ Nam ipsum ligula, ullamcorper eu, fringilla at, lacinia ut, augue. Nullam nunc.
 
 <br>
 
-<div class="dashboard_button"><?php echo link_to(image_tag('view_fa_button'), url_for('advisor_index'));?></div>
+<div class="dashboard_button"><?php echo link_to(image_tag('view_fa_button'), url_for('@advisor'));?></div>
 
 <div class="dashboard_button"><?php echo link_to(image_tag('view_q_button'), url_for('advisor_new'));?></div>
 
