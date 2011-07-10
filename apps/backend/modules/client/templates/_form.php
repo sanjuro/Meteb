@@ -23,6 +23,7 @@
 			
 			<div  class="content" >
 				<?php echo $form['userProfiles'][0]['idnumber'] ?>
+				<img src="/images/backend/help_24.png" title="<?php echo __('This wil also be the default username of the client') ?>" class="tip">
 			</div>			
 			<?php echo $form['userProfiles'][0]['idnumber']->renderError() ?>
 		 </div>
@@ -178,7 +179,12 @@
 		 </div>
       </fieldset>
       
-      <fieldset id="sf_fieldset_user">  
+      <h3>
+      	Does the client have a spouse?
+      	<a href="" onclick="$('#sf_fieldset_spouse').css('display','block');return false;">Yes</button>
+      </h3>
+      
+      <fieldset id="sf_fieldset_spouse" style="display:none;">  
       	<h2>Spouse Details</h2>
 		 <div class="sf_admin_form_row">			
 			<div>
@@ -230,10 +236,20 @@
 		 </div>
  	  </fieldset>
  	  
+<br><br>
+ 	  
 <ul class="sf_admin_actions">
   <li class="sf_admin_action_delete"><?php echo link_to( 'Delete', 'client/delete?id='.$form->getObject()->getId(),  array('method' => 'delete', 'confirm' => 'Are you sure?')) ?></li>  
   <li class="sf_admin_action_list"><a href="<?php echo url_for('@client') ?>">Back to list</a></li>  
   <li class="sf_admin_action_save"><input type="submit" value="Save"></li>  </ul>
 </form>
+<script>
+$(document).ready(function() {
 
+	$("#<?php echo $form['userProfiles'][0]['idnumber']->renderId() ?>").blur(function(){
+		$('#<?php echo $form['username']->renderId() ?>').val( $('#<?php echo $form['userProfiles'][0]['idnumber']->renderId() ?>').val());
+	});
+	
+});
+</script>
 		

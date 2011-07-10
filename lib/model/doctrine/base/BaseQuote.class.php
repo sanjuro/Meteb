@@ -21,6 +21,7 @@
  * @property decimal $initial_net_annuity
  * @property decimal $commission
  * @property timestamp $commence_at
+ * @property timestamp $expires_at
  * @property timestamp $first_annuity_increase
  * @property integer $guaranteed_terms
  * @property decimal $premium_charge
@@ -47,6 +48,7 @@
  * @method decimal     getInitialNetAnnuity()      Returns the current record's "initial_net_annuity" value
  * @method decimal     getCommission()             Returns the current record's "commission" value
  * @method timestamp   getCommenceAt()             Returns the current record's "commence_at" value
+ * @method timestamp   getExpiresAt()              Returns the current record's "expires_at" value
  * @method timestamp   getFirstAnnuityIncrease()   Returns the current record's "first_annuity_increase" value
  * @method integer     getGuaranteedTerms()        Returns the current record's "guaranteed_terms" value
  * @method decimal     getPremiumCharge()          Returns the current record's "premium_charge" value
@@ -72,6 +74,7 @@
  * @method Quote       setInitialNetAnnuity()      Sets the current record's "initial_net_annuity" value
  * @method Quote       setCommission()             Sets the current record's "commission" value
  * @method Quote       setCommenceAt()             Sets the current record's "commence_at" value
+ * @method Quote       setExpiresAt()              Sets the current record's "expires_at" value
  * @method Quote       setFirstAnnuityIncrease()   Sets the current record's "first_annuity_increase" value
  * @method Quote       setGuaranteedTerms()        Sets the current record's "guaranteed_terms" value
  * @method Quote       setPremiumCharge()          Sets the current record's "premium_charge" value
@@ -154,6 +157,10 @@ abstract class BaseQuote extends sfDoctrineRecord
              'length' => 18,
              ));
         $this->hasColumn('commence_at', 'timestamp', null, array(
+             'type' => 'timestamp',
+             'notnull' => true,
+             ));
+        $this->hasColumn('expires_at', 'timestamp', null, array(
              'type' => 'timestamp',
              'notnull' => true,
              ));

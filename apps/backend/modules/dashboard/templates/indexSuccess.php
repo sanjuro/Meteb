@@ -6,7 +6,15 @@
 		
 		<div id="clientList">
 			
-			<h1><div id="addClientButton"><a href="<?php echo url_for('client_new') ?>"><img width="91" height="25" alt="Add a new Client" src="/images/backend/add_client_new.jpg"></a></div>Your Clients</h1>
+			<h1>
+				<div id="addClientButton">
+					<a href="<?php echo url_for('client_new') ?>">
+						<img width="91" height="25" alt="Add a new Client" src="/images/backend/add_client_new.jpg">
+					</a>
+				</div>
+				Your Clients
+				<img src="/images/backend/help_24.png" title="<?php echo __('These are all the clients you are administring') ?>" class="tip">
+			</h1>
 
             
 			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader" class="activityAction">
@@ -124,7 +132,10 @@
 					</div>
 					
 										
-					<h1>Latest Activity</h1>
+					<h1>
+						Latest Activity
+						<img src="/images/backend/help_24.png" title="<?php echo __('The Activity log displays all actions accross the system') ?>" class="tip">
+					</h1>
 					
 					<table width="100%" cellspacing="0" cellpadding="0">
 					<tbody><tr class="noHighlight">

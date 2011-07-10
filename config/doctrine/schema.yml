@@ -104,6 +104,7 @@ Quote:
     initial_net_annuity:     { type: decimal(15), scale: 2 }
     commission:              { type: decimal(18), scale: 6 }
     commence_at:             { type: timestamp, notnull: true } 
+    expires_at:              { type: timestamp, notnull: true } 
     first_annuity_increase:  { type: timestamp, notnull: true } 
     guaranteed_terms:        { type: integer }
     premium_charge:          { type: decimal(15), scale: 5 }

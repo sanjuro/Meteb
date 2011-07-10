@@ -12,9 +12,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [backend.css]
+  stylesheets:    [backend.css, unitip.css]
 
-  javascripts:    []
+  javascripts:    [ unitip.js ]
 
   has_layout:     true
   layout:         layout

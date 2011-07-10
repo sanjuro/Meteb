@@ -27,11 +27,18 @@ h2 {
 	text-align: left;
 }
 a {
+
 	text-decoration: none;	
+}
+#sf_admin_container a {
+	color: #1B57AA;	
 }
 a:hover {
 	text-decoration: underline;
 	}
+#sf_admin_container a:hover {
+	color: #1B57AA;	
+}
 #wrapper {
    margin: 0 auto 33px;
     max-width: 1800px;
@@ -164,8 +171,10 @@ div.shadowBottomLeft div.shadowMidLeft {
     background: url("../images/backend/success.png") no-repeat scroll 11px 12px #E1FFD1;
     border-bottom: 1px solid #C5F8AC;
     border-top: 1px solid #C5F8AC;
-    margin: 0 0 20px;
-    padding: 10px 10px 10px 35px;
+    padding: 10px 35px;
+    position: fixed;
+    top: 0px;
+    width: 90%;
 }
 
 .flash_error {
@@ -173,8 +182,10 @@ div.shadowBottomLeft div.shadowMidLeft {
     border-bottom: 1px solid #FF3333;
     border-top: 1px solid #FF3333;
     color: #FFF;
-    margin: 0 0 20px;
-    padding: 10px 10px 10px 35px;
+    padding: 10px 35px;
+    position: fixed;
+    top: 0px;
+    width: 90%;
 }
 
 #rightcolumn ul {
@@ -359,4 +370,10 @@ table.activity td {
 	color:#828282;
 	float:left;
 	font-weight:bold;	
-	}
+}
+#sf_admin_container label {
+    width: 200px;
+}
+.form_help {
+	display: none;	
+}

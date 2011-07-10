@@ -28,7 +28,7 @@ class BackendQuoteForm extends BaseQuoteForm
     unset(
       $this['id'], $this['created_by'],
       $this['initial_gross_annuity'], $this['initial_net_annuity'],
-      $this['commence_at'], $this['first_annuity_increase'],
+      $this['commence_at'], $this['expires_at'], $this['first_annuity_increase'],
       $this['guaranteed_terms'], $this['premium_charge'],
       $this['fund_charge'], $this['administrative_charge'],
       $this['created_at'], $this['updated_at']
@@ -41,7 +41,7 @@ class BackendQuoteForm extends BaseQuoteForm
 	     	array( 'label' => 'Post Retirement Interest rate'));
 	     	
 	$this->widgetSchema['spouse_reversion'] = new sfWidgetFormChoice(
-	     	array( 'label' => 'Second Life', 'choices' => array( 0 => '0%', 1 => '25%', 2 => '50%', 3 => '75%', 4 => '100%')));
+	     	array( 'label' => 'Spouse Revesion', 'choices' => array( 0 => '0%', 1 => '25%', 2 => '50%', 3 => '75%', 4 => '100%')));
     
 	$this->widgetSchema['second_life'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Second Life', 'choices' => array( 0 => 'no', 1 => 'yes')));
