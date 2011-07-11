@@ -92,10 +92,10 @@ Quote:
     created_by:              { type: integer }
     second_life:             { type: integer }
     main_sex:                { type: integer }
-    main_dob:                { type: timestamp, notnull: true }
+    main_dob:                { type: date, notnull: true }
     second_life:             { type: integer }
     spouse_sex:              { type: integer }
-    spouse_dob:              { type: timestamp, notnull: true }
+    spouse_dob:              { type: date, notnull: true }
     gp:                      { type: integer }
     spouse_reversion:        { type: decimal(10), scale: 5 }
     pri:                     { type: decimal(10), scale: 3 }
@@ -147,7 +147,7 @@ UserProfile:
       primary: false
       notnull: true
       autoincrement: false
-    dob:         { type: timestamp, notnull: true }
+    dob:         { type: date, notnull: true }
     telephone:
       type: string(20)
       fixed: false
@@ -204,7 +204,7 @@ UserProfile:
       primary: false
       notnull: true
       autoincrement: false
-    spouse_dob:         { type: timestamp, notnull: true }
+    spouse_dob:        { type: date }
     spouse_gender_id:  { type: integer }
     spouseidnumber:
       type: string(20)

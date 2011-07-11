@@ -47,10 +47,10 @@ class BackendQuoteForm extends BaseQuoteForm
 	     	array( 'label' => 'Second Life', 'choices' => array( 0 => 'no', 1 => 'yes')));
     
 	$this->widgetSchema['main_dob'] = new sfWidgetFormDateJQueryUI(
-			array("change_month" => true, "change_year" => true));
+			array("label" => "Date of Birth", "change_month" => true, "change_year" => true));
 	
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
-			array("change_month" => true, "change_year" => true));
+			array("label" => "Spouse Date of Birth", "change_month" => true, "change_year" => true));
     
   	if($this->getOption("userForQuote")){
 		$this->setDefaults(array(

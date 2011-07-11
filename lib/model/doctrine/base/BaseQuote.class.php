@@ -10,9 +10,9 @@
  * @property integer $created_by
  * @property integer $second_life
  * @property integer $main_sex
- * @property timestamp $main_dob
+ * @property date $main_dob
  * @property integer $spouse_sex
- * @property timestamp $spouse_dob
+ * @property date $spouse_dob
  * @property integer $gp
  * @property decimal $spouse_reversion
  * @property decimal $pri
@@ -37,9 +37,9 @@
  * @method integer     getCreatedBy()              Returns the current record's "created_by" value
  * @method integer     getSecondLife()             Returns the current record's "second_life" value
  * @method integer     getMainSex()                Returns the current record's "main_sex" value
- * @method timestamp   getMainDob()                Returns the current record's "main_dob" value
+ * @method date        getMainDob()                Returns the current record's "main_dob" value
  * @method integer     getSpouseSex()              Returns the current record's "spouse_sex" value
- * @method timestamp   getSpouseDob()              Returns the current record's "spouse_dob" value
+ * @method date        getSpouseDob()              Returns the current record's "spouse_dob" value
  * @method integer     getGp()                     Returns the current record's "gp" value
  * @method decimal     getSpouseReversion()        Returns the current record's "spouse_reversion" value
  * @method decimal     getPri()                    Returns the current record's "pri" value
@@ -112,15 +112,15 @@ abstract class BaseQuote extends sfDoctrineRecord
         $this->hasColumn('main_sex', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('main_dob', 'timestamp', null, array(
-             'type' => 'timestamp',
+        $this->hasColumn('main_dob', 'date', null, array(
+             'type' => 'date',
              'notnull' => true,
              ));
         $this->hasColumn('spouse_sex', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('spouse_dob', 'timestamp', null, array(
-             'type' => 'timestamp',
+        $this->hasColumn('spouse_dob', 'date', null, array(
+             'type' => 'date',
              'notnull' => true,
              ));
         $this->hasColumn('gp', 'integer', null, array(

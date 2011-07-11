@@ -14,7 +14,7 @@
  * @property string $fsp_license_number
  * @property string $name
  * @property string $surname
- * @property timestamp $dob
+ * @property date $dob
  * @property string $telephone
  * @property string $mobile
  * @property string $idnumber
@@ -23,7 +23,7 @@
  * @property string $streetaddress
  * @property string $spouse_name
  * @property string $spouse_surname
- * @property timestamp $spouse_dob
+ * @property date $spouse_dob
  * @property string $spouseidnumber
  * @property string $company
  * @property sfGuardUser $sfGuardUser
@@ -41,7 +41,7 @@
  * @method string       getFspLicenseNumber()   Returns the current record's "fsp_license_number" value
  * @method string       getName()               Returns the current record's "name" value
  * @method string       getSurname()            Returns the current record's "surname" value
- * @method timestamp    getDob()                Returns the current record's "dob" value
+ * @method date         getDob()                Returns the current record's "dob" value
  * @method string       getTelephone()          Returns the current record's "telephone" value
  * @method string       getMobile()             Returns the current record's "mobile" value
  * @method string       getIdnumber()           Returns the current record's "idnumber" value
@@ -50,7 +50,7 @@
  * @method string       getStreetaddress()      Returns the current record's "streetaddress" value
  * @method string       getSpouseName()         Returns the current record's "spouse_name" value
  * @method string       getSpouseSurname()      Returns the current record's "spouse_surname" value
- * @method timestamp    getSpouseDob()          Returns the current record's "spouse_dob" value
+ * @method date         getSpouseDob()          Returns the current record's "spouse_dob" value
  * @method string       getSpouseidnumber()     Returns the current record's "spouseidnumber" value
  * @method string       getCompany()            Returns the current record's "company" value
  * @method sfGuardUser  getSfGuardUser()        Returns the current record's "sfGuardUser" value
@@ -137,8 +137,8 @@ abstract class BaseUserProfile extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 30,
              ));
-        $this->hasColumn('dob', 'timestamp', null, array(
-             'type' => 'timestamp',
+        $this->hasColumn('dob', 'date', null, array(
+             'type' => 'date',
              'notnull' => true,
              ));
         $this->hasColumn('telephone', 'string', 20, array(
@@ -213,9 +213,8 @@ abstract class BaseUserProfile extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 30,
              ));
-        $this->hasColumn('spouse_dob', 'timestamp', null, array(
-             'type' => 'timestamp',
-             'notnull' => true,
+        $this->hasColumn('spouse_dob', 'date', null, array(
+             'type' => 'date',
              ));
         $this->hasColumn('spouseidnumber', 'string', 20, array(
              'type' => 'string',
