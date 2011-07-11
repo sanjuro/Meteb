@@ -17,8 +17,6 @@
 				</td>
 			</tr>
 		</table>
-		
-		<p><a href="<?php echo url_for('quote_new') ?>"><img width="91" height="25" alt="Add another quote" src="/images/backend/add_quote_new.gif"></a></p>
 		<p><a href="<?php echo url_for('client_new') ?>"><img width="91" height="25" alt="Add a new Client" src="/images/backend/add_client_new.jpg"></a></p>
 	</div>
 	
