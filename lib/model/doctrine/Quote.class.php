@@ -186,7 +186,7 @@ class Quote extends BaseQuote
 			$column = 2;
 		elseif ($pri == 0.045)
 			$column = 3;
-
+			
 		$calcs[0][1]=(strtotime($marketResult['inception_date']) + 2209168800)/86400-365.25/12;
 		$calcs[0][2]=min(floor(($marketResult['month_array'][1][$column]-$main_dob)/365.25+$age_rating),$max_age);
 		$calcs[0][8]=1;

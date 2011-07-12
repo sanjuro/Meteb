@@ -155,7 +155,7 @@
 		
 		<table>
 		<tr>
-			<td style="width: 300px;">Dicount Rate:</td>
+			<td style="width: 200px;">Dicount Rate:</td>
 			<td style="text-align:center;">3.50%</td>
 			<td style="text-align:center;">4.00%</td>
 			<td style="text-align:center;">4.50%</td>
@@ -168,16 +168,199 @@
 		</tr>
 		<tr>
 			<td>Premium Charges</td>
-			<td style="text-align:center;width: 130px;"><?php echo $quote_calculations['premium_charge_1'] ?></td>
-			<td style="text-align:center;width: 130px;"><?php echo $quote_calculations['premium_charge_2'] ?></td>
-			<td style="text-align:center;width: 130px;"><?php echo $quote_calculations['premium_charge_3'] ?></td>
+			<td style="text-align:center;"><?php echo $quote_calculations['premium_charge_1'] ?></td>
+			<td style="text-align:center;"><?php echo $quote_calculations['premium_charge_2'] ?></td>
+			<td style="text-align:center;"><?php echo $quote_calculations['premium_charge_3'] ?></td>
 		</tr>
 		<tr>
 			<td>Administrative Charges</td>
-			<td style="text-align:center;width: 130px;"><?php echo $quote_calculations['admin_charge_1'] ?></td>
-			<td style="text-align:center;width: 130px;"><?php echo $quote_calculations['admin_charge_2'] ?></td>
-			<td style="text-align:center;width: 130px;"><?php echo $quote_calculations['admin_charge_3'] ?></td>
+			<td style="text-align:center;"><?php echo $quote_calculations['admin_charge_1'] ?></td>
+			<td style="text-align:center;"><?php echo $quote_calculations['admin_charge_2'] ?></td>
+			<td style="text-align:center;"><?php echo $quote_calculations['admin_charge_3'] ?></td>
 		</tr>
-
+		</table>
+</p>
+<p>
+	<table>
+		<tr>
+			<td style="width: 200px;">Fund charges</td>
+			<td colspan="3">A percentage of the value of the assets.</td>
+		</tr>
+		<tr>
+			<td>Premium charge</td>
+			<td colspan="3">This charge is deducted from the single premium.</td>
+		</tr>
+		<tr>
+			<td>Administrative charge</td>
+			<td colspan="3">Administrative charges are levied to cover costs incurred in issuing
+				and processing the policy and to cover ongoing head office overhead
+				costs. This is a monthly renewal charge, which is subject to future
+				increases at Metropolitan's discretion
+			</td>
+		</tr>
 	</table>
+	<br><br>
+	The charges set out above are not guaranteed and can be changed at the discretion of Metropolitan.
+</p>
+<br><br>
+<h3>Claims notification procedures</h3>
+<p>
+	Payment by Metropolitan in accordance with the Contract shall absolve Metropolitan from any further<br>
+	liability in connection with the pensions to which the payment relates.
+	<br><br>
+	Annuity payments in terms of this quotation will be paid to the Principal Annuitant while the Annuitant is<br>
+	alive. In the event that the Annuitant dies within the Guarantee Period, the annuity instalment payable for<br>
+	the remainder of the Guarantee Period will be paid in accordance with point 6 below.
+	<br><br>
+	Every annuitant must submit a certificate of existence to Metropolitan.
+	<br><br>
+	A spouse's annuity (where applicable) will become payable to the spouse on the death of the <br>
+	Principal Annuitant. This annuity will only be payable to the spouse married to the Principal Annuitant at
+	the Commencement Date of the Policy.
+	<br><br>
+	In addition, any spouse who becomes eligible for an annuity on the death of a Principal Annuitant must<br>
+	submit the following:
+	
+	<ul style="font-size:12px;padding-left:20px;list-style:none;">
+		<li>(1) Metropolitan's prescribed claim form, duly completed</li>
+		<li>(2) The marriage certificate of the Principal Annuitant or a certified copy thereof.</li>
+		<li>
+			(3) In the case of a common-law union, an Affidavit deposed to before a Commissioner of Oaths, 
+	        confirming that the Spouse was the common-law spouse of the Principal Annuitant prior to the
+	        annuitant's death
+		</li>
+		<li>(4) A certified copy of the Spouse's and Principal Annuitant's identity document.</li>
+		<li>(5) The death certificate of the Principal Annuitant or a certified copy thereof.</li>
+		<li>(6) All payments will be made in terms of Section 37C of the Pension Funds Act 24 of 1956</li>
+	</ul>
+	<br><br>
+</p>
+<h3>Complaints</h3>
+<p>
+	Should the applicant have a complaint of any nature, including a complaint in terms of the Policyholder<br>
+	Protection Rules and/or the intermediary, he/she should contact the following department:
+	<br><br>
+	<table>
+		<tr>
+			<td style="width: 300px;">Call Centre</td>
+			<td colspan="3">
+			Tel:  0860 724 724<br>
+			Fax: 021 940 6142<br>
+			e-mail: info@metropolitan.co.za			
+			</td>
+		</tr>
+	</table>
+	<br><br>
+	If the complaint cannot be resolved with Metropolitan, it may be referred to:<br>
+	The Ombudsman for Long-term Insurance, PO Box 45007, Claremont, 7735.
+	<br><br>
+</p>
+<h3>Cancellation</h3>
+<p>
+	This policy cannot be cancelled by virtue of its terms and nature in law, but allowance can be made for <br>
+	the annuity to be transferred to another insurer. The policy owner has the right to request for such a <br>
+	transfer within 30 days of the date of the acceptance letter provided that no benefit has been paid or<br>
+	claimed and the event insured against has not occurred. <br>
+	He/she will then be entitled to a full refund of all premiums paid less the cost of any cover and/or<br>
+	investment return enjoyed. After the 30-day period has lapsed then a penalty charge will be applied on<br>
+	transfer.
+	<br><br>
+	The request to transfer the annuity should be in writing and should be addressed to the head office of
+	Metropolitan.
+	<br><br>
+</p>
+	<br><br>
+	<br><br>
+<h3>Insurer's Address</h3>
+<p style="padding-bottom:30px;">
+	<table>
+		<tr>
+			<td style="width: 300px;">Metropolitan Employee Benefits <br>
+									  PO Box 2212<br>
+									  Bellville<br>
+								      7535
+			</td>
+			<td style="width: 300px;">Parc du Cap<br>
+									  Mispel Road<br>
+									  Bellville<br>
+								      7530
+			</td>
+		</tr>
+	</table>
+	<br><br>
+	<table>
+		<tr>
+			<td style="width: 300px;">Tel: 021 940 5911<br>
+									  Fax: 021 940 5730<br>
+									  e-mail: info@metropolitan.co.za
+			</td>
+			<td style="width: 300px;"><b>Individual Life Call Centre:</b><br>
+									  Tel: 0860 724 724<br>
+									  Fax: 021 940 6142
+			</td>
+		</tr>
+	</table>
+</p>
+<h3>History of annuity increases</h3>
+<p>
+	Still needs to come
+</p>
+<h3>Explanatory notes and conditions</h3>
+<p style="padding-left:10px;">
+	This is not an offer of life insurance, but merely an illustration of benefits based on certain information.
+	The application form and related documents together with the policy will form the basis of the contract.
+	The issue of a policy will be subject to Metropolitan's usual application requirements and acceptance
+	procedures. The quotation is valid only if it has been produced using the most recent version of the
+	program. The quotation will expire on 18 April 2011  unless the quotation is accepted, and the
+	purchase sum paid in full, by this date, and a signed application form is received by Metropolitan's
+	head office not later than 10 days after the expiry date.
+	<br><br>
+	Should this quotation be accepted, the contract and therefore the actual pension that will be received
+	initially by the pensioner, will be based on the actual amount received by Metropolitan.  This new pension
+	will be calculated on the same basis as used for this quotation (subject to the difference in amount
+	of this quotation and the amount actually received not being excessively big).  By accepting this quotation
+	the pensioner is also accepting the new quotation that will be done for this purpose.
+	<br><br>
+	The annuity is taxable under South African income tax legislation. Insurance companies are obliged to
+	deduct this tax at source. The rate at which tax is payable depends on total annual income and might
+	differ from the amount actually deducted by Metropolitan. Any such differences will be allowed for
+	by the South African Revenue Service in their year-end assessment.  If legislation should change in the
+	future, Metropolitan reserves the right to alter the percentage of tax deducted at source.
+	<br><br>
+	The currency used in this document is South African Rand.
+	<br><br>
+	This quotation contains privileged and confidential information. Any review, variation, dissemination
+	or other manipulation of the information herein is prohibited.  Metropolitan Holdings Ltd and its 
+	subsidiaries do not accept liability for, and disclaim, any loss, damage or expense however caused 
+	from the use of, or reliance on, such reviewed, varied, disseminated or manipulated information
+	<br><br>
+</p>
+<p style="padding-bottom:30px;">
+	I hereby accept this quotation and confirm that I understand the explanatory notes, conditions and <br>
+	assumptions set out in this document.
+</p>
+<p>
+	<table>
+		<tr>
+			<td style="width: 300px;"><span style="border-bottom:1px dashed #000;width:300px;"></span><br>
+									  Signature of applicant/authorised official<br>
+			</td>
+			<td style="width: 300px;"><span style="border-bottom:1px dashed #000;width:300px;"></span><br>
+									  Authorised capacity (if applicable)<br>
+			</td>
+		</tr>
+	</table>
+	<br><br>
+	<table>
+		<tr>
+			<td style="width: 300px;"><span style="border-bottom:1px dashed #000;width:300px;"></span><br>
+									  Signature of guardian (if applicable)<br>
+			</td>
+			<td style="width: 300px;"><span style="border-bottom:1px dashed #000;width:300px;"></span><br>
+									  Date<br>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<span style="font-size:10px;">Metropolitan Life Limited is an authorised Financial Services Provider</span>
 </p>

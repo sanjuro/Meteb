@@ -48,7 +48,7 @@ class BackendUserProfileForm extends BaseUserProfileForm
 			array("label" => "Date of Birth", "change_month" => true, "change_year" => true));
 	
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
-			array(("label" => "Spouse Date of Birth", "change_month" => true, "change_year" => true));
+			array("label" => "Spouse Date of Birth", "change_month" => true, "change_year" => true));
 			
 	$this->validatorSchema['spouse_name'] = new sfValidatorString(array('required' => false));
 	

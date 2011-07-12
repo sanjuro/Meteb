@@ -37,7 +37,7 @@ class quoteActions extends autoQuoteActions
         $quote = $this->getRoute()->getObject();
             
         $annuity = $quote->calc_annuity($quote->getPri(), $quote->getPurchasePrice());
-     
+     	
         $pp = $quote->calc_pp($quote->getPri(), $annuity);
         
         $this->quote = $quote;

@@ -37,8 +37,8 @@ class BackendQuoteForm extends BaseQuoteForm
 	$this->widgetSchema['gp'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Guanrateed Period', 'choices' => array( 0 => '0 months', 1 => '60 months', 2 => '120 months')));
 
-	$this->widgetSchema['pri'] = new sfWidgetFormInputText(
-	     	array( 'label' => 'Post Retirement Interest rate'));
+	$this->widgetSchema['pri'] = new sfWidgetFormChoice(
+	     	array( 'label' => 'Post Retirement Interest rate', 'choices' => array( '0.035' => '0.035', '0.040' => '0.040', '0.045' => '0.045')));
 	     	
 	$this->widgetSchema['spouse_reversion'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Spouse Revesion', 'choices' => array( 0 => '0%', 1 => '25%', 2 => '50%', 3 => '75%', 4 => '100%')));
@@ -51,6 +51,8 @@ class BackendQuoteForm extends BaseQuoteForm
 	
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
 			array("label" => "Spouse Date of Birth", "change_month" => true, "change_year" => true));
+			
+	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false, 'min_length' => 1));
     
   	if($this->getOption("userForQuote")){
 		$this->setDefaults(array(

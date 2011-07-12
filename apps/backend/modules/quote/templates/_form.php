@@ -9,7 +9,13 @@
     <?php if ($form->hasGlobalErrors()): ?>
       <?php echo $form->renderGlobalErrors() ?>
     <?php endif; ?>
-
+    
+   <?php  foreach ($form->getErrorSchema() as $sField => $sError) : ?>
+	    <div class="error">
+		<?php  echo $sField.': '.$sError.'<br />' ?>
+		</div>
+   <?php  endforeach; ?>
+    
 	<fieldset>
 		<legend>Client Info</legend>
 		 <div class="sf_admin_form_row">			
@@ -92,6 +98,17 @@
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Guaranteed Periond</b> the guarantee period of the quote') ?>" class="tip">
 			</div>			
 			<?php echo $form['gp']->renderError() ?>
+		 </div>
+		 <div class="sf_admin_form_row">			
+			<div>
+				<?php echo $form['pri']->renderLabel() ?>
+			</div>
+			
+			<div  class="content" >
+				<?php echo $form['pri'] ?>
+				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Post Retriement Interest Rate</b> the pri for the quote') ?>" class="tip">
+			</div>			
+			<?php echo $form['pri']->renderError() ?>
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>
