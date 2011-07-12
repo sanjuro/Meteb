@@ -181,7 +181,7 @@
       
       <h3>
       	Does the client have a spouse?
-      	<a href="" onclick="$('#sf_fieldset_spouse').css('display','block');return false;">Yes</button>
+      	 <button id="show_spouse_btn">Yes/No</button>      	
       </h3>
       
       <fieldset id="sf_fieldset_spouse" style="display:none;">  
@@ -234,6 +234,7 @@
 			</div>
 			<?php echo $form['userProfiles'][0]['spouse_dob']->renderError() ?>
 		 </div>
+		 
  	  </fieldset>
  	  
 <br><br>
@@ -248,6 +249,11 @@ $(document).ready(function() {
 
 	$("#<?php echo $form['userProfiles'][0]['idnumber']->renderId() ?>").blur(function(){
 		$('#<?php echo $form['username']->renderId() ?>').val( $('#<?php echo $form['userProfiles'][0]['idnumber']->renderId() ?>').val());
+	});
+
+	$('#show_spouse_btn').click(function() {
+		 $("#sf_fieldset_spouse").slideToggle("fast");
+		 return false;
 	});
 	
 });

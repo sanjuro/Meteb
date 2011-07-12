@@ -10,15 +10,16 @@
  */
 class BackendQuoteForm extends BaseQuoteForm
 {
+  public $currentUser;
+	
   public function configure()
   {
   	parent::configure();
   	
-  	if ($this->getOption("currentUser") instanceof sfUser && ($this->getOption("currentUser")))
-	{
-	    $currentUser = $this->getOption("currentUser");	    
+  	if ($this->getOption("currentUser") instanceof sfUser && ($this->getOption("currentUser"))){
+	    $this->currentUser = $this->getOption("currentUser");	    
 	}
-	
+
 	if($this->getOption("userForQuote")){
      $userForQuote = $this->getOption("userForQuote");	 
 
@@ -62,6 +63,24 @@ class BackendQuoteForm extends BaseQuoteForm
 			'spouse_sex'     => $userprofile[0]->getSpouseGenderId(),
 		));
 	}
+  }
+  
+  public function updateObject($values = null)
+  { 
+    if (is_null($values))
+    {
+      $values = $this->values;
+    }
+    	
+    $values['created_by'] =  $this->currentUser->getGuardUser()->getId();
 
+	$values = $this->processValues($values);
+	
+    $this->doUpdateObject($values);
+
+    // embedded forms
+    $this->updateObjectEmbeddedForms($values);
+
+    return $this->getObject();
   }
 }

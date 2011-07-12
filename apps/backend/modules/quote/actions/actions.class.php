@@ -21,12 +21,27 @@ class quoteActions extends autoQuoteActions
 	  	$userForQuote = $this->getRoute()->getObject();
 	  	 
 	  	if(!empty($userForQuote)){ 
-	  		$this->form = new BackendQuoteForm('', array('userForQuote' => $userForQuote));
+	  		$this->form = new BackendQuoteForm('', array('userForQuote' => $userForQuote,
+	  													 'currentUser' => $this->getUser()));
 	  	}else{
 	  		$this->form = $this->configuration->getForm();
 	  	}
 	    
 	    $this->quote = $this->form->getObject();
+	  }
+	  
+	 /**
+	 * This Action will handle creating a new quote for a client
+	 */
+	  public function executeCreate(sfWebRequest $request)
+	  {
+	    $this->form = new BackendQuoteForm('', array('userForQuote' => $userForQuote,
+	  													 'currentUser' => $this->getUser()));
+	    $this->quote = $this->form->getObject();
+	
+	    $this->processForm($request, $this->form);
+	
+	    $this->setTemplate('new');
 	  }
 	  
 	 /**
@@ -139,6 +154,45 @@ class quoteActions extends autoQuoteActions
 	    {
 	      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
 	    }
+	  }
+	  
+	  
+	/**
+	 * This will generate the query for returning quotes
+	 */
+	  protected function buildQuery()
+	  {;
+	    
+	    $tableMethod = $this->configuration->getTableMethod();
+	    if (null === $this->filters)
+	    {
+	      $this->filters = $this->configuration->getFilterForm($this->getFilters());
+	    }
+	
+	    $this->filters->setTableMethod($tableMethod);
+	
+	    $query = $this->filters->buildQuery($this->getFilters());
+	    
+	    if ($this->getUser()->hasGroup('administrator')){
+		    $query = Doctrine_Query::create()
+		    		 ->from('Quote q');
+	  	}else{
+		    $query = Doctrine_Query::create()
+		    		 ->from('Quote q')
+		    		 ->where('q.created_by = ?', $this->getUser()->getGuardUser()->getId());
+	  	}
+	  	
+	    if ($tableMethod)
+	    {
+	      $query = Doctrine_Core::getTable('sfGuardUser')->$tableMethod($query);
+	    }
+		
+	    $this->addSortQuery($query);
+	
+	    $event = $this->dispatcher->filter(new sfEvent($this, 'admin.build_query'), $query);
+	    $query = $event->getReturnValue();
+	
+	    return $query;
 	  }
 	
 }
