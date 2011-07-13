@@ -99,6 +99,7 @@ Quote:
     gp:                      { type: integer }
     spouse_reversion:        { type: decimal(10), scale: 5 }
     pri:                     { type: decimal(10), scale: 3 }
+    annuity:                 { type: decimal(15), scale: 2 }
     purchase_price:          { type: decimal(15), scale: 2 }
     initial_gross_annuity:   { type: decimal(15), scale: 2 }
     initial_net_annuity:     { type: decimal(15), scale: 2 }

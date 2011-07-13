@@ -1,6 +1,7 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 
+<?php use_helper('jQuery')?> 
 
 <div class="sf_admin_form">
   <?php echo form_tag_for($form, '@quote') ?>
@@ -15,6 +16,12 @@
 		<?php  echo $sField.': '.$sError.'<br />' ?>
 		</div>
    <?php  endforeach; ?>
+   
+      <h3>
+      	What Type of qoute do you want?
+      	 <button id="show_pp_btn">Purchase Price</button>      	
+      	 <button id="show_annuity_btn">Annuity</button>   
+      </h3>
     
 	<fieldset>
 		<legend>Client Info</legend>
@@ -121,12 +128,23 @@
 			</div>			
 			<?php echo $form['spouse_reversion']->renderError() ?>
 		 </div>
-		 <div class="sf_admin_form_row">			
+		 <div id="annuity_field" class="sf_admin_form_row" style="display:none;">			
+			<div>
+				<?php echo $form['annuity']->renderLabel() ?>
+			</div>
+			
+			<div class="content" >
+				<?php echo $form['annuity'] ?>
+				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Annuity</b> the annuity of the quote') ?>" class="tip">
+			</div>			
+			<?php echo $form['annuity']->renderError() ?>
+		 </div>
+		 <div id="purchase_price_field" class="sf_admin_form_row">			
 			<div>
 				<?php echo $form['purchase_price']->renderLabel() ?>
 			</div>
 			
-			<div  class="content" >
+			<div class="content" >
 				<?php echo $form['purchase_price'] ?>
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Purchase Price</b> the purchase price of the quote') ?>" class="tip">
 			</div>			
@@ -148,3 +166,22 @@
 	<?php include_partial('quote/form_actions', array('quote' => $quote, 'form' => $form, 'configuration' => $configuration, 'helper' => $helper)) ?>
   </form>
 </div>
+<script>
+$(document).ready(function() {
+
+	$('#show_pp_btn').click(function() {
+		 $("#purchase_price_field").css('display', 'block');
+		 $("#annuity_field").css('display', 'none');
+		 $("#<?php echo $form['annuity']->renderId() ?>").val('0.00');
+		 return false;
+	});
+
+	$('#show_annuity_btn').click(function() {
+		 $("#annuity_field").css('display', 'block');
+		 $("#purchase_price_field").css('display', 'none');
+		 $("#<?php echo $form['purchase_price']->renderId() ?>").val('0.00');
+		 return false;
+	});
+	
+});
+</script>

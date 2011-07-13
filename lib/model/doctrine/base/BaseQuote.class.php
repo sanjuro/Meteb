@@ -16,6 +16,7 @@
  * @property integer $gp
  * @property decimal $spouse_reversion
  * @property decimal $pri
+ * @property decimal $annuity
  * @property decimal $purchase_price
  * @property decimal $initial_gross_annuity
  * @property decimal $initial_net_annuity
@@ -43,6 +44,7 @@
  * @method integer     getGp()                     Returns the current record's "gp" value
  * @method decimal     getSpouseReversion()        Returns the current record's "spouse_reversion" value
  * @method decimal     getPri()                    Returns the current record's "pri" value
+ * @method decimal     getAnnuity()                Returns the current record's "annuity" value
  * @method decimal     getPurchasePrice()          Returns the current record's "purchase_price" value
  * @method decimal     getInitialGrossAnnuity()    Returns the current record's "initial_gross_annuity" value
  * @method decimal     getInitialNetAnnuity()      Returns the current record's "initial_net_annuity" value
@@ -69,6 +71,7 @@
  * @method Quote       setGp()                     Sets the current record's "gp" value
  * @method Quote       setSpouseReversion()        Sets the current record's "spouse_reversion" value
  * @method Quote       setPri()                    Sets the current record's "pri" value
+ * @method Quote       setAnnuity()                Sets the current record's "annuity" value
  * @method Quote       setPurchasePrice()          Sets the current record's "purchase_price" value
  * @method Quote       setInitialGrossAnnuity()    Sets the current record's "initial_gross_annuity" value
  * @method Quote       setInitialNetAnnuity()      Sets the current record's "initial_net_annuity" value
@@ -135,6 +138,11 @@ abstract class BaseQuote extends sfDoctrineRecord
              'type' => 'decimal',
              'scale' => 3,
              'length' => 10,
+             ));
+        $this->hasColumn('annuity', 'decimal', 15, array(
+             'type' => 'decimal',
+             'scale' => 2,
+             'length' => 15,
              ));
         $this->hasColumn('purchase_price', 'decimal', 15, array(
              'type' => 'decimal',
