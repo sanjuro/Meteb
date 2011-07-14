@@ -18,9 +18,8 @@
    <?php  endforeach; ?>
    
       <h3>
-      	What Type of qoute do you want?
-      	 <button id="show_pp_btn">Purchase Price</button>      	
-      	 <button id="show_annuity_btn">Annuity</button>   
+      	Which type of quote would you like?
+      	 <?php echo $form['quote_type_id'] ?> 
       </h3>
     
 	<fieldset>
@@ -169,17 +168,16 @@
 <script>
 $(document).ready(function() {
 
-	$('#show_pp_btn').click(function() {
-		 $("#purchase_price_field").css('display', 'block');
-		 $("#annuity_field").css('display', 'none');
-		 $("#<?php echo $form['annuity']->renderId() ?>").val('0.00');
-		 return false;
-	});
-
-	$('#show_annuity_btn').click(function() {
-		 $("#annuity_field").css('display', 'block');
-		 $("#purchase_price_field").css('display', 'none');
-		 $("#<?php echo $form['purchase_price']->renderId() ?>").val('0.00');
+	$('#<?php echo $form['quote_type_id']->renderId() ?>').change(function() {
+		if($('#<?php echo $form['quote_type_id']->renderId() ?>').val() == 2){
+			 $("#purchase_price_field").css('display', 'block');
+			 $("#annuity_field").css('display', 'none');
+			 $("#<?php echo $form['annuity']->renderId() ?>").val('0.00');
+		}else{
+			 $("#annuity_field").css('display', 'block');
+			 $("#purchase_price_field").css('display', 'none');
+			 $("#<?php echo $form['purchase_price']->renderId() ?>").val('0.00');
+		}
 		 return false;
 	});
 	

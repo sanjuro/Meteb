@@ -7,6 +7,7 @@
  * 
  * @property integer $id
  * @property integer $client_id
+ * @property integer $quote_type_id
  * @property integer $created_by
  * @property integer $second_life
  * @property integer $main_sex
@@ -29,12 +30,14 @@
  * @property decimal $fund_charge
  * @property decimal $administrative_charge
  * @property sfGuardUser $Client
+ * @property QuoteType $QuoteType
  * @property sfGuardUser $Parent
  * @property Gender $Gender
  * @property Gender $SpouseGender
  * 
  * @method integer     getId()                     Returns the current record's "id" value
  * @method integer     getClientId()               Returns the current record's "client_id" value
+ * @method integer     getQuoteTypeId()            Returns the current record's "quote_type_id" value
  * @method integer     getCreatedBy()              Returns the current record's "created_by" value
  * @method integer     getSecondLife()             Returns the current record's "second_life" value
  * @method integer     getMainSex()                Returns the current record's "main_sex" value
@@ -57,11 +60,13 @@
  * @method decimal     getFundCharge()             Returns the current record's "fund_charge" value
  * @method decimal     getAdministrativeCharge()   Returns the current record's "administrative_charge" value
  * @method sfGuardUser getClient()                 Returns the current record's "Client" value
+ * @method QuoteType   getQuoteType()              Returns the current record's "QuoteType" value
  * @method sfGuardUser getParent()                 Returns the current record's "Parent" value
  * @method Gender      getGender()                 Returns the current record's "Gender" value
  * @method Gender      getSpouseGender()           Returns the current record's "SpouseGender" value
  * @method Quote       setId()                     Sets the current record's "id" value
  * @method Quote       setClientId()               Sets the current record's "client_id" value
+ * @method Quote       setQuoteTypeId()            Sets the current record's "quote_type_id" value
  * @method Quote       setCreatedBy()              Sets the current record's "created_by" value
  * @method Quote       setSecondLife()             Sets the current record's "second_life" value
  * @method Quote       setMainSex()                Sets the current record's "main_sex" value
@@ -84,6 +89,7 @@
  * @method Quote       setFundCharge()             Sets the current record's "fund_charge" value
  * @method Quote       setAdministrativeCharge()   Sets the current record's "administrative_charge" value
  * @method Quote       setClient()                 Sets the current record's "Client" value
+ * @method Quote       setQuoteType()              Sets the current record's "QuoteType" value
  * @method Quote       setParent()                 Sets the current record's "Parent" value
  * @method Quote       setGender()                 Sets the current record's "Gender" value
  * @method Quote       setSpouseGender()           Sets the current record's "SpouseGender" value
@@ -104,6 +110,9 @@ abstract class BaseQuote extends sfDoctrineRecord
              'autoincrement' => true,
              ));
         $this->hasColumn('client_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('quote_type_id', 'integer', null, array(
              'type' => 'integer',
              ));
         $this->hasColumn('created_by', 'integer', null, array(
@@ -203,6 +212,10 @@ abstract class BaseQuote extends sfDoctrineRecord
              'local' => 'client_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasOne('QuoteType', array(
+             'local' => 'quote_type_id',
+             'foreign' => 'id'));
 
         $this->hasOne('sfGuardUser as Parent', array(
              'local' => 'created_by',

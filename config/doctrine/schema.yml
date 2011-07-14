@@ -89,6 +89,7 @@ Quote:
   columns:
     id:                      { type: integer, primary: true, autoincrement: true }
     client_id:               { type: integer }
+    quote_type_id:           { type: integer }
     created_by:              { type: integer }
     second_life:             { type: integer }
     main_sex:                { type: integer }
@@ -113,9 +114,15 @@ Quote:
     administrative_charge:   { type: decimal(15), scale: 5 }
   relations:
     Client:                  { class: sfGuardUser, onDelete: CASCADE, local: client_id, foreign: id }
+    QuoteType:               { class: QuoteType, local: quote_type_id, foreign: id }
     Parent:                  { class: sfGuardUser, onDelete: CASCADE, local: created_by, foreign: id }
     Gender:                  { class: Gender, local: main_sex, foreign: id } 
     SpouseGender:            { class: Gender, local: spouse_sex, foreign: id }
+
+QuoteType:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: string(255), notnull: true }
       
 System:
   columns:

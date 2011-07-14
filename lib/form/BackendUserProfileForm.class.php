@@ -1,11 +1,12 @@
 <?php
 /**
- * BackendUserProfileForm form.
+ * BackendUserProfileForm form, this extends the base user profile form
+ * also changes some labels and adds the Jquery date picker
  *
  * @package    meteb
  * @subpackage form
  * @author     Shadley Wentzel
- * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ * @version    GIT: 
  */
 class BackendUserProfileForm extends BaseUserProfileForm
 {
@@ -41,9 +42,12 @@ class BackendUserProfileForm extends BaseUserProfileForm
     	}else{
     		$this->setDefault('parent_user_id', $this->object->getParentUserId());
     	}
+    } 
+    
+    $this->widgetSchema['postaladdress'] = new sfWidgetFormInputText( array( 'label' => 'Postal Address'));
+    
+    $this->widgetSchema['streetaddress'] = new sfWidgetFormInputText( array( 'label' => 'Street Address'));
     	
-    }
-     	
 	$this->widgetSchema['dob'] = new sfWidgetFormDateJQueryUI(
 			array("label" => "Date of Birth", "change_month" => true, "change_year" => true));
 	

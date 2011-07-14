@@ -14,6 +14,7 @@ abstract class BaseQuoteFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'client_id'              => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Client'), 'add_empty' => true)),
+      'quote_type_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('QuoteType'), 'add_empty' => true)),
       'created_by'             => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Parent'), 'add_empty' => true)),
       'second_life'            => new sfWidgetFormFilterInput(),
       'main_sex'               => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Gender'), 'add_empty' => true)),
@@ -41,6 +42,7 @@ abstract class BaseQuoteFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'client_id'              => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Client'), 'column' => 'id')),
+      'quote_type_id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('QuoteType'), 'column' => 'id')),
       'created_by'             => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Parent'), 'column' => 'id')),
       'second_life'            => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'main_sex'               => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Gender'), 'column' => 'id')),
@@ -85,6 +87,7 @@ abstract class BaseQuoteFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'                     => 'Number',
       'client_id'              => 'ForeignKey',
+      'quote_type_id'          => 'ForeignKey',
       'created_by'             => 'ForeignKey',
       'second_life'            => 'Number',
       'main_sex'               => 'ForeignKey',

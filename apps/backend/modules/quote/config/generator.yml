@@ -19,14 +19,14 @@ generator:
         fields:
         display: [client_id, created_by, created_at]
         params:  |
-          Quote %%id%% for %%client%% created on %%created_at%%  by %%parent%%
+          Quote %%id%%, type <b>%%QuoteType%%</b> for <b>%%client%%</b> created on %%created_at%%  by <b>%%parent%%</b>
         title: Quote Management
         object_actions:
          _edit:       ~
          _delete:     ~
          generate:    
       filter:  
-        display: [client_id,  created_at]
+        display: [client_id,  quote_type_id, created_at]
       form:    
         class:          BackendQuoteForm
       edit:    ~

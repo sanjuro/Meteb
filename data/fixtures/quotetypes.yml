@@ -1,0 +1,5 @@
+QuoteType:
+ quotetype_annuity:
+   title:       annuity
+ quotetype_purchaseprice:
+   title:       purchase price

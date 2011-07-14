@@ -1,7 +1,8 @@
 <?php
 
 /**
- * BackendQuoteForm form.
+ * BackendQuoteForm form, extends the base qutoe form renames some labels.
+ * Also sets the created by field using the logged in user
  *
  * @package    meteb
  * @subpackage Quote form
@@ -34,6 +35,11 @@ class BackendQuoteForm extends BaseQuoteForm
       $this['fund_charge'], $this['administrative_charge'],
       $this['created_at'], $this['updated_at']
     );
+    
+ 	$this->widgetSchema['quote_type_id'] = new sfWidgetFormDoctrineChoice ( array('model' => 'QuoteType', 
+													  'add_empty' => "Select a Quote Type",
+													  'label' => 'Province/Region',
+												), array ( ));   
     
 	$this->widgetSchema['gp'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Guanrateed Period', 'choices' => array( 0 => '0 months', 1 => '60 months', 2 => '120 months')));

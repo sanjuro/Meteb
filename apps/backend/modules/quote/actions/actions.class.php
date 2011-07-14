@@ -8,13 +8,16 @@ require_once dirname(__FILE__).'/../lib/quoteGeneratorHelper.class.php';
  *
  * @package    meteb
  * @subpackage quote
- * @author     Your name here
- * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ * @author     Shadley Wentzel
+ * @version    GIT:
  */
 class quoteActions extends autoQuoteActions
 {
 	/**
 	 * This Action will handle creating a new quote for a client
+	 * 
+	 * @param object  $request
+	 * @return unknown
 	 */
 	  public function executeNew(sfWebRequest $request)
 	  {
@@ -32,6 +35,9 @@ class quoteActions extends autoQuoteActions
 	  
 	 /**
 	 * This Action will handle creating a new quote for a client
+	 * 
+	 * @param object  $request
+	 * @return unknown
 	 */
 	  public function executeCreate(sfWebRequest $request)
 	  {
@@ -46,6 +52,9 @@ class quoteActions extends autoQuoteActions
 	  
 	 /**
 	 * This Action will handle Generating a quote and all its calculations
+	 * 
+	 * @param object  $request
+	 * @return unknown
 	 */
   	  public function executeListGenerate(sfWebRequest $request)
   	  {
@@ -113,6 +122,9 @@ class quoteActions extends autoQuoteActions
 	/**
 	 * This Action will handle creating a new quote for a client, it also log this into
 	 * the Activty table
+	 * 
+	 * @param object  $request
+	 * @return unknown
 	 */
 	  protected function processForm(sfWebRequest $request, sfForm $form)
 	  {
@@ -167,6 +179,9 @@ class quoteActions extends autoQuoteActions
 	  
 	/**
 	 * This will generate the query for returning quotes
+	 * 
+	 * @param object  $request
+	 * @return unknown
 	 */
 	  protected function buildQuery()
 	  {;

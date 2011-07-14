@@ -7,8 +7,8 @@
  * 
  * @package    meteb
  * @subpackage model
- * @author     Your name here
- * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
+ * @author     Shadley Wentzel
+ * @version    GIT
  */
 class Quote extends BaseQuote
 {
@@ -17,7 +17,9 @@ class Quote extends BaseQuote
 	/**
 	 * Function to calculate the commission for a quote
 	 * 
-	 * @param void
+	 * @param double $pp Purchase Price for quote
+	 * @param double $commission Commission Percentage for quote
+	 * @param integer $net_to_gross Net Gross
 	 * 
 	 * @return double Purchase Price
 	 */	
@@ -38,7 +40,8 @@ class Quote extends BaseQuote
 	 * This function calculates the age-last-birthday of a person
 	 * The age is calculated from $birthday to $to_date
 	 * 
-	 * @param void
+	 * @param date $birthday Date of Birth
+	 * @param date $to_date Date of full term of quote
 	 * 
 	 * @return integer Age calculate
 	 */	
@@ -89,8 +92,10 @@ class Quote extends BaseQuote
     
 	
 	/**
+	 * Function to calculate the net annutity
 	 * 
-	 * @param void
+	 * @param date $main_dob Date of Birth of the Client
+	 * @param annuity $annuity The annutiy captured for the quote
 	 * 
 	 * @return UserProfile UserProfile Object
 	 */	
@@ -290,8 +295,9 @@ class Quote extends BaseQuote
 	
 	/**
 	 * This function generates the quote calculations that will fill the
-	 * new quote docuemnt
+	 * new quote document
 	 * 
+	 * @param double $commission The Commission captured for the quote
 	 * @param double $pp The Purchase Price for the quote 
 	 * @param double $annuity The calculated Annuity
 	 * 
@@ -307,11 +313,13 @@ class Quote extends BaseQuote
 		$marketResult = Doctrine::getTable('Marketdata')->get_latest_marketdata();
 		$exspenseResult = Doctrine::getTable('Expensedata')->get_expenses();
 		
-		//This function calculates the outputs required to populate a GGWPA quote tender
-		//A quote is done for a 3.50%, 4.00% and 4.50% PRI
-		//A quote can either be calculated from an annuity amount to a purchase price or vice versa
-		//Annuity Amount -> Purchase Price : Set $pp=0 and specify a value for $annuity
-		//Purchase Price -> Annuity Amount : Set $annuity=0 and specify a value for $pp
+		/**
+		 * This function calculates the outputs required to populate a GGWPA quote tender
+		 * A quote is done for a 3.50%, 4.00% and 4.50% PRI
+		 * A quote can either be calculated from an annuity amount to a purchase price or vice versa
+		 * Annuity Amount -> Purchase Price : Set $pp=0 and specify a value for $annuity
+		 * Purchase Price -> Annuity Amount : Set $annuity=0 and specify a value for $pp
+		 */
 	
 		//The following is just a list of all of the outputs that get generated
 		$quote_out["data_date"]="";

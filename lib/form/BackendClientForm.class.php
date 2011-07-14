@@ -1,12 +1,13 @@
 <?php
 
 /**
- * BackendClientForm form.
+ * BackendClientForm form, extends the base sfGuardUser Form and also embeds the 
+ * user profile form
  *
  * @package    meteb
  * @subpackage form
  * @author     Shadley Wentzel
- * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ * @version    GIT:
  */
 class BackendClientForm extends sfGuardUserForm
 {
