@@ -42,13 +42,13 @@ class BackendQuoteForm extends BaseQuoteForm
 												), array ( ));   
     
 	$this->widgetSchema['gp'] = new sfWidgetFormChoice(
-	     	array( 'label' => 'Guanrateed Period', 'choices' => array( 0 => '0 months', 1 => '60 months', 2 => '120 months')));
+	     	array( 'label' => 'Guanrateed Period', 'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')));
 
 	$this->widgetSchema['pri'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Post Retirement Interest rate', 'choices' => array( '0.035' => '0.035', '0.040' => '0.040', '0.045' => '0.045')));
 	     	
 	$this->widgetSchema['spouse_reversion'] = new sfWidgetFormChoice(
-	     	array( 'label' => 'Spouse Revesion', 'choices' => array( 0 => '0%', 1 => '25%', 2 => '50%', 3 => '75%', 4 => '100%')));
+	     	array( 'label' => 'Spouse Revesion', 'choices' => array( 0 => '0%', 0.25 => '25%', 0.50 => '50%', 0.75 => '75%', 1 => '100%')));
     
 	$this->widgetSchema['second_life'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Second Life', 'choices' => array( 0 => 'no', 1 => 'yes')));

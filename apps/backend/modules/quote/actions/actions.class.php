@@ -51,6 +51,22 @@ class quoteActions extends autoQuoteActions
 	  }
 	  
 	 /**
+	 * This Action will handle Editting a quote and all its calculations
+	 * 
+	 * @param object  $request
+	 * @return unknown
+	 */
+	  public function executeEdit(sfWebRequest $request)
+	  {
+	    $this->quote = $this->getRoute()->getObject();
+	    
+	    $userForQuote = Doctrine::getTable('sfGuardUser')->findOneById($this->quote->getClientId());
+	    
+	    $this->form = new BackendQuoteForm('', array('userForQuote' => $userForQuote,
+	  													 'currentUser' => $this->getUser()));;
+	  }
+	  
+	 /**
 	 * This Action will handle Generating a quote and all its calculations
 	 * 
 	 * @param object  $request
@@ -60,13 +76,13 @@ class quoteActions extends autoQuoteActions
   	  {
         $quote = $this->getRoute()->getObject();
             
-        if($quote->getAnnuity() == 0.00){
+        if($quote->getQuoteTypeId() == 2){
         	$annuity = $quote->calc_annuity($quote->getPri(), $quote->getPurchasePrice());
         }else{
         	$annuity = $quote->getAnnuity();
         }
         
-  	    if($quote->getPurchasePrice() == 0.00){
+  	    if($quote->getQuoteTypeId() == 1){
         	$pp = $quote->calc_pp($quote->getPri(), $quote->getAnnuity());
         }else{
         	$pp = $quote->getPurchasePrice();

@@ -73,7 +73,7 @@ class Quote extends BaseQuote
 	{
 		$shock = 0.00001;
 		$runs = 0;
-		$annuity = $this->purchase_price/12/15;
+		$annuity = $pp/12/15;
 		$diff = 1;
 		
 		while (abs($diff) > 0.01 && $runs <= 10)
@@ -84,10 +84,12 @@ class Quote extends BaseQuote
 			$annuity = $annuity + $diff / ( ($purchase_price_2-$purchase_price_1) / $shock );
 			$runs++;
 		}
+		
+		
 		if ($runs <= 10)
 			return $annuity;
 		else
-			return "error";
+			return false;
 	}
     
 	
@@ -103,7 +105,7 @@ class Quote extends BaseQuote
 	{
 	//This function calculates the net (of tax) initial annuity amount from the gross initial annuity
 	//It gets the tax rates and rebates from the database (which must be updated every year)
-
+		
 		$tax_rates = Doctrine::getTable('Taxrate')->get_tax_rates();
 		$tax_rebates = Doctrine::getTable('TaxRebate')->get_tax_rebates();
 		$marketResult = Doctrine::getTable('Marketdata')->get_latest_marketdata();
@@ -141,7 +143,7 @@ class Quote extends BaseQuote
 	public function calc_pp($pri, $annuity)
 	{	
 	// The required data is read from the database
-
+		
 		$marketResult = Doctrine::getTable('Marketdata')->get_latest_marketdata();
 		$exspenseResult = Doctrine::getTable('Expensedata')->get_expenses();
 		$mortalityResult = Doctrine::getTable('MortalityRate')->get_mortality_rates();
@@ -210,7 +212,7 @@ class Quote extends BaseQuote
 			$calcs[$row][4]=$exspenseResult['renewal_expenses'] * 1.14;
 			
 			$index1 = $calcs[$row][2];
-			
+		
 			$calcs[$row][5]=$mortalityResult[$index1][$main_sex];
 			
 			if ($calcs[$row][5] == 1)
@@ -254,6 +256,7 @@ class Quote extends BaseQuote
 			$index1 = $calcs[$row][17];
 			
 			$calcs[$row][18] = $mortalityResult[$index1][$spouse_sex];
+			
 			if ($calcs[$row][18]==1)
 				$calcs[$row][19]=1;
 			else
@@ -287,7 +290,7 @@ class Quote extends BaseQuote
 		}
 		
 		//The purchase is returned. This makes allowance for expenses and loadings
-
+		
 		return ($calcs[1200][29]+$exspenseResult['initial_expenses']*1.14)/(1-$exspenseResult['loadings']*1.14);
 	}
 	
@@ -349,9 +352,11 @@ class Quote extends BaseQuote
 		$quote_out["admin_charge_2"]="";
 		$quote_out["admin_charge_3"]="";
 		$quote_out["expiry_date"]="";
-
-		//This part checks whether an annuity or pp is being calculated, it then does the appropriate calc for all three PRIs
-		if ($annuity==0)
+		
+		/*
+		 * Uses Quote type to figure out what to calculate on
+		 */
+		if($this->getQuoteTypeId() == 2)
 		{
 			$quote_out["pp1"]=$pp;
 			$quote_out["pp2"]=$pp;
@@ -408,7 +413,7 @@ class Quote extends BaseQuote
 
 		//The expiry date is set to one week after the quote is generated
 		$quote_out["expiry_date"]=date("Y-m-d",strtotime(date("Y-m-d",time())." +1 week"));
-		
+		// Meteb::TKO($quote_out);
 		return $quote_out;
 	}
 	
