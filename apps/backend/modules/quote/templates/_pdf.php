@@ -91,7 +91,7 @@
 		</tr>
 		<tr>
 			<td>Date of Birth</td>
-			<td colspan="3">Taxable Individual</td>
+			<td colspan="3"><?php echo $userprofile->getDob() ?></td>
 		</tr>
 		<tr>
 			<td>Age Next Birthday</td>
@@ -99,11 +99,7 @@
 		</tr>
 		<tr>
 			<td>Sex</td>
-			<td colspan="3">Compulsory</td>
-		</tr>
-		<tr>
-			<td>Country of Residence</td>
-			<td colspan="3">Compulsory</td>
+			<td colspan="3"><?php echo $quote->getGender()->getTitle() ?></td>
 		</tr>
 	</table>
 </p>

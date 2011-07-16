@@ -22,12 +22,12 @@ class quoteActions extends autoQuoteActions
 	  public function executeNew(sfWebRequest $request)
 	  {
 	  	$userForQuote = $this->getRoute()->getObject();
-	  	 
+	  	
 	  	if(!empty($userForQuote)){ 
 	  		$this->form = new BackendQuoteForm('', array('userForQuote' => $userForQuote,
 	  													 'currentUser' => $this->getUser()));
 	  	}else{
-	  		$this->form = $this->configuration->getForm();
+	  		$this->form = new BackendQuoteForm();
 	  	}
 	    
 	    $this->quote = $this->form->getObject();
@@ -41,13 +41,14 @@ class quoteActions extends autoQuoteActions
 	 */
 	  public function executeCreate(sfWebRequest $request)
 	  {
-	    $this->form = new BackendQuoteForm('', array('userForQuote' => $userForQuote,
-	  													 'currentUser' => $this->getUser()));
+	    $this->form = new BackendQuoteForm('', array( 'currentUser' => $this->getUser()));  													 
+	    
 	    $this->quote = $this->form->getObject();
 	
 	    $this->processForm($request, $this->form);
 	
 	    $this->setTemplate('new');
+
 	  }
 	  
 	 /**
@@ -62,8 +63,28 @@ class quoteActions extends autoQuoteActions
 	    
 	    $userForQuote = Doctrine::getTable('sfGuardUser')->findOneById($this->quote->getClientId());
 	    
-	    $this->form = new BackendQuoteForm('', array('userForQuote' => $userForQuote,
-	  													 'currentUser' => $this->getUser()));;
+	    $this->form = new BackendQuoteForm($this->quote, array('userForQuote' => $userForQuote,
+	  													 'currentUser' => $this->getUser()));
+	  }
+	  
+	 /**
+	 * This Action will handle Updating a quote and all its calculations
+	 * 
+	 * @param object  $request
+	 * @return unknown
+	 */
+	  public function executeUpdate(sfWebRequest $request)
+	  {
+	    $this->quote = $this->getRoute()->getObject();
+	    
+	    $userForQuote = Doctrine::getTable('sfGuardUser')->findOneById($this->quote->getClientId());
+	    
+	    $this->form = new BackendQuoteForm($this->quote, array('userForQuote' => $userForQuote,
+	  													 'currentUser' => $this->getUser()));
+	
+	    $this->processForm($request, $this->form);
+	
+	    $this->setTemplate('edit');
 	  }
 	  
 	 /**
@@ -98,7 +119,7 @@ class quoteActions extends autoQuoteActions
 	/**
 	 * This action handles the actual streaming of quotes to PDF
 	 *
-	 * @param object  $request
+	 * @param sfWebRequest  $request
 	 * @return unknown
 	 */
 	public function executePdf(sfWebRequest $request) {
@@ -113,15 +134,18 @@ class quoteActions extends autoQuoteActions
         
         $this->quote = $quote;
         
+        $client = '';
+        $userprofile = '';
         $client = $this->quote->getClient();
-    	$userprofile = $client->getUserProfile(0);
-    	
+    	$userprofile = $client->getUserProfile();
+    	$userprofile = $userprofile[0];
+
         $quote_calculations = $quote->generate($quote->getCommission(), $pp, $annuity);
 		
         // Get Partial for PDF
 		sfProjectConfiguration::getActive()->loadHelpers('Partial');
 				
-		$PDFContent = get_partial('quote/pdf', array( 'quote_calculations' => $quote_calculations, 'client' => $client, 'userprofile' => $userprofile) );        
+		$PDFContent = get_partial('quote/pdf', array( 'quote_calculations' => $quote_calculations, 'client' => $client, 'userprofile' => $userprofile, 'quote' => $quote) );        
         
         // Generate PDF
 		$metebPDF = new metebPDF();
@@ -139,7 +163,9 @@ class quoteActions extends autoQuoteActions
 	 * This Action will handle creating a new quote for a client, it also log this into
 	 * the Activty table
 	 * 
-	 * @param object  $request
+	 * @param sfWebRequest $request
+	 * @param sfForm $form
+	 * 
 	 * @return unknown
 	 */
 	  protected function processForm(sfWebRequest $request, sfForm $form)
@@ -147,8 +173,8 @@ class quoteActions extends autoQuoteActions
 	    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
 	    if ($form->isValid())
 	    {
-	      $notice = $form->getObject()->isNew() ? 'The item was created successfully.' : 'The item was updated successfully.';
-	
+	      $notice = $form->getObject()->isNew() ? 'The quote was created successfully.' : 'The quote was updated successfully.';
+		
 	      try {
 	        $quote = $form->save();
 	        
@@ -179,8 +205,14 @@ class quoteActions extends autoQuoteActions
 	
 	        $this->redirect('@quote_new');
 	      }
-	      else
+	      else if ($request->hasParameter('_save_and_pdf'))
 	      {
+	        $this->getUser()->setFlash('notice', $notice.' You quote has been saved and the pdf is being generated.');
+	
+	        $this->redirect(array('sf_route' => 'quote_pdf', 'sf_subject' => $quote));
+	      }
+	      else
+	      { 
 	        $this->getUser()->setFlash('notice', $notice);
 	
 	        $this->redirect(array('sf_route' => 'quote_edit', 'sf_subject' => $quote));
@@ -188,7 +220,7 @@ class quoteActions extends autoQuoteActions
 	    }
 	    else
 	    {
-	      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
+	      $this->getUser()->setFlash('error', 'The quote has not been saved due to some errors.', false);
 	    }
 	  }
 	  

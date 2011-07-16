@@ -310,7 +310,9 @@ class Quote extends BaseQuote
 	{
 		$quote_out = array();
 		
+		$main_dob = '';
 		$main_dob = $this->getMainDob();
+	    $spouse_dob = '';
 	    $spouse_dob = $this->getSpouseDob();
 		
 		$marketResult = Doctrine::getTable('Marketdata')->get_latest_marketdata();
@@ -389,15 +391,21 @@ class Quote extends BaseQuote
 
 		//The first payment date is the last day of the inception month
 		//The first increase occurs one year after inception
-		$quote_out["first_payment_date"]=date("Y-m-d", strtotime($quote_out["commencement_date"]." +1 month -1 day"));
-		$quote_out["first_increase_date"]=date("Y-m-d", strtotime($quote_out["commencement_date"]." +1 year"));
+		$quote_out["first_payment_date"] = date("Y-m-d", strtotime($quote_out["commencement_date"]." +1 month -1 day"));
+		$quote_out["first_increase_date"] = date("Y-m-d", strtotime($quote_out["commencement_date"]." +1 year"));
 
 		//Maximum commission is 1.50% - a percentage of this can be sacrificed
 		$quote_out["commission_sacrificed"]=(0.015-$commission)/0.015;
 		
 		//This calculates the next age that each of the main and spouse will obtain
-		$quote_out["main_age_next"]= $this->calc_age($main_dob,$quote_out["commencement_date"])+1;
-		$quote_out["spouse_age_next"]= $this->calc_age($spouse_dob,$quote_out["commencement_date"])+1;
+		$quote_out["main_age_next"] = $this->calc_age($main_dob, $quote_out["commencement_date"])+1;
+		
+		if($spouse_dob != '0000-00-00') {
+			$quote_out["spouse_age_next"] = $this->calc_age($spouse_dob, $quote_out["commencement_date"])+1;
+		}else {
+			$quote_out["spouse_age_next"] = '0000-00-00';
+		}
+
 
 		//This calculates the premium and admin charges that get deducted from the latest expense data
 		//The admin charge is simply the monthly renewal expense making allowance for tax

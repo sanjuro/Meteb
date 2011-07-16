@@ -180,6 +180,15 @@ $(document).ready(function() {
 		}
 		 return false;
 	});
+
+	$('#<?php echo $form['second_life']->renderId() ?>').change(function() {
+		if($('#<?php echo $form['second_life']->renderId() ?>').val() == 1){
+			 $("#quote_spouse_details").css('display', 'block');
+		}else{
+			 $("#quote_spouse_details").css('display', 'none');
+		}
+		 return false;
+	});
 	
 });
 </script>

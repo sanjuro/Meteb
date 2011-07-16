@@ -10,4 +10,18 @@
  */
 class quoteGeneratorHelper extends BaseQuoteGeneratorHelper
 {
+	
+	/**
+	 * This function generates a link button in the quote for to save a new quote and generate the pdf
+	 * 
+	 * @param sfWebRequest $request
+	 * @param sfForm $form
+	 * 
+	 * @return unknown
+	 */
+	public function linkToSaveAndPdf($object, $params)
+    {    
+     return '<li class="sf_admin_action_save_and_pdf"><input value="'.__($params['label'], array(), 'sf_admin').'" name="_save_and_pdf" type="submit"></li>';
+    }
+	
 }
