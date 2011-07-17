@@ -84,6 +84,15 @@
 		 </div>
 		 <div class="sf_admin_form_row">	
 			<div>
+				<?php echo $form['userProfiles'][0]['title']->renderLabel() ?>
+			</div>			
+			<div  class="content" >
+				<?php echo $form['userProfiles'][0]['title'] ?>
+			</div>
+			<?php echo $form['userProfiles'][0]['title']->renderError() ?>
+		 </div>
+		 <div class="sf_admin_form_row">	
+			<div>
 				<?php echo $form['userProfiles'][0]['name']->renderLabel() ?>
 			</div>			
 			<div  class="content" >

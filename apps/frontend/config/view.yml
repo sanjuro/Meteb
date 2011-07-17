@@ -12,9 +12,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css, /css/custom-theme/jquery-ui-1.8.13.custom.css]
+  stylesheets:    [main.css, unitip.css]
 
-  javascripts:    [jquery-ui-1.8.13.custom.min.js]
+  javascripts:    [ unitip.js ]
 
   has_layout:     true
   layout:         layout

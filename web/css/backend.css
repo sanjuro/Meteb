@@ -377,3 +377,7 @@ table.activity td {
 .form_help {
 	display: none;	
 }
+table #annity_table td
+{
+	border: 1px solid black;
+}

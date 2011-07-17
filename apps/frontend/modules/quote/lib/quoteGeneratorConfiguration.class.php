@@ -1,13 +1,13 @@
 <?php
 
 /**
- * advisor module configuration.
+ * quote module configuration.
  *
  * @package    meteb
- * @subpackage advisor
+ * @subpackage quote
  * @author     Your name here
  * @version    SVN: $Id: configuration.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class advisorGeneratorConfiguration extends BaseAdvisorGeneratorConfiguration
+class quoteGeneratorConfiguration extends BaseQuoteGeneratorConfiguration
 {
 }

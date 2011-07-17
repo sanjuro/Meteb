@@ -6,6 +6,7 @@ body {
     font-size: 0.7em;
 	font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,sans-serif;
  	line-height: 16px;
+ 	min-height: 1000px;
  	min-width: 960px;
  	margin: 0px;
  	padding: 0px;
@@ -115,7 +116,25 @@ ul#navigation a {
     padding: 5px;
     }
     
-    
+ul#navigation {
+    color: #FFFFFF;
+    font-size: 1.1em;
+    list-style-type: none !important;
+    margin-top: 65px;
+    padding-left: 300px;
+}
+ul#navigation li {
+    float: left;
+     list-style-type: none !important;
+    margin-right: 16px;
+}
+ul#navigation a {
+	color: #FFF;	
+}
+ul#navigation li a:hover {
+	font-weifht: bold;
+	text-decoration: underline;
+	}   
     
 fieldset {
     background-color: #FFFFF0;

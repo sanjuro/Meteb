@@ -111,7 +111,6 @@
 				<br>
 				
 				<p>
-					<a href="<?php echo url_for('quote_edit', $quote)?>"><img width="91" height="25" alt="Edit" src="/images/backend/edit_quote.png"></a>
 					<a href="<?php echo url_for('quote_pdf', $quote)?>"><img width="91" height="25" alt="PDF" src="/images/backend/pdf_quote.png"></a>
 				    <a href=""><img width="91" height="25" alt="Email" src="/images/backend/email_icon.png"></a>
 				</p>

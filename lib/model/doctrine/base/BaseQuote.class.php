@@ -170,7 +170,7 @@ abstract class BaseQuote extends sfDoctrineRecord
              ));
         $this->hasColumn('commission', 'decimal', 18, array(
              'type' => 'decimal',
-             'scale' => 6,
+             'scale' => 2,
              'length' => 18,
              ));
         $this->hasColumn('commence_at', 'timestamp', null, array(

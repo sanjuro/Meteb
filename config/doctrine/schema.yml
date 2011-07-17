@@ -104,7 +104,7 @@ Quote:
     purchase_price:          { type: decimal(15), scale: 2 }
     initial_gross_annuity:   { type: decimal(15), scale: 2 }
     initial_net_annuity:     { type: decimal(15), scale: 2 }
-    commission:              { type: decimal(18), scale: 6 }
+    commission:              { type: decimal(18), scale: 2 }
     commence_at:             { type: timestamp, notnull: true } 
     expires_at:              { type: timestamp, notnull: true } 
     first_annuity_increase:  { type: timestamp, notnull: true } 
@@ -141,6 +141,7 @@ UserProfile:
     status_id:        { type: integer }
     parent_user_id:   { type: integer }
     fsp_license_number:   { type: string(12) }
+    title:   { type: string(30) }
     name:
       type: string(30)
       fixed: false

@@ -12,6 +12,7 @@
  * @property integer $status_id
  * @property integer $parent_user_id
  * @property string $fsp_license_number
+ * @property string $title
  * @property string $name
  * @property string $surname
  * @property date $dob
@@ -39,6 +40,7 @@
  * @method integer      getStatusId()           Returns the current record's "status_id" value
  * @method integer      getParentUserId()       Returns the current record's "parent_user_id" value
  * @method string       getFspLicenseNumber()   Returns the current record's "fsp_license_number" value
+ * @method string       getTitle()              Returns the current record's "title" value
  * @method string       getName()               Returns the current record's "name" value
  * @method string       getSurname()            Returns the current record's "surname" value
  * @method date         getDob()                Returns the current record's "dob" value
@@ -65,6 +67,7 @@
  * @method UserProfile  setStatusId()           Sets the current record's "status_id" value
  * @method UserProfile  setParentUserId()       Sets the current record's "parent_user_id" value
  * @method UserProfile  setFspLicenseNumber()   Sets the current record's "fsp_license_number" value
+ * @method UserProfile  setTitle()              Sets the current record's "title" value
  * @method UserProfile  setName()               Sets the current record's "name" value
  * @method UserProfile  setSurname()            Sets the current record's "surname" value
  * @method UserProfile  setDob()                Sets the current record's "dob" value
@@ -118,6 +121,10 @@ abstract class BaseUserProfile extends sfDoctrineRecord
         $this->hasColumn('fsp_license_number', 'string', 12, array(
              'type' => 'string',
              'length' => 12,
+             ));
+        $this->hasColumn('title', 'string', 30, array(
+             'type' => 'string',
+             'length' => 30,
              ));
         $this->hasColumn('name', 'string', 30, array(
              'type' => 'string',

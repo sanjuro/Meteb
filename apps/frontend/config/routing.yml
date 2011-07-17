@@ -1,3 +1,13 @@
+#quote
+quote:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Quote
+    module:               quote
+    prefix_path:          /quote
+    column:               id
+    with_wildcard_routes: true
+
 #profile
 profile:
   class: sfDoctrineRouteCollection
@@ -5,16 +15,6 @@ profile:
     model:                sfGuardUser
     module:               profile
     prefix_path:          /profile
-    column:               id
-    with_wildcard_routes: true
-  
-#advisor 
-advisor:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                sfGuardUser
-    module:               advisor
-    prefix_path:          /advisor
     column:               id
     with_wildcard_routes: true
     

@@ -54,13 +54,16 @@ class BackendQuoteForm extends BaseQuoteForm
 	     	array( 'label' => 'Spouse Revesion', 'choices' => array( '0' => '0%', '0.25' => '25%', '0.50' => '50%', '0.75' => '75%', 1 => '100%')));
     
 	$this->widgetSchema['second_life'] = new sfWidgetFormChoice(
-	     	array( 'label' => 'Second Life', 'choices' => array( 0 => 'no', 1 => 'yes')));
+	     	array( 'label' => 'Is there a spouse?', 'choices' => array( 0 => 'no', 1 => 'yes')));
     
 	$this->widgetSchema['main_dob'] = new sfWidgetFormDateJQueryUI(
 			array("label" => "Date of Birth", "change_month" => true, "change_year" => true));
 	
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
 			array("label" => "Spouse Date of Birth", "change_month" => true, "change_year" => true));
+			
+	$this->widgetSchema['commission'] = new sfWidgetFormChoice(
+	     	array( 'label' => 'Commission Sacrificed', 'choices' => array( '0.00' => '0%', '0.33' => '33%', '0.67' => '67%', '1.00' => '100%')));	
 			
 	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false, 'min_length' => 1));
     

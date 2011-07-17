@@ -1,0 +1,33 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Quote
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          quote
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    
+        layout:  stacked
+        fields:
+        display: [client_id, created_by, created_at]
+        params:  |
+          Quote %%id%%, type <b>%%QuoteType%%</b> for <b>%%client%%</b> created on %%created_at%%  by <b>%%parent%%</b>
+        title: Quote Management
+        object_actions:
+         _edit:       ~
+         _delete:     ~
+         generate:    
+      filter:  
+        display: [client_id,  quote_type_id, created_at]
+      form:    
+        class:          BackendQuoteForm
+      edit:    ~
+      new:     ~

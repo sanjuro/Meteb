@@ -327,7 +327,7 @@ class Quote extends BaseQuote
 		 */
 	
 		//The following is just a list of all of the outputs that get generated
-		$quote_out["data_date"]="";
+		$quote_out["data_date"]=date("Y-m-d",time());
 		$quote_out["quote_date"]=date("Y-m-d",time());
 		$quote_out["commencement_date"]= $marketResult['inception_date'];
 		$quote_out["first_payment_date"]="";
