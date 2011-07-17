@@ -116,7 +116,7 @@
 			</div>			
 			<?php echo $form['pri']->renderError() ?>
 		 </div>
-		 <div class="sf_admin_form_row">			
+		 <div id="spouse_reversion_field"  class="sf_admin_form_row" style="display:none;">			
 			<div>
 				<?php echo $form['spouse_reversion']->renderLabel() ?>
 			</div>
@@ -184,8 +184,10 @@ $(document).ready(function() {
 	$('#<?php echo $form['second_life']->renderId() ?>').change(function() {
 		if($('#<?php echo $form['second_life']->renderId() ?>').val() == 1){
 			 $("#quote_spouse_details").css('display', 'block');
+			 $("#spouse_reversion_field").css('display', 'block');
 		}else{
 			 $("#quote_spouse_details").css('display', 'none');
+			 $("#spouse_reversion_field").css('display', 'block');
 		}
 		 return false;
 	});
