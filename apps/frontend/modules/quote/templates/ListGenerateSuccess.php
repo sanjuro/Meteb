@@ -1,50 +1,14 @@
 <?php use_stylesheet('dashboard.css') ?>
 <?php use_stylesheet('quote.css') ?>
 
-<div id="dashboard">
-
-	<div id="clientList">
-		<h1>What Next?</h1>
-		<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader" class="activityAction">
-			<tr>
-				<td>
-					<?php echo __('Please review all calculations and details of the quote, remember you can edit the quote.') ?>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<?php echo __('Here are some other options you might want to do.') ?>
-				</td>
-			</tr>
-		</table>
-		<p><a href="<?php echo url_for('client_new') ?>"><img width="91" height="25" alt="Add a new Client" src="/images/backend/add_client_new.jpg"></a></p>
-	</div>
-	
-	<div id="quoteDetails" >
-				
-		<div id="activityBG">
-					
-			<div id="activityContent">
+<h1>Quote Data</h1>
+<p>
+	The data below has been calculated with the details you have supplied when creating this quote.
+	<br>
+	If you are satisfied you may continue and download the Quote in PDF form.
+</p>
+<div id="activityContent">
 						
-						
-				<div id="clientBlankSlate">
-							
-							<h1><?php echo __('Your quote has been processed, please reveiw the calculations below') ?>.</h1>
-														
-							<div class="instructions">
-								
-								<table width="100%" cellspacing="0" cellpadding="0">
-								<tbody><tr>
-									<td nowrap="" class="instructionsCTA"></td>
-									<td width="100%">
-										<p><?php echo __('Once you are satisfied with the quote you can generate a secure PDF version for printing and email') ?></p>
-									</td>
-								</tr>
-								</tbody></table>
-									
-							</div>
-						
-				</div>
 				
 				<span class="quotedetails_label"><?php echo __('Data Date')?></span>
 				<span class="quotedetails_data red"><?php echo $quote_calculations['data_date']?></span>
@@ -109,13 +73,9 @@
 				<span class="quotedetails_label"><?php echo __('Spouse Age Next')?></span>
 				<span class="quotedetails_data"><?php echo $quote_calculations['spouse_age_next']?></span>
 				<br>
-				
+				<br>
 				<p>
 					<a href="<?php echo url_for('quote_pdf', $quote)?>"><img width="91" height="25" alt="PDF" src="/images/backend/pdf_quote.png"></a>
 				    <a href=""><img width="91" height="25" alt="Email" src="/images/backend/email_icon.png"></a>
 				</p>
-				
-			</div>
-		</div>
-	</div>
 </div>

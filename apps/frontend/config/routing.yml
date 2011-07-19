@@ -8,6 +8,35 @@ quote:
     column:               id
     with_wildcard_routes: true
 
+quote_new:
+  url:     /quote/new.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: Quote, type: object }
+  param:   { module: quote, action: new, sf_format: html }
+  requirements: { sf_method: get }
+
+
+quote_edit:
+  url:     /quote/:id/edit.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: Quote, type: object }
+  param:   { module: quote, action: edit, sf_format: html }
+  requirements: { sf_method: get }
+
+quote_new_user:
+  url:     /New-Quote-For/:id.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: sfGuardUser, type: object }
+  param:   { module: quote, action: new, sf_format: html }
+  requirements: { sf_method: get }
+
+quote_pdf:
+  url:     /Quote-PDF/:id
+  class:   sfDoctrineRoute
+  options: { model: Quote, type: object }
+  param:   { module: quote, action: pdf, sf_format: html }
+  requirements: { sf_method: get }
+
 #profile
 profile:
   class: sfDoctrineRouteCollection

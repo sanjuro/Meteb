@@ -1,12 +1,3 @@
-quote:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                Quote
-    module:               quote
-    prefix_path:          /quote
-    column:               id
-    with_wildcard_routes: true
-
 #profile
 profile:
   class: sfDoctrineRouteCollection
@@ -18,6 +9,15 @@ profile:
     with_wildcard_routes: true
 
 #quote
+quote:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Quote
+    module:               quote
+    prefix_path:          /quote
+    column:               id
+    with_wildcard_routes: true
+    
 quote_new:
   url:     /quote/new.:sf_format
   class:   sfDoctrineRoute
