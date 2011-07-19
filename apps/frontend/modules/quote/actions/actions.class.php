@@ -21,17 +21,16 @@ class quoteActions extends autoQuoteActions
 	 */
 	  public function executeNew(sfWebRequest $request)
 	  {
-	  	$userForQuote = $this->getRoute()->getObject();
 	  	
 	  	if(!empty($userForQuote)){ 
-	  		$this->form = new BackendQuoteForm('', array('userForQuote' => $userForQuote,
-	  													 'currentUser' => $this->getUser()));
+	  		$this->form = new FrontendQuoteForm('', array('currentUser' => $this->getUser()));
 	  	}else{
-	  		$this->form = new BackendQuoteForm();
+	  		$this->form = new FrontendQuoteForm();
 	  	}
 	    
 	    $this->quote = $this->form->getObject();
 	  }
+	  
 	  
 	 /**
 	 * This Action will handle creating a new quote for a client
@@ -41,7 +40,7 @@ class quoteActions extends autoQuoteActions
 	 */
 	  public function executeCreate(sfWebRequest $request)
 	  {
-	    $this->form = new BackendQuoteForm('', array( 'currentUser' => $this->getUser()));  													 
+	    $this->form = new FrontendQuoteForm('', array('currentUser' => $this->getUser()));  													 
 	    
 	    $this->quote = $this->form->getObject();
 	
@@ -50,6 +49,7 @@ class quoteActions extends autoQuoteActions
 	    $this->setTemplate('new');
 
 	  }
+	  
 	  
 	 /**
 	 * This Action will handle Editting a quote and all its calculations
@@ -63,9 +63,9 @@ class quoteActions extends autoQuoteActions
 	    
 	    $userForQuote = Doctrine::getTable('sfGuardUser')->findOneById($this->quote->getClientId());
 	    
-	    $this->form = new BackendQuoteForm($this->quote, array('userForQuote' => $userForQuote,
-	  													 'currentUser' => $this->getUser()));
+	    $this->form = new FrontendQuoteForm($this->quote, array('currentUser' => $this->getUser()));
 	  }
+	  
 	  
 	 /**
 	 * This Action will handle Updating a quote and all its calculations
@@ -79,13 +79,13 @@ class quoteActions extends autoQuoteActions
 	    
 	    $userForQuote = Doctrine::getTable('sfGuardUser')->findOneById($this->quote->getClientId());
 	    
-	    $this->form = new BackendQuoteForm($this->quote, array('userForQuote' => $userForQuote,
-	  													 'currentUser' => $this->getUser()));
+	    $this->form = new FrontendQuoteForm($this->quote, array('currentUser' => $this->getUser()));
 	
 	    $this->processForm($request, $this->form);
 	
 	    $this->setTemplate('edit');
 	  }
+	  
 	  
 	 /**
 	 * This Action will handle Generating a quote and all its calculations

@@ -26,17 +26,6 @@
 		<legend>Client Info</legend>
 		 <div class="sf_admin_form_row">			
 			<div>
-				<?php echo $form['client_id']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['client_id'] ?>
-				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Client ID</b> the id of the client') ?>" class="tip">
-			</div>			
-			<?php echo $form['client_id']->renderError() ?>
-		 </div>
-		 <div class="sf_admin_form_row">			
-			<div>
 				<?php echo $form['main_sex']->renderLabel() ?>
 			</div>
 			

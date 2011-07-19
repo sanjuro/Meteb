@@ -25,8 +25,7 @@ generator:
          _edit:       ~
          _delete:     ~
          generate:    
-      filter:  
-        display: [client_id,  quote_type_id, created_at]
+      filter:         ~
       form:    
         class:          BackendQuoteForm
       edit:    ~
