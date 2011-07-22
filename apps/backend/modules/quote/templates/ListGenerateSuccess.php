@@ -62,43 +62,40 @@
 				<span class="quotedetails_data"><?php echo $quote_calculations['first_increase_date']?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('PP1')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['pp1']?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['pp1'], 2, '.', ',')  ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('PP2')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['pp2']?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['pp2'], 2, '.', ',')  ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('PP3')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['pp3']?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['pp3'], 2, '.', ',')  ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Gross Annuity 1')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['gross_annuity_1']?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['gross_annuity_1'], 2, '.', ',')  ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Gross Annuity 2')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['gross_annuity_2']?></span>
-				<br>
-				<span class="quotedetails_label"><?php echo __('Gross Annuity 3')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['gross_annuity_3']?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['gross_annuity_2'], 2, '.', ',')  ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Tax 1')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['tax1']?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['tax1'], 2, '.', ',')  ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Tax 2')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['tax2']?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['tax2'], 2, '.', ',')  ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Tax 3')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['tax3']?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['tax3'], 2, '.', ',')  ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Gross Annuity 3')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['gross_annuity_3']?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['gross_annuity_3'], 2, '.', ',')  ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Net Annuity 1')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['net_annuity_1']?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['net_annuity_1'], 2, '.', ',')  ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Net Annuity 2')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['net_annuity_2']?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['net_annuity_2'], 2, '.', ',')  ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Net Annuity 3')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['net_annuity_3']?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['net_annuity_3'], 2, '.', ',')  ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Commision Sacrificed')?></span>
 				<span class="quotedetails_data"><?php echo $quote_calculations['commission_sacrificed']?></span>

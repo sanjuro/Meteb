@@ -34,7 +34,7 @@
 	
 	   <div class="clearer" style="height:20px;"></div>
 	  <div>
-		<input type="submit"  value="<?php echo __('Signin', null, 'sf_guard') ?>" />
+		<input type="submit"  value="<?php echo __('Log In', null, 'sf_guard') ?>" />
 	 </div>
 	 <div class="clearer" style="height:20px;"></div>
   </fieldset>

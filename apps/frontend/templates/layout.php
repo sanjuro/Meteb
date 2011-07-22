@@ -19,7 +19,11 @@
         	<ul id="navigation">
         		<li><?php echo link_to('Home', url_for('@homepage')) ?></li>
         		<li><?php echo link_to('Your quotes', url_for('@quote')) ?></li>
+        		<li><?php echo link_to('Annuities Explained', url_for('@homepage')) ?></li>
+        		<li><?php echo link_to('About Us', url_for('@homepage')) ?></li>
+        		<li><?php echo link_to('FAQ', url_for('@homepage')) ?></li>
         		<li><?php echo link_to('Glossary', url_for('@homepage')) ?></li>
+        		<li><?php echo link_to('Contact Us', url_for('@homepage')) ?></li>
         	</ul>
         </div>
         <div id="content">

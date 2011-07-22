@@ -2,6 +2,7 @@
 
 <p>
 	Quotation date:    <?php echo $quote_calculations['quote_date'] ?> <br>
+	Data date:    <?php echo $quote_calculations['data_date'] ?> <br>
 	Commencement date: <?php echo $quote_calculations['commencement_date'] ?>
 </p>
 
@@ -31,27 +32,27 @@
 		</tr>
 		<tr>
 			<td style="width: 300px;">Purchase Sum</td>
-			<td><?php echo number_format($quote_calculations['pp1'], 2, '.', '')  ?></td>
-			<td><?php echo number_format($quote_calculations['pp2'], 2, '.', '')  ?></td>
-			<td><?php echo number_format($quote_calculations['pp3'], 2, '.', '')  ?></td>
+			<td>R <?php echo number_format($quote_calculations['pp1'], 2, '.', ',')  ?></td>
+			<td>R <?php echo number_format($quote_calculations['pp2'], 2, '.', ',')  ?></td>
+			<td>R <?php echo number_format($quote_calculations['pp3'], 2, '.', ',')  ?></td>
 		</tr>
 		<tr>
 			<td>Initial gross Annuity</td>
-			<td><?php echo number_format($quote_calculations['gross_annuity_1'], 2, '.', '')  ?></td>
-			<td><?php echo number_format($quote_calculations['gross_annuity_2'], 2, '.', '')  ?></td>
-			<td><?php echo number_format($quote_calculations['gross_annuity_3'], 2, '.', '')  ?></td>
+			<td>R <?php echo number_format($quote_calculations['gross_annuity_1'], 2, '.', ',')  ?></td>
+			<td>R <?php echo number_format($quote_calculations['gross_annuity_2'], 2, '.', ',')  ?></td>
+			<td>R <?php echo number_format($quote_calculations['gross_annuity_3'], 2, '.', ',')  ?></td>
 		</tr>
 		<tr>
 			<td>Less Tax</td>
-			<td><?php echo number_format($quote_calculations['tax1'], 2, '.', '')  ?></td>
-			<td><?php echo number_format($quote_calculations['tax2'], 2, '.', '')  ?></td>
-			<td><?php echo number_format($quote_calculations['tax3'], 2, '.', '')  ?></td>
+			<td>R <?php echo number_format($quote_calculations['tax1'], 2, '.', ',')  ?></td>
+			<td>R <?php echo number_format($quote_calculations['tax2'], 2, '.', ',')  ?></td>
+			<td>R <?php echo number_format($quote_calculations['tax3'], 2, '.', ',')  ?></td>
 		</tr>
 		<tr>
 			<td>Initial Net Annuity</td>
-			<td><?php echo number_format($quote_calculations['net_annuity_1'], 2, '.', '')  ?></td>
-			<td><?php echo number_format($quote_calculations['net_annuity_2'], 2, '.', '')  ?></td>
-			<td><?php echo number_format($quote_calculations['net_annuity_3'], 2, '.', '')  ?></td>
+			<td>R <?php echo number_format($quote_calculations['net_annuity_1'], 2, '.', ',')  ?></td>
+			<td>R <?php echo number_format($quote_calculations['net_annuity_2'], 2, '.', ',')  ?></td>
+			<td>R <?php echo number_format($quote_calculations['net_annuity_3'], 2, '.', ',')  ?></td>
 		</tr>
         </tbody>
 	</table>
@@ -186,15 +187,15 @@
 		</tr>
 		<tr>
 			<td>Premium Charges</td>
-			<td style="text-align:center;"><?php echo number_format($quote_calculations['premium_charge_1'], 2, '.', '') ?></td>
-			<td style="text-align:center;"><?php echo number_format($quote_calculations['premium_charge_2'], 2, '.', '')  ?></td>
-			<td style="text-align:center;"><?php echo number_format($quote_calculations['premium_charge_3'], 2, '.', '')  ?></td>
+			<td style="text-align:center;">R <?php echo number_format($quote_calculations['premium_charge_1'], 2, '.', ',') ?></td>
+			<td style="text-align:center;">R <?php echo number_format($quote_calculations['premium_charge_2'], 2, '.', ',')  ?></td>
+			<td style="text-align:center;">R <?php echo number_format($quote_calculations['premium_charge_3'], 2, '.', ',')  ?></td>
 		</tr>
 		<tr>
 			<td>Administrative Charges</td>
-			<td style="text-align:center;"><?php echo number_format($quote_calculations['admin_charge_1'], 2, '.', '')  ?></td>
-			<td style="text-align:center;"><?php echo number_format($quote_calculations['admin_charge_2'], 2, '.', '')  ?></td>
-			<td style="text-align:center;"><?php echo number_format($quote_calculations['admin_charge_3'], 2, '.', '')  ?></td>
+			<td style="text-align:center;">R <?php echo number_format($quote_calculations['admin_charge_1'], 2, '.', ',')  ?></td>
+			<td style="text-align:center;">R <?php echo number_format($quote_calculations['admin_charge_2'], 2, '.', ',')  ?></td>
+			<td style="text-align:center;">R <?php echo number_format($quote_calculations['admin_charge_3'], 2, '.', ',')  ?></td>
 		</tr>
 		</table>
 </p>

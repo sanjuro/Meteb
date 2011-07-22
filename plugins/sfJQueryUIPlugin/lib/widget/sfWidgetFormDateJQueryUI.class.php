@@ -120,9 +120,9 @@ EOHTML;
     if (sfConfig::has('sf_jquery_web_dir') && sfConfig::has('sf_jquery_core'))
       $js[] = sfConfig::get('sf_jquery_web_dir').'/js/'.sfConfig::get('sf_jquery_core');
     else
-      $js[] = '/sfJQueryUIPlugin/js/jquery-1.3.1.min.js';
+      $js[] = '/js/jquery-1.5.1.min.js';
 
-    $js[] = '/sfJQueryUIPlugin/js/jquery-ui.js';
+    $js[] = '/js/jquery-ui-1.8.13.custom.min.js';
 
     $culture = $this->getOption('culture');
     if ($culture!='en')
