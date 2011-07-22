@@ -18,7 +18,11 @@
         <div id="header">
         	<ul id="navigation">
         		<li><?php echo link_to('Home', url_for('@homepage')) ?></li>
+        		
+        		<?php if($sf_user->isAuthenticated()) :?>   
         		<li><?php echo link_to('Your quotes', url_for('@quote')) ?></li>
+        		<?php endif; ?>
+        		
         		<li><?php echo link_to('Annuities Explained', url_for('@homepage')) ?></li>
         		<li><?php echo link_to('About Us', url_for('@homepage')) ?></li>
         		<li><?php echo link_to('FAQ', url_for('@homepage')) ?></li>
@@ -27,16 +31,17 @@
         	</ul>
         </div>
         <div id="content">
-        	<div id="rightcolumn">
-        	</div>
+
         	<div id="center">
-			    				    	
+			    				
+			       <?php if($sf_user->isAuthenticated()) :?>    	
 			       <div id="rightcolumn" class="column">
 			       		Welcome, <?php echo $sf_user->getUsername() ?>
 			       		<b><?php echo link_to('Logout', 'sf_guard_signout', array(), array( "class" => "logout")) ?></b>
 			       		<br>
 			       		<?php include_partial('navigation/navigation'); ?>
 			       </div>
+			       <?php endif; ?>
 			       
 			       <div id="centercolumn" class="column">	
 			       

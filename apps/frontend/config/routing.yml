@@ -75,4 +75,4 @@ signout:
   
 sf_guard_forgot_password:
   url:   /request_password
-  param: { module: sfGuardAuth, action: password }
+  param: { module: sfGuardForgotPassword, action: index }

@@ -101,3 +101,7 @@ userprofile_profile:
 signout:
   url:   /Sign-Out
   param: { module: dashboard, action: index }
+
+sf_guard_forgot_password:
+  url:   /request_password
+  param: { module: sfGuardForgotPassword, action: index }
