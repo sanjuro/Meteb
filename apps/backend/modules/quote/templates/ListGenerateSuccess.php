@@ -76,6 +76,9 @@
 				<span class="quotedetails_label"><?php echo __('Gross Annuity 2')?></span>
 				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['gross_annuity_2'], 2, '.', ',')  ?></span>
 				<br>
+				<span class="quotedetails_label"><?php echo __('Gross Annuity 3')?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['gross_annuity_3'], 2, '.', ',')  ?></span>
+				<br>
 				<span class="quotedetails_label"><?php echo __('Tax 1')?></span>
 				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['tax1'], 2, '.', ',')  ?></span>
 				<br>

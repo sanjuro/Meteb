@@ -52,9 +52,6 @@
 				<span class="quotedetails_label"><?php echo __('Tax 3')?></span>
 				<span class="quotedetails_data"><?php echo $quote_calculations['tax3']?></span>
 				<br>
-				<span class="quotedetails_label"><?php echo __('Gross Annuity 3')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['gross_annuity_3']?></span>
-				<br>
 				<span class="quotedetails_label"><?php echo __('Net Annuity 1')?></span>
 				<span class="quotedetails_data"><?php echo $quote_calculations['net_annuity_1']?></span>
 				<br>

@@ -22,7 +22,7 @@
 			<td colspan="3"><?php echo $quote_calculations['first_increase_date'] ?></td>
 		</tr>
 	</table>
-	<table id="annity_table" class="pdf_table">
+	<table id="annity_table" style="border: 1px solid #000;">
         <tbody> 
 		<tr>
 			<td>Post Retirement Interest Rate:</td>
@@ -172,7 +172,7 @@
 		The following charges will be levied against the policy, in addition to the commission or remuneration:
 		<br><br>
 		
-		<table>
+		<table style="border: 1px solid #000;">
 		<tr>
 			<td style="width: 200px;">Dicount Rate:</td>
 			<td style="text-align:center;">3.50%</td>
@@ -322,7 +322,104 @@
 </p>
 <h3>History of annuity increases</h3>
 <p>
-	Still needs to come
+	<table style="border: 1px solid #000;">
+		<tr>
+			<th>Year</th>
+			<th>Bonus on with profit annuties</th>
+			<th>Increase based on 3.5%</th>
+			<th>Increase based on 4.0%</th>
+			<th>Increase based on 4.5%</th>
+			<th>Inflation rate for previous year</th>
+		</tr>
+	    <tr>
+	    	<td>2011</td>
+	    	<td style="text-align:center;">11.50%</td>
+	    	<td style="text-align:center;">7.63%</td>
+	    	<td style="text-align:center;">7.07%</td>
+	    	<td style="text-align:center;">6.51%</td>
+	    	<td style="text-align:center;">3.48%</td>
+	    </tr>
+	    <tr>
+	    	<td>2010</td>
+	    	<td style="text-align:center;">9.20%</td>
+	    	<td style="text-align:center;">5.41%</td>
+	    	<td style="text-align:center;">4.86%</td>
+	    	<td style="text-align:center;">4.31%</td>
+	    	<td style="text-align:center;">6.33%</td>
+	    </tr>
+	    <tr>
+	    	<td>2009</td>
+	    	<td style="text-align:center;">10.00%</td>
+	    	<td style="text-align:center;">6.18%</td>
+	    	<td style="text-align:center;">5.62%</td>
+	    	<td style="text-align:center;">5.07%</td>
+	    	<td style="text-align:center;">9.51%</td>
+	    </tr>
+	    <tr>
+	    	<td>2008</td>
+	    	<td style="text-align:center;">14.50%</td>
+	    	<td style="text-align:center;">10.63%</td>
+	    	<td style="text-align:center;">10.00%</td>
+	    	<td style="text-align:center;">9.38%</td>
+	    	<td style="text-align:center;">8.98%</td>
+	    </tr>
+	    <tr>
+	    	<td>2007</td>
+	    	<td style="text-align:center;">16.10%</td>
+	    	<td style="text-align:center;">12.17%</td>
+	    	<td style="text-align:center;">11.54%</td>
+	    	<td style="text-align:center;">10.91%</td>
+	    	<td style="text-align:center;">5.79%</td>
+	    </tr>
+	    <tr>
+	    	<td>2006</td>
+	    	<td style="text-align:center;">13.50%</td>
+	    	<td style="text-align:center;">9.66%</td>
+	    	<td style="text-align:center;">9.04%</td>
+	    	<td style="text-align:center;">8.42%</td>
+	    	<td style="text-align:center;">3.6%</td>
+	    </tr>
+	    <tr>
+	    	<td>2005</td>
+	    	<td style="text-align:center;">9.75%</td>
+	    	<td style="text-align:center;">6.04%</td>
+	    	<td style="text-align:center;">5.43%</td>
+	    	<td style="text-align:center;">4.83%</td>
+	    	<td style="text-align:center;">3.39%</td>
+	    </tr>
+	    <tr>
+	    	<td>2004</td>
+	    	<td style="text-align:center;">3.00%</td>
+	    	<td style="text-align:center;">0.00%</td>
+	    	<td style="text-align:center;">0.00%</td>
+	    	<td style="text-align:center;">0.00%</td>
+	    	<td style="text-align:center;">0.33%</td>
+	    </tr>
+	    <tr>
+	    	<td>2003</td>
+	    	<td style="text-align:center;">9.50%</td>
+	    	<td style="text-align:center;">5.80%</td>
+	    	<td style="text-align:center;">5.19%</td>
+	    	<td style="text-align:center;">4.59%</td>
+	    	<td style="text-align:center;">12.41%</td>
+	    </tr>
+	    <tr>
+	    	<td>2002</td>
+	    	<td style="text-align:center;">11.86%</td>
+	    	<td style="text-align:center;">8.08%</td>
+	    	<td style="text-align:center;">7.46%</td>
+	    	<td style="text-align:center;">6.85%</td>
+	    	<td style="text-align:center;">4.59%</td>
+	    </tr>
+	    <tr>
+	    	<td>2001</td>
+	    	<td style="text-align:center;">15.80%</td>
+	    	<td style="text-align:center;">11.89%</td>
+	    	<td style="text-align:center;">11.25%</td>
+	    	<td style="text-align:center;">10.63%</td>
+	    	<td style="text-align:center;">6.99%</td>
+	    </tr>
+	</table>
 </p>
 <h3>Explanatory notes and conditions</h3>
 <p style="padding-left:10px;">

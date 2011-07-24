@@ -393,7 +393,7 @@ class Quote extends BaseQuote
 		//The first increase occurs one year after inception
 		$quote_out["first_payment_date"] = date("Y-m-d", strtotime($quote_out["commencement_date"]." +1 month -1 day"));
 		$quote_out["first_increase_date"] = date("Y-m-d", strtotime($quote_out["commencement_date"]." +1 year"));
-
+		
 		//Maximum commission is 1.50% - a percentage of this can be sacrificed
 		$quote_out["commission_sacrificed"]=(0.015-$commission)/0.015;
 		

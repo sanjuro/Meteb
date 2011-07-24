@@ -81,8 +81,8 @@ class metebPDF extends DOMPDF{
 			.bulletLarge { padding: 0 0 0 3px; }
 			.bulletLarge li { list-style-type: none; background-image: url(\'images/pdf/bulletLarge.png\'); background-repeat: no-repeat; background-position: left 5px; padding: 0 0 4px 15px; }
 			.bulletLarge li a { color: #3c3c3c; }
-			#headerwrapper { background-image: url(\'images/pdf/headerGradient.png\'); background-repeat: repeat-x; background-position: left top; height: 112px;   }
-			#header {  margin: 0 auto; width: 800px; padding: 0 30px 10px 30px; height: 125px;}
+			#headerwrapper { background-image: url(\'/images/pdf/page_background.gif\'); background-repeat: repeat-x;  background-position: left top; height: 112px;   }
+			#header {  margin: 0 auto; width: 100%; padding: 0 30px 10px 30px; height: 125px;}
 			#main{ background-color: #FFF;border: 1px solid #DDE2E6; margin: 20px auto; width: 750px;}
 			#info {   height: 30px; padding: 20px;}
 			#pdfinfo{ padding: 20px; }
@@ -94,7 +94,6 @@ class metebPDF extends DOMPDF{
 	</head>
 
 	<body>
-
 		<div id="headerwrapper">
 			<div id="header">
 				<a href="http://www.ebannuities.co.za"><img src="images/pdf/quotebackground.jpg" alt="Metropolitan Employee Benefits" border="0"></a>
@@ -115,7 +114,8 @@ class metebPDF extends DOMPDF{
 			<div class="clearer"></div>
 			</div>
 
-			<div id="footer"></div>';
+			<div id="footer"></div>
+	</body>';
 
 		$this->HTML = $html;
 		
