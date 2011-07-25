@@ -92,7 +92,7 @@
 	<table>
 		<tr>
 			<td style="width: 300px;">Name</td>
-			<td colspan="3"><?php echo $client->getFirstName().' '.$client->getLastName() ?></td>
+			<td colspan="2"><?php echo $client->getFirstName().' '.$client->getLastName() ?></td>
 		</tr>
 		<tr>
 			<td>Date of Birth</td>
