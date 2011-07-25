@@ -104,7 +104,7 @@ Quote:
     purchase_price:          { type: decimal(15), scale: 2 }
     initial_gross_annuity:   { type: decimal(15), scale: 2 }
     initial_net_annuity:     { type: decimal(15), scale: 2 }
-    commission:              { type: decimal(18), scale: 2 }
+    commission:              { type: decimal(18), scale: 3 }
     commence_at:             { type: timestamp, notnull: true } 
     expires_at:              { type: timestamp, notnull: true } 
     first_annuity_increase:  { type: timestamp, notnull: true } 

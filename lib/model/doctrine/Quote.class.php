@@ -99,7 +99,7 @@ class Quote extends BaseQuote
 	 * @param date $main_dob Date of Birth of the Client
 	 * @param annuity $annuity The annutiy captured for the quote
 	 * 
-	 * @return UserProfile UserProfile Object
+	 * @return double Annutiy net value
 	 */	
 	public function calc_net_annuity($main_dob, $annuity)
 	{
@@ -110,23 +110,30 @@ class Quote extends BaseQuote
 		$tax_rebates = Doctrine::getTable('TaxRebate')->get_tax_rebates();
 		$marketResult = Doctrine::getTable('Marketdata')->get_latest_marketdata();
 		$month_array = $marketResult['month_array'];
-
+		
 		$tax_rates[0][3]=0;
-		for ($pos=1; $pos<=count($tax_rates)-1; $pos++)
-			$tax_rates[$pos][3]=$tax_rates[$pos-1][3]+$tax_rates[$pos-1][1]*($tax_rates[$pos][2]-$tax_rates[$pos-1][2]);
-
-		$annual_annuity=$annuity*12;
-		$main_dob=(strtotime($main_dob)+2209168800)/86400;
-		$age=floor(($month_array[1][1]-$main_dob)/365.25);
+		for ($pos = 1; $pos <= count($tax_rates)-1; $pos++){
+			$tax_rates[$pos][3] = $tax_rates[$pos-1][3]+$tax_rates[$pos-1][1]*($tax_rates[$pos][2]-$tax_rates[$pos-1][2]);
+		}
+		
+		$annual_annuity = $annuity * 12;
+		// $main_dob = (strtotime($main_dob) + 2209168800) / 86400;
+		// $age = floor(($month_array[1][1]-$main_dob) / 365.25);
+		$age = Meteb::getAge($main_dob);
 		
 		$tax_before_rebate=0;
-		for ($pos=0; $pos<=count($tax_rates)-2; $pos++)
-			$tax_before_rebate=$tax_before_rebate+(($tax_rates[$pos][2]<$annual_annuity)*$tax_rates[$pos][1]*(min($tax_rates[$pos+1][2],$annual_annuity)-$tax_rates[$pos][2]));
+		
+		for ($pos=0; $pos<=count($tax_rates)-2; $pos++){
+			$tax_before_rebate = $tax_before_rebate+(($tax_rates[$pos][2]<$annual_annuity)*$tax_rates[$pos][1]*(min($tax_rates[$pos+1][2],$annual_annuity)-$tax_rates[$pos][2]));
+		}
+		
 		$rebate=0;
-		for ($pos=1; $pos<=count($tax_rebates)-1; $pos++)
-			$rebate=$rebate+(($age>=$tax_rebates[$pos-1][1] && $age<$tax_rebates[$pos][1])*$tax_rebates[$pos][2]);
+		for ($pos=1; $pos<=count($tax_rebates)-1; $pos++){
+			$rebate = $rebate+(($age>=$tax_rebates[$pos-1][1] && $age<$tax_rebates[$pos][1])*$tax_rebates[$pos][2]);
+		}
+		
 		$tax_after_rebate=max($tax_before_rebate-$rebate,0);
-
+		
 		return ($annual_annuity-$tax_after_rebate)/12;
 	}
 		
@@ -364,30 +371,31 @@ class Quote extends BaseQuote
 			$quote_out["pp2"]=$pp;
 			$quote_out["pp3"]=$pp;
 
-			$quote_out["gross_annuity_1"]= $this->calc_annuity( 0.035, $pp);
-			$quote_out["gross_annuity_2"]= $this->calc_annuity( 0.040, $pp);
-			$quote_out["gross_annuity_3"]= $this->calc_annuity( 0.045, $pp);
+			$quote_out["gross_annuity_1"] = $this->calc_annuity( 0.035, $pp);
+			$quote_out["gross_annuity_2"] = $this->calc_annuity( 0.040, $pp);
+			$quote_out["gross_annuity_3"] = $this->calc_annuity( 0.045, $pp);
 		}
 		else
 		{
-			$quote_out["gross_annuity_1"]=$annuity;
-			$quote_out["gross_annuity_2"]=$annuity;
-			$quote_out["gross_annuity_3"]=$annuity;
+			$quote_out["gross_annuity_1"] = $annuity;
+			$quote_out["gross_annuity_2"] = $annuity;
+			$quote_out["gross_annuity_3"] = $annuity;
 
-			$quote_out["pp1"]= $this->calc_pp(0.035, $annuity);
-			$quote_out["pp2"]= $this->calc_pp(0.040, $annuity);
-			$quote_out["pp3"]= $this->calc_pp(0.045, $annuity);
+			$quote_out["pp1"] = $this->calc_pp(0.035, $annuity);
+			$quote_out["pp2"] = $this->calc_pp(0.040, $annuity);
+			$quote_out["pp3"] = $this->calc_pp(0.045, $annuity);
 		}
 
 		//Here the net annuity amount - which allows for tax to be deducted - is calculated for each PRI
-		$quote_out["net_annuity_1"]= $this->calc_net_annuity($main_dob, $quote_out["gross_annuity_1"]);
-		$quote_out["net_annuity_2"]= $this->calc_net_annuity($main_dob, $quote_out["gross_annuity_2"]);
-		$quote_out["net_annuity_3"]= $this->calc_net_annuity($main_dob, $quote_out["gross_annuity_3"]);
+		$quote_out["net_annuity_1"] = $this->calc_net_annuity($main_dob, $quote_out["gross_annuity_1"]);
+		$quote_out["net_annuity_2"] = $this->calc_net_annuity($main_dob, $quote_out["gross_annuity_2"]);
+		$quote_out["net_annuity_3"] = $this->calc_net_annuity($main_dob, $quote_out["gross_annuity_3"]);
 
+		
 		//Here we calculate the tax amount payable per month for each PRI
-		$quote_out["tax1"]=$quote_out["gross_annuity_1"]-$quote_out["net_annuity_1"];
-		$quote_out["tax2"]=$quote_out["gross_annuity_2"]-$quote_out["net_annuity_2"];
-		$quote_out["tax3"]=$quote_out["gross_annuity_3"]-$quote_out["net_annuity_3"];
+		$quote_out["tax1"] = $quote_out["gross_annuity_1"]-$quote_out["net_annuity_1"];
+		$quote_out["tax2"] = $quote_out["gross_annuity_2"]-$quote_out["net_annuity_2"];
+		$quote_out["tax3"] = $quote_out["gross_annuity_3"]-$quote_out["net_annuity_3"];
 
 		//The first payment date is the last day of the inception month
 		//The first increase occurs one year after inception
@@ -395,7 +403,7 @@ class Quote extends BaseQuote
 		$quote_out["first_increase_date"] = date("Y-m-d", strtotime($quote_out["commencement_date"]." +1 year"));
 		
 		//Maximum commission is 1.50% - a percentage of this can be sacrificed
-		$quote_out["commission_sacrificed"]=(0.015-$commission)/0.015;
+		$quote_out["commission_sacrificed"] = $commission;
 		
 		//This calculates the next age that each of the main and spouse will obtain
 		$quote_out["main_age_next"] = $this->calc_age($main_dob, $quote_out["commencement_date"])+1;

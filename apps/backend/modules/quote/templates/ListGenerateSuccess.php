@@ -88,9 +88,6 @@
 				<span class="quotedetails_label"><?php echo __('Tax 3')?></span>
 				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['tax3'], 2, '.', ',')  ?></span>
 				<br>
-				<span class="quotedetails_label"><?php echo __('Gross Annuity 3')?></span>
-				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['gross_annuity_3'], 2, '.', ',')  ?></span>
-				<br>
 				<span class="quotedetails_label"><?php echo __('Net Annuity 1')?></span>
 				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['net_annuity_1'], 2, '.', ',')  ?></span>
 				<br>
@@ -101,13 +98,31 @@
 				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['net_annuity_3'], 2, '.', ',')  ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Commision Sacrificed')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['commission_sacrificed']?></span>
+				<span class="quotedetails_data"><?php echo number_format($quote_calculations['commission_sacrificed'], 2, '.', ',') ?>%</span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Main Age Next')?></span>
 				<span class="quotedetails_data"><?php echo $quote_calculations['main_age_next']?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Spouse Age Next')?></span>
 				<span class="quotedetails_data"><?php echo $quote_calculations['spouse_age_next']?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Premium Charge 1')?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['premium_charge_1'], 2, '.', ',')  ?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Premium Charge 2')?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['premium_charge_2'], 2, '.', ',')  ?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Premium Charge 3')?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['premium_charge_3'], 2, '.', ',')  ?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Admin Charge 1')?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['admin_charge_1'], 2, '.', ',')  ?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Admin Charge 2')?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['admin_charge_2'], 2, '.', ',')  ?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Admin Charge 3')?></span>
+				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['admin_charge_3'], 2, '.', ',')  ?></span>
 				<br>
 				
 				<p>

@@ -63,7 +63,7 @@ class BackendQuoteForm extends BaseQuoteForm
 			array("label" => "Spouse Date of Birth", "change_month" => true, "change_year" => true));
 			
 	$this->widgetSchema['commission'] = new sfWidgetFormChoice(
-	     	array( 'label' => 'Commission Sacrificed', 'choices' => array( '0.00' => '0%', '0.33' => '33%', '0.67' => '67%', '1.00' => '100%')));	
+	     	array( 'label' => 'Commission Sacrificed', 'choices' => array( '0.00' => '0%', '0.005' => '0.5%', '0.01' => '1%', '1.5' => '1.5%')));	
 			
 	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false, 'min_length' => 1));
     

@@ -68,7 +68,7 @@ class Meteb
 		return $array;
 	}
 	
-		/**
+	/**
 	 * This function converts a string back to a matrix of values
 	 *
 	 * @param varchar $text
@@ -96,5 +96,22 @@ class Meteb
 		return $array;
 		
 	}
+	
+	/**
+	 * This function the age from a date
+	 *
+	 * @param datetime $birthday Date of Birth
+	 * @return integer age calculated
+	 */
+	public static function getAge ($birthday)
+	{
+	    list($year,$month,$day) = explode("-",$birthday);
+	    $year_diff  = date("Y") - $year;
+	    $month_diff = date("m") - $month;
+	    $day_diff   = date("d") - $day;
+	    if ($day_diff < 0 || $month_diff < 0)
+	      $year_diff--;
+	    return $year_diff;
+    }
 }
 ?>
