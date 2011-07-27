@@ -262,7 +262,7 @@ class MetebQuote
 			//deterministic expense inflation ignored for now
 			$calcs[$row][15]=$calcs[$row][11]+$calcs[$row][13];
 
-			$calcs[$row][16] = $calcs[$row][3] * $quote->spouse_reversion * $quote->second_life;
+			$calcs[$row][16] = $calcs[$row][3] * $quote->getSpouseReversion()->getTitle() * $quote->second_life;
 			$calcs[$row][17] = min(floor(($calcs[$row][1]-$spouse_dob)/365.25+$age_rating),$max_age);
 			
 			$index1 = $calcs[$row][17];

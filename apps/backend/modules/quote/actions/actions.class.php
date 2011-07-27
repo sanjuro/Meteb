@@ -98,20 +98,20 @@ class quoteActions extends autoQuoteActions
         $quote = $this->getRoute()->getObject();
             
         if($quote->getQuoteTypeId() == 2){
-        	$annuity = MetebQuote::calc_annuity($quote, $quote->getPri(), $quote->getPurchasePrice());
+        	$annuity = MetebQuote::calc_annuity($quote, $quote->getPri()->getTitle(), $quote->getPurchasePrice());
         }else{
         	$annuity = $quote->getAnnuity();
         }
         
   	    if($quote->getQuoteTypeId() == 1){
-        	$pp = MetebQuote::calc_pp($quote, $quote->getPri(), $quote->getAnnuity());
+        	$pp = MetebQuote::calc_pp($quote, $quote->getPri()->getTitle(), $quote->getAnnuity());
         }else{
         	$pp = $quote->getPurchasePrice();
         }
         
         $this->quote = $quote;
     	
-        $this->quote_calculations = MetebQuote::generate($quote, $quote->getCommission(), $pp, $annuity);
+        $this->quote_calculations = MetebQuote::generate($quote, $quote->getCommission()->getTitle(), $pp, $annuity);
         // Meteb::TKO($this->quote_calculations);
       }
       
@@ -128,7 +128,7 @@ class quoteActions extends autoQuoteActions
 		
 		sfConfig::set('sf_web_debug', false);
 		
-		$annuity = MetebQuote::calc_annuity($quote, $quote->getPri(), $quote->getPurchasePrice());
+		$annuity = MetebQuote::calc_annuity($quote, $quote->getPri()->getTitle(), $quote->getPurchasePrice());
      
         $pp = MetebQuote::calc_pp($quote, $quote->getPri(), $annuity);
         
@@ -140,7 +140,7 @@ class quoteActions extends autoQuoteActions
     	$userprofile = $client->getUserProfile();
     	$userprofile = $userprofile[0];
 
-        $quote_calculations = MetebQuote::generate($quote, $quote->getCommission(), $pp, $annuity);
+        $quote_calculations = MetebQuote::generate($quote, $quote->getCommission()->getTitle(), $pp, $annuity);
 		
         // Get Partial for PDF
 		sfProjectConfiguration::getActive()->loadHelpers('Partial');

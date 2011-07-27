@@ -47,10 +47,10 @@ class BackendQuoteForm extends BaseQuoteForm
 	$this->widgetSchema['gp'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Guanrateed Period', 'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')));
 
-	$this->widgetSchema['pri'] = new sfWidgetFormDoctrineChoice(
+	$this->widgetSchema['pri_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'Pri',  'label' => 'Post Retirement Interest rate', 'add_empty' => "Select a Post Retirement Interest rate"), array ( ));  
 	     	
-	$this->widgetSchema['spouse_reversion'] = new sfWidgetFormDoctrineChoice(
+	$this->widgetSchema['spouse_reversion_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'SpouseReversion',  'label' => 'Spouse Reversion', 'add_empty' => "Select a Spouse Reversion"), array ( ));  
     
 	$this->widgetSchema['second_life'] = new sfWidgetFormChoice(
@@ -62,7 +62,7 @@ class BackendQuoteForm extends BaseQuoteForm
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
 			array("label" => "Spouse Date of Birth", "change_month" => true, "change_year" => true));
 			
-	$this->widgetSchema['commission'] = new sfWidgetFormDoctrineChoice(
+	$this->widgetSchema['commission_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'Commission',  'label' => 'Commission Sacrificed', 'add_empty' => "Select a Commission"), array ( ));  
 			
 	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false, 'min_length' => 1));
