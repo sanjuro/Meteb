@@ -1,0 +1,11 @@
+SpouseReversion:
+ spousereversion_00:
+   value:       0.00
+ spousereversion_25:
+   value:       0.25
+ spousereversion_50:
+   value:       0.50
+ spousereversion_75:
+   value:       0.75
+ spousereversion_1:
+   value:       1.00

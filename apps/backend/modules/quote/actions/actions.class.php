@@ -175,8 +175,11 @@ class quoteActions extends autoQuoteActions
 	      $notice = $form->getObject()->isNew() ? 'The quote was created successfully.' : 'The quote was updated successfully.';
 		
 	      try {
+	      	
+	      	$values = $form ->getValues();
+	      	
 	        $quote = $form->save();
-	        
+
 	        if($form->isNew()){
         		ActivityTable::addActivty($this->getUser()->getGuardUser()->getId(), 2);
        		 }else {

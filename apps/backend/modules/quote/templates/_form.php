@@ -69,7 +69,12 @@
 			<?php echo $form['second_life']->renderError() ?>
 		 </div>
 	</fieldset>
+	
+	<?php if ($quote->getSecondLife() == 1): ?>
+	<fieldset id="quote_spouse_details"> 
+	<?php else: ?>
 	<fieldset id="quote_spouse_details" style="display:none;"> 
+	<?php endif;?>
 		<legend>Spouse Details</legend>
 		 <div class="sf_admin_form_row">			
 			<div>
@@ -116,7 +121,12 @@
 			</div>			
 			<?php echo $form['pri']->renderError() ?>
 		 </div>
-		 <div id="spouse_reversion_field"  class="sf_admin_form_row" style="display:none;">			
+		
+		<?php if ($quote->getSecondLife() == 1): ?>
+		 <div id="spouse_reversion_field"  class="sf_admin_form_row">		
+		<?php else: ?>
+		 <div id="spouse_reversion_field"  class="sf_admin_form_row" style="display:none;">		
+		<?php endif;?>
 			<div>
 				<?php echo $form['spouse_reversion']->renderLabel() ?>
 			</div>
