@@ -16,12 +16,12 @@ abstract class BaseCommissionForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'    => new sfWidgetFormInputHidden(),
-      'value' => new sfWidgetFormInputText(),
+      'title' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'value' => new sfValidatorNumber(array('required' => false)),
+      'title' => new sfValidatorNumber(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('commission[%s]');

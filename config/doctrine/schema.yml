@@ -50,7 +50,7 @@ Expensedata:
 Commission:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
-    value:            { type: decimal(15), scale: 2 }
+    title:            { type: decimal(15), scale: 2 }
       
 Marketdata:
   actAs: 
@@ -135,12 +135,12 @@ QuoteType:
 Pri:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
-    value:            { type: decimal(15), scale: 3 }
+    title:            { type: decimal(15), scale: 3 }
       
 SpouseReversion:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
-    value:            { type: decimal(15), scale: 2 }
+    title:            { type: decimal(15), scale: 2 }
       
 System:
   columns:

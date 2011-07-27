@@ -13,11 +13,11 @@ abstract class BaseSpouseReversionFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'value' => new sfWidgetFormFilterInput(),
+      'title' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'value' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
+      'title' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('spouse_reversion_filters[%s]');
@@ -38,7 +38,7 @@ abstract class BaseSpouseReversionFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'    => 'Number',
-      'value' => 'Number',
+      'title' => 'Number',
     );
   }
 }
