@@ -31,7 +31,7 @@ class MetebQuote
 	 * If net_to_gross is one, then commission is removed (eg R1000 goes to R985)
 	 */
 
-		if ($net_to_gross==0)
+		if ($net_to_gross == 0)
 			return $pp/(1-$commission); 
 		else
 			return $pp*(1-$commission);
@@ -107,9 +107,10 @@ class MetebQuote
 	 */	
 	public static function calc_net_annuity($main_dob, $annuity)
 	{
-	//This function calculates the net (of tax) initial annuity amount from the gross initial annuity
-	//It gets the tax rates and rebates from the database (which must be updated every year)
-		
+		/** 
+		 * This function calculates the net (of tax) initial annuity amount from the gross initial annuity
+		 * It gets the tax rates and rebates from the database (which must be updated every year)
+		 */
 		$tax_rates = Doctrine::getTable('Taxrate')->get_tax_rates();
 		$tax_rebates = Doctrine::getTable('TaxRebate')->get_tax_rebates();
 		$marketResult = Doctrine::getTable('Marketdata')->get_latest_marketdata();
@@ -339,11 +340,11 @@ class MetebQuote
 		 */
 	
 		//The following is just a list of all of the outputs that get generated
-		$quote_out["data_date"]=date("Y-m-d",time());
-		$quote_out["quote_date"]=date("Y-m-d",time());
-		$quote_out["commencement_date"]= $marketResult['inception_date'];
-		$quote_out["first_payment_date"]="";
-		$quote_out["first_increase_date"]="";
+		$quote_out["data_date"] = $marketResult['uploaded_at'];
+		$quote_out["quote_date"] = date("Y-m-d", time());
+		$quote_out["commencement_date"] = $marketResult['inception_date'];
+		$quote_out["first_payment_date"] = "";
+		$quote_out["first_increase_date"] = "";
 		$quote_out["pp1"]="";
 		$quote_out["pp2"]="";
 		$quote_out["pp3"]="";
@@ -421,7 +422,6 @@ class MetebQuote
 			$quote_out["spouse_age_next"] = '0000-00-00';
 		}
 
-
 		/**
 		 * This calculates the premium and admin charges that get deducted from the latest expense data
 		 * The admin charge is simply the monthly renewal expense making allowance for tax
@@ -438,7 +438,7 @@ class MetebQuote
 
 		//The expiry date is set to one week after the quote is generated
 		$quote_out["expiry_date"]=date("Y-m-d",strtotime(date("Y-m-d",time())." +1 week"));
-		// Meteb::TKO($quote_out);
+
 		return $quote_out;
 	}
 }
