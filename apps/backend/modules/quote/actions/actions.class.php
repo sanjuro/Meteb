@@ -98,20 +98,20 @@ class quoteActions extends autoQuoteActions
         $quote = $this->getRoute()->getObject();
             
         if($quote->getQuoteTypeId() == 2){
-        	$annuity = $quote->calc_annuity($quote->getPri(), $quote->getPurchasePrice());
+        	$annuity = MetebQuote::calc_annuity($quote, $quote->getPri(), $quote->getPurchasePrice());
         }else{
         	$annuity = $quote->getAnnuity();
         }
         
   	    if($quote->getQuoteTypeId() == 1){
-        	$pp = $quote->calc_pp($quote->getPri(), $quote->getAnnuity());
+        	$pp = MetebQuote::calc_pp($quote, $quote->getPri(), $quote->getAnnuity());
         }else{
         	$pp = $quote->getPurchasePrice();
         }
         
         $this->quote = $quote;
     	
-        $this->quote_calculations = $quote->generate($quote->getCommission(), $pp, $annuity);
+        $this->quote_calculations = MetebQuote::generate($quote, $quote->getCommission(), $pp, $annuity);
         // Meteb::TKO($this->quote_calculations);
       }
       
@@ -128,9 +128,9 @@ class quoteActions extends autoQuoteActions
 		
 		sfConfig::set('sf_web_debug', false);
 		
-		$annuity = $quote->calc_annuity($quote->getPri(), $quote->getPurchasePrice());
+		$annuity = MetebQuote::calc_annuity($quote, $quote->getPri(), $quote->getPurchasePrice());
      
-        $pp = $quote->calc_pp($quote->getPri(), $annuity);
+        $pp = MetebQuote::calc_pp($quote, $quote->getPri(), $annuity);
         
         $this->quote = $quote;
         
@@ -140,7 +140,7 @@ class quoteActions extends autoQuoteActions
     	$userprofile = $client->getUserProfile();
     	$userprofile = $userprofile[0];
 
-        $quote_calculations = $quote->generate($quote->getCommission(), $pp, $annuity);
+        $quote_calculations = MetebQuote::generate($quote, $quote->getCommission(), $pp, $annuity);
 		
         // Get Partial for PDF
 		sfProjectConfiguration::getActive()->loadHelpers('Partial');
@@ -158,7 +158,6 @@ class quoteActions extends autoQuoteActions
 		return sfView::NONE;
 	}
 	
-
 	/**
 	 * This Action will handle creating a new quote for a client, it also log this into
 	 * the Activty table
@@ -223,8 +222,7 @@ class quoteActions extends autoQuoteActions
 	      $this->getUser()->setFlash('error', 'The quote has not been saved due to some errors.', false);
 	    }
 	  }
-	  
-	  
+	    
 	/**
 	 * This will generate the query for returning quotes
 	 * 

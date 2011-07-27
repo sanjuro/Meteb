@@ -13,6 +13,7 @@ require_once dirname(__FILE__).'/../lib/quoteGeneratorHelper.class.php';
  */
 class quoteActions extends autoQuoteActions
 {
+	
 	/**
 	 * This Action will handle creating a new quote for a client
 	 * 
@@ -30,8 +31,7 @@ class quoteActions extends autoQuoteActions
 	    
 	    $this->quote = $this->form->getObject();
 	  }
-	  
-	  
+	  	  
 	 /**
 	 * This Action will handle creating a new quote for a client
 	 * 
@@ -48,8 +48,7 @@ class quoteActions extends autoQuoteActions
 	
 	    $this->setTemplate('new');
 
-	  }
-	  
+	  }	  
 	  
 	 /**
 	 * This Action will handle Editting a quote and all its calculations
@@ -65,8 +64,7 @@ class quoteActions extends autoQuoteActions
 	    
 	    $this->form = new FrontendQuoteForm($this->quote, array('currentUser' => $this->getUser()));
 	  }
-	  
-	  
+	  	  
 	 /**
 	 * This Action will handle Updating a quote and all its calculations
 	 * 
@@ -85,37 +83,35 @@ class quoteActions extends autoQuoteActions
 	
 	    $this->setTemplate('edit');
 	  }
-	  
-	  
+	  	  
 	 /**
-	 * This Action will handle Generating a quote and all its calculations
-	 * 
-	 * @param object  $request
-	 * @return unknown
-	 */
+	  * This Action will handle Generating a quote and all its calculations
+	  * 
+	  * @param object  $request
+	  * @return unknown
+	  */
   	  public function executeListGenerate(sfWebRequest $request)
   	  {
         $quote = $this->getRoute()->getObject();
             
         if($quote->getQuoteTypeId() == 2){
-        	$annuity = $quote->calc_annuity($quote->getPri(), $quote->getPurchasePrice());
+        	$annuity = MetebQuote::calc_annuity($quote, $quote->getPri(), $quote->getPurchasePrice());
         }else{
         	$annuity = $quote->getAnnuity();
         }
         
   	    if($quote->getQuoteTypeId() == 1){
-        	$pp = $quote->calc_pp($quote->getPri(), $quote->getAnnuity());
+        	$pp = MetebQuote::calc_pp($quote, $quote->getPri(), $quote->getAnnuity());
         }else{
         	$pp = $quote->getPurchasePrice();
         }
         
         $this->quote = $quote;
     	
-        $this->quote_calculations = $quote->generate($quote->getCommission(), $pp, $annuity);
+        $this->quote_calculations = MetebQuote::generate($quote, $quote->getCommission(), $pp, $annuity);
         // Meteb::TKO($this->quote_calculations);
       }
       
-  
 	/**
 	 * This action handles the actual streaming of quotes to PDF
 	 *
@@ -128,9 +124,9 @@ class quoteActions extends autoQuoteActions
 		
 		sfConfig::set('sf_web_debug', false);
 		
-		$annuity = $quote->calc_annuity($quote->getPri(), $quote->getPurchasePrice());
+		$annuity = MetebQuote::calc_annuity($quote, $quote->getPri(), $quote->getPurchasePrice());
      
-        $pp = $quote->calc_pp($quote->getPri(), $annuity);
+        $pp = MetebQuote::calc_pp($quote, $quote->getPri(), $annuity);
         
         $this->quote = $quote;
         
@@ -140,7 +136,7 @@ class quoteActions extends autoQuoteActions
     	$userprofile = $client->getUserProfile();
     	$userprofile = $userprofile[0];
 
-        $quote_calculations = $quote->generate($quote->getCommission(), $pp, $annuity);
+        $quote_calculations = MetebQuote::generate($quote, $quote->getCommission(), $pp, $annuity);
 		
         // Get Partial for PDF
 		sfProjectConfiguration::getActive()->loadHelpers('Partial');
@@ -158,7 +154,6 @@ class quoteActions extends autoQuoteActions
 		return sfView::NONE;
 	}
 	
-
 	/**
 	 * This Action will handle creating a new quote for a client, it also log this into
 	 * the Activty table
@@ -222,8 +217,7 @@ class quoteActions extends autoQuoteActions
 	    {
 	      $this->getUser()->setFlash('error', 'The quote has not been saved due to some errors.', false);
 	    }
-	  }
-	  
+	  }  
 	  
 	/**
 	 * This will generate the query for returning quotes
