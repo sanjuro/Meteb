@@ -399,9 +399,9 @@ class MetebQuote
 
 		
 		//Here we calculate the tax amount payable per month for each PRI
-		$quote_out["tax1"] = $quote_out["gross_annuity_1"]-$quote_out["net_annuity_1"];
-		$quote_out["tax2"] = $quote_out["gross_annuity_2"]-$quote_out["net_annuity_2"];
-		$quote_out["tax3"] = $quote_out["gross_annuity_3"]-$quote_out["net_annuity_3"];
+		$quote_out["tax1"] = $quote_out["gross_annuity_1"] - $quote_out["net_annuity_1"];
+		$quote_out["tax2"] = $quote_out["gross_annuity_2"] - $quote_out["net_annuity_2"];
+		$quote_out["tax3"] = $quote_out["gross_annuity_3"] - $quote_out["net_annuity_3"];
 
 		/**
 		 * The first payment date is the last day of the inception month

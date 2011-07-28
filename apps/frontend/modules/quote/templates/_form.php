@@ -104,7 +104,7 @@
 			</div>
 			
 			<div  class="content" >
-				<?php echo $form['pri_id'] ?>
+				<?php echo $form['pri_id'] ?> %
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Post Retriement Interest Rate</b> the pri for the quote') ?>" class="tip">
 			</div>			
 			<?php echo $form['pri_id']->renderError() ?>
@@ -119,7 +119,7 @@
 			</div>
 			
 			<div  class="content" >
-				<?php echo $form['spouse_reversion_id'] ?>
+				<?php echo $form['spouse_reversion_id'] ?> %
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Spouse Reversion</b> the spouse reversion if second life is factored in') ?>" class="tip">
 			</div>			
 			<?php echo $form['spouse_reversion_id']->renderError() ?>
@@ -152,7 +152,7 @@
 			</div>
 			
 			<div  class="content" >
-				<?php echo $form['commission_id'] ?>
+				<?php echo $form['commission_id'] ?> %
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Commission</b> the commission for the quote') ?>" class="tip">
 			</div>			
 			<?php echo $form['commission_id']->renderError() ?>

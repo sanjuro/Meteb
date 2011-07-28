@@ -19,7 +19,7 @@ abstract class BaseTaxRateFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'tax_rate'      => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
-      'start_bracket' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
+      'start_bracket' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('tax_rate_filters[%s]');

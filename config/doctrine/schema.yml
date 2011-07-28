@@ -85,8 +85,8 @@ MortalityRate:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
     age:              { type: integer } 
-    mortality_male:   { type: decimal(10), scale: 5 }
-    mortality_female: { type: decimal(10), scale: 5 }
+    mortality_male:   { type: decimal(10), scale: 6 }
+    mortality_female: { type: decimal(10), scale: 6 }
        
 Quote:
   actAs: 
@@ -258,7 +258,7 @@ TaxRate:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
     tax_rate:         { type: decimal(10), scale: 5 }
-    start_bracket:    { type: decimal(10), scale: 5 } 
+    start_bracket:    { type: integer } 
     
 TaxRebate:
   columns:
