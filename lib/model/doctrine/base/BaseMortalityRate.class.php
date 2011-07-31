@@ -39,12 +39,12 @@ abstract class BaseMortalityRate extends sfDoctrineRecord
              ));
         $this->hasColumn('mortality_male', 'decimal', 10, array(
              'type' => 'decimal',
-             'scale' => 5,
+             'scale' => 6,
              'length' => 10,
              ));
         $this->hasColumn('mortality_female', 'decimal', 10, array(
              'type' => 'decimal',
-             'scale' => 5,
+             'scale' => 6,
              'length' => 10,
              ));
     }

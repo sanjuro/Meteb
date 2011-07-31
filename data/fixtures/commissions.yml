@@ -1,0 +1,9 @@
+Commission:
+ commission_0:
+   title:       0.00
+ commission_05:
+   title:       0.50
+ commission_10:
+   title:       1.00
+ commission_15:
+   title:       1.50

@@ -7,11 +7,11 @@
  * 
  * @property integer $id
  * @property decimal $tax_rate
- * @property decimal $start_bracket
+ * @property integer $start_bracket
  * 
  * @method integer getId()            Returns the current record's "id" value
  * @method decimal getTaxRate()       Returns the current record's "tax_rate" value
- * @method decimal getStartBracket()  Returns the current record's "start_bracket" value
+ * @method integer getStartBracket()  Returns the current record's "start_bracket" value
  * @method TaxRate setId()            Sets the current record's "id" value
  * @method TaxRate setTaxRate()       Sets the current record's "tax_rate" value
  * @method TaxRate setStartBracket()  Sets the current record's "start_bracket" value
@@ -36,10 +36,8 @@ abstract class BaseTaxRate extends sfDoctrineRecord
              'scale' => 5,
              'length' => 10,
              ));
-        $this->hasColumn('start_bracket', 'decimal', 10, array(
-             'type' => 'decimal',
-             'scale' => 5,
-             'length' => 10,
+        $this->hasColumn('start_bracket', 'integer', null, array(
+             'type' => 'integer',
              ));
     }
 

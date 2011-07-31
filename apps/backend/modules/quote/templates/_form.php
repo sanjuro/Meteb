@@ -64,7 +64,12 @@
 			<?php echo $form['second_life']->renderError() ?>
 		 </div>
 	</fieldset>
+	
+	<?php if ($quote->getSecondLife() == 1): ?>
+	<fieldset id="quote_spouse_details"> 
+	<?php else: ?>
 	<fieldset id="quote_spouse_details" style="display:none;"> 
+	<?php endif;?>
 		<legend>Spouse Details</legend>
 		 <div class="sf_admin_form_row">			
 			<div>
@@ -102,25 +107,30 @@
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>
-				<?php echo $form['pri']->renderLabel() ?>
+				<?php echo $form['pri_id']->renderLabel() ?>
 			</div>
 			
 			<div  class="content" >
-				<?php echo $form['pri'] ?>
+				<?php echo $form['pri_id'] ?> %
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Post Retriement Interest Rate</b> the pri for the quote') ?>" class="tip">
 			</div>			
-			<?php echo $form['pri']->renderError() ?>
+			<?php echo $form['pri_id']->renderError() ?>
 		 </div>
-		 <div id="spouse_reversion_field"  class="sf_admin_form_row" style="display:none;">			
+		
+		<?php if ($quote->getSecondLife() == 1): ?>
+		 <div id="spouse_reversion_field"  class="sf_admin_form_row">		
+		<?php else: ?>
+		 <div id="spouse_reversion_field"  class="sf_admin_form_row" style="display:none;">		
+		<?php endif;?>
 			<div>
-				<?php echo $form['spouse_reversion']->renderLabel() ?>
+				<?php echo $form['spouse_reversion_id']->renderLabel() ?>
 			</div>
 			
 			<div  class="content" >
-				<?php echo $form['spouse_reversion'] ?>
+				<?php echo $form['spouse_reversion_id'] ?> %
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Spouse Reversion</b> the spouse reversion if second life is factored in') ?>" class="tip">
 			</div>			
-			<?php echo $form['spouse_reversion']->renderError() ?>
+			<?php echo $form['spouse_reversion_id']->renderError() ?>
 		 </div>
 		 
 		 <div class="sf_admin_form_row">			
@@ -158,14 +168,14 @@
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>
-				<?php echo $form['commission']->renderLabel() ?>
+				<?php echo $form['commission_id']->renderLabel() ?>
 			</div>
 			
 			<div  class="content" >
-				<?php echo $form['commission'] ?>
+				<?php echo $form['commission_id'] ?> %
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Commission</b> the commission for the quote') ?>" class="tip">
 			</div>			
-			<?php echo $form['commission']->renderError() ?>
+			<?php echo $form['commission_id']->renderError() ?>
 		 </div>
 	</fieldset>
     

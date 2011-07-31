@@ -47,6 +47,11 @@ Expensedata:
       notnull: true
       autoincrement: false
       
+Commission:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: decimal(15), scale: 2 }
+      
 Marketdata:
   actAs: 
    Timestampable: ~ 
@@ -80,8 +85,8 @@ MortalityRate:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
     age:              { type: integer } 
-    mortality_male:   { type: decimal(10), scale: 5 }
-    mortality_female: { type: decimal(10), scale: 5 }
+    mortality_male:   { type: decimal(10), scale: 6 }
+    mortality_female: { type: decimal(10), scale: 6 }
        
 Quote:
   actAs: 
@@ -98,13 +103,13 @@ Quote:
     spouse_sex:              { type: integer }
     spouse_dob:              { type: date, notnull: true }
     gp:                      { type: integer }
-    spouse_reversion:        { type: decimal(10), scale: 5 }
-    pri:                     { type: decimal(10), scale: 3 }
+    spouse_reversion_id:     { type: integer }
+    pri_id:                  { type: integer }
     annuity:                 { type: decimal(15), scale: 2 }
     purchase_price:          { type: decimal(15), scale: 2 }
     initial_gross_annuity:   { type: decimal(15), scale: 2 }
     initial_net_annuity:     { type: decimal(15), scale: 2 }
-    commission:              { type: decimal(18), scale: 3 }
+    commission_id:           { type: integer }
     commence_at:             { type: timestamp, notnull: true } 
     expires_at:              { type: timestamp, notnull: true } 
     first_annuity_increase:  { type: timestamp, notnull: true } 
@@ -118,11 +123,24 @@ Quote:
     Parent:                  { class: sfGuardUser, onDelete: CASCADE, local: created_by, foreign: id }
     Gender:                  { class: Gender, local: main_sex, foreign: id } 
     SpouseGender:            { class: Gender, local: spouse_sex, foreign: id }
+    Commission:              { class: Commission, local: commission_id, foreign: id }
+    SpouseReversion:         { class: SpouseReversion, local: spouse_reversion_id, foreign: id }
+    Pri:                     { class: Pri, local: pri_id, foreign: id }
 
 QuoteType:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
     title:            { type: string(255), notnull: true }
+      
+Pri:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: decimal(15), scale: 3 }
+      
+SpouseReversion:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: decimal(15), scale: 2 }
       
 System:
   columns:
@@ -240,7 +258,7 @@ TaxRate:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
     tax_rate:         { type: decimal(10), scale: 5 }
-    start_bracket:    { type: decimal(10), scale: 5 } 
+    start_bracket:    { type: integer } 
     
 TaxRebate:
   columns:

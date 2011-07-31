@@ -46,7 +46,8 @@ UserProfile:
     ParentUser:              sfguarduser_advisor
     name:                    client
     surname:                 client
-    dob:                     1981-12-04
+    dob:                     '1936-07-01'
+    spouse_dob:              '1946-07-01'
     spouse_name:             client
     spouse_surname:          client
   userprofile_jclient:

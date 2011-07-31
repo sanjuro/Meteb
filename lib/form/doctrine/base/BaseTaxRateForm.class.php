@@ -23,7 +23,7 @@ abstract class BaseTaxRateForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'tax_rate'      => new sfValidatorNumber(array('required' => false)),
-      'start_bracket' => new sfValidatorNumber(array('required' => false)),
+      'start_bracket' => new sfValidatorInteger(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('tax_rate[%s]');
