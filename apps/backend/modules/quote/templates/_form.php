@@ -16,11 +16,6 @@
 		<?php  echo $sField.': '.$sError.'<br />' ?>
 		</div>
    <?php  endforeach; ?>
-   
-      <h3>
-      	Which type of quote would you like?
-      	 <?php echo $form['quote_type_id'] ?> 
-      </h3>
     
 	<fieldset>
 		<legend>Client Info</legend>
@@ -126,6 +121,18 @@
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Spouse Reversion</b> the spouse reversion if second life is factored in') ?>" class="tip">
 			</div>			
 			<?php echo $form['spouse_reversion']->renderError() ?>
+		 </div>
+		 
+		 <div class="sf_admin_form_row">			
+			<div>
+				Which type of quote would you like?
+			</div>
+			
+			<div class="content" >
+				<?php echo $form['quote_type_id'] ?>
+				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Quote Type</b> there two types of quotes Annuity or Purchase Price') ?>" class="tip">
+			</div>			
+			<?php echo $form['quote_type_id']->renderError() ?>
 		 </div>
 		 <div id="annuity_field" class="sf_admin_form_row" style="display:none;">			
 			<div>

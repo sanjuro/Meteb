@@ -28,7 +28,7 @@ class BackendQuoteForm extends BaseQuoteForm
 	}
 
     unset(
-      $this['id'], $this['created_by'],
+      $this['id'], $this['created_by'], $this['pri'],
       $this['initial_gross_annuity'], $this['initial_net_annuity'],
       $this['commence_at'], $this['expires_at'], $this['first_annuity_increase'],
       $this['guaranteed_terms'], $this['premium_charge'],

@@ -193,8 +193,11 @@
       	 <button id="show_spouse_btn">Yes/No</button>      	
       </h3>
       
-
-      <fieldset id="sf_fieldset_spouse" style="display:none;">  
+	 <?php if ($form['userProfiles'][0]['spouseidnumber']):?>
+      	<fieldset id="sf_fieldset_spouse">  
+      <?php else: ?>
+      	<fieldset id="sf_fieldset_spouse" style="display:none;">  
+      <?php endif; ?>
       	<h2>Spouse Details</h2>
 		 <div class="sf_admin_form_row">			
 			<div>
