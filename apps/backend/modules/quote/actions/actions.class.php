@@ -130,7 +130,7 @@ class quoteActions extends autoQuoteActions
 		
 		$annuity = MetebQuote::calc_annuity($quote, $quote->getPri()->getTitle(), $quote->getPurchasePrice());
      
-        $pp = MetebQuote::calc_pp($quote, $quote->getPri(), $annuity);
+        $pp = MetebQuote::calc_pp($quote, $quote->getPri()->getTitle(), $annuity);
         
         $this->quote = $quote;
         

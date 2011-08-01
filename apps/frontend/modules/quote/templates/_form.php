@@ -93,17 +93,7 @@
 			</div>			
 			<?php echo $form['gp']->renderError() ?>
 		 </div>
-		 <div class="sf_admin_form_row">			
-			<div>
-				<?php echo $form['pri_id']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['pri_id'] ?> %
-				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Post Retriement Interest Rate</b> the pri for the quote') ?>" class="tip">
-			</div>			
-			<?php echo $form['pri_id']->renderError() ?>
-		 </div>
+
 		<?php if ($quote->getSecondLife() == 1): ?>
 		 <div id="spouse_reversion_field"  class="sf_admin_form_row">		
 		<?php else: ?>
@@ -121,7 +111,7 @@
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>
-				Which type of quote would you like?
+				Which type of quote?
 			</div>
 			
 			<div class="content" >

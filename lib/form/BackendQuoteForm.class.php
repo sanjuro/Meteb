@@ -46,9 +46,6 @@ class BackendQuoteForm extends BaseQuoteForm
     
 	$this->widgetSchema['gp'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Guanrateed Period', 'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')));
-
-	$this->widgetSchema['pri_id'] = new sfWidgetFormDoctrineChoice(
-	     	array( 'model' => 'Pri',  'label' => 'Post Retirement Interest rate', 'add_empty' => "Select a Post Retirement Interest rate"), array ( ));  
 	     	
 	$this->widgetSchema['spouse_reversion_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'SpouseReversion',  'label' => 'Spouse Reversion', 'add_empty' => "Select a Spouse Reversion"), array ( ));  
@@ -86,6 +83,8 @@ class BackendQuoteForm extends BaseQuoteForm
     	
     $values['created_by'] =  $this->currentUser->getGuardUser()->getId();
 
+    $values['pri_id'] = 1;
+    
 	$values = $this->processValues($values);
 	
     $this->doUpdateObject($values);
