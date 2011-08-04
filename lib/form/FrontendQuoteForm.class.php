@@ -78,9 +78,14 @@ class FrontendQuoteForm extends BaseQuoteForm
       $values = $this->values;
     }
     
+	$dateNow = new DateTime(date('Y-m-d'));
+	$dateNow->modify('+1 month');
+    
     $values['client_id'] =  $this->currentUser->getGuardUser()->getId();
     	
     $values['created_by'] =  $this->currentUser->getGuardUser()->getId();
+    
+    $values['commence_at'] =  $dateNow->format('Y-m-d 00:00:00');
 
 	$values = $this->processValues($values);
 	
