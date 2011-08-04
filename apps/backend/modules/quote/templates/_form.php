@@ -96,6 +96,18 @@
 		<legend>Quote Details</legend>
 		 <div class="sf_admin_form_row">			
 			<div>
+				<?php echo $form['commence_at']->renderLabel() ?>
+			</div>
+			
+			<div  class="content" >
+				<?php echo $form['commence_at'] ?>
+				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Commencement Date</b> the starting date of the quote') ?>" class="tip">
+			</div>			
+			<?php echo $form['commence_at']->renderError() ?>
+		 </div>
+		
+		 <div class="sf_admin_form_row">			
+			<div>
 				<?php echo $form['gp']->renderLabel() ?>
 			</div>
 			
@@ -122,11 +134,8 @@
 			<?php echo $form['spouse_reversion_id']->renderError() ?>
 		 </div>
 		 
-		 <div class="sf_admin_form_row">			
-			<div>
-				Which type of quote?
-			</div>
-			
+		 <div class="sf_admin_form_row">			 
+		 	<label for="quote_type_id">Which type of quote?</label>	
 			<div class="content" >
 				<?php echo $form['quote_type_id'] ?>
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Quote Type</b> there two types of quotes Annuity or Purchase Price') ?>" class="tip">

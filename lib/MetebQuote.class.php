@@ -350,7 +350,7 @@ class MetebQuote
 		//The following is just a list of all of the outputs that get generated
 		$quote_out["data_date"] = $marketResult['uploaded_at'];
 		$quote_out["quote_date"] = date("Y-m-d", time());
-		$quote_out["commencement_date"] = $marketResult['inception_date'];
+		$quote_out["commencement_date"] = $quote->getCommenceAt();
 		$quote_out["first_payment_date"] = "";
 		$quote_out["first_increase_date"] = "";
 		$quote_out["pp1"]="";

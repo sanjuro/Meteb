@@ -30,7 +30,7 @@ class BackendQuoteForm extends BaseQuoteForm
     unset(
       $this['id'], $this['created_by'], $this['pri'],
       $this['initial_gross_annuity'], $this['initial_net_annuity'],
-      $this['commence_at'], $this['expires_at'], $this['first_annuity_increase'],
+      $this['expires_at'], $this['first_annuity_increase'],
       $this['guaranteed_terms'], $this['premium_charge'],
       $this['fund_charge'], $this['administrative_charge'],
       $this['created_at'], $this['updated_at']
@@ -52,6 +52,9 @@ class BackendQuoteForm extends BaseQuoteForm
     
 	$this->widgetSchema['second_life'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Is there a spouse?', 'choices' => array( 0 => 'no', 1 => 'yes')));
+	     	
+	$this->widgetSchema['commence_at'] = new sfWidgetFormDateJQueryUI(
+			array("label" => "Commenencement Date", "change_month" => true, "change_year" => true));
     
 	$this->widgetSchema['main_dob'] = new sfWidgetFormDateJQueryUI(
 			array("label" => "Date of Birth", "change_month" => true, "change_year" => true));
@@ -64,12 +67,16 @@ class BackendQuoteForm extends BaseQuoteForm
 			
 	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false, 'min_length' => 1));
     
+	$dateNow = new DateTime(date('Y-m-d'));
+	$dateNow->modify('+1 month');
+	
   	if($this->getOption("userForQuote")){
 		$this->setDefaults(array(
 			'client_id'      => $userForQuote->getId(),
 			'main_sex'       => $userprofile[0]->getGenderId(),
 			'main_dob'       => $userprofile[0]->getDob(),
 			'spouse_sex'     => $userprofile[0]->getSpouseGenderId(),
+		    'commence_at'    => $dateNow->format('Y-m-d'),
 		));
 	}
   }
