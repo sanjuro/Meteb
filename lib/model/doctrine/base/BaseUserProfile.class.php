@@ -8,7 +8,6 @@
  * @property integer $id
  * @property integer $sfuser_id
  * @property integer $gender_id
- * @property integer $spouse_gender_id
  * @property integer $status_id
  * @property integer $parent_user_id
  * @property string $fsp_license_number
@@ -25,18 +24,17 @@
  * @property string $spouse_name
  * @property string $spouse_surname
  * @property date $spouse_dob
+ * @property integer $spouse_gender_id
  * @property string $spouseidnumber
  * @property string $company
  * @property sfGuardUser $sfGuardUser
  * @property Gender $Gender
- * @property Gender $SpouseGender
  * @property ClientStatus $ClientStatus
  * @property sfGuardUser $ParentUser
  * 
  * @method integer      getId()                 Returns the current record's "id" value
  * @method integer      getSfuserId()           Returns the current record's "sfuser_id" value
  * @method integer      getGenderId()           Returns the current record's "gender_id" value
- * @method integer      getSpouseGenderId()     Returns the current record's "spouse_gender_id" value
  * @method integer      getStatusId()           Returns the current record's "status_id" value
  * @method integer      getParentUserId()       Returns the current record's "parent_user_id" value
  * @method string       getFspLicenseNumber()   Returns the current record's "fsp_license_number" value
@@ -53,17 +51,16 @@
  * @method string       getSpouseName()         Returns the current record's "spouse_name" value
  * @method string       getSpouseSurname()      Returns the current record's "spouse_surname" value
  * @method date         getSpouseDob()          Returns the current record's "spouse_dob" value
+ * @method integer      getSpouseGenderId()     Returns the current record's "spouse_gender_id" value
  * @method string       getSpouseidnumber()     Returns the current record's "spouseidnumber" value
  * @method string       getCompany()            Returns the current record's "company" value
  * @method sfGuardUser  getSfGuardUser()        Returns the current record's "sfGuardUser" value
  * @method Gender       getGender()             Returns the current record's "Gender" value
- * @method Gender       getSpouseGender()       Returns the current record's "SpouseGender" value
  * @method ClientStatus getClientStatus()       Returns the current record's "ClientStatus" value
  * @method sfGuardUser  getParentUser()         Returns the current record's "ParentUser" value
  * @method UserProfile  setId()                 Sets the current record's "id" value
  * @method UserProfile  setSfuserId()           Sets the current record's "sfuser_id" value
  * @method UserProfile  setGenderId()           Sets the current record's "gender_id" value
- * @method UserProfile  setSpouseGenderId()     Sets the current record's "spouse_gender_id" value
  * @method UserProfile  setStatusId()           Sets the current record's "status_id" value
  * @method UserProfile  setParentUserId()       Sets the current record's "parent_user_id" value
  * @method UserProfile  setFspLicenseNumber()   Sets the current record's "fsp_license_number" value
@@ -80,11 +77,11 @@
  * @method UserProfile  setSpouseName()         Sets the current record's "spouse_name" value
  * @method UserProfile  setSpouseSurname()      Sets the current record's "spouse_surname" value
  * @method UserProfile  setSpouseDob()          Sets the current record's "spouse_dob" value
+ * @method UserProfile  setSpouseGenderId()     Sets the current record's "spouse_gender_id" value
  * @method UserProfile  setSpouseidnumber()     Sets the current record's "spouseidnumber" value
  * @method UserProfile  setCompany()            Sets the current record's "company" value
  * @method UserProfile  setSfGuardUser()        Sets the current record's "sfGuardUser" value
  * @method UserProfile  setGender()             Sets the current record's "Gender" value
- * @method UserProfile  setSpouseGender()       Sets the current record's "SpouseGender" value
  * @method UserProfile  setClientStatus()       Sets the current record's "ClientStatus" value
  * @method UserProfile  setParentUser()         Sets the current record's "ParentUser" value
  * 
@@ -107,9 +104,6 @@ abstract class BaseUserProfile extends sfDoctrineRecord
              'type' => 'integer',
              ));
         $this->hasColumn('gender_id', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('spouse_gender_id', 'integer', null, array(
              'type' => 'integer',
              ));
         $this->hasColumn('status_id', 'integer', null, array(
@@ -223,6 +217,9 @@ abstract class BaseUserProfile extends sfDoctrineRecord
         $this->hasColumn('spouse_dob', 'date', null, array(
              'type' => 'date',
              ));
+        $this->hasColumn('spouse_gender_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
         $this->hasColumn('spouseidnumber', 'string', 20, array(
              'type' => 'string',
              'fixed' => 0,
@@ -253,10 +250,6 @@ abstract class BaseUserProfile extends sfDoctrineRecord
 
         $this->hasOne('Gender', array(
              'local' => 'gender_id',
-             'foreign' => 'id'));
-
-        $this->hasOne('Gender as SpouseGender', array(
-             'local' => 'spouse_gender_id',
              'foreign' => 'id'));
 
         $this->hasOne('ClientStatus', array(

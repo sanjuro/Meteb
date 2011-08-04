@@ -155,7 +155,6 @@ UserProfile:
     id:               { type: integer, primary: true, autoincrement: true }
     sfuser_id:        { type: integer }
     gender_id:        { type: integer }
-    spouse_gender_id: { type: integer }
     status_id:        { type: integer }
     parent_user_id:   { type: integer }
     fsp_license_number:   { type: string(12) }
@@ -250,7 +249,6 @@ UserProfile:
   relations:
     sfGuardUser:      { class: sfGuardUser, onDelete: CASCADE, local: sfuser_id, foreign: id }
     Gender:           { class: Gender, local: gender_id, foreign: id }
-    SpouseGender:     { class: Gender, local: spouse_gender_id, foreign: id }
     ClientStatus:     { class: ClientStatus, local: status_id, foreign: id }
     ParentUser:       { class: sfGuardUser, local: parent_user_id, foreign: id }
     

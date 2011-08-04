@@ -2,7 +2,7 @@ UserProfile:
   userprofile_sanjuro:
     sfGuardUser:             sfguarduser_sanjuro
     Gender:                  gender_male
-    SpouseGender:            gender_female
+    spouse_gender_id:        2
     ClientStatus:            status_active
     ParentUser:              sfguarduser_sanjuro
     name:                    shadley
@@ -13,7 +13,7 @@ UserProfile:
   userprofile_admin:
     sfGuardUser:             sfguarduser_admin
     Gender:                  gender_male
-    SpouseGender:            gender_female
+    spouse_gender_id:        2
     ClientStatus:            status_active
     ParentUser:              sfguarduser_admin
     name:                    admin
@@ -24,6 +24,7 @@ UserProfile:
   userprofile_advisor:
     sfGuardUser:             sfguarduser_advisor
     Gender:                  gender_male
+    spouse_gender_id:        2
     ClientStatus:            status_active
     ParentUser:              sfguarduser_admin
     name:                    advisor
@@ -32,7 +33,7 @@ UserProfile:
   userprofile_jadvisor:
     sfGuardUser:             sfguarduser_jadvisor
     Gender:                  gender_male
-    SpouseGender:            gender_female
+    spouse_gender_id:        2
     ClientStatus:            status_active
     ParentUser:              sfguarduser_admin
     name:                    jack
@@ -41,7 +42,7 @@ UserProfile:
   userprofile_client:
     sfGuardUser:             sfguarduser_client
     Gender:                  gender_male
-    SpouseGender:            gender_female
+    spouse_gender_id:        2
     ClientStatus:            status_active
     ParentUser:              sfguarduser_advisor
     name:                    client
@@ -53,7 +54,7 @@ UserProfile:
   userprofile_jclient:
     sfGuardUser:             sfguarduser_jclient
     Gender:                  gender_male
-    SpouseGender:            gender_female
+    spouse_gender_id:        2
     ClientStatus:            status_active
     ParentUser:              sfguarduser_jadvisor
     name:                    jack
