@@ -106,7 +106,7 @@ class MetebQuote
 	 * @return double Annutiy net value
 	 */	
 	public static function calc_net_annuity($main_dob, $annuity)
-	{
+	{	
 		/** 
 		 * This function calculates the net (of tax) initial annuity amount from the gross initial annuity
 		 * It gets the tax rates and rebates from the database (which must be updated every year)
@@ -116,17 +116,25 @@ class MetebQuote
 		$marketResult = Doctrine::getTable('Marketdata')->get_latest_marketdata();
 		$month_array = $marketResult['month_array'];
 		
-		$tax_rates[0][3]=0;
+		/**
+		 * Calculate marginal tax rate and amount based on a per bracket sum
+		 */
+		$tax_rates[0][3] = 0;
 		for ($pos = 1; $pos <= count($tax_rates)-1; $pos++){
 			$tax_rates[$pos][3] = $tax_rates[$pos-1][3]+$tax_rates[$pos-1][1]*($tax_rates[$pos][2]-$tax_rates[$pos-1][2]);
 		}
 		
 		$annual_annuity = $annuity * 12;
-		// $main_dob = (strtotime($main_dob) + 2209168800) / 86400;
-		// $age = floor(($month_array[1][1]-$main_dob) / 365.25);
-		$age = Meteb::getAge($main_dob);
+	
+		/**
+		 * Calculate tax age based on commencement date of quote
+		 */
+		$main_dob = (strtotime($main_dob) + 2209168800) / 86400;
+		$age = floor(($month_array[1][1]-$main_dob) / 365.25);
 		
-		$tax_before_rebate=0;
+		// $age = Meteb::getAge($main_dob);
+
+		$tax_before_rebate = 0;
 		
 		for ($pos=0; $pos<=count($tax_rates)-2; $pos++){
 			$tax_before_rebate = $tax_before_rebate+(($tax_rates[$pos][2]<$annual_annuity)*$tax_rates[$pos][1]*(min($tax_rates[$pos+1][2],$annual_annuity)-$tax_rates[$pos][2]));
@@ -138,7 +146,7 @@ class MetebQuote
 		}
 		
 		$tax_after_rebate = max($tax_before_rebate-$rebate,0);
-		
+		//exit;
 		return ($annual_annuity-$tax_after_rebate)/12;
 	}
 	
