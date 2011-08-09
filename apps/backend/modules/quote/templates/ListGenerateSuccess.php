@@ -23,22 +23,22 @@
 			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader" class="activityAction">
 				<tbody>
 					<tr>
-						<td>Name</td><td><?php echo $client->getFirstName().' '.$client->getLastName() ?></td>
+						<td><b>Name</b></td><td><?php echo $client->getFirstName().' '.$client->getLastName() ?></td>
 					</tr>
 					<tr>
-						<td>Email</td><td><?php echo $client->getEmailAddress() ?></td>
+						<td><b>Email</b></td><td><?php echo $client->getEmailAddress() ?></td>
 					</tr>
 					<tr>
-						<td>ID</td><td><?php echo $userprofile->getIdnumber() ?></td>
+						<td><b>ID</b></td><td><?php echo $userprofile->getIdnumber() ?></td>
 					</tr>
 					<tr>
-						<td>Date of Birth</td><td><?php echo $userprofile->getDob() ?></td>
+						<td><b>Date of Birth</b></td><td><?php echo $userprofile->getDob() ?></td>
 					</tr>
 					<tr>
-						<td>Spouse ID</td><td><?php echo $userprofile->getSpouseidnumber() ?></td>
+						<td><b>Spouse ID</b></td><td><?php echo $userprofile->getSpouseidnumber() ?></td>
 					</tr>
 					<tr>
-						<td>Spouse DOB</td><td><?php echo $userprofile->getSpouseDob() ?></td>
+						<td><b>Spouse Date of Birth</b></td><td><?php echo $userprofile->getSpouseDob() ?></td>
 					</tr>
 				</tbody>
 			</table>
