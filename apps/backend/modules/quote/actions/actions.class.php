@@ -110,6 +110,11 @@ class quoteActions extends autoQuoteActions
         }
         
         $this->quote = $quote;
+        
+        $this->client = $quote->getClient();
+        
+        $userprofile = $this->client->getUserProfile();
+        $this->userprofile = $userprofile[0];
     	
         $this->quote_calculations = MetebQuote::generate($quote, $quote->getCommission()->getTitle(), $pp, $annuity);
         // Meteb::TKO($this->quote_calculations);
@@ -212,6 +217,10 @@ class quoteActions extends autoQuoteActions
 	        $this->getUser()->setFlash('notice', $notice.' You quote has been saved and the pdf is being generated.');
 	
 	        $this->redirect(array('sf_route' => 'quote_pdf', 'sf_subject' => $quote));
+	      }
+	      else if ($request->hasParameter('_generate_pdf'))
+	      {
+	        $this->redirect(array('sf_route' => 'quote_generate', 'sf_subject' => $quote));
 	      }
 	      else
 	      { 

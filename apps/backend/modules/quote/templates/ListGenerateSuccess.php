@@ -18,6 +18,30 @@
 			</tr>
 		</table>
 		<p><a href="<?php echo url_for('client_new') ?>"><img width="91" height="25" alt="Add a new Client" src="/images/backend/add_client_new.jpg"></a></p>
+		<br></br>
+		<h2>Client Details</h2>
+			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader" class="activityAction">
+				<tbody>
+					<tr>
+						<td>Name</td><td><?php echo $client->getFirstName().' '.$client->getLastName() ?></td>
+					</tr>
+					<tr>
+						<td>Email</td><td><?php echo $client->getEmailAddress() ?></td>
+					</tr>
+					<tr>
+						<td>ID</td><td><?php echo $userprofile->getIdnumber() ?></td>
+					</tr>
+					<tr>
+						<td>Date of Birth</td><td><?php echo $userprofile->getDob() ?></td>
+					</tr>
+					<tr>
+						<td>Spouse ID</td><td><?php echo $userprofile->getSpouseidnumber() ?></td>
+					</tr>
+					<tr>
+						<td>Spouse DOB</td><td><?php echo $userprofile->getSpouseDob() ?></td>
+					</tr>
+				</tbody>
+			</table>
 	</div>
 	
 	<div id="quoteDetails" >

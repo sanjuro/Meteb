@@ -14,7 +14,7 @@ class sfGuardUser extends PluginsfGuardUser
 {
 	/**
 	 * Function to fetch all the clients associated to a certain
-	 * user this should only be for advisors or admisn
+	 * user this should only be for advisors or admins
 	 * 
 	 * @param 
 	 * @return UserProfile UserProfile Object
@@ -33,7 +33,7 @@ class sfGuardUser extends PluginsfGuardUser
 	 
 	/**
 	 * Function to fetch all the advisors associated to a certain
-	 * user this should only be for advisors or admisn
+	 * user this should only be for advisors or admins
 	 * 
 	 * @param 
 	 * @return UserProfile UserProfile Object
@@ -84,4 +84,6 @@ class sfGuardUser extends PluginsfGuardUser
 		  
 		return $q->execute(); 	
 	 }
+	 
+
 }
