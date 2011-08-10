@@ -66,6 +66,8 @@ class BackendQuoteForm extends BaseQuoteForm
 	     	array( 'model' => 'Commission',  'label' => 'Commission Percentage', 'add_empty' => "Select a Commission"), array ( ));  
 			
 	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false, 'min_length' => 1));
+	
+	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'SpouseReversion'));
     
 	$dateNow = new DateTime(date('Y-m-d'));
 	$dateNow->modify('+1 month');

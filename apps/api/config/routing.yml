@@ -1,0 +1,34 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+#api
+api_login:
+  url:   /login/:token/:username/:password.:sf_format
+  param: { module: login, action: authenticate }
+  requirements:
+    token:      \w+
+    username:   \w+
+    password:   \w+
+    sf_format: (?:xml|json|yaml)
+    sf_method: [get, post]
+
+api_client:
+  url:   /clients/list/:token.:sf_format
+  param: { module: client, action: list }
+  requirements:
+    clientid:   \w+
+    sf_format: (?:xml|json|yaml)
+    sf_method: [get, post]
+    
+    
+api_quote:
+  url:   /quotes/new/:token/:clientid.:sf_format
+  param: { module: quote, action: new }
+  requirements:
+    clientid:   \w+
+    sf_format: (?:xml|json|yaml)
+    sf_method: [get, post]
+    
+wsdl:
+  url:   /:service.wsdl
+  param: { module: wsdl, action: index }

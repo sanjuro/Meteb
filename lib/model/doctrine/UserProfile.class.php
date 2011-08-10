@@ -12,4 +12,19 @@
  */
 class UserProfile extends BaseUserProfile
 {
+  /**
+  * Function to save a UserProfile Object
+  * 
+  * @param void
+  * @return boolean If the save was successful
+  */
+  public function save(Doctrine_Connection $conn = null)
+  {
+    if (!$this->getToken())
+    {
+      $this->setToken(sha1($this->getIdnumber().time().rand(11111, 99999)));
+    }
+ 
+    return parent::save($conn);
+  }
 }

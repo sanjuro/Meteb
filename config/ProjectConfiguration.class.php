@@ -13,5 +13,6 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfFormExtraPlugin');
     $this->enablePlugins('sfDatagridPlugin');
     $this->enablePlugins('sfJQueryUIPlugin');
+    $this->enablePlugins('ckWebServicePlugin');
   }
 }
