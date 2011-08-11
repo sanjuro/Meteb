@@ -71,13 +71,13 @@
 				</div>
 				
 				<span class="quotedetails_label"><?php echo __('Data Date')?></span>
-				<span class="quotedetails_data red"><?php echo $quote_calculations['data_date']?></span>
+				<span class="quotedetails_data red"><?php echo date('Y-m-d', strtotime($quote_calculations['data_date'])) ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Quote Date')?></span>
 				<span class="quotedetails_data red"><?php echo $quote_calculations['quote_date']?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Commencement Date')?></span>
-				<span class="quotedetails_data"><?php echo $quote_calculations['commencement_date']?></span>
+				<span class="quotedetails_data"><?php echo date('Y-m-d', strtotime($quote_calculations['commencement_date'])) ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('First Payment Date')?></span>
 				<span class="quotedetails_data"><?php echo $quote_calculations['first_payment_date']?></span>
