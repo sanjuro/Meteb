@@ -10,7 +10,7 @@
   <?php echo $helper->linkToList(array(  'params' =>   array(  ),  'class_suffix' => 'list',  'label' => 'Back to list',)) ?>
   <?php echo $helper->linkToSave($form->getObject(), array(  'params' =>   array(  ),  'class_suffix' => 'save',  'label' => 'Save',)) ?>
   <?php echo $helper->linkToSaveAndPdf($form->getObject(), array(  'params' =>   array(  ),  'class_suffix' => 'save_and_pdf',  'label' => 'Save and PDF',)) ?>
-  <?php echo $helper->linkToGenerate($form->getObject(), array(  'params' =>   array(  ),  'class_suffix' => 'generate_pdf',  'label' => 'Generate PDF',)) ?>
+  <?php echo $helper->linkToGenerate($form->getObject(), array(  'params' =>   array(  ),  'class_suffix' => 'generate_pdf',  'label' => 'Generate Quote',)) ?>
   <?php echo $helper->linkToSaveAndAdd($form->getObject(), array(  'params' =>   array(  ),  'class_suffix' => 'save_and_add',  'label' => 'Save and add',)) ?>
 <?php endif; ?>
 </ul>
