@@ -71,19 +71,22 @@
 				</div>
 				
 				<span class="quotedetails_label"><?php echo __('Data Date')?></span>
-				<span class="quotedetails_data red"><?php echo date('Y-m-d', strtotime($quote_calculations['data_date'])) ?></span>
+				<span class="quotedetails_data red"><?php echo $quote_calculations['data_date'] ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Quote Date')?></span>
 				<span class="quotedetails_data red"><?php echo $quote_calculations['quote_date']?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Commencement Date')?></span>
-				<span class="quotedetails_data"><?php echo date('Y-m-d', strtotime($quote_calculations['commencement_date'])) ?></span>
+				<span class="quotedetails_data"><?php echo $quote_calculations['commencement_date'] ?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('First Payment Date')?></span>
 				<span class="quotedetails_data"><?php echo $quote_calculations['first_payment_date']?></span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('First Increase Date')?></span>
 				<span class="quotedetails_data"><?php echo $quote_calculations['first_increase_date']?></span>
+				<br>
+				<span class="quotedetails_label"><?php echo __('Guarantee Terms')?></span>
+				<span class="quotedetails_data"><?php echo $quote_calculations['guanratee_terms']?> months</span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('PP1')?></span>
 				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['pp1'], 2, '.', ',')  ?></span>

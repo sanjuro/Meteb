@@ -346,11 +346,15 @@ class MetebQuote
 		 * Annuity Amount -> Purchase Price : Set $pp=0 and specify a value for $annuity
 		 * Purchase Price -> Annuity Amount : Set $annuity=0 and specify a value for $pp
 		 */
+		
+		$commenceMonth = date('m', strtotime($quote->getCommenceAt()));
+		$commenceYear = date('y', strtotime($quote->getCommenceAt()));
 	
 		//The following is just a list of all of the outputs that get generated
-		$quote_out["data_date"] = $marketResult['uploaded_at'];
-		$quote_out["quote_date"] = date("Y-m-d", time());
+		$quote_out["data_date"] = "";
+		$quote_out["quote_date"] = "";
 		$quote_out["commencement_date"] = $quote->getCommenceAt();
+		$quote_out["guanratee_terms"] = $quote->getGp();
 		$quote_out["first_payment_date"] = "";
 		$quote_out["first_increase_date"] = "";
 		$quote_out["pp1"]="";
@@ -411,12 +415,6 @@ class MetebQuote
 		$quote_out["tax2"] = $quote_out["gross_annuity_2"] - $quote_out["net_annuity_2"];
 		$quote_out["tax3"] = $quote_out["gross_annuity_3"] - $quote_out["net_annuity_3"];
 
-		/**
-		 * The first payment date is the last day of the inception month
-		 * The first increase occurs one year after inception
-		 */
-		$quote_out["first_payment_date"] = date("Y-m-d", strtotime($quote_out["commencement_date"]." +1 month -1 day"));
-		$quote_out["first_increase_date"] = date("Y-m-d", strtotime($quote_out["commencement_date"]." +1 year"));
 		
 		//Maximum commission is 1.50% - a percentage of this can be sacrificed
 		$quote_out["commission_sacrificed"] = $commission;
@@ -429,6 +427,25 @@ class MetebQuote
 		}else {
 			$quote_out["spouse_age_next"] = '0000-00-00';
 		}
+		
+		/**
+		 * The first payment date is the last day of the inception month
+		 * The first increase occurs one year after inception
+		 */
+		$commenceDate = new DateTime($quote_out["commencement_date"]);
+		
+		$firstPaymentDate = new DateTime(Meteb::last_business_day($commenceDate->format('m'), $commenceDate->format('Y')));
+		
+		$firstIncreaseDate = new DateTime($quote_out["commencement_date"]);
+		$firstIncreaseDate->modify('+1 year');
+		
+		$dataDate = new DateTime($marketResult['uploaded_at']);
+		
+		$quote_out["commencement_date"] = $commenceDate->format('d M Y');
+		$quote_out["first_payment_date"] = $firstPaymentDate->format('d M Y');
+		$quote_out["first_increase_date"] = $firstIncreaseDate->format('d M Y');
+		$quote_out["quote_date"] = date("d M Y", time());
+		$quote_out["data_date"] = $dataDate->format('d M Y');
 
 		/**
 		 * This calculates the premium and admin charges that get deducted from the latest expense data
@@ -446,7 +463,7 @@ class MetebQuote
 
 		//The expiry date is set to one week after the quote is generated
 		$quote_out["expiry_date"]=date("Y-m-d",strtotime(date("Y-m-d",time())." +1 week"));
-
+		
 		return $quote_out;
 	}
 }

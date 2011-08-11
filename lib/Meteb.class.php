@@ -98,6 +98,26 @@ class Meteb
 	}
 	
 	/**
+	 * Function to find the last business day of a month
+	 *
+	 * This function returns the last business day in the form of
+	 * a date	
+	 *
+	 *
+	 * @param integer $month Month to calculate one
+	 * @param integer $year  Year to calculate one
+	 * @return integer Unix Timestamp of last day of month
+	 */
+	public static function last_business_day($month, $year) {
+		$lbd = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+		$wday = date("N", strtotime("$year-$month-$lbd"));
+
+		$lbd = "$year-$month-$lbd";
+
+		return $lbd;
+	}
+	
+	/**
 	 * This function the age from a date
 	 *
 	 * @param datetime $birthday Date of Birth

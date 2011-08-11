@@ -15,11 +15,15 @@
 		</tr>
 		<tr>
 			<td>Date of first annuity increase:  </td>
-			<td colspan="3"><?php echo $quote_calculations['first_payment_date'] ?></td>
+			<td colspan="3"><?php echo $quote_calculations['first_increase_date'] ?></td>
+		</tr>
+		<tr>
+			<td>First Payment:  </td>
+			<td colspan="3"><?php echo $quote_calculations['first_payment_date']?></td>
 		</tr>
 		<tr>
 			<td>Guarantee term in months:  </td>
-			<td colspan="3"><?php echo $quote_calculations['first_increase_date'] ?></td>
+			<td colspan="3"><?php echo $quote_calculations['guanratee_terms']?></td>
 		</tr>
 	</table>
 	<table id="annity_table" style="border: 1px solid #000;">
