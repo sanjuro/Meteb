@@ -40,7 +40,7 @@ class clientActions extends sfActions
   * Executes get a client action for the API interface
   * based on the client id parameter
   * 
-  * @WSMethod(webservice="SOAPApi")
+  * @WSMethod(name='ListClients', webservice="SOAPApi")
   * 
   * @param string $token  Session token
   *

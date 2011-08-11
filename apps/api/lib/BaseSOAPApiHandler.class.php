@@ -5,12 +5,12 @@
  */
 class BaseSOAPApiHandler extends ckSoapHandler
 {
-  public function client_list($token)
+  public function ListClients($token)
   {
     return sfContext::getInstance()->getController()->invokeSoapEnabledAction('client', 'list', array($token));
   }
 
-  public function login_authenticate($token, $username, $password)
+  public function Authenticate($token, $username, $password)
   {
     return sfContext::getInstance()->getController()->invokeSoapEnabledAction('login', 'authenticate', array($token, $username, $password));
   }
