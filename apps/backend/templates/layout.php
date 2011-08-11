@@ -85,9 +85,11 @@
         
         </div>	
   
-        <div id="footer">
-        	<p>&copy;   2011      All Rights Reserved - Momentum Life Limited is an authorised financial services and credit provider</p>
-        </div> 
+ 		<div id="footerwrapper">
+	        <div id="footer">
+	        	<p>&copy;   2011      All Rights Reserved - Momentum Life Limited is an authorised financial services and credit provider</p>
+	        </div> 
+        </div>
 
   </body>
 </html>

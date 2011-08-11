@@ -54,62 +54,33 @@
 		</div>
 
         	
-        <div class="shadowWrap">
-          <div class="shadowMidLeft">
-		        <div class="shadowMidContent">
-		       		 <?php if (include_slot('rightcol')): ?>
-		        	 <div class="twocol">	
-		        	
-		        	 	<div id="adminWrap">
-			        	 		 
-
-			        	 	<div id="content">
+        <div id="main">
 			        	 	
-					        	<div id="leftcol">    
-							<?php endif; ?>
-										<?php if ($sf_user->hasFlash('notice')): ?>
-										          <div class="flash_notice">
-										            <?php echo $sf_user->getFlash('notice') ?>
-										          </div>
-										<?php endif; ?>
-										 
-									
-										<?php if ($sf_user->hasFlash('error')): ?>
-										          <div class="flash_error">
-										            <?php echo $sf_user->getFlash('error') ?>
-										         </div>
-										<?php endif; ?>
-								    	
-			       
-					        	      	<?php echo $sf_content ?>        	      	 
-					        	       
-					        	       <div class="clearer" style="height:20px;"></div>
-					        	       
-			        	 	<?php if (include_slot('rightcol')): ?>
-					        	</div>  
+					<?php if ($sf_user->hasFlash('notice')): ?>
+					          <div class="flash_notice">
+					            <?php echo $sf_user->getFlash('notice') ?>
+					          </div>
+					<?php endif; ?>
+					 
+				
+					<?php if ($sf_user->hasFlash('error')): ?>
+					          <div class="flash_error">
+					            <?php echo $sf_user->getFlash('error') ?>
+					         </div>
+					<?php endif; ?>
+					    	
+       
+		        	      	<?php echo $sf_content ?>        	      	 
+        	       
+        	       <div class="clearer" style="height:20px;"></div>
 
-							    <div id="rightcol">  
-							    		<?php include_component_slot('rightcol') ?>
-							    </div>   
-							   
-			        	 	 </div>
-			        	 		
-			        	 	
-			        	 </div>
-			  
-        			</div>
-        			<?php endif; ?>
-        		</div>
-        				
-	        </div>
         </div>
-        
-        <div class="shadowBottomLeft">
-				<div class="shadowMidLeft"></div>
-		</div>   
-        <div id="footer">
-        	<p>&copy;   2011      All Rights Reserved - Momentum Life Limited is an authorised financial services and credit provider</p>
-        </div> 
+ 
+ 		<div id="footerwrapper">
+	        <div id="footer">
+	        	<p>&copy;   2011      All Rights Reserved - Momentum Life Limited is an authorised financial services and credit provider</p>
+	        </div> 
+        </div>
 	 </div>
   </body>
 </html>

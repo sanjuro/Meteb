@@ -45,7 +45,9 @@ a:hover {
 	color: #1B57AA;	
 }
 
-
+#footerwrapper{
+	padding: 10px;
+	}
 #footer {
     background-image: url("/images/page_footer_m.gif");
     background-position: right center;
