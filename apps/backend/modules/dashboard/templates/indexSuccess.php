@@ -25,7 +25,7 @@
 			<?php if (count($clients) > 0 ): ?>
 			<?php foreach ($clients as $client) :?>
 			<tr onmouseout="hideDelete('nocs_0')" onmouseover="showDelete('nocs_0')" id="nocs_0" class="dashRow">
-				<td width="100%">
+				<td width="100%" class="client_list">
 					<a href="<?php echo url_for('client_edit', $client->sfGuardUser )?>"><?php echo $client['name'].' '.$client['surname']?></a>
 				</td>
 				<td nowrap="" class="rowRight"><span style="display: none;" id="nocs_0_delete"><a onclick="hideDelete('nocs_0')" title="Delete this client" href=""><img width="10" height="11" alt="Delete" src="https://img.createsend1.com/img/icons/trash.gif"></a></span></td>
@@ -153,7 +153,10 @@
 					<?php if(!empty($activitys)): ?>
 						<?php foreach($activitys as $activity) :?>
 							<tr>
-								<td width="100%" class="activityAction"><?php echo $activity['ActivityType']['title']?> <b>by</b> <?php echo $activity['sfGuardUser']['username']?> <b>at</b> <?php echo $activity['created_at'] ?></td>
+								<td width="100%" class="activityAction">
+								<?php echo $activity['ActivityType']['title']?> <b>by</b> <?php echo $activity['sfGuardUser']['username']?> <br>
+								<b>at</b> <?php echo $activity['created_at'] ?>								
+								</td>
 							</tr>
 						<?php endforeach; ?>
 					<?php else: ?>

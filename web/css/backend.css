@@ -369,11 +369,14 @@ th.headerDarkGreyLeft, th.headerDarkGreyRight {
     padding: 8px 9px 8px 10px;
     text-shadow: 1px 1px 0 #FFFFFF;
 }
-table.activity td.activityAction {
-    font-size: 12px;
+table.activity td.activityAction, td.client_list {
+    color: #777777;
+    font-size: 1.2em;
+    line-height: 20px;
+    padding-left: 3px;
 }
 
-table.activity td {
+table.activity td,  td.client_list  {
     border-bottom: 1px solid #E9E9E9;
     color: #4C4C4C;
     line-height: 14px;
