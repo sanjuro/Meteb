@@ -13,10 +13,17 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-  
-     <div id="wrapper">
 		
         <div id="header">
+        
+        			<?php if ($sf_user->isAuthenticated()): ?>					
+							    <ul id="backendnavigation">		
+								    <li class="loggedin">Logged in as <?php echo $sf_user->getGuardUser()->getUsername() ?> |</li>		    	
+								    <li style="display:inline;"><?php echo link_to(__('Logout'), 'sf_guard_signout', array(), array( "class" => "logout")) ?></li>			
+							    </ul>		
+					<?php endif; ?>	
+					
+					<div class="clearer"></div>
 
 					<?php if ($sf_user->isAuthenticated()): ?>					
 					    <ul id="navigation">
@@ -44,72 +51,43 @@
 					    </ul>		
 					<?php endif; ?>	
 					
-					<?php if ($sf_user->isAuthenticated()): ?>					
-							    <ul id="backendnavigation">		
-								    <li class="loggedin">Logged in as <?php echo $sf_user->getGuardUser()->getUsername() ?> |</li>		    	
-								    <li style="display:inline;"><?php echo link_to(__('Logout'), 'sf_guard_signout', array(), array( "class" => "logout")) ?></li>			
-							    </ul>		
-					<?php endif; ?>											
+										
 
 		</div>
-
+     
+        <div id="main">
         	
-        <div class="shadowWrap">
-          <div class="shadowMidLeft">
-		        <div class="shadowMidContent">
-		       		 <?php if (include_slot('rightcol')): ?>
-		        	 <div class="twocol">	
-		        	
-		        	 	<div id="adminWrap">
-			        	 		 
+				<?php if ($sf_user->hasFlash('notice')): ?>
+				          <div class="flash_notice">
+				            <?php echo $sf_user->getFlash('notice') ?>
+				          </div>
+				<?php endif; ?>
+				 
+			
+				<?php if ($sf_user->hasFlash('error')): ?>
+				          <div class="flash_error">
+				            <?php echo $sf_user->getFlash('error') ?>
+				         </div>
+				<?php endif; ?>
+					    	
+       
+		       	<?php echo $sf_content ?>  
+		       	
+		       	<div class="clearer"></div>
+      	
+        	<?php if (include_slot('rightcol')): ?>
 
-			        	 	<div id="content">
-			        	 	
-					        	<div id="leftcol">    
-							<?php endif; ?>
-										<?php if ($sf_user->hasFlash('notice')): ?>
-										          <div class="flash_notice">
-										            <?php echo $sf_user->getFlash('notice') ?>
-										          </div>
-										<?php endif; ?>
-										 
-									
-										<?php if ($sf_user->hasFlash('error')): ?>
-										          <div class="flash_error">
-										            <?php echo $sf_user->getFlash('error') ?>
-										         </div>
-										<?php endif; ?>
-								    	
-			       
-					        	      	<?php echo $sf_content ?>        	      	 
-					        	       
-					        	       <div class="clearer" style="height:20px;"></div>
-					        	       
-			        	 	<?php if (include_slot('rightcol')): ?>
-					        	</div>  
-
-							    <div id="rightcol">  
-							    		<?php include_component_slot('rightcol') ?>
-							    </div>   
-							   
-			        	 	 </div>
-			        	 		
-			        	 	
-			        	 </div>
-			  
-        			</div>
-        			<?php endif; ?>
-        		</div>
-        				
-	        </div>
-        </div>
+			    <div id="rightcol">  
+			    		<?php include_component_slot('rightcol') ?>
+			    </div> 
+        	
+        	<?php endif; ?>
         
-        <div class="shadowBottomLeft">
-				<div class="shadowMidLeft"></div>
-		</div>   
+        </div>	
+  
         <div id="footer">
         	<p>&copy;   2011      All Rights Reserved - Momentum Life Limited is an authorised financial services and credit provider</p>
         </div> 
-	 </div>
+
   </body>
 </html>

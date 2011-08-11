@@ -4,12 +4,11 @@ body {
     background-repeat: repeat-x;
     color: #333333;
     font-size: 0.7em;
-	font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,sans-serif;
+	font-family: Arial,Helvetica,sans-serif;
  	line-height: 16px;
     min-height: 990px;
     margin: 0px;
     padding: 0px;
-
 }
 table {
 	width: 100%;
@@ -17,14 +16,20 @@ table {
 h1 {
     border-bottom: 0 none;
     color: #000000;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 2.6em;
+    font-weight: bold;
     line-height: 22px;
-    margin: 0;
+    margin-bottom: 20px;
     padding: 10px 0 12px;
+    text-transform: uppercase;
 }
 h2 {
-	text-align: left;
+    background: url("/images/backend/hr.png") repeat-x scroll left bottom transparent;
+    font-size: 1.8em;
+   height: 27px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    text-indent: 2px;
 }
 a {
 
@@ -39,13 +44,7 @@ a:hover {
 #sf_admin_container a:hover {
 	color: #1B57AA;	
 }
-#wrapper {
-   margin: 0 auto 33px;
-    max-width: 1800px;
-    min-width: 950px;
-    position: relative;
-    width: 96%;
-}
+
 
 #footer {
     background-image: url("/images/page_footer_m.gif");
@@ -79,7 +78,8 @@ a:hover {
 #header {
     background-image: url("/images/headerLogo.jpg");
     background-repeat: no-repeat;
-    height: 112px;
+    border-bottom: 2px solid #BBBBBB;
+    height: 100px;
 	}
 	
 #header h1 {
@@ -130,13 +130,20 @@ div.shadowBottomLeft div.shadowMidLeft {
 .twocol #content {
     background: url("../images/backend/2col-top.png") no-repeat scroll right top transparent;
 }
-#adminWrap {
-    background: none repeat scroll 0 0 transparent;
-}
-#content {
+
+#main {
+	background-color: #FAFAFA;
+    border-top: 2px solid #BBBBBB;
     padding: 15px 18px 25px 15px;
     position: relative;
 }
+
+#footer {
+    color: #FFFFFF;
+    font-size: 1.1em;
+    padding: 10px;
+	}
+	
 #sf_admin_container {
     padding: 15px 18px 25px 15px;
 	}
@@ -230,24 +237,28 @@ fieldset {
 }
 ul#navigation {
 	float: left;
+    font-size: 1.3em;
+    margin-top: 5px;
+    text-transform: uppercase;
 }
-ul#backendnavigation {
-	float:right;	
+ul#backendnavigation  {
+   font-size: 1.1em;
+   padding-top: 10px;
 }
 ul#navigation, ul#backendnavigation {
     color: #FFFFFF;
-    font-size: 1.1em;
+    float:right;
     list-style-type: none !important;
-    margin-top: 65px;
-    padding-left: 300px;
 }
 ul#navigation li, ul#backendnavigation li {
     float: left;
-     list-style-type: none !important;
+    list-style-type: none !important;
     margin-right: 16px;
 }
 ul#navigation a, ul#backendnavigation a {
-	color: #FFF;	
+    color: #FFFFFF;
+    display: block;
+    font-weight: bold;	
 }
 ul.backendnavigation li a:hover {
 	font-weifht: bold;
@@ -306,10 +317,10 @@ table.tableHeader td {
 	height: 22px;
 	}
 th {
-    background: url("../images/backend/dash_sending_for.jpg") repeat-x scroll left top #D3E9F7;
-    border-bottom: 1px solid #C0DAE7;
-    border-top: 1px solid #D2E7F8;
-    color: #6194B8;
+    background: url("../images/backend/dash_latest_activity.jpg") repeat-x scroll left top #DDD;
+    border-bottom: 1px solid #D3D3D3;
+    border-top: 1px solid #E5E5E5;
+    color: #767676;
     font-size: 12px;
     padding: 9px 14px 8px 4px;
     text-shadow: 1px 1px 0 #FFFFFF;
@@ -325,10 +336,10 @@ table.tableHeader th.headerLeft {
 }
 
 table.tableHeader th {
-    background: url("../images/backend/dash_sending_for.jpg") repeat-x scroll left top #D3E9F7;
-    border-bottom: 1px solid #C0DAE7;
-    border-top: 1px solid #D2E7F8;
-    color: #6194B8;
+    background: url("../images/backend/dash_latest_activity.jpg") repeat-x scroll left top #D3E9F7;
+    border-bottom: 1px solid #D3D3D3;
+    border-top: 1px solid #E5E5E5;
+    color: #767676;
     font-size: 12px;
     padding: 9px 14px 8px 4px;
     text-shadow: 1px 1px 0 #FFFFFF;

@@ -6,7 +6,7 @@
 		
 		<div id="clientList">
 			
-			<h1>
+			<h2>
 				<div id="addClientButton">
 					<a href="<?php echo url_for('client_new') ?>">
 						<img width="91" height="25" alt="Add a new Client" src="/images/backend/add_client_new.jpg">
@@ -14,13 +14,13 @@
 				</div>
 				Your Clients
 				<img src="/images/backend/help_24.png" title="<?php echo __('These are all the clients you are administring') ?>" class="tip">
-			</h1>
+			</h2>
 
             
 			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader" class="activityAction">
 			<tbody><tr class="noHighlight">
-				<th width="100%" class="headerLeft"><span>Clients you are administring</span></th>
-				<th nowrap="" class="headerRight">&nbsp;&nbsp;&nbsp;&nbsp;</th>
+				<th width="100%" class="headerDarkGreyLeft"><span>Clients you are administring</span></th>
+				<th nowrap="" class="headerDarkGreyRight">&nbsp;&nbsp;&nbsp;&nbsp;</th>
 			</tr>
 			<?php if (count($clients) > 0 ): ?>
 			<?php foreach ($clients as $client) :?>
@@ -74,7 +74,7 @@
 		
 		<div id="quoteList">
 			
-			<h1><div id="addQuoteButton"><a href="<?php echo url_for('quote_new') ?>"><img width="91" height="25" alt="Add a new Client" src="/images/backend/add_quote_new.gif"></a></div>Your Quotes</h1>
+			<h2><div id="addQuoteButton"><a href="<?php echo url_for('quote_new') ?>"><img width="91" height="25" alt="Add a new Client" src="/images/backend/add_quote_new.gif"></a></div>Your Quotes</h2>
 
             
 			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader" class="activityAction">
@@ -114,7 +114,7 @@
 					
 					<div id="clientBlankSlate">
 						
-						<h1>Welcome to the Momentum Annuity Quoting System</h1>
+						<h2>Welcome to the Momentum Annuity Quoting System</h2>
 						
 						<p>You're currently on the Main Dashboard. To get you started, you could add some quotes.</p>
 						
@@ -132,10 +132,10 @@
 					</div>
 					
 										
-					<h1>
+					<h2>
 						Latest Activity
 						<img src="/images/backend/help_24.png" title="<?php echo __('The Activity log displays all actions accross the system') ?>" class="tip">
-					</h1>
+					</h2>
 					
 					<table width="100%" cellspacing="0" cellpadding="0">
 					<tbody><tr class="noHighlight">
