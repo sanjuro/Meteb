@@ -87,6 +87,7 @@ class quoteActions extends autoQuoteActions
 	    $this->setTemplate('edit');
 	  }
 	  
+	  
 	 /**
 	 * This Action will handle Generating a quote and all its calculations
 	 * 
@@ -162,6 +163,8 @@ class quoteActions extends autoQuoteActions
 		
 		return sfView::NONE;
 	}
+	
+ 
 	
 	/**
 	 * This Action will handle creating a new quote for a client, it also log this into

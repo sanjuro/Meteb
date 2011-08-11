@@ -239,7 +239,7 @@ fieldset {
 }
 ul#navigation {
 	float: left;
-    font-size: 1.3em;
+    font-size: 1.1em;
     margin-top: 5px;
     text-transform: uppercase;
 }
@@ -261,11 +261,19 @@ ul#navigation a, ul#backendnavigation a {
     color: #FFFFFF;
     display: block;
     font-weight: bold;	
+    letter-spacing: -0.01em;
+    line-height: 22px;
+    padding: 0 8px;
+    text-shadow: none;
 }
-ul.backendnavigation li a:hover {
-	font-weifht: bold;
-	text-decoration: underline;
-	}
+ul#navigation li a:hover {
+    text-decoration: underline;
+}
+.current {
+    background-color: #153B5C;
+    border-radius: 4px 4px 4px 4px;
+    text-decoration: none;
+}
 #sf_admin_container ul li.sf_admin_action_new a {
     color: #000033;
     text-decoration: none;
