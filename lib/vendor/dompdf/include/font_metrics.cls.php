@@ -44,7 +44,7 @@
  * - Add comments
  */
 
-/* $Id: font_metrics.cls.php 355 2011-01-27 07:44:54Z fabien.menager $ */
+/* $Id: font_metrics.cls.php 216 2010-03-11 22:49:18Z ryan.masten $ */
 
 require_once(DOMPDF_LIB_DIR . "/class.pdf.php");
 
@@ -59,13 +59,12 @@ require_once(DOMPDF_LIB_DIR . "/class.pdf.php");
  *
  * Declared here because PHP5 prevents constants from being declared with expressions
  */
-if (!defined("__DOMPDF_FONT_CACHE_FILE")) {
-  if (file_exists(DOMPDF_FONT_DIR . "dompdf_font_family_cache")) {
-  	define('__DOMPDF_FONT_CACHE_FILE', DOMPDF_FONT_DIR . "dompdf_font_family_cache");
-  } else {
-  	define('__DOMPDF_FONT_CACHE_FILE', DOMPDF_FONT_DIR . "dompdf_font_family_cache.dist.php");
-  }
+if (file_exists(DOMPDF_FONT_DIR . "dompdf_font_family_cache")) {
+	define('__DOMPDF_FONT_CACHE_FILE', DOMPDF_FONT_DIR . "dompdf_font_family_cache");
+} else {
+	define('__DOMPDF_FONT_CACHE_FILE', DOMPDF_FONT_DIR . "dompdf_font_family_cache.dist");
 }
+
 
 /**
  * The font metrics class
@@ -85,9 +84,9 @@ class Font_Metrics {
   const CACHE_FILE = __DOMPDF_FONT_CACHE_FILE;
   
   /**
-   * Underlying {@link Canvas} object to perform text size calculations
+   * Underlying {@link Cpdf} object to perform text size calculations
    *
-   * @var Canvas
+   * @var Cpdf
    */
   static protected $_pdf = null;
 
@@ -121,8 +120,8 @@ class Font_Metrics {
    * @param float  $spacing word spacing, if any
    * @return float
    */
-  static function get_text_width($text, $font, $size, $word_spacing = 0, $char_spacing = 0) {
-    return self::$_pdf->get_text_width($text, $font, $size, $word_spacing, $char_spacing);
+  static function get_text_width($text, $font, $size, $spacing = 0) {
+    return self::$_pdf->get_text_width($text, $font, $size, $spacing);
   }
 
   /**
@@ -206,11 +205,9 @@ class Font_Metrics {
    * @see Font_Metrics::load_font_families()
    */
   static function save_font_families() {
-    // replace the path to the DOMPDF font directory with "DOMPDF_FONT_DIR" (allows for more portability)
-    $cache_data = var_export(self::$_font_lookup, true);
-    $cache_data = str_replace('\''.DOMPDF_FONT_DIR , 'DOMPDF_FONT_DIR . \'' , $cache_data);
-    $cache_data = "<"."?php return $cache_data ?".">";
-    file_put_contents(self::CACHE_FILE, $cache_data);
+
+    file_put_contents(self::CACHE_FILE, var_export(self::$_font_lookup, true));
+    
   }
 
   /**
@@ -222,64 +219,10 @@ class Font_Metrics {
     if ( !is_readable(self::CACHE_FILE) )
       return;
 
-    self::$_font_lookup = require_once(self::CACHE_FILE);
-    
-    // If the font family cache is still in the old format
-    if ( self::$_font_lookup === 1 ) {
-      $cache_data = file_get_contents(self::CACHE_FILE);
-      file_put_contents(self::CACHE_FILE, "<"."?php return $cache_data ?".">");
-      self::$_font_lookup = require_once(self::CACHE_FILE);
-    }
-  }
-  
-  static function get_system_fonts() {
-    $files = glob("/usr/share/fonts/truetype/*.ttf") +
-             glob("/usr/share/fonts/truetype/*/*.ttf") +
-             glob("/usr/share/fonts/truetype/*/*/*.ttf") +
-             glob("C:\\Windows\\fonts\\*.ttf") + 
-             glob("C:\\WinNT\\fonts\\*.ttf") + 
-             glob("/mnt/c_drive/WINDOWS/Fonts/");
-    
-    new TTF_Info;
-    
-    $names = array();
-    
-    foreach($files as $file) {
-      $info = getFontInfo($file);
-      $info["path"] = $file;
-      $type = $info[2];
-      
-      if (preg_match("/regular|normal|medium|book/i", $type)) {
-        $type = "normal";
-      }
-      elseif (preg_match("/bold/i", $type)) {
-        if (preg_match("/italic|oblique/i", $type)) {
-          $type = "bold_italic";
-        }
-        else {
-          $type = "bold";
-        }
-      }
-      elseif (preg_match("/italic|oblique/i", $type)) {
-        $type = "italic";
-      }
-      
-      $names[mb_strtolower($info[1])][$type] = $file;
-    }
-    
-    $keys = array_keys($names);
-    
-    /*$matches = array_intersect(array("times", "times new roman"), $keys);
-    $names["serif"] = $names[reset($matches)];
-          
-    $matches = array_intersect(array("helvetica", "arial", "verdana"), $keys);
-    $names["sans-serif"] = $names[reset($matches)];   
-    
-    $matches = array_intersect(array("courier", "courier new"), $keys);
-    $names["monospace"] = $names[reset($matches)];
-    $names["fixed"] = $names[reset($matches)];*/
-    
-    return $names;
+    $data = file_get_contents(self::CACHE_FILE);
+
+    if ( $data != "" )
+      eval ('self::$_font_lookup = ' . $data . ";");
   }
 
   /**

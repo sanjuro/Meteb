@@ -40,7 +40,7 @@
 
  */
 
-/* $Id: dompdf.php 301 2010-08-23 21:00:51Z fabien.menager $ */
+/* $Id: dompdf.php 216 2010-03-11 22:49:18Z ryan.masten $ */
 
 /**
  * Display command line usage:
@@ -68,6 +68,7 @@
  *
  *
  */
+
 function dompdf_usage() {
   echo
     "\nUsage: {$_SERVER["argv"][0]} [options] html_file\n\n".
@@ -87,6 +88,8 @@ function dompdf_usage() {
     " -d     \tvery verbose:  display oodles of debugging output: every frame\n".
     "        \tin the tree printed to stdout.\n".
     " -t             comma separated list of debugging types (page-break,reflow,split)\n\n";
+    
+
 }
 
 function getoptions() {
@@ -168,10 +171,11 @@ function getoptions() {
 }
 
 require_once("dompdf_config.inc.php");
-global $_dompdf_show_warnings, $_dompdf_debug, $_DOMPDF_DEBUG_TYPES;
+global $_dompdf_show_warnings;
+global $_dompdf_debug;
+global $_DOMPDF_DEBUG_TYPES;
 
 $sapi = php_sapi_name();
-$options = array();
 
 switch ( $sapi ) {
 
@@ -237,43 +241,34 @@ switch ( $sapi ) {
 
  default:
 
-  if ( isset($_GET["input_file"]) )
-    $file = rawurldecode($_GET["input_file"]);
-  else
-    throw new DOMPDF_Exception("An input file is required (i.e. input_file _GET variable).");
-  
-  if ( isset($_GET["paper"]) )
-    $paper = rawurldecode($_GET["paper"]);
-  else
-    $paper = DOMPDF_DEFAULT_PAPER_SIZE;
-  
-  if ( isset($_GET["orientation"]) )
-    $orientation = rawurldecode($_GET["orientation"]);
-  else
-    $orientation = "portrait";
-  
-  if ( isset($_GET["base_path"]) ) {
-    $base_path = rawurldecode($_GET["base_path"]);
-    $file = $base_path . $file; # Set the input file
-  }  
-  
-  if ( isset($_GET["options"]) ) {
-    $options = $_GET["options"];
-  }
-  
-  $file_parts = explode_url($file);
-  /* Check to see if the input file is local and, if so, that the base path falls within that specified by DOMDPF_CHROOT */
-  if(($file_parts['protocol'] == '' || $file_parts['protocol'] === 'file://')) {
-    $file = realpath($file);
-    if (strpos($file, DOMPDF_CHROOT) !== 0) {
-      throw new DOMPDF_Exception("Permission denied on $file.");
-    }
-  }
-  
-  $outfile = "dompdf_out.pdf"; # Don't allow them to set the output file
-  $save_file = false; # Don't save the file
-  
-  break;
+ 	if ( isset($_GET["input_file"]) )
+ 		$file = basename(rawurldecode($_GET["input_file"]));
+ 	else
+ 		throw new DOMPDF_Exception("An input file is required (i.e. input_file _GET variable).");
+ 		
+ 	if ( isset($_GET["paper"]) )
+ 		$paper = rawurldecode($_GET["paper"]);
+ 	else
+ 		$paper = DOMPDF_DEFAULT_PAPER_SIZE;
+ 		
+ 	if ( isset($_GET["orientation"]) )
+ 		$orientation = rawurldecode($_GET["orientation"]);
+ 	else
+ 		$orientation = "portrait";
+ 		
+ 	if ( isset($_GET["base_path"]) )
+ 		$base_path = rawurldecode($_GET["base_path"]);
+ 		
+ 		
+ 		$outfile = "dompdf_out.pdf"; # Don't allow them to set the output file
+ 		$save_file = false; # Don't save the file
+ 		$file = $base_path . $file; # Set the input file
+
+ 		/* Check to see if the input file and base path = www/test */
+ 		if($base_path !== "www/test/")
+ 			throw new DOMPDF_Exception("Access to dompdf.php via non-cli SAPI has been deprecated due to security concerns.  Please use the dompdf class directly.");
+
+   break;
 }
 
 $dompdf = new DOMPDF();
@@ -324,5 +319,5 @@ if ( $save_file ) {
 }
 
 if ( !headers_sent() ) {
-  $dompdf->stream($outfile, $options);
+  $dompdf->stream($outfile);
 }

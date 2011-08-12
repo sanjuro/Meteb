@@ -37,7 +37,7 @@
 
  */
 
-/* $Id: frame_factory.cls.php 356 2011-01-28 08:56:10Z fabien.menager $ */
+/* $Id: frame_factory.cls.php 216 2010-03-11 22:49:18Z ryan.masten $ */
 
 /**
  * Contains frame decorating logic
@@ -52,12 +52,6 @@
  */
 class Frame_Factory {
 
-  /**
-   * Decorate the Frame
-   * 
-   * @param $root Frame The frame to decorate
-   * @param $dompdf DOMPDF The dompdf instance
-   */
   static function decorate_root(Frame $root, DOMPDF $dompdf) {
     $frame = new Page_Frame_Decorator($root, $dompdf);
     $frame->set_reflower( new Page_Frame_Reflower($frame) );
@@ -65,21 +59,11 @@ class Frame_Factory {
     return $frame;
   }
 
-  /**
-   * Decorate a Frame 
-   * 
-   * @param $root Frame The frame to decorate
-   * @param $dompdf DOMPDF The dompdf instance
-   * @return Frame_Decorator
-   * FIXME: this is admittedly a little smelly...
-   */ 
-  static function decorate_frame(Frame $frame, DOMPDF $dompdf) {
+  // FIXME: this is admittedly a little smelly...
+  static function decorate_frame(Frame $frame, $dompdf) {
     if ( is_null($dompdf) )
       throw new Exception("foo");
-      
-    $style = $frame->get_style();
-    
-    switch ($style->display) {
+    switch ($frame->get_style()->display) {
       
     case "block":
       $positioner = "Block";        
@@ -98,16 +82,9 @@ class Frame_Factory {
       if ( $frame->get_node()->nodeName === "#text" ) {
         $decorator = "Text";
         $reflower = "Text";
-      } 
-      else {
-        if ( DOMPDF_ENABLE_CSS_FLOAT && $style->float !== "none" ) {
-          $decorator = "Block";
-          $reflower = "Block";
-        }
-        else {
-          $decorator = "Inline";
-          $reflower = "Inline";
-        }
+      } else {
+        $decorator = "Inline";
+        $reflower = "Inline";
       }
       break;   
 
@@ -150,12 +127,12 @@ class Frame_Factory {
       break;
 
     case "-dompdf-list-bullet":
-      if ( $style->list_style_position === "inside" )
+      if ( $frame->get_style()->list_style_position === "inside" )
         $positioner = "Inline";
       else        
         $positioner = "List_Bullet";
 
-      if ( $style->list_style_image !== "none" )
+      if ( $frame->get_style()->list_style_image !== "none" )
         $decorator = "List_Bullet_Image";
       else
         $decorator = "List_Bullet";
@@ -182,16 +159,13 @@ class Frame_Factory {
       $decorator = "Null";
       $reflower = "Null";
       break;
+
     }
 
-    $position = $style->position;
-    
-    if ( $position === "absolute" )
+    if ( $frame->get_style()->position === "absolute" ||
+         $frame->get_style()->position === "fixed" )
       $positioner = "Absolute";
-
-    else if ( $position === "fixed" )
-      $positioner = "Fixed";
-  
+    
     $positioner .= "_Positioner";
     $decorator .= "_Frame_Decorator";
     $reflower .= "_Frame_Reflower";
@@ -200,8 +174,36 @@ class Frame_Factory {
     $deco->set_positioner( new $positioner($deco) );
     $reflow = new $reflower($deco);
     
+    // Generated content is a special case
+    if ( $frame->get_node()->nodeName === "_dompdf_generated" ) {
+      // Decorate the reflower
+      $gen = new Generated_Frame_Reflower( $deco );
+      $gen->set_reflower( $reflow );
+      $reflow = $gen;
+    }
+    
     $deco->set_reflower( $reflow );
+
+    // Images are a special case
+//    if ( $frame->get_node()->nodeName === "img" ) {
+
+//       // FIXME: This is a hack
+//       $node =$frame->get_node()->ownerDocument->createElement("img_sub");
+//       $node->setAttribute("src", $frame->get_node()->getAttribute("src"));
+      
+//       $img_frame = new Frame( $node );
+
+//       $style = $frame->get_style()->get_stylesheet()->create_style();
+//       $style->inherit($frame->get_style());
+//       $img_frame->set_style( $style );
+
+//       $img_deco = new Image_Frame_Decorator($img_frame, $dompdf);
+//       $img_deco->set_reflower( new Image_Frame_Reflower($img_deco) );
+//       $deco->append_child($img_deco);
+
+//     }   
     
     return $deco;
   }
+  
 }

@@ -28,15 +28,16 @@
  * the case, you can obtain a copy at http://www.php.net/license/3_0.txt.
  *
  * The latest version of DOMPDF might be available at:
- * http://www.dompdf.com/
+ * http://www.digitaljunkies.ca/dompdf
  *
- * @link http://www.dompdf.com/
+ * @link http://www.digitaljunkies.ca/dompdf
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
  * @package dompdf
+ * @version 0.5.1
  */
 
-/* $Id: javascript_embedder.cls.php 291 2010-08-02 20:55:23Z fabien.menager $ */
+/* $Id$ */
 
 /**
  * Embeds Javascript into the PDF document
@@ -60,9 +61,6 @@ class Javascript_Embedder {
   }
 
   function render($frame) {
-    if ( !DOMPDF_ENABLE_JAVASCRIPT )
-      return;
-      
     $this->insert($frame->get_node()->nodeValue);
   }
 }

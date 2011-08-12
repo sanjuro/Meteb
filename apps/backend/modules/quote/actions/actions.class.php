@@ -156,7 +156,7 @@ class quoteActions extends autoQuoteActions
         // Generate PDF
 		$metebPDF = new metebPDF();
 		$metebPDF->CreateQuote($quote, $PDFContent);
-		$metebPDF->load_html($metebPDF->HTML);				
+		$metebPDF->load_html($metebPDF->HTML);		
 		$metebPDF->render();
 		
 		$metebPDF->stream("Quotation_".$quote->getId().".pdf");

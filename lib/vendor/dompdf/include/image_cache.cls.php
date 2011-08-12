@@ -50,7 +50,7 @@
  * - don't cache broken image, but refer to original broken image replacement
  */
 
-/* $Id: image_cache.cls.php 354 2011-01-24 21:59:54Z fabien.menager $ */
+/* $Id: image_cache.cls.php 216 2010-03-11 22:49:18Z ryan.masten $ */
 
 /**
  * Static class that resolves image urls and downloads and caches
@@ -92,18 +92,15 @@ class Image_Cache {
 
     $remote = ($proto != "" && $proto !== "file://");
     $remote = $remote || ($parsed_url['protocol'] != "");
-    
-    $datauri = strpos($parsed_url['protocol'], "data:") === 0;
 
-    if ( !DOMPDF_ENABLE_REMOTE && $remote && !$datauri ) {
+    if ( !DOMPDF_ENABLE_REMOTE && $remote ) {
       $resolved_url = DOMPDF_LIB_DIR . "/res/broken_image.png";
       $ext = "png";
 
       //debugpng
       if ($DEBUGPNG) $full_url_dbg = '(blockedremote)';
 
-    } 
-    else if ( DOMPDF_ENABLE_REMOTE && $remote || $datauri ) {
+    } else if ( DOMPDF_ENABLE_REMOTE && $remote ) {
       // Download remote files to a temporary directory
       $full_url = build_url($proto, $host, $base_path, $url);
 
@@ -119,17 +116,9 @@ class Image_Cache {
         //debugpng
         if ($DEBUGPNG) echo $resolved_url . "\n";
 
-        if ($datauri) {
-          if ($parsed_data_uri = parse_data_uri($url)) {
-            $image = $parsed_data_uri['data'];
-            list(, $ext) = explode('/', $parsed_data_uri['mime'], 2); 
-          }
-        }
-        else {
-          $old_err = set_error_handler("record_warnings");
-          $image = file_get_contents($full_url);
-          restore_error_handler();
-        }
+        $old_err = set_error_handler("record_warnings");
+        $image = file_get_contents($full_url);
+        restore_error_handler();
 
         if ( strlen($image) == 0 ) {
           //target image not found
@@ -150,13 +139,11 @@ class Image_Cache {
         //- local cached file does not have a matching file extension
         //Therefore get image type from the content
 
-        $imagedim = dompdf_getimagesize($resolved_url);
-        
-        if( $imagedim[0] && $imagedim[1] && 
-            in_array($imagedim[2], array(IMAGETYPE_GIF, IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_BMP)) ) {
+        $imagedim = getimagesize($resolved_url);
+        if( $imagedim[2] >= 1 && $imagedim[2] <=3 && $imagedim[0] && $imagedim[1] ) {
         //target image is valid
 
-        $imagetypes = array('','gif','jpeg','png','swf','psd','bmp');
+        $imagetypes = array('','gif','jpeg','png','swf');
         $ext = $imagetypes[$imagedim[2]];
         if ( rename($resolved_url,$resolved_url.'.'.$ext) ) {
           $resolved_url .= '.'.$ext;

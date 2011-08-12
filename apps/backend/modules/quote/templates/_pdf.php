@@ -1,3 +1,10 @@
+<script type="text/php"> 
+  if ( isset($pdf) ) {  
+     $font = Font_Metrics::get_font("helvetica", "bold");
+     $pdf->page_text(535, 750, "Page: {PAGE_NUM} of {PAGE_COUNT}", $font, 6, array(0,0,0));
+  }
+</script>
+
 <h2>A Metropolitan Life Quotation</h2>
 
 <p>
@@ -454,6 +461,8 @@
 	subsidiaries do not accept liability for, and disclaim, any loss, damage or expense however caused 
 	from the use of, or reliance on, such reviewed, varied, disseminated or manipulated information
 	<br><br>
+	<br><br>
+	<br><br>
 </p>
 <p style="padding-bottom:30px;">
 	I hereby accept this quotation and confirm that I understand the explanatory notes, conditions and <br>
@@ -483,4 +492,5 @@
 	</table>
 	<br>
 	<span style="font-size:10px;">Metropolitan Life Limited is an authorised Financial Services Provider</span>
+	<div class="clearer" style="height:676px;"><div>
 </p>
