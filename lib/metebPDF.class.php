@@ -30,14 +30,14 @@ class metebPDF extends DOMPDF{
 	 */
 	public function CreateQuote($PdfObject, $PDFContent) {
 
-		$pdfobjectNumber = $PdfObject->getId();				
+		$pdfobjectNumber = $PdfObject->getId();		
 
 		$this->setTemplatePageName('Metropolitan Life Quotation');
 		$this->setTemplateTitle('');
 		$this->setPDFNumber($pdfobjectNumber);
 		$this->setPDFDate( $PdfObject->getCreatedAt());
 		$this->setPDFContent($PDFContent);
-
+		
 		return $this->renderTemplate( );
 
 	}
