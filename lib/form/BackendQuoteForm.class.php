@@ -64,6 +64,8 @@ class BackendQuoteForm extends BaseQuoteForm
 			
 	$this->widgetSchema['commission_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'Commission',  'label' => 'Commission Percentage', 'add_empty' => "Select a Commission"), array ( ));  
+	     	
+	$this->widgetSchema['spouse_sex'] = new sfWidgetFormDoctrineChoice(array('label' => 'Spouse Gender', 'model' => $this->getRelatedModelName('SpouseGender'), 'add_empty' => true));
 			
 	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false, 'min_length' => 1));
 	

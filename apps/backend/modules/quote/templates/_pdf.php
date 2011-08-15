@@ -101,22 +101,45 @@
 <h3>Insured Life Details</h3>
 <p>
 	<table>
+		<thead>
+			<tr>
+				<td style="width: 200px;"></td>
+				<td><b>First Insured Life</b></td>
+				<?php if($quote->getSecondLife() == 1) :?>
+				<td><b>Second Insured Life</b></td>
+				<?php endif;?>
+			</tr>
+		</thead>
+		<tbody>
 		<tr>
-			<td style="width: 300px;">Name</td>
-			<td colspan="2"><?php echo $client->getFirstName().' '.$client->getLastName() ?></td>
+			<td style="width: 200px;">Name</td>
+			<td style="width: 200px;"><?php echo $client->getFirstName().' '.$client->getLastName() ?></td>
+			<?php if($quote->getSecondLife() == 1) :?>
+			<td><?php echo $userprofile->getName().' '.$userprofile->getSurname() ?></td>			
+			<?php endif;?>
 		</tr>
 		<tr>
 			<td>Date of Birth</td>
-			<td colspan="3"><?php echo $userprofile->getDob() ?></td>
+			<td><?php echo $userprofile->getDob() ?></td>
+			<?php if($quote->getSecondLife() == 1) :?>
+			<td><?php echo $userprofile->getSpouseDob() ?></td>
+			<?php endif;?>
 		</tr>
 		<tr>
 			<td>Age Next Birthday</td>
-			<td colspan="3"><?php echo $quote_calculations['main_age_next'] ?></td>
+			<td><?php echo $quote_calculations['main_age_next'] ?></td>
+			<?php if($quote->getSecondLife() == 1) :?>			
+			<td><?php echo $quote_calculations['spouse_age_next'] ?></td>
+			<?php endif;?>
 		</tr>
 		<tr>
 			<td>Sex</td>
-			<td colspan="3"><?php echo $quote->getGender()->getTitle() ?></td>
+			<td><?php echo $quote->getGender()->getTitle() ?></td>
+			<?php if($quote->getSecondLife() == 1) :?>
+			<td><?php echo $quote->getSpouseGender()->getTitle() ?></td>
+			<?php endif;?>
 		</tr>
+		</tbody>
 	</table>
 </p>
 <h3>Application Form(s)</h3>

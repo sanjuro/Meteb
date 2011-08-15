@@ -47,6 +47,17 @@ class FrontendUserProfileForm extends BaseUserProfileForm
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
 			array("change_month" => true, "change_year" => true));
 			
+    $this->widgetSchema['postaladdress'] = new sfWidgetFormInputText(array('label' => 'Postal Address'), array('size' => '50'));
+    
+    $this->widgetSchema['streetaddress'] = new sfWidgetFormInputText(array('label' => 'Street Address'), array('size' => '50'));		
+
+    $this->widgetSchema['spouseidnumber'] = new sfWidgetFormInputText(array('label' => 'Spouse ID Number'), array('size' => '50'));
+	
+    $this->widgetSchema['spouse_name'] = new sfWidgetFormInputText(array('label' => 'Spouse Name'), array('size' => '25'));
+    
+    $this->widgetSchema['spouse_surname'] = new sfWidgetFormInputText(array('label' => 'Spouse Surname'), array('size' => '25'));    
+    
+			
 	$this->validatorSchema['spouse_name'] = new sfValidatorString(array('required' => false));
 	
 	$this->validatorSchema['spouse_surname'] = new sfValidatorString(array('required' => false));

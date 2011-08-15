@@ -44,15 +44,27 @@ class BackendUserProfileForm extends BaseUserProfileForm
     	}
     } 
     
-    $this->widgetSchema['postaladdress'] = new sfWidgetFormInputText( array( 'label' => 'Postal Address'));
-    
-    $this->widgetSchema['streetaddress'] = new sfWidgetFormInputText( array( 'label' => 'Street Address'));
+    $this->widgetSchema['idnumber'] = new sfWidgetFormInputText(array('label' => 'ID Number'), array('size' => '50'));
     	
 	$this->widgetSchema['dob'] = new sfWidgetFormDateJQueryUI(
 			array("label" => "Date of Birth", "change_month" => true, "change_year" => true));
 	
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
 			array("label" => "Spouse Date of Birth", "change_month" => true, "change_year" => true));
+			
+	$this->widgetSchema['spouse_gender_id'] = new sfWidgetFormDoctrineChoice(
+	     	array( 'model' => 'Gender',  'label' => 'Spouse Gender', 'add_empty' => "Select a gender"), array ( ));  
+	
+    $this->widgetSchema['postaladdress'] = new sfWidgetFormInputText(array('label' => 'Postal Address'), array('size' => '50'));
+    
+    $this->widgetSchema['streetaddress'] = new sfWidgetFormInputText(array('label' => 'Street Address'), array('size' => '50'));		
+
+    $this->widgetSchema['spouseidnumber'] = new sfWidgetFormInputText(array('label' => 'Spouse ID Number'), array('size' => '50'));
+	
+    $this->widgetSchema['spouse_name'] = new sfWidgetFormInputText(array('label' => 'Spouse Name'), array('size' => '25'));
+    
+    $this->widgetSchema['spouse_surname'] = new sfWidgetFormInputText(array('label' => 'Spouse Surname'), array('size' => '25'));    
+    
 			
 	$this->validatorSchema['spouse_name'] = new sfValidatorString(array('required' => false));
 	
@@ -62,12 +74,6 @@ class BackendUserProfileForm extends BaseUserProfileForm
 	
 	$this->validatorSchema['spouseidnumber'] = new sfValidatorString(array('required' => false));
 	
-	$this->widgetSchema['spouse_gender_id'] = new sfWidgetFormDoctrineChoice(
-	     	array( 'model' => 'Gender',  'label' => 'Spouse Gender', 'add_empty' => "Select a gender"), array ( ));  
-	
-    $this->widgetSchema['postaladdress'] = new sfWidgetFormInputText(array(), array('size' => '50'));
-    
-    $this->widgetSchema['streetaddress'] = new sfWidgetFormInputText(array(), array('size' => '50'));
 			
     // Only check if this is a new user being added
     if($this->isNew()){

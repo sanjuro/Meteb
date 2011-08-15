@@ -35,10 +35,7 @@ class FrontendQuoteForm extends BaseQuoteForm
 													  'add_empty' => "Select a Quote Type",
 													  'label' => 'Province/Region',
 												), array ( ));   
-												
-	$this->validatorSchema['quote_type_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'QuoteType'));
-	
-    
+	 
 	$this->widgetSchema['gp'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Guanrateed Period', 'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')));
 	     	
@@ -55,7 +52,12 @@ class FrontendQuoteForm extends BaseQuoteForm
 			array("label" => "Spouse Date of Birth", "change_month" => true, "change_year" => true));
 			
 	$this->widgetSchema['commission_id'] = new sfWidgetFormDoctrineChoice(
-	     	array( 'model' => 'Commission',  'label' => 'Commission Percentage', 'add_empty' => "Select a Commission"), array ( ));  	
+	     	array( 'model' => 'Commission',  'label' => 'Commission Percentage', 'add_empty' => "Select a Commission"), array ( )); 
+
+	$this->widgetSchema['spouse_sex'] = new sfWidgetFormDoctrineChoice(array('label' => 'Spouse Gender', 'model' => $this->getRelatedModelName('SpouseGender'), 'add_empty' => true));
+			
+	
+	$this->validatorSchema['quote_type_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'QuoteType'));
 			
 	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false, 'min_length' => 1));
 	

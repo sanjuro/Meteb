@@ -1,3 +1,10 @@
+<script type="text/php"> 
+  if ( isset($pdf) ) {  
+     $font = Font_Metrics::get_font("helvetica", "bold");
+     $pdf->page_text(535, 750, "Page: {PAGE_NUM} of {PAGE_COUNT}", $font, 6, array(0,0,0));
+  }
+</script>
+
 <h2>A Metropolitan Life Quotation</h2>
 
 <p>
@@ -15,11 +22,15 @@
 		</tr>
 		<tr>
 			<td>Date of first annuity increase:  </td>
-			<td colspan="3"><?php echo $quote_calculations['first_payment_date'] ?></td>
+			<td colspan="3"><?php echo $quote_calculations['first_increase_date'] ?></td>
+		</tr>
+		<tr>
+			<td>First Payment:  </td>
+			<td colspan="3"><?php echo $quote_calculations['first_payment_date']?></td>
 		</tr>
 		<tr>
 			<td>Guarantee term in months:  </td>
-			<td colspan="3"><?php echo $quote_calculations['first_increase_date'] ?></td>
+			<td colspan="3"><?php echo $quote_calculations['guanratee_terms']?></td>
 		</tr>
 	</table>
 	<table id="annity_table" style="border: 1px solid #000;">
@@ -90,22 +101,45 @@
 <h3>Insured Life Details</h3>
 <p>
 	<table>
+		<thead>
+			<tr>
+				<td style="width: 200px;"></td>
+				<td><b>First Insured Life</b></td>
+				<?php if($quote->getSecondLife() == 1) :?>
+				<td><b>Second Insured Life</b></td>
+				<?php endif;?>
+			</tr>
+		</thead>
+		<tbody>
 		<tr>
-			<td style="width: 300px;">Name</td>
-			<td colspan="2"><?php echo $client->getFirstName().' '.$client->getLastName() ?></td>
+			<td style="width: 200px;">Name</td>
+			<td style="width: 200px;"><?php echo $client->getFirstName().' '.$client->getLastName() ?></td>
+			<?php if($quote->getSecondLife() == 1) :?>
+			<td><?php echo $userprofile->getName().' '.$userprofile->getSurname() ?></td>			
+			<?php endif;?>
 		</tr>
 		<tr>
 			<td>Date of Birth</td>
-			<td colspan="3"><?php echo $userprofile->getDob() ?></td>
+			<td><?php echo $userprofile->getDob() ?></td>
+			<?php if($quote->getSecondLife() == 1) :?>
+			<td><?php echo $userprofile->getSpouseDob() ?></td>
+			<?php endif;?>
 		</tr>
 		<tr>
 			<td>Age Next Birthday</td>
-			<td colspan="3"><?php echo $quote_calculations['main_age_next'] ?></td>
+			<td><?php echo $quote_calculations['main_age_next'] ?></td>
+			<?php if($quote->getSecondLife() == 1) :?>			
+			<td><?php echo $quote_calculations['spouse_age_next'] ?></td>
+			<?php endif;?>
 		</tr>
 		<tr>
 			<td>Sex</td>
-			<td colspan="3"><?php echo $quote->getGender()->getTitle() ?></td>
+			<td><?php echo $quote->getGender()->getTitle() ?></td>
+			<?php if($quote->getSecondLife() == 1) :?>
+			<td><?php echo $quote->getSpouseGender()->getTitle() ?></td>
+			<?php endif;?>
 		</tr>
+		</tbody>
 	</table>
 </p>
 <h3>Application Form(s)</h3>
@@ -450,6 +484,8 @@
 	subsidiaries do not accept liability for, and disclaim, any loss, damage or expense however caused 
 	from the use of, or reliance on, such reviewed, varied, disseminated or manipulated information
 	<br><br>
+	<br><br>
+	<br><br>
 </p>
 <p style="padding-bottom:30px;">
 	I hereby accept this quotation and confirm that I understand the explanatory notes, conditions and <br>
@@ -479,4 +515,5 @@
 	</table>
 	<br>
 	<span style="font-size:10px;">Metropolitan Life Limited is an authorised Financial Services Provider</span>
+	<div class="clearer" style="height:676px;"><div>
 </p>
