@@ -21,6 +21,6 @@ test:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn:      mysql:host=127.0.0.1;dbname=meteb
+      dsn:      mysql:host=127.0.0.1;dbname=meteb_test
       username: root
       password:
