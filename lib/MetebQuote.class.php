@@ -3,11 +3,11 @@
 /**
  * Meteb Quote Class
  * 
- * This class will handle the business logic for the quote
+ * This class will handle the business logic for the quote class
  * 
  * @package    meteb
  * @subpackage lib
- * @author     Shadley Wentzel
+ * @author     Shadley Wentzel <shad6ster@gmail.com>
  * @version    GIT
  */
 class MetebQuote
@@ -71,7 +71,7 @@ class MetebQuote
 	 * @param double $pri The PRI for the quote
 	 * @param double $pp The Purchase Price for the quote
 	 * 
-	 * @return UserProfile UserProfile Object
+	 * @return double The calcualted annuity
 	 */	
 	public static function calc_annuity($quote, $pri, $pp)
 	{
@@ -88,8 +88,7 @@ class MetebQuote
 			$annuity = $annuity + $diff / ( ($purchase_price_2-$purchase_price_1) / $shock );
 			$runs++;
 		}
-		
-		
+				
 		if ($runs <= 10)
 			return $annuity;
 		else
@@ -181,21 +180,24 @@ class MetebQuote
 			$age_rating = -2;
 			
 		$main_sex = $quote->getMainSex();
-		/*
-		if ($this->getMainSex() == 1)
+		/**
+		if ($quote->getMainSex() == 1)
 			$main_sex = 2;
 		else
 			$main_sex = 3;
 		*/
-			
+		
 		$spouse_sex = $quote->getSpouseSex();
-		/*
-		if ($this->getSpouseSex() == 1)
+		/**
+		if ($quote->getSpouseSex() == 1)
 			$spouse_sex = 2;
 		else
 			$spouse_sex = 3;
 		*/
-			
+		// echo '<pre>';print_r($mortalityResult);
+		// echo '<pre>';print_r($main_sex);
+		// echo '<pre>';print_r($spouse_sex);exit;
+
 		if ($annuity  <= 20000)
 			$mortality_improvement = 0.005;
 		elseif ($annuity  <= 40000)
@@ -223,7 +225,7 @@ class MetebQuote
 		$calcs[0][21]=1;
 		$calcs[0][22]=1;
 		$calcs[0][29]=0;
-		
+
 		for ($row=1; $row<=1200; $row++)
 		{
 			$calcs[$row][1]=$calcs[$row-1][1]+365.25/12;
@@ -232,9 +234,9 @@ class MetebQuote
 			$calcs[$row][4]=$exspenseResult['renewal_expenses'] * 1.14;
 			
 			$index1 = $calcs[$row][2];
-		
-			$calcs[$row][5]=$mortalityResult[$index1][$main_sex];
 			
+			$calcs[$row][5]=$mortalityResult[$index1][$main_sex];
+
 			if ($calcs[$row][5] == 1)
 				$calcs[$row][6] = 1;
 			else
@@ -274,7 +276,8 @@ class MetebQuote
 			$calcs[$row][17] = min(floor(($calcs[$row][1]-$spouse_dob)/365.25+$age_rating),$max_age);
 			
 			$index1 = $calcs[$row][17];
-			
+					
+		
 			$calcs[$row][18] = $mortalityResult[$index1][$spouse_sex];
 			
 			if ($calcs[$row][18]==1)
@@ -408,7 +411,7 @@ class MetebQuote
 		$quote_out["net_annuity_1"] = MetebQuote::calc_net_annuity($main_dob, $quote_out["gross_annuity_1"]);
 		$quote_out["net_annuity_2"] = MetebQuote::calc_net_annuity($main_dob, $quote_out["gross_annuity_2"]);
 		$quote_out["net_annuity_3"] = MetebQuote::calc_net_annuity($main_dob, $quote_out["gross_annuity_3"]);
-
+		
 		
 		//Here we calculate the tax amount payable per month for each PRI
 		$quote_out["tax1"] = $quote_out["gross_annuity_1"] - $quote_out["net_annuity_1"];
@@ -418,7 +421,7 @@ class MetebQuote
 		
 		//Maximum commission is 1.50% - a percentage of this can be sacrificed
 		$quote_out["commission_sacrificed"] = $commission;
-		
+
 		//This calculates the next age that each of the main and spouse will obtain
 		$quote_out["main_age_next"] = MetebQuote::calc_age($main_dob, $quote_out["commencement_date"])+1;
 		
