@@ -5,3 +5,11 @@
 all:
   datagrid:
     jsframwork: jquery # prototype or jquery 
+    
+dev:
+  url:
+   backend: http://meteb.localhost/backend.php
+   
+prod:
+  url:
+   backend: http://ebannuities.co.za/backend.php

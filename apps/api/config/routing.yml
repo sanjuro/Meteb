@@ -19,11 +19,10 @@ api_client:
     clientid:   \w+
     sf_format: (?:xml|json|yaml)
     sf_method: [get, post]
-    
-    
-api_quote:
-  url:   /quotes/new/:token/:clientid.:sf_format
-  param: { module: quote, action: new }
+      
+api_quote_generate:
+  url:   /quotes/generate/:token.:sf_format
+  param: { module: quote, action: generate }
   requirements:
     clientid:   \w+
     sf_format: (?:xml|json|yaml)

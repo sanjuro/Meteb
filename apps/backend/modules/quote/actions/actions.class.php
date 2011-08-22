@@ -118,7 +118,7 @@ class quoteActions extends autoQuoteActions
         $this->userprofile = $userprofile[0];
     	
         $this->quote_calculations = MetebQuote::generate($quote, $quote->getCommission()->getTitle(), $pp, $annuity);
-        // Meteb::TKO($this->quote_calculations);
+
       }
       
   

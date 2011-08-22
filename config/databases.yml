@@ -6,21 +6,21 @@ prod:
     class: sfDoctrineDatabase
     param:
       dsn:      mysql:host=127.0.0.1;dbname=meteb
-      username: root
-      password:
+      username: meteb
+      password: 1qa2ws3ed4rf
 
 dev:
   doctrine:
     class: sfDoctrineDatabase
     param:
       dsn:      mysql:host=127.0.0.1;dbname=meteb
-      username: root
-      password:
+      username: meteb
+      password: 1qa2ws3ed4rf
 
 test:
   doctrine:
     class: sfDoctrineDatabase
     param:
       dsn:      mysql:host=127.0.0.1;dbname=meteb_test
-      username: root
-      password:
+      username: meteb
+      password: 1qa2ws3ed4rf
