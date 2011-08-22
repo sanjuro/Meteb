@@ -12,17 +12,23 @@ api_login:
     sf_format: (?:xml|json|yaml)
     sf_method: [get, post]
 
-api_client:
-  url:   /clients/list/:token.:sf_format
+api_client_list:
+  url:   /clients/:token.:sf_format
   param: { module: client, action: list }
   requirements:
-    clientid:   \w+
     sf_format: (?:xml|json|yaml)
-    sf_method: [get, post]
+    sf_method: [get]
+
+api_client_create:
+  url: /clients/create/:token.:sf_format
+  param: { module: client, action: create }
+  requirements:
+    sf_format: (?:xml|json|yaml)
+    sf_method: [post]
       
 api_quote_generate:
-  url:   /quotes/generate/:token.:sf_format
-  param: { module: quote, action: generate }
+  url:   /quotes/create/:token.:sf_format
+  param: { module: quote, action: create }
   requirements:
     clientid:   \w+
     sf_format: (?:xml|json|yaml)

@@ -34,7 +34,62 @@ class clientActions extends sfActions
 	}
 	
   }
+  
+  
+  /**
+  * Executes create client action for the API interface
+  * based on the client id parameter using POST
+  * 
+  * @WSMethod(name='CreateClient', webservice="SOAPApi")
+  * 
+  * @param string $token  Session token
+  *
+  * @return integer The id of the new created Client
+  */
+  public function executeCreate(sfWebRequest $request)
+  {
+	$api_user = $this->getUser()->getGuardUser();
 	
+	if ($request->isMethod('post'))
+    {  
+			/**
+			 * Create new Client object
+			 */
+			$client = new sfGuardUser();
+			$client->setFirstName($request['first_name']);
+			$client->setLastName($request['last_name']);
+			$client->setEmailAddress($request['email_address']);
+			$client->setUsername($request['id_number']);
+			$client->setIsActive(1);
+			$client->save();
+			
+			/**
+			 * Create new associated UserProfile object
+			 */
+			$userProfile = new UserProfile();
+			$userProfile->setSfuserId($client->getId());
+			$userProfile->setGenderId($request['gender']);
+			$userProfile->setName($request['first_name']);
+			$userProfile->setSurname($request['last_name']);
+			$userProfile->setDob($request['dob']);
+			$userProfile->setIdnumber($request['id_number']);
+			$userProfile->setSpouseDob($request['spouse_dob']);
+			$userProfile->setSpouseName($request['spouse_first_name']);
+			$userProfile->setSpouseSurname($request['spouse_last_name']);
+			$userProfile->setSpouseGenderId($request['spouse_gender']);
+			$userProfile->setSpouseidnumber($request['spouse_id_number']);
+			$userProfile->setParentUser($api_user);
+			$userProfile->save();
+
+			$clients = array();
+			$clients[$client->getId()] = $client;
+	   	 	
+	   		$this->response->setStatusCode('200');           
+			return $this->renderPartial('messages/object', array('object' => $client->toArray()));
+    }
+  }
+
+  
 
   /**
   * Executes get a client action for the API interface

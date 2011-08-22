@@ -1,3 +1,12 @@
+market_data:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                MarketData
+    module:               marketdata
+    prefix_path:          /marketdata
+    column:               id
+    with_wildcard_routes: true
+
 #profile
 profile:
   class: sfDoctrineRouteCollection

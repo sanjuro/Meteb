@@ -36,16 +36,16 @@ class quoteActions extends sfActions
   }
  
   /**
-  * Executes get a client action for the API interface
-  * based on the client id parameter
+  * Executes create quote action for the API interface
+  * based on the client id parameter using POST
   * 
-  * @WSMethod(name='GenerateQuote', webservice="SOAPApi")
+  * @WSMethod(name='CreateQuote', webservice="SOAPApi")
   * 
   * @param string $token Session token
   *
   * @return array Quote Data from generate business function
   */
-  public function executeGenerate(sfWebRequest $request)
+  public function executeCreate(sfWebRequest $request)
   {		
 	$api_user = $this->getUser()->getGuardUser();
 	
@@ -58,23 +58,44 @@ class quoteActions extends sfActions
     	try 
 		{  
 			/**
+			 * Create new Quote object
+			 */
+			$quote = new Quote();
+			$quote->setClientId($request['client_id']);
+			$quote->setQuoteTypeId($request['quote_type']);
+			$quote->setSecondLife($request['second_life']);
+			$quote->setMainSex($request['main_sex']);
+			$quote->setMainDob($request['main_dob']);
+			$quote->setSpouseSex($request['spouse_sex']);
+			$quote->setSpouseDob($request['spouse_dob']);
+			$quote->setGp($request['gp']);
+			$quote->setSpouseReversionId($request['spouse_reversion']);
+			$quote->setAnnuity($request['annuity']);
+			$quote->setPurchasePrice($request['purchase_price']);
+			$quote->setCommissionId($request['commission']);
+			$quote->setCommenceAt($request['commence_at']);
+			$quote->save();
+			
+			
+			/**
 			 * Create holder array from request
 			 */
 	   	 	$quote_calculations = MetebQuote::generate(	  
-	   	 												  $request['quote_type'],
-					   	 								  $request['main_sex'],
-					   	 								  $request['main_dob'],
-														  $request['spouse_sex'],
-														  $request['spouse_dob'],
-					   	 								  $request['second_life'],
-														  $request['spouse_reversion'],	
-														  $request['gp'],  
-					   	 								  $request['purchase_price'],
-					   	 								  $request['annuity'],
-					   	 								  $request['commission'],
-														  $request['commence_at']
+													      $quote->getQuoteTypeId(),
+					   	 								  $quote->getMainSex(),
+					   	 								  $quote->getMainDob(),
+														  $quote->getSpouseSex(),
+														  $quote->getSpouseDob(),
+														  $quote->getSecondLife(),
+					   	 								  $quote->getSpouseReversion()->getTitle(),
+														  $quote->getGp(),	
+														  $quote->getPurchasePrice(),  
+					   	 								  $quote->getAnnuity(),
+					   	 								  $quote->getCommission()->getTitle(),
+					   	 								  $quote->getCommenceAt(),
+														  $quote->setSpouseDob()
 													  );
-	   	 	$quote_calculations['id'] = 'quoteData';
+	   	 	$quote_calculations['id'] = $quote->getId();
 	   	 	
 	   		$this->response->setStatusCode('200');           
 			return $this->renderPartial('messages/object', array('object' => $quote_calculations));
