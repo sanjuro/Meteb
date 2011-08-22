@@ -15,6 +15,9 @@ class BackendQuoteForm extends BaseQuoteForm
 	
   public function configure()
   {
+  	$years = range(date('Y') - 90, date('Y'));  
+  	
+  	
   	parent::configure();
   	
   	if ($this->getOption("currentUser") instanceof sfUser && ($this->getOption("currentUser"))){
@@ -56,18 +59,16 @@ class BackendQuoteForm extends BaseQuoteForm
 	$this->widgetSchema['commence_at'] = new sfWidgetFormDateJQueryUI(
 			array("label" => "Commenencement Date", "change_month" => true, "change_year" => true));
     
-	$this->widgetSchema['main_dob'] = new sfWidgetFormDateJQueryUI(
-			array("label" => "Date of Birth", "change_month" => true, "change_year" => true));
+	$this->widgetSchema['main_dob'] = new sfWidgetFormDate(
+			array("label" => "Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
 	
-	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
-			array("label" => "Spouse Date of Birth", "change_month" => true, "change_year" => true));
+	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDate(
+			array("label" => "Spouse Date Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
 			
 	$this->widgetSchema['commission_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'Commission',  'label' => 'Commission Percentage', 'add_empty' => "Select a Commission"), array ( ));  
 	     	
 	$this->widgetSchema['spouse_sex'] = new sfWidgetFormDoctrineChoice(array('label' => 'Spouse Gender', 'model' => $this->getRelatedModelName('SpouseGender'), 'add_empty' => true));
-			
-	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false, 'min_length' => 1));
 	
 	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'SpouseReversion'));
     

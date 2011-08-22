@@ -54,7 +54,7 @@ class metebPDF extends DOMPDF{
 		$TemplatePageName = $this->TemplatePageName;
 		$TemplateTitle = $this->TemplateTitle;
 		$PDFNumber = $this->PDFNumber;
-		$PDFDate = $this->PDFDate;
+		$PDFDate = new DateTime($this->PDFDate);
 		$PDFContent = $this->PDFContent;
 
 		$image = 'quotebackground';
@@ -102,7 +102,7 @@ class metebPDF extends DOMPDF{
 		<div id="main">
 			<div id="pdfinfo">
 				<div style="float: right; text-align: right;">
-					<font id="date" >'.$PDFDate.'</font>
+					<font id="date" >'.$PDFDate->format('d F Y').'</font>
 					<br>
 					<font id="vatno" class="lighter">VAT Reg. No. '.sfConfig::get('app_vat_number').'</font>
 				</div>

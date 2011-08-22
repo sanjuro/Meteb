@@ -206,6 +206,19 @@ $(document).ready(function() {
 		}
 		 return false;
 	});
+
+
+	$(function() {
+		var params = {
+		changeMonth : true,
+		changeYear : true,
+		numberOfMonths : 1,
+		showButtonPanel : false };
+		yearRange: '1930:2010'
+		$('#<?php echo $form['main_dob']->renderId() ?>').datepicker(params);
+	}); 
+
+
 	
 });
 </script>

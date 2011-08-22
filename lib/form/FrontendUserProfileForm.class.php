@@ -11,6 +11,8 @@ class FrontendUserProfileForm extends BaseUserProfileForm
 {	
   public function configure()
   {
+  	$years = range(date('Y') - 90, date('Y')); 
+  	
     parent::configure();
   	
   	if ($this->getOption("currentUser") instanceof sfUser && ($this->getOption("currentUser")))
@@ -41,11 +43,12 @@ class FrontendUserProfileForm extends BaseUserProfileForm
  	$this->widgetSchema['spouse_gender_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'Gender',  'label' => 'Spouse Gender', 'add_empty' => "Select a gender"), array ( ));  
      	
-	$this->widgetSchema['dob'] = new sfWidgetFormDateJQueryUI(
-			array("change_month" => true, "change_year" => true));
+	$this->widgetSchema['dob'] = new sfWidgetFormDate(
+			array("label" => "Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
 	
-	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDateJQueryUI(
-			array("change_month" => true, "change_year" => true));
+	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDate(
+			array("label" => "Spouse Date Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
+
 			
     $this->widgetSchema['postaladdress'] = new sfWidgetFormInputText(array('label' => 'Postal Address'), array('size' => '50'));
     

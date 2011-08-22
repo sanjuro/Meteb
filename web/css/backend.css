@@ -135,7 +135,7 @@ div.shadowBottomLeft div.shadowMidLeft {
 
 #main {
 	background-color: #FAFAFA;
-    border-top: 2px solid #BBBBBB;
+    border-top: 1px solid #BBBBBB;
     padding: 15px 18px 25px 15px;
     position: relative;
 }
