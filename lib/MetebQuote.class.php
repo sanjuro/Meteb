@@ -67,24 +67,30 @@ class MetebQuote
 	 * A Newton-Rhapson approximation method is used. Convergence usually occurs after 2 iterations
 	 * An unnecessary third iteration is usually performed, but this adds accuracy.
 	 * 
-	 * @param quote quote The quote that needs to be generated
+	 * @param date $mainDob The Date of Birth of the main member 2011-01-01
+	 * @param string $mainSex The gender of the main member 1:M / 2:F
+	 * @param date $spouseDob The Date of Birth of the main member 2011-01-01
+	 * @param string $spouseSex The gender of the main member 1:M / 2:F
+	 * @param double $spouseReversion The spouse reversion percentage
+	 * @param integer $secondLife If there is a second life on the quoute 1:true 2:false
+	 * @param integer $gp Guarantee Period
 	 * @param double $pri The PRI for the quote
-	 * @param double $pp The Purchase Price for the quote
+	 * @param double $purchase_price The Purchase Price for the quote
 	 * 
 	 * @return double The calcualted annuity
 	 */	
-	public static function calc_annuity($quote, $pri, $pp)
+	public static function calc_annuity($mainDob, $mainSex, $spouseDob, $spouseSex, $spouseReversion, $secondLife, $gp, $pri, $purchase_price)
 	{
 		$shock = 0.00001;
 		$runs = 0;
-		$annuity = $pp/12/15;
+		$annuity = $purchase_price/12/15;
 		$diff = 1;
 		
 		while (abs($diff) > 0.01 && $runs <= 10)
 		{
-			$purchase_price_1 = MetebQuote::calc_pp($quote, $pri, $annuity);
-			$purchase_price_2 = MetebQuote::calc_pp($quote, $pri, $annuity + $shock);
-			$diff = $pp - $purchase_price_1;
+			$purchase_price_1 = MetebQuote::calc_pp($mainDob, $mainSex, $spouseDob, $spouseSex, $spouseReversion, $secondLife, $gp, $pri, $annuity);
+			$purchase_price_2 = MetebQuote::calc_pp($mainDob, $mainSex, $spouseDob, $spouseSex, $spouseReversion, $secondLife, $gp, $pri, $annuity + $shock);
+			$diff = $purchase_price - $purchase_price_1;
 			$annuity = $annuity + $diff / ( ($purchase_price_2-$purchase_price_1) / $shock );
 			$runs++;
 		}
@@ -154,13 +160,19 @@ class MetebQuote
 	 * This function does a quote and calculates a purchase price from an annuity amount
 	 * No allowance is made for commission and tax
 	 * 
-	 * @param quote $quote The quote that needs to be generated
-	 * @param double $pri
-	 * @param double $annuity 
+	 * @param date $mainDob The Date of Birth of the main member 2011-01-01
+	 * @param string $mainSex The gender of the main member 1:M / 2:F
+	 * @param date $spouseDob The Date of Birth of the main member 2011-01-01
+	 * @param string $spouseSex The gender of the main member 1:M / 2:F
+	 * @param double $spouseReversion The spouse reversion percentage
+	 * @param integer $secondLife If there is a second life on the quoute 1:true 2:false
+	 * @param intger $gp Guaranteed Period for quote
+	 * @param double $pri The PRI for the quote
+	 * @param double $annuity The Annuity for the quote
 	 * 
 	 * @return double Purchase price
 	 */
-	public static function calc_pp($quote, $pri, $annuity)
+	public static function calc_pp($mainDob, $mainSex, $spouseDob, $spouseSex, $spouseReversion, $secondLife, $gp, $pri, $annuity)
 	{	
 		// The required data is read from the database
 		$marketResult = Doctrine::getTable('Marketdata')->get_latest_marketdata();
@@ -179,7 +191,7 @@ class MetebQuote
 		else
 			$age_rating = -2;
 			
-		$main_sex = $quote->getMainSex();
+		$main_sex = $mainSex;
 		/**
 		if ($quote->getMainSex() == 1)
 			$main_sex = 2;
@@ -187,7 +199,7 @@ class MetebQuote
 			$main_sex = 3;
 		*/
 		
-		$spouse_sex = $quote->getSpouseSex();
+		$spouse_sex = $spouseSex;
 		/**
 		if ($quote->getSpouseSex() == 1)
 			$spouse_sex = 2;
@@ -205,9 +217,9 @@ class MetebQuote
 		else
 			$mortality_improvement = 0.01;
 			
-		$main_dob = (strtotime($quote->getMainDob()) + 2209168800)/86400;
+		$main_dob = (strtotime($mainDob) + 2209168800)/86400;
 		
-		$spouse_dob = (strtotime($quote->getSpouseDob()) + 2209168800)/86400;
+		$spouse_dob = (strtotime($spouseDob) + 2209168800)/86400;
 		
 		if ($pri == 0.035)
 			$column = 1;
@@ -254,7 +266,7 @@ class MetebQuote
 			else
 				$calcs[$row][9]=1-$calcs[$row][7]/12;
 				
-			if ($row <= $quote->gp)
+			if ($row <= $gp)
 				$calcs[$row][10]=1;
 			else
 				$calcs[$row][10]=$calcs[$row][8]*$calcs[$row][9];
@@ -272,7 +284,7 @@ class MetebQuote
 			//deterministic expense inflation ignored for now
 			$calcs[$row][15]=$calcs[$row][11]+$calcs[$row][13];
 
-			$calcs[$row][16] = $calcs[$row][3] * $quote->getSpouseReversion()->getTitle() * $quote->second_life;
+			$calcs[$row][16] = $calcs[$row][3] * $spouseReversion* $secondLife;
 			$calcs[$row][17] = min(floor(($calcs[$row][1]-$spouse_dob)/365.25+$age_rating),$max_age);
 			
 			$index1 = $calcs[$row][17];
@@ -323,21 +335,24 @@ class MetebQuote
 	 * This function generates the quote calculations that will fill the
 	 * new quote document
 	 * 
-	 * @param quote quote The quote that needs to be generated
-	 * @param double $commission The Commission captured for the quote
-	 * @param double $pp The Purchase Price for the quote 
-	 * @param double $annuity The calculated Annuity
+	 * @param intger $quote_type Quote Type
+	 * @param string $main_sex The gender of the main member 1:M / 2:F
+	 * @param date $main_dob The Date of Birth of the main member 2011-01-01
+	 * @param string $spouse_sex The gender of the main member 1:M / 2:F
+	 * @param date $spouse_dob The Date of Birth of the main member 2011-01-01
+	 * @param integer $second_life The second life for the quote
+	 * @param double $spouse_reversion The spouse reversion percentage
+	 * @param intger $gp Guaranteed Period for quote
+	 * @param double $purchase_price The Purchase Price for the quote
+	 * @param double $annuity The annuity for the quote
+	 * @param double $commission The commission for the quote
+	 * @param date $commence_at The commencement date
 	 * 
 	 * @return array Quote Data
 	 */
-	public static function generate($quote, $commission, $pp = 0, $annuity = 0.00)
-	{
+	public static function generate($quote_type, $main_sex, $main_dob, $spouse_sex, $spouse_dob, $second_life, $spouse_reversion, $gp, $purchase_price = 0, $annuity = 0.00, $commission, $commence_at)
+	{  
 		$quote_out = array();
-		
-		$main_dob = '';
-		$main_dob = $quote->getMainDob();
-	    $spouse_dob = '';
-	    $spouse_dob = $quote->getSpouseDob();
 		
 		$marketResult = Doctrine::getTable('Marketdata')->get_latest_marketdata();
 		$exspenseResult = Doctrine::getTable('Expensedata')->get_expenses();
@@ -350,14 +365,12 @@ class MetebQuote
 		 * Purchase Price -> Annuity Amount : Set $annuity=0 and specify a value for $pp
 		 */
 		
-		$commenceMonth = date('m', strtotime($quote->getCommenceAt()));
-		$commenceYear = date('y', strtotime($quote->getCommenceAt()));
 	
 		//The following is just a list of all of the outputs that get generated
 		$quote_out["data_date"] = "";
 		$quote_out["quote_date"] = "";
-		$quote_out["commencement_date"] = $quote->getCommenceAt();
-		$quote_out["guanratee_terms"] = $quote->getGp();
+		$quote_out["commencement_date"] = $commence_at;
+		$quote_out["guanratee_terms"] = $gp;
 		$quote_out["first_payment_date"] = "";
 		$quote_out["first_increase_date"] = "";
 		$quote_out["pp1"]="";
@@ -386,15 +399,15 @@ class MetebQuote
 		/**
 		 * Uses Quote type to figure out what to calculate on
 		 */
-		if($quote->getQuoteTypeId() == 2)
+		if($quote_type == 1)
 		{
-			$quote_out["pp1"]=$pp;
-			$quote_out["pp2"]=$pp;
-			$quote_out["pp3"]=$pp;
+			$quote_out["pp1"] = $purchase_price;
+			$quote_out["pp2"] = $purchase_price;
+			$quote_out["pp3"] = $purchase_price;
 
-			$quote_out["gross_annuity_1"] = MetebQuote::calc_annuity($quote, 0.035, $pp);
-			$quote_out["gross_annuity_2"] = MetebQuote::calc_annuity($quote, 0.040, $pp);
-			$quote_out["gross_annuity_3"] = MetebQuote::calc_annuity($quote, 0.045, $pp);
+			$quote_out["gross_annuity_1"] = MetebQuote::calc_annuity($main_dob, $main_sex, $spouse_dob, $spouse_sex, $spouse_reversion, $second_life, $gp, 0.035, $purchase_price);
+			$quote_out["gross_annuity_2"] = MetebQuote::calc_annuity($main_dob, $main_sex, $spouse_dob, $spouse_sex, $spouse_reversion, $second_life, $gp, 0.040, $purchase_price);
+			$quote_out["gross_annuity_3"] = MetebQuote::calc_annuity($main_dob, $main_sex, $spouse_dob, $spouse_sex, $spouse_reversion, $second_life, $gp, 0.045, $purchase_price);
 		}
 		else
 		{
@@ -402,11 +415,11 @@ class MetebQuote
 			$quote_out["gross_annuity_2"] = $annuity;
 			$quote_out["gross_annuity_3"] = $annuity;
 
-			$quote_out["pp1"] = MetebQuote::calc_pp($quote, 0.035, $annuity);
-			$quote_out["pp2"] = MetebQuote::calc_pp($quote, 0.040, $annuity);
-			$quote_out["pp3"] = MetebQuote::calc_pp($quote, 0.045, $annuity);
+			$quote_out["pp1"] = MetebQuote::calc_pp($main_dob, $main_sex, $spouse_dob, $spouse_sex, $spouse_reversion, $second_life, $gp, 0.035, $annuity);
+			$quote_out["pp2"] = MetebQuote::calc_pp($main_dob, $main_sex, $spouse_dob, $spouse_sex, $spouse_reversion, $second_life, $gp, 0.040, $annuity);
+			$quote_out["pp3"] = MetebQuote::calc_pp($main_dob, $main_sex, $spouse_dob, $spouse_sex, $spouse_reversion, $second_life, $gp, 0.045, $annuity);
 		}
-
+		
 		//Here the net annuity amount - which allows for tax to be deducted - is calculated for each PRI
 		$quote_out["net_annuity_1"] = MetebQuote::calc_net_annuity($main_dob, $quote_out["gross_annuity_1"]);
 		$quote_out["net_annuity_2"] = MetebQuote::calc_net_annuity($main_dob, $quote_out["gross_annuity_2"]);
@@ -421,12 +434,12 @@ class MetebQuote
 		
 		//Maximum commission is 1.50% - a percentage of this can be sacrificed
 		$quote_out["commission_sacrificed"] = $commission;
-
+		
 		//This calculates the next age that each of the main and spouse will obtain
-		$quote_out["main_age_next"] = MetebQuote::calc_age($main_dob, $quote_out["commencement_date"])+1;
+		$quote_out["main_age_next"] = MetebQuote::calc_age($main_dob, $commence_at)+1;
 		
 		if($spouse_dob != '0000-00-00') {
-			$quote_out["spouse_age_next"] = MetebQuote::calc_age($spouse_dob, $quote_out["commencement_date"])+1;
+			$quote_out["spouse_age_next"] = MetebQuote::calc_age($spouse_dob, $commence_at)+1;
 		}else {
 			$quote_out["spouse_age_next"] = '0000-00-00';
 		}

@@ -57,10 +57,27 @@ class quoteActions extends sfActions
     	 */
     	try 
 		{  
-	   	 	$quote_calculations = MetebQuote::generate($request, $quote->getCommission()->getTitle(), $pp, $annuity);
-	   	 	   	 	
+			/**
+			 * Create holder array from request
+			 */
+	   	 	$quote_calculations = MetebQuote::generate(	  
+	   	 												  $request['quote_type'],
+					   	 								  $request['main_sex'],
+					   	 								  $request['main_dob'],
+														  $request['spouse_sex'],
+														  $request['spouse_dob'],
+					   	 								  $request['second_life'],
+														  $request['spouse_reversion'],	
+														  $request['gp'],  
+					   	 								  $request['purchase_price'],
+					   	 								  $request['annuity'],
+					   	 								  $request['commission'],
+														  $request['commence_at']
+													  );
+	   	 	$quote_calculations['id'] = 'quoteData';
+	   	 	
 	   		$this->response->setStatusCode('200');           
-			return $this->renderPartial('messages/entry', array('objects' => $quote_calculations));
+			return $this->renderPartial('messages/object', array('object' => $quote_calculations));
 	   	 	
 		}catch (Exception $e){
 			 			 	 
