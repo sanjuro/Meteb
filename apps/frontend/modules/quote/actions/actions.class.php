@@ -121,7 +121,7 @@ class quoteActions extends autoQuoteActions
    	 	$quote_calculations['id'] = $quote->getId();
         
     	
-        $this->quote_calculations = MetebQuote::generate($quoteInputArray);;
+        $this->quote_calculations = $quote_calculations;
 
       }
       
