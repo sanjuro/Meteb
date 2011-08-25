@@ -69,6 +69,10 @@ page_glossary:
 page_contact:
   url:   /Contact/
   param: { module: page, action: contact }
+
+page_toolbox:
+  url:   /Toolbox/
+  param: { module: page, action: toolbox }
   
 default:
   url:   /

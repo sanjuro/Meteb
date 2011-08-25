@@ -12,12 +12,13 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [ ebInternet.css, form_clean.css, oneColFixCtrHdr.css, unitip.css]
+  stylesheets:    [ ebInternet.css, form_clean.css, oneColFixCtrHdr.css, unitip.css, TSScript/TSHelpHint/TSHelpHint.css, SpryAssets/SpryTabbedPanels.css,  SpryAssets/SpryAccordion.css ]
 
-  javascripts:    [ unitip.js ]
+  javascripts:    [ unitip.js, TSScript/yahoo.js, TSScript/event.js, TSScript/dom.js, TSScript/dragdrop.js, TSScript/animation.js, TSScript/container.js, TSScript/TSHelpHint/TSHelpHint.js, SpryAssets/SpryTabbedPanels.js, SpryAssets/SpryAccordion.js ]
 
   has_layout:     true
   layout:         layout
   
   components:
     navigation:  [navigation, default]
+    

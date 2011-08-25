@@ -23,8 +23,8 @@
         		<?php if($sf_user->isAuthenticated()) :?>   
         		<li><?php echo link_to('Your quotes', url_for('@quote')) ?></li>
         		<?php endif; ?>
-        		
-		        <li><a href="toolbox.html">Information Toolbox</a></li>        
+        		    
+		        <li><?php echo link_to('Informaiont Toolbox', url_for('@page_toolbox')) ?></li>    
 		        <li><a href="toolbox.html">About Us</a></li>
 		        <li><?php echo link_to('Contact Us', url_for('@page_contact')) ?></li>
         	</ul>

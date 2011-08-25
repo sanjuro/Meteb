@@ -48,4 +48,14 @@ class pageActions extends sfActions
   {
    
   } 
+  
+ /**
+  * Executes toolbox action to render the toolbox page
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeToolbox(sfWebRequest $request)
+  {
+   
+  }  
 }
