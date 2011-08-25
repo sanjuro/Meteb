@@ -1,0 +1,201 @@
+@charset "utf-8";
+*{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+}
+a {
+	color: #dc291e;
+	text-decoration: none;
+}
+body {
+	background: #FFF;
+	margin: 0;
+	padding: 0;
+	color: #000;
+	font-size: 0.7em;
+}
+
+/* ~~ Element/tag selectors ~~ */
+ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	 /* removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
+	padding-right: 15px;
+	padding-left: 15px; /* adding the padding to the sides of the elements within the divs, instead of the divs themselves, gets rid of any box model math. A nested div with side padding can also be used as an alternate method. */
+}
+h1 {
+	font-size: 1.4em;
+	color: #e31818;
+	font-weight: normal;
+	margin-top: 8px;
+}
+.container .content p strong {
+	color: #e31818;
+}
+
+h2 {
+	font-size: 1.3em;
+	color: #002e67;
+	font-weight: normal;
+	margin-top: 8px;
+}
+h3 {
+	font-size: 1.1em;
+	color: #444;
+	font-weight: normal;
+}
+h4 {
+	font-size: 1em;
+	color: #444;
+	font-weight: normal;
+	margin-top: 8px;
+}
+
+h5 {
+	font-size: 1em;
+	color: #002e67;
+	font-weight: normal;
+}
+h6 {
+	font-size: 1em;
+	color: #666;
+	font-weight: bold;
+}
+
+
+
+
+
+a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+	border: none;
+}
+/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
+a:link {
+	color: #e31818;
+	text-decoration: none; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+}
+a:visited {
+	color: #6E6C64;
+	text-decoration: underline;
+}
+a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
+	text-decoration: underline;
+}
+
+/* ~~ this fixed width container surrounds the other divs ~~ */
+.container {
+	width: 960px;
+	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #eeeeee;
+	border-left-color: #eeeeee;
+}
+
+/* ~~ the header is not given a width. It will extend the full width of your layout. It contains an image placeholder that should be replaced with your own linked logo ~~ */
+.header {
+	background: url(../graphics/headerLogo-new.jpg) no-repeat;
+	height: 112px;
+}
+.top_navigation ul {
+
+float: right;
+margin-top: 52px;
+list-style-type: none;
+list-style-image: none;
+list-style-position: outside;
+}
+
+/* ~~ This is the layout information. ~~ 
+
+1) Padding is only placed on the top and/or bottom of the div. The elements within this div have padding on their sides. This saves you from any "box model math". Keep in mind, if you add any side padding or border to the div itself, it will be added to the width you define to create the *total* width. You may also choose to remove the padding on the element in the div and place a second div within it with no width and the padding necessary for your design.
+
+*/
+
+.content {
+	padding: 25px 0 10px;
+	background-color: #FFF;
+}
+
+/* ~~ The footer ~~ */
+.footer {
+	padding: 10px 0;
+	color: #333333;
+	font-size: 0.9em;
+	background-color: #eeeeee;
+}
+
+/* ~~ miscellaneous float/clear classes ~~ */
+.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class can be placed on a <br /> or empty div as the final element following the last floated div (within the #container) if the #footer is removed or taken out of the #container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+.top_navigation {
+	height: 96px;
+	color: #333333;
+	font-size: 1.1em;
+}
+.top_navigation ul {
+	float: left;
+	margin-top: 65px;
+	list-style-type: none;
+	padding-left: 300px;
+}
+.top_navigation li {
+	float: left;
+	margin-right: 16px;
+}
+.top_navigation ul li a {
+	color: #333333;
+	text-decoration: none;
+}
+.top_navigation ul li a:hover {
+	text-decoration: underline;
+}
+.login {
+	color: #011E46;
+	float: right;
+	width: 285px;
+	padding: 5px;
+}
+.container .content table {
+	background-color: #FFFFF0;
+
+}
+.container .content table tr {
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #002E67;
+}
+.container .content table tr td {
+	padding: 5px;
+	border-top: 1px dotted #002E67;
+	border-right: 1px dashed #002E67;
+	border-bottom: 1px dotted #002E67;
+	border-left: 1px dashed #002E67;
+	text-align: center;
+}
+.login {
+	background-color: #FFF;
+}
+#loginTop {
+	background-color: #eeeeee;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: right;
+	padding-right: 10px;
+}

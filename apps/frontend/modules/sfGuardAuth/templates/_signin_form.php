@@ -1,6 +1,6 @@
 <?php use_helper('I18N') ?>
 
-<form class="login" action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
+<form class="clean" action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
 
   <?php echo $form['_csrf_token'] ?>
   <fieldset class="formContainer">  
@@ -17,10 +17,6 @@
 	 <?php echo $form['password'] ?>	
 	 <br>
 	 <?php echo $form['password']->renderError() ?>
-	 <br><?php echo $form['remember']->renderLabel() ?>	
-		 <?php echo $form['remember'] ?>	
-	 <br> 
-	 <?php echo $form['remember']->renderError() ?>
 	
 	          
 	 <?php $routes = $sf_context->getRouting()->getRoutes() ?>

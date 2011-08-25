@@ -12,7 +12,7 @@ class loginActions extends sfActions
 {
 
 	/**
-	 *
+	 * Action to remove the debug
 	 */
 	public function preExecute() {
 		sfConfig::set('sf_web_debug', false);

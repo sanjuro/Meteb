@@ -14,34 +14,37 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-    <div id="wrapper">
-        <div id="header">
+    <div class="container">
+	  <div class="header"><!-- end .header -->
+	    <div class="top_navigation">
         	<ul id="navigation">
-        		<li><?php echo link_to('Home', url_for('@homepage')) ?></li>
+        		<li><?php echo link_to('Home', url_for('@page_homepage')) ?></li>
         		
         		<?php if($sf_user->isAuthenticated()) :?>   
         		<li><?php echo link_to('Your quotes', url_for('@quote')) ?></li>
         		<?php endif; ?>
         		
-        		<li><?php echo link_to('Annuities Explained', url_for('@homepage')) ?></li>
-        		<li><?php echo link_to('About Us', url_for('@homepage')) ?></li>
-        		<li><?php echo link_to('FAQ', url_for('@homepage')) ?></li>
-        		<li><?php echo link_to('Glossary', url_for('@homepage')) ?></li>
-        		<li><?php echo link_to('Contact Us', url_for('@homepage')) ?></li>
+		        <li><a href="toolbox.html">Information Toolbox</a></li>        
+		        <li><a href="toolbox.html">About Us</a></li>
+		        <li><?php echo link_to('Contact Us', url_for('@page_contact')) ?></li>
         	</ul>
-        </div>
-        <div id="content">
+	    </div>
+	  </div>
+	  <?php if($sf_user->isAuthenticated()) :?> 
+	  <div id="loginTop">
+	  	<a href="#">Log In: <?php echo $sf_user->getGuardUser()->getUsername() ?> - You are currently logged in :<?php echo $sf_user->getGuardUser()->getUsername() ?>
+	  </div>
+	  <?php else :?>
+	  <div id="loginTop">
+	  	 You are currently not logged in
+	  </div>
+	  <?php endif; ?>
 
-        	<div id="center">
-			    				
-			       <?php if($sf_user->isAuthenticated()) :?>    	
-			       <div id="rightcolumn" class="column">
-			       		Welcome, <?php echo $sf_user->getUsername() ?>
-			       		<b><?php echo link_to('Logout', 'sf_guard_signout', array(), array( "class" => "logout")) ?></b>
-			       		<br>
-			       		<?php include_partial('navigation/navigation'); ?>
-			       </div>
-			       <?php endif; ?>
+	  
+	  <!-- InstanceBeginEditable name="maincontent" -->
+        <div class="content">
+
+        	<div id="center">			    				
 			       
 			       <div id="centercolumn" class="column">	
 			       
@@ -64,7 +67,7 @@
         	       <div class="clearer" ></div>
         	</div>
         </div>        
-        <div id="footer">
+        <div class="footer">
         	<p>&copy;   2011      All Rights Reserved - Momentum Life Limited is an authorised financial services and credit provider</p>
         </div>
     </div>

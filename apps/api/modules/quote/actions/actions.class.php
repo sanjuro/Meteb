@@ -75,26 +75,25 @@ class quoteActions extends sfActions
 			$quote->setCommissionId($request['commission']);
 			$quote->setCommenceAt($request['commence_at']);
 			$quote->save();
+
 			
+			$quoteInputArray = array();
+			$quoteInputArray['quote_type_id'] = $quote->getQuoteTypeId();
+			$quoteInputArray['commission'] = $quote->getCommission()->getTitle();
+			$quoteInputArray['main_sex'] = $quote->getMainSex();
+			$quoteInputArray['main_dob'] = $quote->getMainDob();
+			$quoteInputArray['second_life'] = $quote->getSecondLife();
+			$quoteInputArray['spouse_sex'] = $quote->getSpouseSex();
+			$quoteInputArray['spouse_dob'] = $quote->getSpouseDob();
+			$quoteInputArray['gp'] = $quote->getGp();
+			$quoteInputArray['spouse_rev'] = $quote->getSpouseReversion()->getTitle();
+			$quoteInputArray['pp'] = $quote->getPurchasePrice();
+			$quoteInputArray['annuity'] = $quote->getAnnuity();
 			
 			/**
 			 * Create holder array from request
 			 */
-	   	 	$quote_calculations = MetebQuote::generate(	  
-													      $quote->getQuoteTypeId(),
-					   	 								  $quote->getMainSex(),
-					   	 								  $quote->getMainDob(),
-														  $quote->getSpouseSex(),
-														  $quote->getSpouseDob(),
-														  $quote->getSecondLife(),
-					   	 								  $quote->getSpouseReversion()->getTitle(),
-														  $quote->getGp(),	
-														  $quote->getPurchasePrice(),  
-					   	 								  $quote->getAnnuity(),
-					   	 								  $quote->getCommission()->getTitle(),
-					   	 								  $quote->getCommenceAt(),
-														  $quote->setSpouseDob()
-													  );
+	   	 	$quote_calculations = MetebQuote::generate($quoteInputArray);
 	   	 	$quote_calculations['id'] = $quote->getId();
 	   	 	
 	   		$this->response->setStatusCode('200');           

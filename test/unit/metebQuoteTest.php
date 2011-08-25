@@ -17,7 +17,7 @@ $t = new lime_test(20);
 $quote = Doctrine_Core::getTable('Quote')->findOneById(1);
 $t->diag("Quote Generate test: Quote Type: Purchase Price, Purchase Price : 1,000,000.00, Annuity : 0.00, Second Life : Yes, Main DOB: 1936-07-01, Spouse DOB: 1946-07-01, GP: 60, Spouse reversion: 0.75, Commission: 1.50");
 
-$quoteDetails = MetebQuote::generate($quote, 1.50, 1000000, 0);
+$quoteDetails = MetebQuote::generate($quoteInputArray, 1.50, 1000000, 0);
 
 // Purchase Price
 $t->is(round($quoteDetails['pp1'], 2) == 1000000.00, true, 'Generate: Purchase Price 1 - 1000000.00');

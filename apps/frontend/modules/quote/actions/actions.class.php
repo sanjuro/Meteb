@@ -94,22 +94,35 @@ class quoteActions extends autoQuoteActions
   	  {
         $quote = $this->getRoute()->getObject();
             
-        if($quote->getQuoteTypeId() == 2){
-        	$annuity = MetebQuote::calc_annuity($quote, $quote->getPri()->getTitle(), $quote->getPurchasePrice());
-        }else{
-        	$annuity = $quote->getAnnuity();
-        }
-        
-  	    if($quote->getQuoteTypeId() == 1){
-        	$pp = MetebQuote::calc_pp($quote, $quote->getPri()->getTitle(), $quote->getAnnuity());
-        }else{
-        	$pp = $quote->getPurchasePrice();
-        }
-        
         $this->quote = $quote;
+        
+        $this->client = $quote->getClient();
+        
+        $userprofile = $this->client->getUserProfile();
+        $this->userprofile = $userprofile[0];
+			
+		$quoteInputArray = array();
+		$quoteInputArray['quote_type_id'] = $quote->getQuoteTypeId();
+		$quoteInputArray['commission'] = $quote->getCommission()->getTitle();
+		$quoteInputArray['main_sex'] = $quote->getMainSex();
+		$quoteInputArray['main_dob'] = $quote->getMainDob();
+		$quoteInputArray['second_life'] = $quote->getSecondLife();
+		$quoteInputArray['spouse_sex'] = $quote->getSpouseSex();
+		$quoteInputArray['spouse_dob'] = $quote->getSpouseDob();
+		$quoteInputArray['gp'] = $quote->getGp();
+		$quoteInputArray['spouse_rev'] = $quote->getSpouseReversion()->getTitle();
+		$quoteInputArray['pp'] = $quote->getPurchasePrice();
+		$quoteInputArray['annuity'] = $quote->getAnnuity();
+		
+		/**
+		 * Create holder array from request
+		 */
+   	 	$quote_calculations = MetebQuote::generate($quoteInputArray);
+   	 	$quote_calculations['id'] = $quote->getId();
+        
     	
-        $this->quote_calculations = MetebQuote::generate($quote, $quote->getCommission()->getTitle(), $pp, $annuity);
-        // Meteb::TKO($this->quote_calculations);
+        $this->quote_calculations = MetebQuote::generate($quoteInputArray);;
+
       }
       
 	/**

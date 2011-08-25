@@ -57,17 +57,22 @@ client:
     column:               id
     with_wildcard_routes: true
 
-# You can find more information about this file on the symfony website:
-# http://www.symfony-project.org/reference/1_4/en/10-Routing
-
-# default rules
-homepage:
+#static pages
+page_homepage:
   url:   /Homepage/
-  param: { module: home, action: index }
+  param: { module: page, action: index }
+
+page_glossary:
+  url:   /Glossary/
+  param: { module: page, action: glossary }
+
+page_contact:
+  url:   /Contact/
+  param: { module: page, action: contact }
   
 default:
   url:   /
-  param: { module: sfGuardAuth, action: signin }
+  param: { module: page, action: index }
   
 signout:
   url:   /
