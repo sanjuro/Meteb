@@ -58,6 +58,10 @@ client:
     with_wildcard_routes: true
 
 #static pages
+homepage:
+  url:   /
+  param: { module: page, action: index }
+
 page_homepage:
   url:   /Homepage/
   param: { module: page, action: index }

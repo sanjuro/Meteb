@@ -16,7 +16,7 @@ class pageActions extends sfActions
   * every action
   */
   public function preExecute() {
-	$this->form = new sfGuardUserForm();	
+	$this->form = new sfGuardFormSignin();	
   }	
 	
  /**
@@ -26,7 +26,7 @@ class pageActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-   
+
   }
   
  /**

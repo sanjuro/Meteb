@@ -17,7 +17,10 @@
 	 <?php echo $form['password'] ?>	
 	 <br>
 	 <?php echo $form['password']->renderError() ?>
-	
+	<br><?php echo $form['remember']->renderLabel() ?>
+	<?php echo $form['remember'] ?>
+	<br>
+	<?php echo $form['remember']->renderError() ?>	
 	          
 	 <?php $routes = $sf_context->getRouting()->getRoutes() ?>
 	 <?php if (isset($routes['sf_guard_forgot_password'])): ?>

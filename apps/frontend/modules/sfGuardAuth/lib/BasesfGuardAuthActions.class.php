@@ -42,6 +42,10 @@ class BasesfGuardAuthActions extends sfActions
         // or to the referer
         // or to the homepage
         $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer($request->getReferer()));
+        
+	    if($user->hasGroup('admin') || $user->hasGroup('advisor')){
+	   		$this->redirect($this->getContext()->getConfiguration()->generateFrontendUrl('homepage'));
+	    }
 
         return $this->redirect('' != $signinUrl ? $signinUrl : '@homepage');
       }
