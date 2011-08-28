@@ -33,7 +33,7 @@
 			<td colspan="3"><?php echo $quote_calculations['guanratee_terms']?></td>
 		</tr>
 	</table>
-	<table id="annity_table" style="border: 1px solid #000;">
+	<table id="annity_table" border="1" cellspacing="0" cellpadding="4">
         <tbody> 
 		<tr>
 			<td>Post Retirement Interest Rate:</td>
@@ -206,7 +206,7 @@
 		The following charges will be levied against the policy, in addition to the commission or remuneration:
 		<br><br>
 		
-		<table style="border: 1px solid #000;">
+		<table border="1" cellspacing="0" cellpadding="4">
 		<tr>
 			<td style="width: 200px;">Dicount Rate:</td>
 			<td style="text-align:center;">3.50%</td>

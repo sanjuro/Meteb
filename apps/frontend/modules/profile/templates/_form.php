@@ -1,4 +1,4 @@
-<?php use_stylesheets_for_form($form) ?>
+<?php include_partial('quote/assets') ?>
 <?php use_javascripts_for_form($form) ?>
  
 <?php use_helper('jQuery')?> 
@@ -10,7 +10,7 @@
 <?php  // foreach ($form->getErrorSchema() as $sField => $sError) : ?>
 <?php  // echo $sField.': '.$sError.'<br />' ?>
 <?php  // endforeach; ?>
-<?php echo form_tag_for($form, '@profile') ?>
+<?php echo form_tag_for($form, '@profile', array( "class" => "clean" , "style" => "width:95%;float:none;padding:10px;")) ?>
 
 	  <?php echo $form['_csrf_token'] ?>
 	  <?php echo $form['userProfiles'][0]['parent_user_id'] ?>

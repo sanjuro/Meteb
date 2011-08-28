@@ -478,7 +478,7 @@ class MetebQuote
 		$second_life=$quote['second_life'];
 		$spouse_sex=$quote['spouse_sex'];
 		$spouse_dob=$quote['spouse_dob'];
-		$gp=$quote->$quote['gp'];
+		$gp=$quote['gp'];
 		$spouse_rev=$quote['spouse_rev'];
 		$commission=$quote['commission']/100;
 		$pp=$quote['pp'];
@@ -505,13 +505,28 @@ class MetebQuote
 			$pp=0;
 		
 		//database connection
-		mysql_connect("dedi1082.nur4.host-h.net", "ebannngwrb_2", "QDmRnS98");
-		@mysql_select_db("ebannngwrb_db2") or die( "Unable to select database");		
+		mysql_connect("127.0.0.1", "root", "");
+		@mysql_select_db("ebannngwrb_db2") or die( "Unable to select database");	
+
+		// mysql_connect("dedi1082.nur4.host-h.net", "ebannngwrb_2", "QDmRnS98");
+		// @mysql_select_db("ebannngwrb_db2") or die( "Unable to select database"); 
 
 		MetebQuote::generate_quote($commission, $main_sex, $main_dob, $second_life, $spouse_sex, $spouse_dob, $gp, $spouse_rev, $pp, $annuity, $quote_out);
 		
 		mysql_close();//close the database connection
-	
+		
+		$data_date = new DateTime($quote_out["data_date"]);
+		$quote_date = new DateTime($quote_out["quote_date"]);
+		$commencement_date = new DateTime($quote_out["commencement_date"]);
+		$first_payment_date = new DateTime($quote_out["first_payment_date"]);
+		$first_increase_date = new DateTime($quote_out["first_increase_date"]);
+		
+		$quote_out["data_date"]= $data_date->format('d M Y');
+		$quote_out["quote_date"]= $quote_date->format('d M Y');
+		$quote_out["commencement_date"]= $commencement_date->format('d M Y');
+		$quote_out["first_payment_date"]= $first_payment_date->format('d M Y');
+		$quote_out["first_increase_date"]= $first_increase_date->format('d M Y');
+	    // Meteb::TKO($quote);
 		return $quote_out;
 	}
 

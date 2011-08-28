@@ -1,4 +1,4 @@
-<?php use_stylesheets_for_form($form) ?>
+<?php include_partial('quote/assets') ?>
 <?php use_javascripts_for_form($form) ?>
 
 <?php use_helper('jQuery')?> 

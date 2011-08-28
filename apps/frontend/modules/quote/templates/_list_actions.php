@@ -1,1 +1,1 @@
-
+<?php echo link_to(__('New Quote'), url_for('quote_new_user', $sf_user->getGuardUser()) ) ?>

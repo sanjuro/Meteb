@@ -22,11 +22,13 @@ class quoteActions extends autoQuoteActions
 	 */
 	  public function executeNew(sfWebRequest $request)
 	  {
+	  	$userForQuote = $this->getRoute()->getObject();
 	  	
 	  	if(!empty($userForQuote)){ 
-	  		$this->form = new FrontendQuoteForm('', array('currentUser' => $this->getUser()));
+	  		$this->form = new BackendQuoteForm('', array('userForQuote' => $userForQuote,
+	  													 'currentUser' => $this->getUser()));
 	  	}else{
-	  		$this->form = new FrontendQuoteForm();
+	  		$this->form = new BackendQuoteForm();
 	  	}
 	    
 	    $this->quote = $this->form->getObject();
@@ -137,11 +139,7 @@ class quoteActions extends autoQuoteActions
 		
 		sfConfig::set('sf_web_debug', false);
 		
-		$annuity = MetebQuote::calc_annuity($quote, $quote->getPri()->getTitle(), $quote->getPurchasePrice());
-     
-        $pp = MetebQuote::calc_pp($quote, $quote->getPri(), $annuity);
-        
-        $this->quote = $quote;
+		$this->quote = $quote;
         
         $client = '';
         $userprofile = '';
@@ -149,7 +147,23 @@ class quoteActions extends autoQuoteActions
     	$userprofile = $client->getUserProfile();
     	$userprofile = $userprofile[0];
 
-        $quote_calculations = MetebQuote::generate($quote, $quote->getCommission()->getTitle(), $pp, $annuity);
+		$quoteInputArray = array();
+		$quoteInputArray['quote_type_id'] = $quote->getQuoteTypeId();
+		$quoteInputArray['commission'] = $quote->getCommission()->getTitle();
+		$quoteInputArray['main_sex'] = $quote->getMainSex();
+		$quoteInputArray['main_dob'] = $quote->getMainDob();
+		$quoteInputArray['second_life'] = $quote->getSecondLife();
+		$quoteInputArray['spouse_sex'] = $quote->getSpouseSex();
+		$quoteInputArray['spouse_dob'] = $quote->getSpouseDob();
+		$quoteInputArray['gp'] = $quote->getGp();
+		$quoteInputArray['spouse_rev'] = $quote->getSpouseReversion()->getTitle();
+		$quoteInputArray['pp'] = $quote->getPurchasePrice();
+		$quoteInputArray['annuity'] = $quote->getAnnuity();
+		
+		/**
+		 * Create holder array from request
+		 */
+   	 	$quote_calculations = MetebQuote::generate($quoteInputArray);
 		
         // Get Partial for PDF
 		sfProjectConfiguration::getActive()->loadHelpers('Partial');

@@ -22,6 +22,7 @@
         		
         		<?php if($sf_user->isAuthenticated()) :?>   
         		<li><?php echo link_to('Your quotes', url_for('@quote')) ?></li>
+        		<li><?php echo link_to('Your profile', url_for('profile_edit', $sf_user->getGuardUser())) ?></li>
         		<?php endif; ?>
         		    
 		        <li><?php echo link_to('Informaiont Toolbox', url_for('@page_toolbox')) ?></li>    
@@ -32,7 +33,7 @@
 	  </div>
 	  <?php if($sf_user->isAuthenticated()) :?> 
 	  <div id="loginTop">
-	  	<a href="#">Log In: <?php echo $sf_user->getGuardUser()->getUsername() ?> - You are currently logged in :<?php echo $sf_user->getGuardUser()->getUsername() ?>
+	  	<a href="<?php echo url_for('profile_edit', $sf_user->getGuardUser() )?>">Log In: <?php echo $sf_user->getGuardUser()->getUsername() ?> - You are currently logged in :<?php echo $sf_user->getGuardUser()->getUsername() ?>
 	  </div>
 	  <?php else :?>
 	  <div id="loginTop">

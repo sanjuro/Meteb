@@ -124,7 +124,7 @@
 				<span class="quotedetails_label"><?php echo __('Net Annuity 3')?></span>
 				<span class="quotedetails_data">R <?php echo number_format($quote_calculations['net_annuity_3'], 2, '.', ',')  ?></span>
 				<br>
-				<span class="quotedetails_label"><?php echo __('Commision Percentage')?></span>
+				<span class="quotedetails_label"><?php echo __('Commission Percentage')?></span>
 				<span class="quotedetails_data"><?php echo number_format($quote_calculations['commission_sacrificed'], 2, '.', ',') ?>%</span>
 				<br>
 				<span class="quotedetails_label"><?php echo __('Main Age Next')?></span>

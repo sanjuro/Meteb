@@ -1,5 +1,5 @@
 <?php use_helper('I18N', 'Date') ?>
-<?php include_partial('quote/assets') ?>
+
 
 <div id="sf_admin_container">
   <h1><?php echo __('New Quote', array(), 'messages') ?></h1>

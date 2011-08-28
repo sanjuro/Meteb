@@ -1,0 +1,24 @@
+table.pdf {
+	border-width: thin;
+	border-spacing: 0px;
+	border-style: solid;
+	border-color: gray;
+	border-collapse: separate;
+	background-color: white;
+}
+table.pdf th {
+	border-width: 1px;
+	padding: 4px;
+	border-style: inset;
+	border-color: black;
+	background-color: white;
+	-moz-border-radius: ;
+}
+table.pdf td {
+	border-width: 1px;
+	padding: 4px;
+	border-style: inset;
+	border-color: black;
+	background-color: white;
+	-moz-border-radius: ;
+}
