@@ -21,17 +21,17 @@
 
 #sf_admin_container th
 {
-  background-color: #000033;
+
   white-space: nowrap;
 }
 
 #sf_admin_container td, #sf_admin_container th
 {
-  border: 0;
-  border-bottom: 1px solid #ddd;
-  border-top: 1px solid #ddd;
-  text-align: left;
-  vertical-align: top;
+   border-color: #002E67;
+    border-style: dotted dashed;
+    border-width: 1px;
+    padding: 5px;
+    text-align: center;
 }
 
 #sf_admin_container tr
@@ -141,13 +141,14 @@
   margin-right: 10px;
 }
 
-#sf_admin_container ul.sf_admin_actions li a{
-  padding-left: 10px;
+#sf_admin_container ul.sf_admin_actions li a,
+#sf_admin_container ul li a{
+  padding-left: 20px;
 }
 #sf_admin_container ul.sf_admin_td_actions li
 {
   padding-left: 20px;
-  background: url(/sfDoctrinePlugin/images/default.png) no-repeat 0 0;
+
 }
 
 #sf_admin_container ul li.sf_admin_action_new

@@ -505,11 +505,11 @@ class MetebQuote
 			$pp=0;
 		
 		//database connection
-		mysql_connect("127.0.0.1", "root", "");
-		@mysql_select_db("ebannngwrb_db2") or die( "Unable to select database");	
+		// mysql_connect("127.0.0.1", "root", "");
+		// @mysql_select_db("ebannngwrb_db2") or die( "Unable to select database");	
 
-		// mysql_connect("dedi1082.nur4.host-h.net", "ebannngwrb_2", "QDmRnS98");
-		// @mysql_select_db("ebannngwrb_db2") or die( "Unable to select database"); 
+		mysql_connect("dedi1082.nur4.host-h.net", "ebannngwrb_2", "QDmRnS98");
+		@mysql_select_db("ebannngwrb_db2") or die( "Unable to select database"); 
 
 		MetebQuote::generate_quote($commission, $main_sex, $main_dob, $second_life, $spouse_sex, $spouse_dob, $gp, $spouse_rev, $pp, $annuity, $quote_out);
 		
