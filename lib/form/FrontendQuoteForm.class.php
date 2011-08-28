@@ -28,7 +28,7 @@ class FrontendQuoteForm extends BaseQuoteForm
       $this['commence_at'], $this['expires_at'], $this['first_annuity_increase'],
       $this['guaranteed_terms'], $this['premium_charge'],
       $this['fund_charge'], $this['administrative_charge'],
-      $this['created_at'], $this['updated_at']
+      $this['created_at'], $this['updated_at'], $this['commence_at']
     );
     
  	$this->widgetSchema['quote_type_id'] = new sfWidgetFormDoctrineChoice ( array('model' => 'QuoteType', 

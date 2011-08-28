@@ -84,17 +84,6 @@
 		<legend>Quote Details</legend>
 		 <div class="sf_admin_form_row">			
 			<div>
-				<?php echo $form['commence_at']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['commence_at'] ?>
-				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Commencement Date</b> the starting date of the quote') ?>" class="tip">
-			</div>			
-			<?php echo $form['commence_at']->renderError() ?>
-		 </div>
-		 <div class="sf_admin_form_row">			
-			<div>
 				<?php echo $form['gp']->renderLabel() ?>
 			</div>
 			

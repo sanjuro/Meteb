@@ -36,7 +36,7 @@ class BackendQuoteForm extends BaseQuoteForm
       $this['expires_at'], $this['first_annuity_increase'],
       $this['guaranteed_terms'], $this['premium_charge'],
       $this['fund_charge'], $this['administrative_charge'],
-      $this['created_at'], $this['updated_at']
+      $this['created_at'], $this['updated_at'], $this['commence_at']
     );
     
  	$this->widgetSchema['quote_type_id'] = new sfWidgetFormDoctrineChoice ( array('model' => 'QuoteType', 
@@ -55,10 +55,7 @@ class BackendQuoteForm extends BaseQuoteForm
     
 	$this->widgetSchema['second_life'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Is there a spouse?', 'choices' => array( 0 => 'no', 1 => 'yes')));
-	     	
-	$this->widgetSchema['commence_at'] = new sfWidgetFormDateJQueryUI(
-			array("label" => "Commenencement Date", "change_month" => true, "change_year" => true));
-    
+	     	    
 	$this->widgetSchema['main_dob'] = new sfWidgetFormDate(
 			array("label" => "Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
 	

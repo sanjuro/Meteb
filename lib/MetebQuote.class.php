@@ -464,26 +464,27 @@ class MetebQuote
 	 * This function generates the quote calculations that will fill the
 	 * new quote document
 	 * 
-	 * @param array $quoteInputArray The quote inputs that will be used to generate the quote calculations
+	 * @param quote quote The quote that needs to be generated
 	 * @param double $commission The Commission captured for the quote
 	 * @param double $pp The Purchase Price for the quote 
 	 * @param double $annuity The calculated Annuity
 	 * 
 	 * @return array Quote Data
 	 */
-	public static function generate($quoteInputArray, $commission, $pp = 0, $annuity = 0.00)
+	public static function generate($quote)
 	{
+		$main_sex=$quote['main_sex'];
+		$main_dob=$quote['main_dob'];
+		$second_life=$quote['second_life'];
+		$spouse_sex=$quote['spouse_sex'];
+		$spouse_dob=$quote['spouse_dob'];
+		$gp=$quote->$quote['gp'];
+		$spouse_rev=$quote['spouse_rev'];
+		$commission=$quote['commission']/100;
+		$pp=$quote['pp'];
+		$annuity=$quote['annuity'];
 
-		$main_sex=$quote->getMainSex();
-		$main_dob=$quote->getMainDob();
-		$second_life=$quote->second_life;
-		$spouse_sex=$quote->getSpouseSex();
-		$spouse_dob=$quote->getSpouseDob();
-		$gp=$quote->gp;
-		$spouse_rev=$quote->getSpouseReversion()->getTitle();
-		$commission=$commission/100;
-
-		try
+/*		try
 		{
 			if (!($main_sex==1 || $main_sex==2))
 				throw new Exception('Invalid main_sex input!');
@@ -494,10 +495,11 @@ class MetebQuote
 		{
 			 echo 'Caught exception: ',  $e->getMessage(), "\n";
 		}
+*/
 
 		$quote_out = array();
 
-		if($quote->getQuoteTypeId() == 2)
+		if($quote['quote_type_id'] == 2)
 			$annuity=0;
 		else
 			$pp=0;
@@ -509,7 +511,7 @@ class MetebQuote
 		MetebQuote::generate_quote($commission, $main_sex, $main_dob, $second_life, $spouse_sex, $spouse_dob, $gp, $spouse_rev, $pp, $annuity, $quote_out);
 		
 		mysql_close();//close the database connection
-
+	
 		return $quote_out;
 	}
 
