@@ -68,17 +68,13 @@ class BackendQuoteForm extends BaseQuoteForm
 	$this->widgetSchema['spouse_sex'] = new sfWidgetFormDoctrineChoice(array('label' => 'Spouse Gender', 'model' => $this->getRelatedModelName('SpouseGender'), 'add_empty' => true));
 	
 	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'SpouseReversion'));
-    
-	$dateNow = new DateTime(date('Y-m-d'));
-	$dateNow->modify('+1 month');
 	
   	if($this->getOption("userForQuote")){
 		$this->setDefaults(array(
 			'client_id'      => $userForQuote->getId(),
 			'main_sex'       => $userprofile[0]->getGenderId(),
 			'main_dob'       => $userprofile[0]->getDob(),
-			'spouse_sex'     => $userprofile[0]->getSpouseGenderId(),
-		    'commence_at'    => $dateNow->format('Y-m-d'),
+			'spouse_sex'     => $userprofile[0]->getSpouseGenderId()
 		));
 	}
   }

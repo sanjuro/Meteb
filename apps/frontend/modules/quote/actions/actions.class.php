@@ -25,10 +25,9 @@ class quoteActions extends autoQuoteActions
 	  	$userForQuote = $this->getRoute()->getObject();
 	  	
 	  	if(!empty($userForQuote)){ 
-	  		$this->form = new BackendQuoteForm('', array('userForQuote' => $userForQuote,
-	  													 'currentUser' => $this->getUser()));
+	  		$this->form = new FrontendQuoteForm('', array('currentUser' => $this->getUser()));
 	  	}else{
-	  		$this->form = new BackendQuoteForm();
+	  		$this->form = new FrontendQuoteForm();
 	  	}
 	    
 	    $this->quote = $this->form->getObject();

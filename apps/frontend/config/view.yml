@@ -6,19 +6,18 @@ default:
     content-type: text/html
 
   metas:
-    #title:        symfony project
-    #description:  symfony project
-    #keywords:     symfony, project
-    #language:     en
-    #robots:       index, follow
+    title:        Momentum Retierment Annuity
+    description:  Momentum Retierment Annuity Website
+    keywords:     momentum, retierment, annuity
+    language:     en
+    robots:       index, follow
 
-  stylesheets:    [ ebInternet.css, form_clean.css, oneColFixCtrHdr.css, unitip.css, TSScript/TSHelpHint/TSHelpHint.css, SpryAssets/SpryTabbedPanels.css,  SpryAssets/SpryAccordion.css ]
+  stylesheets:    [ ebInternet.css, form_clean.css, oneColFixCtrHdr.css, unitip.css ]
 
-  javascripts:    [ unitip.js, TSScript/yahoo.js, TSScript/event.js, TSScript/dom.js, TSScript/dragdrop.js, TSScript/animation.js, TSScript/container.js, TSScript/TSHelpHint/TSHelpHint.js, SpryAssets/SpryTabbedPanels.js, SpryAssets/SpryAccordion.js ]
+  javascripts:    [ unitip.js ]
 
   has_layout:     true
   layout:         layout
   
   components:
     navigation:  [navigation, default]
-    

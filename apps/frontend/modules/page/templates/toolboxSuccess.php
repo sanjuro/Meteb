@@ -314,9 +314,9 @@ Consider for example:</p>
     <h3>&nbsp;</h3>
 
 <script type="text/javascript">
-var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
-var Accordion1 = new Spry.Widget.Accordion("Accordion1", {useFixedPanelHeights:false});
-var Accordion2 = new Spry.Widget.Accordion("Accordion2", {useFixedPanelHeights:false});
-var Accordion3 = new Spry.Widget.Accordion("Accordion3", {useFixedPanelHeights:false});
-var Accordion4 = new Spry.Widget.Accordion("Accordion4", {useFixedPanelHeights:false});
+	var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+	var Accordion1 = new Spry.Widget.Accordion("Accordion1", {useFixedPanelHeights:false});
+	var Accordion2 = new Spry.Widget.Accordion("Accordion2", {useFixedPanelHeights:false});
+	var Accordion3 = new Spry.Widget.Accordion("Accordion3", {useFixedPanelHeights:false});
+	var Accordion4 = new Spry.Widget.Accordion("Accordion4", {useFixedPanelHeights:false});
 </script>

@@ -25,7 +25,8 @@
         		<li><?php echo link_to('Your profile', url_for('profile_edit', $sf_user->getGuardUser())) ?></li>
         		<?php endif; ?>
         		    
-		        <li><?php echo link_to('Informaiont Toolbox', url_for('@page_toolbox')) ?></li>    
+		        <li><?php echo link_to('Informational Toolbox', url_for('@page_toolbox')) ?></li>    
+		        <li><?php echo link_to('Glossary', url_for('@page_glossary')) ?></li>   
 		        <li><a href="toolbox.html">About Us</a></li>
 		        <li><?php echo link_to('Contact Us', url_for('@page_contact')) ?></li>
         	</ul>
@@ -33,7 +34,7 @@
 	  </div>
 	  <?php if($sf_user->isAuthenticated()) :?> 
 	  <div id="loginTop">
-	  	<a href="<?php echo url_for('profile_edit', $sf_user->getGuardUser() )?>">Log In: <?php echo $sf_user->getGuardUser()->getUsername() ?> - You are currently logged in :<?php echo $sf_user->getGuardUser()->getUsername() ?>
+	  	<a href="<?php echo url_for('profile_edit', $sf_user->getGuardUser() )?>">Log In: <?php echo $sf_user->getGuardUser()->getUsername() ?> - You are currently logged in :<?php echo $sf_user->getGuardUser()->getUsername() ?> </a>
 	  </div>
 	  <?php else :?>
 	  <div id="loginTop">
