@@ -48,7 +48,7 @@
 			
 			<div  class="content" >
 				<?php echo $form['second_life'] ?>
-				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Second Life</b> whether to include the spouses life in the quote') ?>" class="tip">
+				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Joint life application?</b> Do you want your pension to continue to your spouse when you pass away?') ?>" class="tip">
 			</div>			
 			<?php echo $form['second_life']->renderError() ?>
 		 </div>
@@ -58,7 +58,7 @@
 	<?php else: ?>
 	<fieldset id="quote_spouse_details" style="display:none;"> 
 	<?php endif;?>
-		<legend>Spouse Details</legend>
+		<legend>Spouse's Details</legend>
 		 <div class="sf_admin_form_row">			
 			<div>
 				<?php echo $form['spouse_sex']->renderLabel() ?>
@@ -74,7 +74,7 @@
 				<?php echo $form['spouse_dob']->renderLabel() ?>
 			</div>
 			
-			<div  class="content" >
+			<div class="content" >
 				<?php echo $form['spouse_dob'] ?>
 			</div>			
 			<?php echo $form['spouse_dob']->renderError() ?>
@@ -89,7 +89,7 @@
 			
 			<div  class="content" >
 				<?php echo $form['gp'] ?>
-				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Guaranteed Periond</b> the guarantee period of the quote') ?>" class="tip">
+				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Guarantee Periond</b> Annuities are guaranteed to be paid for life; additionally you can opt for a guaranteed minimum payment period.') ?>" class="tip">
 			</div>			
 			<?php echo $form['gp']->renderError() ?>
 		 </div>
@@ -105,7 +105,7 @@
 			
 			<div  class="content" >
 				<?php echo $form['spouse_reversion_id'] ?> %
-				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Spouse Reversion</b> the spouse reversion if second life is factored in') ?>" class="tip">
+				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Spouse\'s Reversion</b> Should the annuity amount reduce on your death? Selecting a reduced level of continuing pension for your partner on your death will give you a larger initial annuity amount.') ?>" class="tip">
 			</div>			
 			<?php echo $form['spouse_reversion_id']->renderError() ?>
 		 </div>
@@ -113,7 +113,7 @@
 		 	<label for="quote_type_id">Which type of quote?</label>	
 			<div class="content" >
 				<?php echo $form['quote_type_id'] ?>
-				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Quote Type</b> there two types of quotes Annuity or Purchase Price') ?>" class="tip">
+				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Quote Type</b> Choose Purchase price to calculate the annuity you will receive from your accumulated pension fund. <br><br> Choose Monthly Annuity if you know what monthly annuity you would like and want to calculate how much money you need to invest.') ?>" class="tip">
 			</div>			
 			<?php echo $form['quote_type_id']->renderError() ?>
 		 </div>
@@ -124,7 +124,7 @@
 			
 			<div class="content" >
 				<?php echo $form['annuity'] ?>
-				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Annuity</b> the annuity of the quote') ?>" class="tip">
+				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Monthly Annuity</b> The initial monthly annuity you would like to receive from Momentum when you retire.') ?>" class="tip">
 			</div>			
 			<?php echo $form['annuity']->renderError() ?>
 		 </div>
@@ -135,8 +135,8 @@
 			
 			<div class="content" >
 				<?php echo $form['purchase_price'] ?>
-				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Purchase Price</b> the purchase price of the quote') ?>" class="tip">
-			</div>			
+				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Purchase Price</b>The value of your accumulated pension fund with which you wish to purchase your annuity') ?>" class="tip">
+			</div>	
 			<?php echo $form['purchase_price']->renderError() ?>
 		 </div>
 		 <div class="sf_admin_form_row">			

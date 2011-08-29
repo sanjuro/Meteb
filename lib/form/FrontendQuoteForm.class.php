@@ -46,24 +46,29 @@ class FrontendQuoteForm extends BaseQuoteForm
 	
     
 	$this->widgetSchema['gp'] = new sfWidgetFormChoice(
-	     	array( 'label' => 'Guanrateed Period', 'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')));
+	     	array( 'label' => 'Guanratee Period', 'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')));
 	     	
 	$this->widgetSchema['spouse_reversion_id'] = new sfWidgetFormDoctrineChoice(
-	     	array( 'model' => 'SpouseReversion',  'label' => 'Spouse Reversion', 'add_empty' => "Select a Spouse Reversion"), array ( ));  
+	     	array( 'model' => 'SpouseReversion',  'label' => 'Spouse\'s Reversion', 'add_empty' => "Select a Spouse Reversion"), array ( ));  
     
 	$this->widgetSchema['second_life'] = new sfWidgetFormChoice(
-	     	array( 'label' => 'Is there a spouse?', 'choices' => array( 0 => 'no', 1 => 'yes')));
+	     	array( 'label' => 'Joint life application?', 'choices' => array( 0 => 'no', 1 => 'yes')));
 	     	    
 	$this->widgetSchema['main_dob'] = new sfWidgetFormDate(
 			array("label" => "Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
+			
+	$this->widgetSchema['main_sex'] = new sfWidgetFormDoctrineChoice(array('label' => 'Main sex', 'model' => $this->getRelatedModelName('Gender'), 'add_empty' => 'Select one'));
 	
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDate(
-			array("label" => "Spouse Date Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
+			array("label" => "Spouse's Date Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
 			
 	$this->widgetSchema['commission_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'Commission',  'label' => 'Commission Percentage', 'add_empty' => "Select a Commission"), array ( ));  
 	     	
-	$this->widgetSchema['spouse_sex'] = new sfWidgetFormDoctrineChoice(array('label' => 'Spouse Gender', 'model' => $this->getRelatedModelName('SpouseGender'), 'add_empty' => true));
+	$this->widgetSchema['spouse_sex'] = new sfWidgetFormDoctrineChoice(array('label' => 'Spouse\'s Gender', 'model' => $this->getRelatedModelName('SpouseGender'), 'add_empty' => 'Select one'));
+	
+	$this->widgetSchema['annuity'] = new sfWidgetFormInputText(array('label' => 'Monthly Annuity'));
+	
 	
 	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'SpouseReversion'));
 	

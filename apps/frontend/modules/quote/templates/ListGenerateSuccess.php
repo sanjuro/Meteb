@@ -83,11 +83,11 @@
 					</tr>
 					<tr>
 						<td><span class="quotedetails_label"><?php echo __('Main Age Next')?></span></td>
-						<td><span class="quotedetails_data">R <?php echo number_format($quote_calculations['main_age_next'], 2, '.', ',')  ?></span></td>
+						<td><span class="quotedetails_data"> <?php echo $quote_calculations['main_age_next'] ?></span></td>
 					</tr>
 					<tr>
 						<td><span class="quotedetails_label"><?php echo __('Spouse Age Next')?></span></td>
-						<td><span class="quotedetails_data">R <?php echo number_format($quote_calculations['spouse_age_next'], 2, '.', ',')  ?></span></td>
+						<td><span class="quotedetails_data"><?php echo $quote_calculations['spouse_age_next'] ?></span></td>
 					</tr>
 					<tr>
 						<td><span class="quotedetails_label"><?php echo __('Premium Charge 1')?></span></td>
