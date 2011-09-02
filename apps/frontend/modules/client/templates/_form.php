@@ -64,6 +64,16 @@
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>
+				<?php echo $form['confirm_password']->renderLabel() ?>
+			</div>
+			
+			<div  class="content" >
+				<?php echo $form['confirm_password'] ?>
+			</div>			
+			<?php echo $form['confirm_password']->renderError() ?>
+		 </div>
+		 <div class="sf_admin_form_row">			
+			<div>
 				<?php echo $form['email_address']->renderLabel() ?>
 			</div>
 			

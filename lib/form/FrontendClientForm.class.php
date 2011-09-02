@@ -30,6 +30,9 @@ class FrontendClientForm extends sfGuardUserForm
       $this['groups_list'], $this['permissions_list']
     );
     
+    $this->widgetSchema['confirm_password'] = new sfWidgetFormInputPassword();
+ 	$this->validatorSchema['confirm_password'] = new sfValidatorPass();
+    
 	/**
 	 * Embed UserProfile Form
 	 */

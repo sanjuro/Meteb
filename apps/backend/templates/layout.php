@@ -19,7 +19,7 @@
         			<?php if ($sf_user->isAuthenticated()): ?>					
 							    <ul id="backendnavigation">		
 								    <li class="loggedin">Logged in as <?php echo $sf_user->getGuardUser()->getUsername() ?> |</li>		    	
-								    <li style="display:inline;"><?php echo link_to(__('Logout'), 'sf_guard_signout', array(), array( "class" => "logout")) ?></li>			
+								    <li style="display:inline;"><?php echo link_to(__('Log Out'), 'sf_guard_signout', array(), array( "class" => "logout")) ?></li>			
 							    </ul>		
 					<?php endif; ?>	
 					

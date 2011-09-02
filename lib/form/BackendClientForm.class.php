@@ -35,6 +35,9 @@ class BackendClientForm extends sfGuardUserForm
     $this->widgetSchema['password'] = new sfWidgetFormInputPassword();
     $this->validatorSchema['password']->setOption('required', false);
     
+    $this->widgetSchema['confirm_password'] = new sfWidgetFormInputPassword();
+ 	$this->validatorSchema['confirm_password'] = new sfValidatorPass();
+    
 	/**
 	 * Embed UserProfile Form
 	 */
@@ -100,6 +103,8 @@ class BackendClientForm extends sfGuardUserForm
     $values['first_name'] = $values['userProfiles'][0]['name'];
     
     $values['last_name'] = $values['userProfiles'][0]['surname'];
+    
+    unset($values['confirm_password']);
 	
 	$values = $this->processValues($values);
 		 

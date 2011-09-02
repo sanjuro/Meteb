@@ -71,6 +71,8 @@ class BackendUserProfileForm extends BaseUserProfileForm
     $this->widgetSchema['spouse_surname'] = new sfWidgetFormInputText(array('label' => 'Spouse Surname'), array('size' => '25'));    
     
 			
+	$this->validatorSchema['gender_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender'));
+    
 	$this->validatorSchema['spouse_name'] = new sfValidatorString(array('required' => false));
 	
 	$this->validatorSchema['spouse_surname'] = new sfValidatorString(array('required' => false));

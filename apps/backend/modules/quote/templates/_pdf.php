@@ -515,5 +515,5 @@
 	</table>
 	<br>
 	<span style="font-size:10px;">Metropolitan Life Limited is an authorised Financial Services Provider</span>
-	<div class="clearer" style="height:676px;"><div>
+	<div class="clearer" style="height:10px;"><div>
 </p>

@@ -52,6 +52,10 @@ class BackendQuoteForm extends BaseQuoteForm
 	     	
 	$this->widgetSchema['spouse_reversion_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'SpouseReversion',  'label' => 'Spouse\'s Reversion', 'add_empty' => "Select a Spouse Reversion"), array ( ));  
+	     	
+	$this->widgetSchema['spouse_reversion_id'] =  new sfWidgetFormChoice(array( 'label' => 'Spouse\'s Reversion',
+								  'choices' => array('' => "Select a Spouse Reversion",  '2' => '25%', '3' => '50%', '4' => '75%', '5' => '100%'),
+								));
     
 	$this->widgetSchema['second_life'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Joint life application?', 'choices' => array( 0 => 'no', 1 => 'yes')));
