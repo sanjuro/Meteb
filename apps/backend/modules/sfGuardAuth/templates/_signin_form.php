@@ -6,7 +6,7 @@
 	
 	<div id="formCasing">
 
-	<h1>Signin</h1>
+	<h1>Log In</h1>
 
 	<div id="loginForm">	
 	
@@ -38,7 +38,7 @@
 		<dt><label for="remember"><?php echo $form['remember']->renderLabel() ?></label></dt>
 		<dd><?php echo $form['remember'] ?>	<?php echo $form['remember']->renderError() ?></dd>
 		
-		<dd><input type="submit"  value="<?php echo __('Signin', null, 'sf_guard') ?>" /></dd>
+		<dd><input type="submit"  value="<?php echo __('Log In', null, 'sf_guard') ?>" /></dd>
 	</dl>
   	</form>
 	

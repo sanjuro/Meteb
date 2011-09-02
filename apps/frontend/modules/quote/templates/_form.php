@@ -177,7 +177,9 @@ $(document).ready(function() {
 			 $("#spouse_reversion_field").css('display', 'block');
 		}else{
 			 $("#quote_spouse_details").css('display', 'none');
-			 $("#spouse_reversion_field").css('display', 'block');
+			 $("#<?php echo $form['spouse_reversion_id']->renderId() ?>").val('');
+			 $("#spouse_reversion_field").css('display', 'none');
+			 
 		}
 		 return false;
 	});

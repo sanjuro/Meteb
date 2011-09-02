@@ -48,7 +48,7 @@ class BackendQuoteForm extends BaseQuoteForm
 	
     
 	$this->widgetSchema['gp'] = new sfWidgetFormChoice(
-	     	array( 'label' => 'Guanratee Period', 'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')));
+	     	array( 'label' => 'Guarantee Period', 'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')));
 	     	
 	$this->widgetSchema['spouse_reversion_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'SpouseReversion',  'label' => 'Spouse\'s Reversion', 'add_empty' => "Select a Spouse Reversion"), array ( ));  
@@ -72,14 +72,19 @@ class BackendQuoteForm extends BaseQuoteForm
 	$this->widgetSchema['annuity'] = new sfWidgetFormInputText(array('label' => 'Monthly Annuity'));
 	
 	
-	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'SpouseReversion'));
+	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false));
+	
+	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('required' => false, 'multiple' => false, 'model' => 'SpouseReversion'));
+	
+	$this->validatorSchema['commission_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Commission'));
 	
   	if($this->getOption("userForQuote")){
 		$this->setDefaults(array(
 			'client_id'      => $userForQuote->getId(),
 			'main_sex'       => $userprofile[0]->getGenderId(),
 			'main_dob'       => $userprofile[0]->getDob(),
-			'spouse_sex'     => $userprofile[0]->getSpouseGenderId()
+			'spouse_sex'     => $userprofile[0]->getSpouseGenderId(),
+			'spouse_reversion_id'     => 0
 		));
 	}
   }

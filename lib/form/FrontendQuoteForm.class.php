@@ -46,7 +46,7 @@ class FrontendQuoteForm extends BaseQuoteForm
 	
     
 	$this->widgetSchema['gp'] = new sfWidgetFormChoice(
-	     	array( 'label' => 'Guanratee Period', 'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')));
+	     	array( 'label' => 'Guarantee Period', 'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')));
 	     	
 	$this->widgetSchema['spouse_reversion_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'SpouseReversion',  'label' => 'Spouse\'s Reversion', 'add_empty' => "Select a Spouse Reversion"), array ( ));  
@@ -70,7 +70,9 @@ class FrontendQuoteForm extends BaseQuoteForm
 	$this->widgetSchema['annuity'] = new sfWidgetFormInputText(array('label' => 'Monthly Annuity'));
 	
 	
-	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'SpouseReversion'));
+	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false));
+	
+	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('required' => false, 'multiple' => false, 'model' => 'SpouseReversion'));
 	
 	$userprofile = $userForQuote->getUserProfile();
     	

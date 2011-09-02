@@ -40,6 +40,9 @@ class FrontendUserProfileForm extends BaseUserProfileForm
     	$this->setDefault('parent_user_id', $currentUser->getGuardUser()->getId());
     }
     
+	$this->widgetSchema['gender_id'] = new sfWidgetFormDoctrineChoice(
+	     	array( 'model' => 'Gender',  'label' => 'Gender', 'add_empty' => "Select a gender"), array ( ));  
+    
  	$this->widgetSchema['spouse_gender_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'Gender',  'label' => 'Spouse Gender', 'add_empty' => "Select a gender"), array ( ));  
      	
@@ -68,6 +71,8 @@ class FrontendUserProfileForm extends BaseUserProfileForm
 	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false));
 	
 	$this->validatorSchema['spouseidnumber'] = new sfValidatorString(array('required' => false));
+	
+	$this->validatorSchema['commission_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Commission'));
 			
 			
     // Only check if this is a new user being added
