@@ -70,6 +70,10 @@ class FrontendQuoteForm extends BaseQuoteForm
 	
 	$this->widgetSchema['annuity'] = new sfWidgetFormInputText(array('label' => 'Monthly Annuity'));
 	
+
+	$this->validatorSchema['main_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender'));
+	
+	$this->validatorSchema['spouse_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender'));
 	
 	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false));
 	

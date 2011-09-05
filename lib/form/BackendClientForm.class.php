@@ -37,6 +37,8 @@ class BackendClientForm extends sfGuardUserForm
     
     $this->widgetSchema['confirm_password'] = new sfWidgetFormInputPassword();
  	$this->validatorSchema['confirm_password'] = new sfValidatorPass();
+ 	
+	$this->validatorSchema['email_address'] = new sfValidatorString(array('required' => false));
     
 	/**
 	 * Embed UserProfile Form

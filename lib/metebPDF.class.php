@@ -1,8 +1,13 @@
 <?php
 /**
- * This class will be used to generate pdfs of the system
- *
- * @package default
+ * Meteb PDF Class
+ * 
+ * This class will handle the PDF generation
+ * 
+ * @package    meteb
+ * @subpackage lib
+ * @author     Shadley Wentzel <shad6ster@gmail.com>
+ * @version    GIT
  */
 
 

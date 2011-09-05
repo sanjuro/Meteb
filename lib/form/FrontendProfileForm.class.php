@@ -32,9 +32,12 @@ class FrontendProfileForm extends sfGuardUserForm
       $this['created_at'], $this['updated_at'],
       $this['groups_list'], $this['permissions_list']
     );
-  
+    
     $this->widgetSchema['password'] = new sfWidgetFormInputPassword();
     $this->validatorSchema['password']->setOption('required', false);
+    
+    $this->widgetSchema['confirm_password'] = new sfWidgetFormInputPassword();
+ 	$this->validatorSchema['confirm_password'] = new sfValidatorPass();
     
 	/**
 	 * Embed UserProfile Form

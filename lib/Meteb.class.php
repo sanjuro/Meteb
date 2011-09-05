@@ -1,4 +1,14 @@
 <?php
+/**
+ * Meteb Utillity Class
+ * 
+ * This class house some utillity functions for the system
+ * 
+ * @package    meteb
+ * @subpackage lib
+ * @author     Shadley Wentzel <shad6ster@gmail.com>
+ * @version    GIT
+ */
 class Meteb
 {
 	/**

@@ -121,37 +121,29 @@
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Spouse\'s Reversion</b> Should the annuity amount reduce on your death? Selecting a reduced level of continuing pension for your partner on your death will give you a larger initial annuity amount.') ?>" class="tip">
 			</div>		
 			<?php echo $form['spouse_reversion_id']->renderError() ?>
-		 </div>
-		 
-		 <div class="sf_admin_form_row">			 
-		 	<label for="quote_type_id">Which type of quote?</label>	
-			<div class="content" >
+		 </div>	 
+		 <div class="sf_admin_form_row">			  		
+			<div>			
+				<div style="float:left;padding-right:10px;">
+				Please provide a
 				<?php echo $form['quote_type_id'] ?>
-				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Quote Type</b> Choose Purchase price to calculate the annuity you will receive from your accumulated pension fund. <br> Choose Monthly Annuity if you know what monthly annuity you would like and want to calculate how much money you need to invest.') ?>" class="tip">
-			</div>			
-			<?php echo $form['quote_type_id']->renderError() ?>
-		 </div>
-		 <div id="annuity_field" class="sf_admin_form_row" style="display:none;">			
-			<div>
-				<?php echo $form['annuity']->renderLabel() ?>
-			</div>
-			
-			<div class="content" >
-				<?php echo $form['annuity'] ?>
-				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Monthly Annuity</b> The initial monthly annuity you would like to receive from Momentum when you retire.') ?>" class="tip">
-			</div>		
-			<?php echo $form['annuity']->renderError() ?>
-		 </div>
-		 <div id="purchase_price_field" class="sf_admin_form_row">			
-			<div>
-				<?php echo $form['purchase_price']->renderLabel() ?>
-			</div>
-			
-			<div class="content" >
+				</div>
+				
+				<div id="annuity_field">
+				quote for Purchase Price of
 				<?php echo $form['purchase_price'] ?>
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Purchase Price</b>The value of your accumulated pension fund with which you wish to purchase your annuity') ?>" class="tip">
+				<?php echo $form['annuity']->renderError() ?>
+				</div>	
+				
+				<div id="purchase_price_field" style="display:none;padding-right:10px;">
+				quote for monhtly Annuity of
+				<?php echo $form['annuity'] ?>
+				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Monthly Annuity</b> The initial monthly annuity you would like to receive from Momentum when you retire.') ?>" class="tip">
+				<?php echo $form['annuity']->renderError() ?>
+				</div>	
 			</div>			
-			<?php echo $form['purchase_price']->renderError() ?>
+			<?php echo $form['quote_type_id']->renderError() ?>
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>

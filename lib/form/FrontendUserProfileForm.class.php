@@ -75,6 +75,18 @@ class FrontendUserProfileForm extends BaseUserProfileForm
 	$this->validatorSchema['spouseidnumber'] = new sfValidatorString(array('required' => false));
 	
 	$this->validatorSchema['commission_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Commission'));
+	
+	$this->validatorSchema['postaladdress'] = new sfValidatorString(array('required' => false));
+	
+	$this->validatorSchema['streetaddress'] = new sfValidatorString(array('required' => false));
+
+	$this->validatorSchema['telephone'] = new sfValidatorString(array('required' => false));	
+	
+	$this->validatorSchema['mobile'] = new sfValidatorString(array('required' => false));
+	
+	$this->validatorSchema['fax'] = new sfValidatorString(array('required' => false));
+
+	$this->validatorSchema['company'] = new sfValidatorString(array('required' => false));
 			
 			
     // Only check if this is a new user being added

@@ -58,18 +58,22 @@
      
         <div id="main">
         	
-				<?php if ($sf_user->hasFlash('notice')): ?>
-				          <div class="flash_notice">
-				            <?php echo $sf_user->getFlash('notice') ?>
-				          </div>
-				<?php endif; ?>
-				 
-			
-				<?php if ($sf_user->hasFlash('error')): ?>
-				          <div class="flash_error">
-				            <?php echo $sf_user->getFlash('error') ?>
-				         </div>
-				<?php endif; ?>
+					<?php if ($sf_user->hasFlash('notice')): ?>
+					          <div id="flash_notice" class="flash_notice">
+					            <?php echo $sf_user->getFlash('notice') ?>
+					            
+					            <div style="float:right;"><button onclick="$('#flash_notice').hide()">hide</button></div>
+					          </div>
+					<?php endif; ?>
+					 
+				
+					<?php if ($sf_user->hasFlash('error')): ?>
+					          <div id="flash_error" class="flash_error">
+					            <?php echo $sf_user->getFlash('error') ?>
+					            
+					            <div style="float:right;"><button onclick="$('#flash_notice').hide()">hide</button></div>
+					         </div>
+					<?php endif; ?>
 					    	
        
 		       	<?php echo $sf_content ?>  

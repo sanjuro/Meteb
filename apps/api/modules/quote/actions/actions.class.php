@@ -58,25 +58,23 @@ class quoteActions extends sfActions
     	try 
 		{  
 			/**
+			 * Create new Client object
+			 */
+			$client = MetebQuoteApi::createClient($request);
+			
+			/**
+			 * Create new associated UserProfile object
+			 */
+			$userProfile = MetebQuoteApi::createUserProfile($request, $client->getId(), $api_user);
+							
+			/**
 			 * Create new Quote object
 			 */
-			$quote = new Quote();
-			$quote->setClientId($request['client_id']);
-			$quote->setQuoteTypeId($request['quote_type']);
-			$quote->setSecondLife($request['second_life']);
-			$quote->setMainSex($request['main_sex']);
-			$quote->setMainDob($request['main_dob']);
-			$quote->setSpouseSex($request['spouse_sex']);
-			$quote->setSpouseDob($request['spouse_dob']);
-			$quote->setGp($request['gp']);
-			$quote->setSpouseReversionId($request['spouse_reversion']);
-			$quote->setAnnuity($request['annuity']);
-			$quote->setPurchasePrice($request['purchase_price']);
-			$quote->setCommissionId($request['commission']);
-			$quote->setCommenceAt($request['commence_at']);
-			$quote->save();
+			$quote = MetebQuoteApi::createQuote($request, $client->getId());
 
-			
+			/**
+			 * Build Quote Array for Shit Function
+			 */
 			$quoteInputArray = array();
 			$quoteInputArray['quote_type_id'] = $quote->getQuoteTypeId();
 			$quoteInputArray['commission'] = $quote->getCommission()->getTitle();
@@ -91,7 +89,7 @@ class quoteActions extends sfActions
 			$quoteInputArray['annuity'] = $quote->getAnnuity();
 			
 			/**
-			 * Create holder array from request
+			 * Use the Shit function to get shit from it
 			 */
 	   	 	$quote_calculations = MetebQuote::generate($quoteInputArray);
 	   	 	$quote_calculations['id'] = $quote->getId();
