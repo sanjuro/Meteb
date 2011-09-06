@@ -131,14 +131,18 @@
 				
 				<div id="annuity_field">
 				quote for Purchase Price of
+				<span class="small">
 				<?php echo $form['purchase_price'] ?>
+				</span>
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Purchase Price</b>The value of your accumulated pension fund with which you wish to purchase your annuity') ?>" class="tip">
-				<?php echo $form['annuity']->renderError() ?>
+				<?php echo $form['purchase_price']->renderError() ?>
 				</div>	
 				
 				<div id="purchase_price_field" style="display:none;padding-right:10px;">
 				quote for monhtly Annuity of
+				<span class="small">
 				<?php echo $form['annuity'] ?>
+				</span>
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Monthly Annuity</b> The initial monthly annuity you would like to receive from Momentum when you retire.') ?>" class="tip">
 				<?php echo $form['annuity']->renderError() ?>
 				</div>	

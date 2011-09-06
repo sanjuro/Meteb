@@ -35,6 +35,7 @@
 	  <?php if($sf_user->isAuthenticated()) :?> 
 	  <div id="loginTop">
 	  	<a href="<?php echo url_for('profile_edit', $sf_user->getGuardUser() )?>">Log In: <?php echo $sf_user->getGuardUser()->getUsername() ?> - You are currently logged in :<?php echo $sf_user->getGuardUser()->getUsername() ?> </a>
+ 		| <?php echo link_to(__('Log Out'), 'sf_guard_signout', array(), array( "class" => "logout")) ?>
 	  </div>
 	  <?php else :?>
 	  <div id="loginTop">

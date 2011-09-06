@@ -313,7 +313,10 @@ input[type="text"], input[type="password"], textarea {
     font: 12px arial,verdana,sans-serif;
     padding: 5px 4px;
 }
-
+.small input {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
 label {
     float: left;
     font-size: 11px;

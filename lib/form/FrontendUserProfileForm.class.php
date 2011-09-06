@@ -22,7 +22,7 @@ class FrontendUserProfileForm extends BaseUserProfileForm
   	
   	unset(
       $this['user_profile_id'], $this['created_at'], $this['updated_at'],
-      $this['status_id']
+      $this['status_id'],  $this['commission_id']
     );
     
     if (isset($currentUser) && !$this->object->getSfGuardUser()->hasGroup('administrator') 
@@ -74,7 +74,6 @@ class FrontendUserProfileForm extends BaseUserProfileForm
 	
 	$this->validatorSchema['spouseidnumber'] = new sfValidatorString(array('required' => false));
 	
-	$this->validatorSchema['commission_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Commission'));
 	
 	$this->validatorSchema['postaladdress'] = new sfValidatorString(array('required' => false));
 	
