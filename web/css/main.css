@@ -1,0 +1,22 @@
+#success, .success, .flash_notice {
+    background: url("../images/backend/success.png") no-repeat scroll 11px 12px #E1FFD1;
+    border-bottom: 1px solid #C5F8AC;
+    border-top: 1px solid #C5F8AC;
+    padding: 10px 35px;
+    position: fixed;
+    top: 0px;
+   	margin: 0 auto;
+    width: 890px;
+}
+
+.flash_error {
+    background: url("../images/backend/error.png") no-repeat scroll 11px 12px #FF3333;
+    border-bottom: 1px solid #FF3333;
+    border-top: 1px solid #FF3333;
+    color: #FFF;
+    padding: 10px 35px;
+    position: fixed;
+    top: 0px;
+  	 margin: 0 auto;
+    width: 890px;
+}

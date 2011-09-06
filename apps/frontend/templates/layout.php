@@ -64,7 +64,7 @@
 					          <div id="flash_error" class="flash_error">
 					            <?php echo $sf_user->getFlash('error') ?>
 					            
-					            <div style="float:right;"><button onclick="$('#flash_notice').hide()">hide</button></div>
+					            <div style="float:right;"><button onclick="$('#flash_error').hide()">hide</button></div>
 					         </div>
 					<?php endif; ?>
 					       

@@ -14,7 +14,7 @@ default:
 
   stylesheets:    [backend.css, unitip.css]
 
-  javascripts:    [ unitip.js ]
+  javascripts:    [ unitip.js, jquery-1.5.1.min.js ]
 
   has_layout:     true
   layout:         layout

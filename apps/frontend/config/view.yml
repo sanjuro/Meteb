@@ -12,7 +12,7 @@ default:
     language:     en
     robots:       index, follow
 
-  stylesheets:    [ ebInternet.css, form_clean.css, oneColFixCtrHdr.css, unitip.css ]
+  stylesheets:    [ main.css, ebInternet.css, form_clean.css, oneColFixCtrHdr.css, unitip.css ]
 
   javascripts:    [ unitip.js ]
 

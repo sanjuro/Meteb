@@ -182,6 +182,7 @@ class clientActions extends autoClientActions
     foreach ($q->execute() as $sfGuardUser)
     {
       $sfGuardUser->setIsActive(true);
+      $sfGuardUser->save();
     }
  
     $this->getUser()->setFlash('notice', 'The selected clients have been enabled successfully.');
@@ -200,6 +201,7 @@ class clientActions extends autoClientActions
     foreach ($q->execute() as $sfGuardUser)
     {
       $sfGuardUser->setIsActive(false);
+      $sfGuardUser->save();
     }
  
     $this->getUser()->setFlash('notice', 'The selected clients have been disabled successfully.');
@@ -219,6 +221,7 @@ class clientActions extends autoClientActions
     $sfGuardUser = $this->getRoute()->getObject();
     
     $sfGuardUser->setIsActive(true);
+    $sfGuardUser->save();
  
     $this->getUser()->setFlash('notice', 'The selected client has been enabled successfully.');
  
@@ -229,6 +232,7 @@ class clientActions extends autoClientActions
   {
     $sfGuardUser = $this->getRoute()->getObject();
     $sfGuardUser->setIsActive(false);
+    $sfGuardUser->save();
  
     $this->getUser()->setFlash('notice', 'The selected client has been disabled successfully.');
  
