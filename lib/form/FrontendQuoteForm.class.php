@@ -42,7 +42,7 @@ class FrontendQuoteForm extends BaseQuoteForm
 													  'label' => 'Province/Region',
 												), array ( ));   
 												
-	$this->validatorSchema['quote_type_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'QuoteType'));
+	$this->validatorSchema['quote_type_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'QuoteType'), array('required' => 'Please select a valid Quote Type'));
 	
     
 	$this->widgetSchema['gp'] = new sfWidgetFormChoice(
@@ -58,7 +58,7 @@ class FrontendQuoteForm extends BaseQuoteForm
 	$this->widgetSchema['main_dob'] = new sfWidgetFormDate(
 			array("label" => "Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
 			
-	$this->widgetSchema['main_sex'] = new sfWidgetFormDoctrineChoice(array('label' => 'Main Members Gender', 'model' => $this->getRelatedModelName('Gender'), 'add_empty' => 'Select one'));
+	$this->widgetSchema['main_sex'] = new sfWidgetFormDoctrineChoice(array('label' => 'Main Member\'s Gender', 'model' => $this->getRelatedModelName('Gender'), 'add_empty' => 'Select one'));
 	
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDate(
 			array("label" => "Spouse's Date Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
@@ -71,15 +71,15 @@ class FrontendQuoteForm extends BaseQuoteForm
 	$this->widgetSchema['annuity'] = new sfWidgetFormInputText(array('label' => 'Monthly Annuity'));
 	
 
-	$this->validatorSchema['main_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender', 'min' => 1), array('required' => 'Please select a valid Main Gender'));
+	$this->validatorSchema['main_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender', 'min' => 1), array('required' => 'Please select a valid Main Memeber\'s Gender'));
 	
-	$this->validatorSchema['spouse_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender', 'min' => 1), array('required' => 'Please select a valid Spouse Gender'));
+	$this->validatorSchema['spouse_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender', 'min' => 1), array('required' => 'Please select a valid Spouse\'s Gender'));
 	
 	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false));
 	
 	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'SpouseReversion'), array('required' => 'Please select a valid Spouse Reversion'));
 	
-	$this->validatorSchema['commission_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Commission'), array('required' => 'Please select a valid Commission'));
+	$this->validatorSchema['commission_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Commission'), array('required' => 'Please select a valid Commission Percentage'));
 	
 	$userprofile = $userForQuote->getUserProfile();
     	

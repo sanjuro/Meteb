@@ -35,6 +35,8 @@ class BackendAdvisorForm extends sfGuardUserForm
     
     $this->widgetSchema['confirm_password'] = new sfWidgetFormInputPassword();
  	$this->validatorSchema['confirm_password'] = new sfValidatorPass();
+ 	
+	$this->mergePostValidator(new sfValidatorSchemaCompare('password', sfValidatorSchemaCompare::EQUAL, 'confirm_password', array(),  array('invalid' => 'Passwords do not match.'))); 
     
 	/**
 	 * Embed UserProfile Form

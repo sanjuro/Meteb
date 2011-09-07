@@ -124,7 +124,7 @@
 		 </div>	 
 		 <div class="sf_admin_form_row">			  		
 			<div>			
-				<div style="float:left;padding-right:10px;">
+				<div style="float:left;padding-top:4px;padding-right:10px;">
 				Please provide a
 				<?php echo $form['quote_type_id'] ?>
 				</div>
@@ -188,24 +188,19 @@ $(document).ready(function() {
 		}else{
 			 $("#quote_spouse_details").css('display', 'none');
 			 $("#<?php echo $form['spouse_reversion_id']->renderId() ?>").val('');
-			 $("#spouse_reversion_field").css('display', 'none');
-			 
+			 $("#spouse_reversion_field").css('display', 'none');			 
 		}
-		 return false;
+		return false;
 	});
 
-
-	$(function() {
-		var params = {
-		changeMonth : true,
-		changeYear : true,
-		numberOfMonths : 1,
-		showButtonPanel : false };
-		yearRange: '1930:2010'
-		$('#<?php echo $form['main_dob']->renderId() ?>').datepicker(params);
-	}); 
-
-
+	if($('#<?php echo $form['second_life']->renderId() ?>').val() == 1){
+		 $("#quote_spouse_details").css('display', 'block');
+		 $("#spouse_reversion_field").css('display', 'block');
+	}else{
+		 $("#quote_spouse_details").css('display', 'none');
+		 $("#<?php echo $form['spouse_reversion_id']->renderId() ?>").val('');
+		 $("#spouse_reversion_field").css('display', 'none');			 
+	}
 	
 });
 </script>

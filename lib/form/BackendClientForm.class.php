@@ -39,6 +39,8 @@ class BackendClientForm extends sfGuardUserForm
  	$this->validatorSchema['confirm_password'] = new sfValidatorPass();
  	
 	$this->validatorSchema['email_address'] = new sfValidatorString(array('required' => false));
+	
+	$this->mergePostValidator(new sfValidatorSchemaCompare('password', sfValidatorSchemaCompare::EQUAL, 'confirm_password', array(),  array('invalid' => 'Passwords do not match.'))); 
     
 	/**
 	 * Embed UserProfile Form

@@ -1,5 +1,5 @@
 body {
-    background-repeat: repeat-x;
+    background-color: #FFF;
     color: #333333;
     font-size: 0.7em;
 	font-family: Arial,Helvetica,sans-serif;
@@ -29,7 +29,11 @@ h2 {
     padding-bottom: 12px;
     text-indent: 2px;
 }
+img {
+	border: none;	
+}
 a {
+
 	color: #E31818;
 	text-decoration: none;	
 }
@@ -47,7 +51,7 @@ a:hover {
 	padding: 10px;
 	}
 #footer {
-    background-image: url("/images/page_footer_m.gif");
+    background-image: url("/images/backend/page_footer_m.png");
     background-position: right center;
     background-repeat: no-repeat;
     color: #FFFFFF;
@@ -80,6 +84,7 @@ a:hover {
     background-repeat: no-repeat;
     border-bottom: 2px solid #BBBBBB;
     height: 100px;
+    min-width: 1200px;
 	}
 	
 #header h1 {
@@ -134,14 +139,17 @@ div.shadowBottomLeft div.shadowMidLeft {
 #main {
 	background-color: #FAFAFA;
     border-top: 1px solid #BBBBBB;
+    border-bottom: 1px solid #BBBBBB;
     padding: 15px 18px 25px 15px;
     position: relative;
+    min-width: 900px;
 }
 
 #footer {
     color:#E31818;
     font-size: 1.1em;
     padding: 10px;
+    min-width: 900px;
 	}
 	
 #sf_admin_container {
