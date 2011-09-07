@@ -48,7 +48,7 @@ class BackendQuoteForm extends BaseQuoteForm
 	
     
 	$this->widgetSchema['gp'] = new sfWidgetFormChoice(
-	     	array( 'label' => 'Guarantee Period', 'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')));
+	     	array( 'label' => 'Guarantee Period', 'choices' => array( '' => 'Select a Guarantee Period', 0 => '0 months', 60 => '60 months', 120 => '120 months')));
 	     	
 	$this->widgetSchema['spouse_reversion_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'SpouseReversion',  'label' => 'Spouse\'s Reversion', 'add_empty' => "Select a Spouse Reversion"), array ( ));  
@@ -63,10 +63,10 @@ class BackendQuoteForm extends BaseQuoteForm
 	$this->widgetSchema['main_dob'] = new sfWidgetFormDate(
 			array("label" => "Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
 			
-	$this->widgetSchema['main_sex'] = new sfWidgetFormDoctrineChoice(array('label' => 'Main Member\'s sex', 'model' => $this->getRelatedModelName('Gender'), 'add_empty' => 'Select one'));
+	$this->widgetSchema['main_sex'] = new sfWidgetFormDoctrineChoice(array('label' => 'Main Member\'s Gender', 'model' => $this->getRelatedModelName('Gender'), 'add_empty' => 'Select one'));
 	
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDate(
-			array("label" => "Spouse\'s Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
+			array("label" => "Spouse's Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
 			
 	$this->widgetSchema['commission_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'Commission',  'label' => 'Commission Percentage', 'add_empty' => "Select a Commission"), array ( ));  
@@ -80,9 +80,11 @@ class BackendQuoteForm extends BaseQuoteForm
 	
 	$this->validatorSchema['spouse_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender'), array('required' => 'Please select a valid Spouse\'s Gender'));
 	
-	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false));
+	$this->validatorSchema['main_dob'] =  new sfValidatorDate (array(), array('required' => 'Please select a valid Date of Birth'));
 	
-	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('required' => false, 'multiple' => false, 'model' => 'SpouseReversion'));
+	$this->validatorSchema['spouse_dob'] = new sfValidatorDate (array('required' => false), array('invalid' => 'Please select a valid Spouse\'s Date of Birth'));
+	
+	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'SpouseReversion'), array('required' => 'Please select a valid Spouse Reversion'));
 	
 	$this->validatorSchema['commission_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Commission'), array('required' => 'Please select a valid Commission Percentage'));
 	

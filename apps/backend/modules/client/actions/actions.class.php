@@ -182,6 +182,7 @@ class clientActions extends autoClientActions
     foreach ($q->execute() as $sfGuardUser)
     {
       $sfGuardUser->setIsActive(true);
+      $sfGuardUser->setCreatedAt(date('Y-m-d H;m;s'));
       $sfGuardUser->save();
     }
  
@@ -221,6 +222,7 @@ class clientActions extends autoClientActions
     $sfGuardUser = $this->getRoute()->getObject();
     
     $sfGuardUser->setIsActive(true);
+    $sfGuardUser->setCreatedAt(date('Y-m-d H;m;s'));
     $sfGuardUser->save();
  
     $this->getUser()->setFlash('notice', 'The selected client has been enabled successfully.');

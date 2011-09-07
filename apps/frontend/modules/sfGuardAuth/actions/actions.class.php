@@ -51,7 +51,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 			$interval = '';
         	$interval = $creationDate->diff($todayDate);
 
-        	if($interval->days > 60){
+			if($interval->m > 2){
         		$this->getUser()->getGuardUser()->setIsActive(false);
         		$this->getUser()->getGuardUser()->save();
         	}

@@ -46,7 +46,7 @@ class FrontendQuoteForm extends BaseQuoteForm
 	
     
 	$this->widgetSchema['gp'] = new sfWidgetFormChoice(
-	     	array( 'label' => 'Guarantee Period', 'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')));
+	     	array( 'label' => 'Guarantee Period', 'choices' => array( '' => 'Select a Guarantee Period', 0 => '0 months', 60 => '60 months', 120 => '120 months')));
 	     	
 	$this->widgetSchema['spouse_reversion_id'] =  new sfWidgetFormChoice(array( 'label' => 'Spouse\'s Reversion',
 								  'choices' => array('' => "Select a Spouse Reversion",  '2' => '25%', '3' => '50%', '4' => '75%', '5' => '100%'),
@@ -63,8 +63,7 @@ class FrontendQuoteForm extends BaseQuoteForm
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDate(
 			array("label" => "Spouse's Date Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
 			
-	$this->widgetSchema['commission_id'] = new sfWidgetFormDoctrineChoice(
-	     	array( 'model' => 'Commission',  'label' => 'Commission Percentage', 'add_empty' => "Select a Commission"), array ( ));  
+	$this->widgetSchema['commission_id'] = new sfWidgetFormInputHidden();  
 	     	
 	$this->widgetSchema['spouse_sex'] = new sfWidgetFormDoctrineChoice(array('label' => 'Spouse\'s Gender', 'model' => $this->getRelatedModelName('SpouseGender'), 'add_empty' => 'Select one'));
 	
@@ -75,11 +74,11 @@ class FrontendQuoteForm extends BaseQuoteForm
 	
 	$this->validatorSchema['spouse_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender', 'min' => 1), array('required' => 'Please select a valid Spouse\'s Gender'));
 	
-	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false));
+	$this->validatorSchema['main_dob'] =  new sfValidatorDate (array(), array('required' => 'Please select a valid Date of Birth'));
+	
+	$this->validatorSchema['spouse_dob'] = new sfValidatorDate (array('required' => false));
 	
 	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'SpouseReversion'), array('required' => 'Please select a valid Spouse Reversion'));
-	
-	$this->validatorSchema['commission_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Commission'), array('required' => 'Please select a valid Commission Percentage'));
 	
 	$userprofile = $userForQuote->getUserProfile();
     	

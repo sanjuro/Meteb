@@ -19,6 +19,8 @@
     
 	<fieldset>
 		<legend>Client Info</legend>
+		<?php echo $form['commission_id'] ?>
+		
 		 <div class="sf_admin_form_row">			
 			<div>
 				<?php echo $form['main_sex']->renderLabel() ?>
@@ -135,17 +137,6 @@
 				</div>	
 			</div>			
 			<?php echo $form['quote_type_id']->renderError() ?>
-		 </div>
-		 <div class="sf_admin_form_row">			
-			<div>
-				<?php echo $form['commission_id']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['commission_id'] ?> %
-				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Commission</b> the commission for the quote') ?>" class="tip">
-			</div>			
-			<?php echo $form['commission_id']->renderError() ?>
 		 </div>
 	</fieldset>
     
