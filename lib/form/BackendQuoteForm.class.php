@@ -63,10 +63,10 @@ class BackendQuoteForm extends BaseQuoteForm
 	$this->widgetSchema['main_dob'] = new sfWidgetFormDate(
 			array("label" => "Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
 			
-	$this->widgetSchema['main_sex'] = new sfWidgetFormDoctrineChoice(array('label' => 'Main sex', 'model' => $this->getRelatedModelName('Gender'), 'add_empty' => 'Select one'));
+	$this->widgetSchema['main_sex'] = new sfWidgetFormDoctrineChoice(array('label' => 'Main Member\'s sex', 'model' => $this->getRelatedModelName('Gender'), 'add_empty' => 'Select one'));
 	
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDate(
-			array("label" => "Spouse's Date Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
+			array("label" => "Spouse\'s Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
 			
 	$this->widgetSchema['commission_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'Commission',  'label' => 'Commission Percentage', 'add_empty' => "Select a Commission"), array ( ));  

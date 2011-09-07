@@ -10,7 +10,8 @@
 <p>
 	Quotation date:    <?php echo $quote_calculations['quote_date'] ?> <br>
 	Data date:    <?php echo $quote_calculations['data_date'] ?> <br>
-	Commencement date: <?php echo $quote_calculations['commencement_date'] ?>
+	Commencement date: <?php echo $quote_calculations['commencement_date'] ?> <br>
+	Expiry date: <?php echo $quote_calculations['expiry_date'] ?>
 </p>
 
 <h3>Annuity details</h3>

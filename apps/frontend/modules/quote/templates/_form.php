@@ -89,7 +89,7 @@
 			
 			<div  class="content" >
 				<?php echo $form['gp'] ?>
-				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Guarantee Periond</b> Annuities are guaranteed to be paid for life; additionally you can opt for a guaranteed minimum payment period.') ?>" class="tip">
+				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Guarantee Period</b> Annuities are guaranteed to be paid for life; additionally you can opt for a guaranteed minimum payment period.') ?>" class="tip">
 			</div>			
 			<?php echo $form['gp']->renderError() ?>
 		 </div>
@@ -104,7 +104,7 @@
 			</div>
 			
 			<div  class="content" >
-				<?php echo $form['spouse_reversion_id'] ?> %
+				<?php echo $form['spouse_reversion_id'] ?>
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Spouse\'s Reversion</b> Should the annuity amount reduce on your death? Selecting a reduced level of continuing pension for your partner on your death will give you a larger initial annuity amount.') ?>" class="tip">
 			</div>			
 			<?php echo $form['spouse_reversion_id']->renderError() ?>

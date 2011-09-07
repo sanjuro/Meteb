@@ -85,6 +85,9 @@
 				<span class="quotedetails_label"><?php echo __('First Increase Date')?></span>
 				<span class="quotedetails_data"><?php echo $quote_calculations['first_increase_date']?></span>
 				<br>
+				<span class="quotedetails_label"><?php echo __('Expiry Date')?></span>
+				<span class="quotedetails_data red"><?php echo $quote_calculations['expiry_date']?></span>
+				<br>
 				<span class="quotedetails_label"><?php echo __('Guarantee Period')?></span>
 				<span class="quotedetails_data"><?php echo $quote_calculations['guanratee_terms']?> months</span>
 				<br>

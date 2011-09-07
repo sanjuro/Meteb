@@ -30,6 +30,10 @@
 						<td><span class="quotedetails_data"><?php echo $quote_calculations['first_increase_date']?></span></td>
 					</tr>
 					<tr>
+						<td><span class="quotedetails_label"><?php echo __('ExpiryDate')?></span></td>
+						<td><span class="quotedetails_data"><?php echo $quote_calculations['expiry_date']?></span></td>
+					</tr>
+					<tr>
 						<td><span class="quotedetails_label"><?php echo __('Guarantee Period')?></span></td>
 						<td><span class="quotedetails_data"><?php echo $quote_calculations['guanratee_terms']?></span></td>
 					</tr>

@@ -13,6 +13,8 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
 	
   public function configure()
   {
+  	$years = range(date('Y') - 90, date('Y'));   	
+  	
     parent::configure();
   	
   	if ($this->getOption("currentUser") instanceof sfUser && ($this->getOption("currentUser")))
@@ -40,10 +42,32 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
     	
     	$this->setDefault('parent_user_id', $currentUser->getGuardUser()->getId());
     }
+    
+    $this->widgetSchema['idnumber'] = new sfWidgetFormInputText(array('label' => 'ID Number'), array('size' => '50'));
+    
+	$this->widgetSchema['dob'] = new sfWidgetFormDate(
+			array("label" => "Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
+			
+	$this->widgetSchema['gender_id'] = new sfWidgetFormDoctrineChoice(
+	     	array( 'model' => 'Gender',  'label' => 'Gender', 'add_empty' => "Select a gender"), array ( ));  
+	     	
+    $this->widgetSchema['postaladdress'] = new sfWidgetFormInputText(array('label' => 'Postal Address'), array('size' => '50'));
+    
+    $this->widgetSchema['streetaddress'] = new sfWidgetFormInputText(array('label' => 'Street Address'), array('size' => '50'));		     	
+	     	
+	
+	$this->validatorSchema['postaladdress'] = new sfValidatorString(array('required' => false));
+	
+	$this->validatorSchema['streetaddress'] = new sfValidatorString(array('required' => false));	
+	
+	$this->validatorSchema['mobile'] = new sfValidatorString(array('required' => false));
+	
+	$this->validatorSchema['fax'] = new sfValidatorString(array('required' => false));	
+	
+	$this->validatorSchema['company'] = new sfValidatorString(array('required' => false));    
          	
     $this->setDefault('password', '');
     
-	$this->widgetSchema['dob'] = new sfWidgetFormDateJQueryUI(array("change_month" => true, "change_year" => true));
 
     // Only check if this is a new user being added
     if($this->isNew()){

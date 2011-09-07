@@ -65,7 +65,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
         	
    			 $this->getUser()->signOut();
    			 
-    		 $this->getUser()->setFlash('error', 'Your login has expired please contact Momentum to renew it.');
+    		 $this->getUser()->setFlash('error', 'Your login has expired please contact your Advisor to renew it.');
         }
 
         // always redirect to a URL set in app.yml

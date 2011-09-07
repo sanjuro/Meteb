@@ -134,7 +134,7 @@
 										
 					<h2>
 						Latest Activity
-						<img src="/images/backend/help_24.png" title="<?php echo __('The Activity log displays all actions accross the system') ?>" class="tip">
+						<img src="/images/backend/help_24.png" title="<?php echo __('The Activity log displays all actions across the system') ?>" class="tip">
 					</h2>
 					
 					<table width="100%" cellspacing="0" cellpadding="0">

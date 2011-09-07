@@ -1,6 +1,4 @@
 body {
-    background-color: #002E67;
-    background-image: url("/images/page_background.gif");
     background-repeat: repeat-x;
     color: #333333;
     font-size: 0.7em;
@@ -26,17 +24,17 @@ h1 {
 h2 {
     background: url("/images/backend/hr.png") repeat-x scroll left bottom transparent;
     font-size: 1.8em;
-   height: 27px;
+    height: 27px;
     margin-bottom: 16px;
     padding-bottom: 12px;
     text-indent: 2px;
 }
 a {
-
+	color: #E31818;
 	text-decoration: none;	
 }
 #sf_admin_container a {
-	color: #1B57AA;	
+	color: #E31818;	
 }
 a:hover {
 	text-decoration: underline;
@@ -141,7 +139,7 @@ div.shadowBottomLeft div.shadowMidLeft {
 }
 
 #footer {
-    color: #FFFFFF;
+    color:#E31818;
     font-size: 1.1em;
     padding: 10px;
 	}
@@ -248,7 +246,7 @@ ul#backendnavigation  {
    padding-top: 10px;
 }
 ul#navigation, ul#backendnavigation {
-    color: #FFFFFF;
+    color: #E31818;
     float:right;
     list-style-type: none !important;
 }
@@ -258,7 +256,7 @@ ul#navigation li, ul#backendnavigation li {
     margin-right: 16px;
 }
 ul#navigation a, ul#backendnavigation a {
-    color: #FFFFFF;
+    color: #E31818;
     display: block;
     font-weight: bold;	
     letter-spacing: -0.01em;

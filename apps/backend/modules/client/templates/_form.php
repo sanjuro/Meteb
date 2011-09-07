@@ -200,7 +200,8 @@
       
       <h3>
       	Does the client have a spouse?
-      	 <button id="show_spouse_btn">Yes/No</button>      	
+      	 <button id="show_spouse_btn">Yes</button>      
+      	 <button id="hide_spouse_btn">No</button> 	
       </h3>
       
 	 <?php if ($form['userProfiles'][0]['spouseidnumber']):?>
@@ -275,7 +276,12 @@ $(document).ready(function() {
 	});
 
 	$('#show_spouse_btn').click(function() {
-		 $("#sf_fieldset_spouse").slideToggle("fast");
+		 $("#sf_fieldset_spouse").slideDown("fast");
+		 return false;
+	});
+
+	$('#hide_spouse_btn').click(function() {
+		 $("#sf_fieldset_spouse").slideUp("fast");
 		 return false;
 	});
 	

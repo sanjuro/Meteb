@@ -55,7 +55,7 @@ class BackendUserProfileForm extends BaseUserProfileForm
 	     	array( 'model' => 'Gender',  'label' => 'Gender', 'add_empty' => "Select a gender"), array ( ));  
 	
 	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDate(
-			array("label" => "Spouse Date Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
+			array("label" => "Spouse\'s Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
 			
 	$this->widgetSchema['spouse_gender_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'Gender',  'label' => 'Spouse Gender', 'add_empty' => "Select a gender"), array ( ));  
