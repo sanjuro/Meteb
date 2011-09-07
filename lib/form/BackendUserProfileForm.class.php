@@ -23,7 +23,8 @@ class BackendUserProfileForm extends BaseUserProfileForm
   	
   	unset(
       $this['user_profile_id'], $this['created_at'], $this['updated_at'],
-      $this['status_id']
+      $this['status_id'], $this['spouseidnumber'], $this['spouse_dob'], 
+      $this['spouse_gender_id'], $this['spouse_name'], $this['spouse_surname']
     );
    
     if (isset($currentUser) && !$this->object->getSfGuardUser()->hasGroup('administrator') 
@@ -53,33 +54,14 @@ class BackendUserProfileForm extends BaseUserProfileForm
 			
 	$this->widgetSchema['gender_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'Gender',  'label' => 'Gender', 'add_empty' => "Select a gender"), array ( ));  
-	
-	$this->widgetSchema['spouse_dob'] = new sfWidgetFormDate(
-			array("label" => "Spouse\'s Date of Birth", "format" => "%day%/%month%/%year%", 'years' => array_combine($years, $years)) );
-			
-	$this->widgetSchema['spouse_gender_id'] = new sfWidgetFormDoctrineChoice(
-	     	array( 'model' => 'Gender',  'label' => 'Spouse Gender', 'add_empty' => "Select a gender"), array ( ));  
-	
+		
     $this->widgetSchema['postaladdress'] = new sfWidgetFormInputText(array('label' => 'Postal Address'), array('size' => '50'));
     
     $this->widgetSchema['streetaddress'] = new sfWidgetFormInputText(array('label' => 'Street Address'), array('size' => '50'));		
-
-    $this->widgetSchema['spouseidnumber'] = new sfWidgetFormInputText(array('label' => 'Spouse ID Number'), array('size' => '50'));
-	
-    $this->widgetSchema['spouse_name'] = new sfWidgetFormInputText(array('label' => 'Spouse Name'), array('size' => '25'));
-    
-    $this->widgetSchema['spouse_surname'] = new sfWidgetFormInputText(array('label' => 'Spouse Surname'), array('size' => '25'));    
     
 			
 	$this->validatorSchema['gender_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender'));
-    
-	$this->validatorSchema['spouse_name'] = new sfValidatorString(array('required' => false));
-	
-	$this->validatorSchema['spouse_surname'] = new sfValidatorString(array('required' => false));
-	
-	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false));
-	
-	$this->validatorSchema['spouseidnumber'] = new sfValidatorString(array('required' => false));
+    	
 	
 	$this->validatorSchema['postaladdress'] = new sfValidatorString(array('required' => false));
 	
@@ -92,6 +74,7 @@ class BackendUserProfileForm extends BaseUserProfileForm
 	$this->validatorSchema['fax'] = new sfValidatorString(array('required' => false));	
 	
 	$this->validatorSchema['company'] = new sfValidatorString(array('required' => false));
+	    
 	
     // Only check if this is a new user being added
     if($this->isNew()){

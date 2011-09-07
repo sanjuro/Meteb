@@ -20,5 +20,5 @@ generator:
       form:    
         class:   BackendProfileForm
       edit:    
-        title:   Editing Profile: %%username%%
+        title:   Profile: %%username%%
       new:     ~

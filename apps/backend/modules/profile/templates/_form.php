@@ -171,58 +171,6 @@
 			<?php echo $form['userProfiles'][0]['fax']->renderError() ?>
 		 </div>
       </fieldset>
-      
-      <fieldset id="sf_fieldset_user">  
-      	<h2>Spouse Details</h2>
-		 <div class="sf_admin_form_row">			
-			<div>
-				<?php echo $form['userProfiles'][0]['spouseidnumber']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['spouseidnumber'] ?>
-			</div>			
-			<?php echo $form['userProfiles'][0]['spouseidnumber']->renderError() ?>
-		 </div>
-		 <div class="sf_admin_form_row">			
-			<div>
-				<?php echo $form['userProfiles'][0]['spouse_name']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['spouse_name'] ?>
-			</div>			
-			<?php echo $form['userProfiles'][0]['spouse_name']->renderError() ?>
-		 </div>
-		 <div class="sf_admin_form_row">			
-			<div>
-				<?php echo $form['userProfiles'][0]['spouse_surname']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['spouse_surname'] ?>
-			</div>			
-			<?php echo $form['userProfiles'][0]['spouse_surname']->renderError() ?>
-		 </div>
-		 		 <div class="sf_admin_form_row">	 
-			<div>
-				<?php echo $form['userProfiles'][0]['spouse_gender_id']->renderLabel() ?>
-			</div>			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['spouse_gender_id'] ?>
-			</div>
-			<?php echo $form['userProfiles'][0]['spouse_gender_id']->renderError() ?>
-		 </div>		 
-		 <div class="sf_admin_form_row">	 
-			<div>
-				<?php echo $form['userProfiles'][0]['spouse_dob']->renderLabel() ?>
-			</div>			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['spouse_dob'] ?>
-			</div>
-			<?php echo $form['userProfiles'][0]['spouse_dob']->renderError() ?>
-		 </div>
- 	  </fieldset>
  	  
 <ul class="sf_admin_actions">
   <li class="sf_admin_action_list"><a href="<?php echo url_for('homepage') ?>">Back to Home</a></li>  
