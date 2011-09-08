@@ -14,3 +14,4 @@ Please log in to request a quotation. You can adjust your quotes to your suit yo
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View the historical increases that have been awarded and download product brochures <?php echo link_to('here', url_for('@page_toolbox')) ?>.<br><br>
 
 <p>If you are close to retirement and need to invest in an annuity you are at the right place. If you require assistance please do not hesitate to <?php echo link_to('contact us', url_for('@page_contact')) ?> or have a scan through the <?php echo link_to('help', url_for('@page_glossary')) ?> section.</p>
+<br><br>
