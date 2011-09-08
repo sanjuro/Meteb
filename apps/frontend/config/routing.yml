@@ -70,6 +70,10 @@ page_glossary:
   url:   /Glossary/
   param: { module: page, action: glossary }
 
+page_about:
+  url:   /About/
+  param: { module: page, action: about }
+  
 page_contact:
   url:   /Contact/
   param: { module: page, action: contact }

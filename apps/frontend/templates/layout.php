@@ -27,7 +27,7 @@
         		    
 		        <li><?php echo link_to('Informational Toolbox', url_for('@page_toolbox')) ?></li>    
 		        <li><?php echo link_to('Glossary', url_for('@page_glossary')) ?></li>   
-		        <li><a href="toolbox.html">About Us</a></li>
+		        <li><?php echo link_to('About Us', url_for('@page_about')) ?></li>
 		        <li><?php echo link_to('Contact Us', url_for('@page_contact')) ?></li>
         	</ul>
 	    </div>

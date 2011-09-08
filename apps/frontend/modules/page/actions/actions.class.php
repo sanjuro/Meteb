@@ -48,7 +48,17 @@ class pageActions extends sfActions
   {
    
   } 
-  
+
+ /**
+  * Executes about action to render the about page
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeAbout(sfWebRequest $request)
+  {
+   
+  } 
+    
  /**
   * Executes toolbox action to render the toolbox page
   *
