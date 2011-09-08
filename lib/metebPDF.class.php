@@ -56,14 +56,18 @@ class metebPDF extends DOMPDF{
 	 */
 	private function renderTemplate(  ) {
 
+		$num = rand(0, 26);
+    	$az = "abcdefghijklmnopqrstuvwxyz";
+    	$letter = $az[$num];
+		$quotenumber = date('ymdHis') . $this->PDFNumber . $letter;
+		
 		$TemplatePageName = $this->TemplatePageName;
 		$TemplateTitle = $this->TemplateTitle;
-		$PDFNumber = $this->PDFNumber;
 		$PDFDate = new DateTime($this->PDFDate);
+		$PDFNumber = $quotenumber;
 		$PDFContent = $this->PDFContent;
 
 		$image = 'quotebackground';
-
 
 		$html = '<html>
 	<head>
@@ -71,7 +75,7 @@ class metebPDF extends DOMPDF{
 		<title>'.$TemplatePageName.'</title>
 
 		<style type="text/css">
-			body { color: #555555; font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,sans-serif;  margin: 0; padding: 0;sans-serif; background-color: #002E67; background-image: url(\'/images/pdf/page_background.gif\'); background-repeat: repeat-x; }
+			body { color: #555555; font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,sans-serif;  margin: 0; padding: 0;sans-serif; background-color: #ffffff; background-repeat: repeat-x; }
 			table { font-size: 12px; }
 			h1 { color: #000033; font-size: 30px; }
 			h2 { margin: 0 0 0 0; color: #000000; font-size: 20px; font-weight: normal; }
@@ -86,7 +90,7 @@ class metebPDF extends DOMPDF{
 			.bulletLarge { padding: 0 0 0 3px; }
 			.bulletLarge li { list-style-type: none; background-image: url(\'images/pdf/bulletLarge.png\'); background-repeat: no-repeat; background-position: left 5px; padding: 0 0 4px 15px; }
 			.bulletLarge li a { color: #3c3c3c; }
-			#headerwrapper { background-image: url(\'/images/pdf/page_background.gif\'); background-repeat: repeat-x;  background-position: left top; height: 112px;   }
+			#headerwrapper { background-repeat: repeat-x;  background-position: left top; height: 112px;   }
 			#header {  margin: 0 auto; width: 100%; padding: 0 30px 10px 30px; height: 125px;}
 			#main{ background-color: #FFF;border: 1px solid #DDE2E6; margin: 20px auto; width: 750px;}
 			#info {   height: 30px; padding: 20px;}
@@ -101,7 +105,7 @@ class metebPDF extends DOMPDF{
 	<body>
 		<div id="headerwrapper">
 			<div id="header">
-				<a href="http://www.ebannuities.co.za"><img src="images/pdf/quotebackground.jpg" alt="Metropolitan Employee Benefits" border="0"></a>
+				<a href="http://www.ebannuities.co.za"><img src="images/pdf/headerlogoright.jpg" alt="Momentum Employee Benefits" border="0"></a>
 			</div>
 		</div>
 		<div id="main">

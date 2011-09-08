@@ -13,13 +13,13 @@
 					</a>
 				</div>
 				Your Clients
-				<img src="/images/backend/help_24.png" title="<?php echo __('These are all the clients you are administring') ?>" class="tip">
+				<img src="/images/backend/help_24.png" title="<?php echo __('These are all the clients you are administering') ?>" class="tip">
 			</h2>
 
             
 			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader" class="activityAction">
 			<tbody><tr class="noHighlight">
-				<th width="100%" class="headerDarkGreyLeft"><span>Clients you are administring</span></th>
+				<th width="100%" class="headerDarkGreyLeft"><span>Clients you are administering</span></th>
 				<th nowrap="" class="headerDarkGreyRight">&nbsp;&nbsp;&nbsp;&nbsp;</th>
 			</tr>
 			<?php if (count($clients) > 0 ): ?>
@@ -44,7 +44,7 @@
 			<?php if ($sf_user->hasGroup('administrator')) :?>
 			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader" class="activityAction">
 			<tbody><tr class="noHighlight">
-				<th width="100%" class="headerLeft"><span>Advisors you are administring</span></th>
+				<th width="100%" class="headerLeft"><span>Advisors you are administering</span></th>
 				<th nowrap="" class="headerRight">&nbsp;&nbsp;&nbsp;&nbsp;</th>
 			</tr>
 			<?php if (!empty($advisors)): ?>
