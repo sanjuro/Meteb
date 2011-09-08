@@ -22,26 +22,31 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
 	    $this->currentUser = $this->getOption("currentUser");	    
 	}
   	
-  	unset(
+    	unset(
       $this['user_profile_id'], $this['created_at'], $this['updated_at'],
-      $this['spouse_name'], $this['spouse_surname'], $this['spouseidnumber'],
-      $this['spouse_gender_id'], $this['spouse_dob']
+      $this['status_id'], $this['spouseidnumber'], $this['spouse_dob'], 
+      $this['spouse_gender_id'], $this['spouse_name'], $this['spouse_surname']
     );
-    
-    if (isset($this->currentUser) && !$this->object->getSfGuardUser()->hasGroup('administrator') 
-    	&& ( $this->currentUser->hasGroup('administrator') || $currentUser->isSuperAdmin()) ){    
-    		
+   
+    if (isset($currentUser) && !$this->object->getSfGuardUser()->hasGroup('administrator') 
+    	&& ( $currentUser->hasGroup('administrator') || $currentUser->isSuperAdmin()) ){    
+	
 	    $this->widgetSchema['parent_user_id'] = new sfWidgetFormChoice(
 	     	array( 'label' => 'Parent', 'choices' => $this->getAvailibleParents()));
 	     	
-	     $this->validatorSchema['parent_user_id'] = new sfValidatorChoice(array( 'choices' => array_keys($this->getAvailibleParents()), 'required' => false));
+	    $this->validatorSchema['parent_user_id'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('ParentUser'), 'required' => false));
+	    
     }else{
     	$this->widgetSchema['parent_user_id'] = new sfWidgetFormInputHidden();
     	
     	$this->validatorSchema['parent_user_id'] = new sfValidatorString(array('min_length' => 1));
     	
-    	$this->setDefault('parent_user_id', $currentUser->getGuardUser()->getId());
-    }
+    	if($this->isNew()){
+    		$this->setDefault('parent_user_id', $currentUser->getGuardUser()->getId());
+    	}else{
+    		$this->setDefault('parent_user_id', $this->object->getParentUserId());
+    	}
+    } 
     
     $this->widgetSchema['idnumber'] = new sfWidgetFormInputText(array('label' => 'ID Number'), array('size' => '50'));
     
@@ -50,25 +55,28 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
 			
 	$this->widgetSchema['gender_id'] = new sfWidgetFormDoctrineChoice(
 	     	array( 'model' => 'Gender',  'label' => 'Gender', 'add_empty' => "Select a gender"), array ( ));  
-	     	
+		
     $this->widgetSchema['postaladdress'] = new sfWidgetFormInputText(array('label' => 'Postal Address'), array('size' => '50'));
     
-    $this->widgetSchema['streetaddress'] = new sfWidgetFormInputText(array('label' => 'Street Address'), array('size' => '50'));		     	
-	     	
+    $this->widgetSchema['streetaddress'] = new sfWidgetFormInputText(array('label' => 'Street Address'), array('size' => '50'));		
+    
+			
+	$this->validatorSchema['gender_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender'));
+    	
 	
 	$this->validatorSchema['postaladdress'] = new sfValidatorString(array('required' => false));
 	
-	$this->validatorSchema['streetaddress'] = new sfValidatorString(array('required' => false));	
+	$this->validatorSchema['streetaddress'] = new sfValidatorString(array('required' => false));
+
+	$this->validatorSchema['telephone'] = new sfValidatorString(array('required' => false));	
 	
 	$this->validatorSchema['mobile'] = new sfValidatorString(array('required' => false));
 	
 	$this->validatorSchema['fax'] = new sfValidatorString(array('required' => false));	
 	
-	$this->validatorSchema['company'] = new sfValidatorString(array('required' => false));    
-         	
-    $this->setDefault('password', '');
-    
-
+	$this->validatorSchema['company'] = new sfValidatorString(array('required' => false));
+	    
+	
     // Only check if this is a new user being added
     if($this->isNew()){
 	    $this->validatorSchema->setPostValidator(
@@ -77,6 +85,7 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
 	      ))
 	    );
     }
+	
   }
   
   public function updateObject($values = null)
