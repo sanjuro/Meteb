@@ -16,7 +16,7 @@
                   <li>But the lower future increase  will be.</li>
                 </ul>
 <p>The chart below shows how your  annuity income may grow over time for two different PRI categories. Please note  your actual future increases may differ to the chart below and that past  performance is no guarantee of future results. Your own starting pension will  depend on your particulars such as the amount available for investment; the  options you choose; your age and sex. </p>
-<p><img src="toolbox/annuitycomparison.jpg" width="650" height="327" alt="annuity comparison" /></p>
+<p><img src="/toolbox/annuitycomparison.jpg" width="650" height="327" alt="annuity comparison" /></p>
                 <p>Your annual increase comes from  the investment profits that remain after your PRI has been met.  <br />
 Consider for example:</p>
                 <ul>

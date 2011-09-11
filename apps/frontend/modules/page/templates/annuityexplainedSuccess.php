@@ -34,7 +34,7 @@
                   Your pension increases are not  constant and can be higher or lower from year to year. At Momentum we  understand the importance of stability when it comes to annuity investments and  are therefore able to protect you from ups and downs in the market. This  technique is called &ldquo;smoothing&rdquo;.<br />
                   Smoothing simply means that  strong or poor returns in any single year will be spread out over a few years.  This ensures that your increases absorb uncertainty and remain stable.<br />
                   The graph below shows how  smoothing protects you against the ups and downs in a volatile market.</p>
-                <p><img src="toolbox/graph-returns.jpg" width="640" height="251" alt="graph" /></p>
+                <p><img src="/toolbox/graph-returns.jpg" width="640" height="251" alt="graph" /></p>
                 <p><strong>Our investment policy</strong><br />
 Your pension assets are invested  in a balanced fund with two aims in mind:</p>
                 <ol>
@@ -43,9 +43,9 @@ Your pension assets are invested  in a balanced fund with two aims in mind:</p>
                 </ol>
                 <p>We also ensure that you get exposure  to a wide variety of asset classes, in South Africa as well as abroad. Your  annual increases are linked directly to the ongoing performance of the  with-profit annuity balanced fund. </p>
                 <p>The  chart below shows the strategic asset allocation we utilise for the with-profit  annuity assets </p>
-                <p><img src="toolbox/piechart1.jpg" width="550" height="280" alt="pieChart" /></p>
+                <p><img src="/toolbox/piechart1.jpg" width="550" height="280" alt="pieChart" /></p>
                 <p><strong>Historical increases</strong><br />
-                  Over the past ten years very  competitive pension increases have been awarded, helping to reduce the impact  of inflation. Please refer to the product downloads section <u>here</u> for  our historical increases. <br />
+                  Over the past ten years very  competitive pension increases have been awarded, helping to reduce the impact  of inflation. Please refer to the product downloads section <?php echo link_to('here', url_for('@page_downloads')) ?> for  our historical increases. <br />
                 Although our with-profit  annuities do not guarantee that pension increases will meet inflation every  year; Momentum still aims to reduce the impact of inflation over the longer  term.</p>
                 <p>&nbsp;</p></div>
 </div>
