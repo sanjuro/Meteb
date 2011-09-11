@@ -143,5 +143,34 @@ class Meteb
 	      $year_diff--;
 	    return $year_diff;
     }
+    
+    
+    /**
+	 *
+	 *
+	 * @param date $date1
+	 * @param date $date2
+	 * @return string
+	 */
+    public static function getMonthsBetweenDates($date1, $date2) {
+        $time1  = $date1;
+        $time2  = $date2;
+        $my     = date('My', $time2);
+
+        //$months = array(date('mY', $time1));
+        $f      = '';
+
+        while ($time1 < $time2) {
+            $time1 = strtotime((date('Y-m-d', $time1).' +15days'));
+            if (date('F', $time1) != $f) {
+                $f = date('F', $time1);
+                if (date('My', $time1) != $my && ($time1 < $time2))
+                $months[] = date('My', $time1);
+            }
+        }
+
+        $months[] = date('My', $time2);
+        return $months;
+    }
 }
 ?>

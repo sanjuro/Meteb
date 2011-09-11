@@ -5,14 +5,14 @@
  */
 class BaseSOAPApiHandler extends ckSoapHandler
 {
-  public function CreateClient($token)
+  public function CreateClient($arrRequests)
   {
-    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('client', 'create', array($token));
+    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('client', 'create', array($arrRequests));
   }
 
-  public function ListClients($token)
+  public function ShowClients($token)
   {
-    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('client', 'list', array($token));
+    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('client', 'show', array($token));
   }
 
   public function Authenticate($token, $username, $password)
@@ -20,8 +20,8 @@ class BaseSOAPApiHandler extends ckSoapHandler
     return sfContext::getInstance()->getController()->invokeSoapEnabledAction('login', 'authenticate', array($token, $username, $password));
   }
 
-  public function CreateQuote($token)
+  public function CreateQuote($arrRequests)
   {
-    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('quote', 'create', array($token));
+    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('quote', 'create', array($arrRequests));
   }
 }

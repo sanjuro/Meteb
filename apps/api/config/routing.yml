@@ -12,9 +12,9 @@ api_login:
     sf_format: (?:xml|json|yaml)
     sf_method: [get, post]
 
-api_client_list:
+api_client_show:
   url:   /clients/:token.:sf_format
-  param: { module: client, action: list }
+  param: { module: client, action: show }
   requirements:
     sf_format: (?:xml|json|yaml)
     sf_method: [get]

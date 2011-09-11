@@ -23,7 +23,8 @@ class loginActions extends sfActions
 	/**
 	 * Action to  authenticate the api request
 	 * 
-     * @WSMethod(name='Authenticate',webservice="SOAPApi")
+     * @WSMethod(name='Authenticate', webservice='SOAPApi')
+     * @WSHeader(name='AuthHeader', type='AuthData')
 	 * 
      * @param string $token    Client Token
      * @param string $username Client Username

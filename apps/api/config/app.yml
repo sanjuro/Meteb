@@ -21,3 +21,14 @@ all:
     soap_options:
       encoding: utf-8
       soap_version: <?php echoln('SOAP_1_2') ?>
+
+      # mapping of wsdl types to PHP types
+      classmap:
+        CreateClientRequest:            CreateClientRequest
+        CreateClientResponse:           ckGenericArray
+        CreateQuoteRequest:             CreateQuoteRequest
+        CreateQuoteResponse:            ckGenericArray
+
+    soap_headers:
+          AuthHeader:
+            class: AuthData

@@ -264,14 +264,10 @@ class quoteActions extends autoQuoteActions
 	
 	    $query = $this->filters->buildQuery($this->getFilters());
 	    
-	    if ($this->getUser()->hasGroup('administrator')){
-		    $query = Doctrine_Query::create()
-		    		 ->from('Quote q');
-	  	}else{
-		    $query = Doctrine_Query::create()
+	    $query = Doctrine_Query::create()
 		    		 ->from('Quote q')
-		    		 ->where('q.created_by = ?', $this->getUser()->getGuardUser()->getId());
-	  	}
+		    		 ->where('q.created_by = ?', $this->getUser()->getGuardUser()->getId())
+		    		 ->orWhere('q.client_id = ?', $this->getUser()->getGuardUser()->getId());
 	  	
 	    if ($tableMethod)
 	    {

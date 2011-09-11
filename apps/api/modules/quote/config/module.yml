@@ -1,2 +1,2 @@
 soap:
-  create: { parameter: [token], result: { class: ckPropertyResultAdapter, param: { property: result } } }
+  create: { parameter: [arrRequests], result: { class: ckPropertyResultAdapter, param: { property: result } } }

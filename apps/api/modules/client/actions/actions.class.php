@@ -18,20 +18,29 @@ class clientActions extends sfActions
   */
   public function preExecute()
   { 
-	sfConfig::set('sf_web_debug', false);
+  	sfConfig::set('sf_web_debug', false);
 
-  	$auth['token'] = $this->request->getParameter('token');
+    if(!$this->getUser()->isAuthenticated())
+    {
+         if($this->isSoapRequest())
+         {
+	    	 $e = $this->isSoapRequest() ? new SoapFault('Server', 'Unauthenticated user!') : new sfSecurityException('Unauthenticated user!');
+	         throw $e;
 
-	// If the session does not have the generated api token. the session is
-	// not authenticated or the passed api token does not match the session token
-	// set 401 headers
-	if(!($this->getUser()->isAuthenticated()) || !isset($auth['token']) 
-		|| $auth['token'] != $this->getUser()->getApiToken())
-	{
- 		$this->response->setStatusCode('401');
- 		$feedback = 'The user is not authenticated';
-        return $this->renderPartial('messages/error', array('feedback' => $feedback));
-	}
+        }else{
+			$this->response->setStatusCode('401');
+	 		$e = new sfSecurityException('The user is not authenticated');
+	        // return $this->renderPartial('messages/error', array('feedback' => $feedback));
+	        throw $e;
+         }
+    }
+
+    if(!$this->isSoapRequest() &&  $this->request->getParameter('token') != $this->getUser()->getApiToken()){
+
+			$this->response->setStatusCode('401');
+	 		$e = new sfSecurityException('The user is not authenticated');
+	        throw $e;
+    }
 	
   }
   
@@ -40,12 +49,15 @@ class clientActions extends sfActions
   * Executes create client action for the API interface
   * based on the client id parameter using POST
   * 
-  * @WSMethod(name='CreateClient', webservice="SOAPApi")
+  * @WSMethod(name='CreateClient',webservice='SOAPApi')
+  * @WSHeader(name='AuthHeader', type='AuthData')
   * 
-  * @param string $token  Session token
+  * @access public
+  * 
+  * @param CreateClientRequest[] $arrRequests
   *
-  * @return integer The id of the new created Client
-  */
+  * @return CreateClientResponse[] $result
+  */    
   public function executeCreate(sfWebRequest $request)
   {
 	$api_user = $this->getUser()->getGuardUser();
@@ -83,6 +95,8 @@ class clientActions extends sfActions
 
 			$clients = array();
 			$clients[$client->getId()] = $client;
+			
+			$this->client = $client->toArray();
 	   	 	
 	   		$this->response->setStatusCode('200');           
 			return $this->renderPartial('messages/object', array('object' => $client->toArray()));
@@ -95,13 +109,14 @@ class clientActions extends sfActions
   * Executes get a client action for the API interface
   * based on the client id parameter
   * 
-  * @WSMethod(name='ListClients', webservice="SOAPApi")
+  * @WSMethod(name='ShowClients', webservice="SOAPApi")
+  * @WSHeader(name='AuthHeader', type='AuthData')
   * 
   * @param string $token  Session token
   *
   * @return array All associated Clients
   */
-  public function executeList(sfWebRequest $request)
+  public function executeShow(sfWebRequest $request)
   {		
 	$api_user = $this->getUser()->getGuardUser();
   	

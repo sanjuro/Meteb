@@ -39,11 +39,14 @@ class quoteActions extends sfActions
   * Executes create quote action for the API interface
   * based on the client id parameter using POST
   * 
-  * @WSMethod(name='CreateQuote', webservice="SOAPApi")
+  * @WSMethod(name='CreateQuote', webservice='SOAPApi')
+  * @WSHeader(name='AuthHeader', type='AuthData')
   * 
-  * @param string $token Session token
+  * @access public
+  * 
+  * @param CreateQuoteRequest[] $arrRequests
   *
-  * @return array Quote Data from generate business function
+  * @return CreateQuoteResponse[] $result
   */
   public function executeCreate(sfWebRequest $request)
   {		
@@ -93,6 +96,8 @@ class quoteActions extends sfActions
 			 */
 	   	 	$quote_calculations = MetebQuote::generate($quoteInputArray);
 	   	 	$quote_calculations['id'] = $quote->getId();
+	   	 	
+	   	 	$this->quote = $quote_calculations;
 	   	 	
 	   		$this->response->setStatusCode('200');           
 			return $this->renderPartial('messages/object', array('object' => $quote_calculations));

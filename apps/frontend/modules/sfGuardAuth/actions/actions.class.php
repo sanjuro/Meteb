@@ -44,13 +44,16 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
          * Check creation date of client if older than 2 months set to inactive
          */
         if($this->getUser()->hasGroup('client')){
-        	$creationDate = new DateTime($this->getUser()->getGuardUser()->getCreatedAt());
         	
-        	$todayDate = new DateTime(date('Y-m-d'));   
+        	$createdAt = $this->getUser()->getGuardUser()->getCreatedAt();
+        	
+        	$creationDate = strtotime($createdAt);
+			
+        	$todayDate = time();   
         	
 			$interval = '';
-        	$interval = $creationDate->diff($todayDate);
-
+        	$interval = Meteb::getMonthsBetweenDates($creationDate, $todayDate);
+			//Meteb::TKO($interval);
 			if($interval->m > 2){
         		$this->getUser()->getGuardUser()->setIsActive(false);
         		$this->getUser()->getGuardUser()->save();
