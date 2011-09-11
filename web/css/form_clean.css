@@ -1,10 +1,8 @@
 form.clean
 {
 	font-family: Arial, sans-serif;
-	float: right;
 	margin: 0.6em;
 	padding: 0.25em;
-	width: 30%;
 }
 
 form.clean *
@@ -38,7 +36,7 @@ form.clean input:focus,
 form.clean textarea:focus,
 form.clean select:focus
 {
-	background-color: #ffe;
+	background-color: #FFF;
 }
 
 form.clean fieldset

@@ -1,3 +1,11 @@
+<div class="login">
+<?php if(!$sf_user->isAuthenticated()) :?>    	
+	<?php include_partial('sfGuardAuth/signin_form', array('form' => $form)) ?>
+<?php endif; ?>
+</div>
+
+  <!-- InstanceBeginEditable name="maincontent" -->
+  <div class="content">
     <p>Momentum  Employee Benefits contact centre:<br />
           0860  103&nbsp;230 | 021&nbsp;917 3111<br />
           Email:  <a href="mailto:ebinvestmentadmannuities@metropolitan.co.za">ebinvestmentadmannuities@metropolitan.co.za</a></p>
@@ -10,3 +18,5 @@
           Bellville <br />
           7530<br />
         </p>
+    <!-- end .content -->
+  </div>

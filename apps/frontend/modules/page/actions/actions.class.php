@@ -68,4 +68,45 @@ class pageActions extends sfActions
   {
    
   }  
+  
+ /**
+  * Executes Annuities_Explained action to render the Annuities_Explained page
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeAnnuityexplained(sfWebRequest $request)
+  {
+   
+  }  
+  
+ /**
+  * Executes Annuity_Options action to render the Annuity_Options page
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeAnnuityoptions(sfWebRequest $request)
+  {
+   
+  }    
+  
+ /**
+  * Executes downloads action to render the downloads page
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeDownloads(sfWebRequest $request)
+  {
+   
+  }    
+  
+ /**
+  * Executes help action to render the help page
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeHelp(sfWebRequest $request)
+  {
+   
+  }    
+    
 }

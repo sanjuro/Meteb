@@ -11,7 +11,7 @@
 	 <br>
 	
 	 <?php echo $form['username']->renderError() ?>
-	 <br></br>
+	 <br>
 	 <?php echo $form['password']->renderLabel() ?></th>
 	 <br>
 	 <?php echo $form['password'] ?>	

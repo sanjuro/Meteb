@@ -1,0 +1,428 @@
+@charset "utf-8";
+* {
+	margin: 0px;
+	padding: 0px;
+}
+html {
+	font-size: 100%;
+}
+body  {
+	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	text-align: left; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+	color: #000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.85em;
+	background-color: #002E67;
+	background-image: url(../00-mom1/graphics/00-mom1/page_background.gif);
+	background-repeat: repeat-x;
+	line-height: 1.5;
+}
+blockquote {
+	font-size: 1em;
+	text-align: left;
+	letter-spacing: 1px;
+	padding-right: 10px;
+	padding-left: 10px;
+	line-height: 1.25;
+	color: #414B8C;
+}
+
+.thrColFixHdr #container {
+	width: 780px;
+	margin: 0 auto;
+	text-align: left;
+	background-color: #FFF;
+} 
+.thrColFixHdr #header {
+	background-image: url(../00-mom1/graphics/00-mom1/headerLogo.jpg);
+	background-repeat: no-repeat;
+	height: 112px;
+	padding-top: 0;
+	padding-right: 10px;
+	padding-bottom: 0;
+	padding-left: 20px;
+} 
+.thrColFixHdr #header h1 {
+	margin: 0; /* zeroing the margin of the last element in the #header div will avoid margin collapse - an unexplainable space between divs. If the div has a border around it, this is not necessary as that also avoids the margin collapse */
+	padding: 10px 0; /* using padding instead of margin will allow you to keep the element away from the edges of the div */
+	color: #E31818;
+}
+.thrColFixHdr #sidebar1 {
+	float: left; /* since this element is floated, a width must be given */
+	width: 25px; /* the background color will be displayed for the length of the content in the column, but no further */
+	padding: 1px; /* padding keeps the content of the div away from the edges */
+	background-color: #FFFFFF;
+	height: 350px;
+}
+.thrColFixHdr #sidebar2 {
+	float: right; /* since this element is floated, a width must be given */
+	width: 205px; /* the background color will be displayed for the length of the content in the column, but no further */
+	padding: 5px; /* padding keeps the content of the div away from the edges */
+	font-size: 1em;
+	background-color: #FFF;
+	background-repeat: repeat-x;
+}
+.thrColFixHdr #mainContent {
+	margin-top: 0;
+	margin-right: 215px;
+	margin-bottom: 0;
+	margin-left: 32px;
+	padding-top: 0;
+	padding-right: 5px;
+	padding-bottom: 0;
+	padding-left: 5px;
+	background-color: #FFFFFF;
+} 
+.thrColFixHdr #footer {
+	padding: 0 10px 0 20px;
+	background-repeat: no-repeat;
+	font-size: 0.65em;
+	background-image: url(../00-mom1/graphics/00-mom1/page_footer_m.gif);
+	background-position: 710px;
+	background-color: #002E67;
+} 
+.thrColFixHdr #footer p {
+	margin: 0; /* zeroing the margins of the first element in the footer will avoid the possibility of margin collapse - a space between divs */
+	padding: 10px 0; /* padding on this element will create space, just as the the margin would have, without the margin collapse issue */
+}
+.thrColFixHdr #container #topNav {
+	height: 35px;
+	margin-bottom: 2px;
+	margin-top: 0px;
+	background-color: #00285A;
+	padding-left: 50px;
+}
+.thrColFixHdr #container #footer p {
+	color: #FFF;
+	text-align: center;
+}
+
+.fltrt { /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 15px;
+	margin-bottom: 10px;
+}
+.fltlft { /* this class can be used to float an element left in your page */
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+.listBox     {
+	background-image: url(../00-mom1/graphics/listDot.gif);
+	background-repeat: no-repeat;
+	padding-left: 15px;
+	background-position: 5px 6px;
+	margin-top: 10px;
+}
+.listBoxA {
+	background-image: url(../00-mom1/graphics/rosette_List.gif);
+	background-repeat: no-repeat;
+	padding-left: 30px;
+	background-position: 5px 15px;
+	margin-top: 5px;
+	height: 60px;
+	padding-bottom: 5px;
+}
+a {
+	color: #E31818;
+	text-decoration: none;
+	letter-spacing: 1px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+img  {
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+
+a:hover {
+	color: #E31818;
+	font-style: normal;
+	text-decoration: underline;
+}
+ul {
+	margin-top: 5px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	list-style-type: none;
+	padding: 0px;
+	line-height: 1.5;
+}
+#liamHolder {
+	background-color: #FFFFFF;
+	/* [disabled]background-image: url(../00-mom1/graphics/specialBar.gif); */
+	background-repeat: no-repeat;
+	height: 32px;
+}
+#breadcrumb {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8px;
+	height: 20px;
+	width: 500px;
+	margin-left: 25px;
+	padding-top: 9px;
+}
+h1,h2,h3,h4,h5,h6  {
+	color: #E31818;
+	padding-top: 8px;
+	padding-bottom: 2px;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+h1 {
+	font-size: 1.4em;
+	color: #E31818;
+}
+h2 {
+	font-size: 1.3em;
+	color: #002E67;
+}
+h3 {
+	font-size: 1.1em;
+	color: #E31818;
+}
+h4 {
+	font-size: 1.1em;
+	color: #E31818;
+	font-weight: normal;
+}
+h5 {
+	font-size: 1em;
+	color: #002E67;
+}
+h6 {
+	color: #E31818;
+	font-size: 1em;
+	font-style: italic;
+	font-weight: bold;
+}
+strong {
+	color: #E31818;
+	letter-spacing: 1px;
+}
+
+
+
+
+#sidebar2 .quickLinks {
+	width: 198px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 10px;
+}
+
+.quickLinks .quickBottom {
+	background-repeat: no-repeat;
+	height: 12px;
+	background-color: #003;
+}
+#sidebar2 .quickLinks .quickTop {
+	background-repeat: no-repeat;
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.2em;
+	color: #FFF;
+	height: 36px;
+}
+
+
+.Highlight {
+	color: #990000;
+}
+#sidebar2 .quickLinks .quickTop .heading {
+	font-weight: bold;
+	background-color: #000033;
+	padding: 3px;
+}
+#sidebar2 .quickLinks .quickCont {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	color: #333;
+}
+#accordianBack {
+	/* [disabled]background-image: url(../00-mom1/roundBox/spry2.gif); */
+	background-repeat: no-repeat;
+	height: 400px;
+	padding-top: 18px;
+	padding-right: 6px;
+	padding-bottom: 5px;
+	padding-left: 6px;
+}
+#productButtons {
+	width: 95%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+	padding: 5px;
+}
+.thrColFixHdr #container #liamHolder #ebIcons {
+	margin-top: -30px;
+}
+#ebIcons {
+	height: 28px;
+	width: 156px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 5px;
+	display: none;
+}
+p {
+	text-align: left;
+	font-size: 1em;
+	line-height: 1.5;
+	padding-right: 10px;
+	margin-bottom: 10px;
+	padding-left: 10px;
+}
+.email {
+	background-image: url(../00-mom1/graphics/email.gif);
+	background-repeat: no-repeat;
+	height: 25px;
+	padding-right: 25px;
+}
+.story {
+	width: 90%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 10px;
+	padding: 10px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: dotted;
+	border-right-style: none;
+	border-bottom-style: dotted;
+	border-left-style: none;
+	border-top-color: #263578;
+	border-right-color: #263578;
+	border-bottom-color: #263578;
+	border-left-color: #263578;
+	height: auto;
+	text-align: left;
+}
+.thrColFixHdr #container #mainContent .story .more {
+	text-align: right;
+}
+#factSheets    {
+	background-color: #F7F7F7;
+	padding: 6px;
+}
+.thrColFixHdr #container #mainContent #factsheetNvigation {
+	width: 510px;
+	font-size: 0.85em;
+}
+.thrColFixHdr #container #mainContent #factsheetNvigation ul {
+	list-style-type: none;
+	clear: left;
+}
+.thrColFixHdr #container #mainContent #factsheetNvigation li {
+	display: inline;
+}
+.thrColFixHdr #container #mainContent #factsheetNvigation a {
+	line-height: 1.5;
+	text-decoration: none;
+	background-color: #8790B4;
+	display: block;
+	width: 117px;
+	float: left;
+	padding: 4px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-align: center;
+	border: 1px solid #FFFFFF;
+	color: #334B98;
+}
+.thrColFixHdr #container #mainContent #factsheetNvigation a:hover {
+	color: #FFFFFF;
+}
+.thrColFixHdr #container #mainContent .story .smallDate {
+	font-size: 0.8em;
+	color: #334B98;
+}
+#factSheets td {
+	padding-top: 4px;
+	padding-right: 3px;
+	padding-bottom: 4px;
+	padding-left: 3px;
+}
+#button {
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	width: 140px;
+}
+.thrColFixHdr #container #mainContent li .bulletHome {
+	list-style-type: disc;
+}
+.pageHeading {
+	background-image: url(../00-mom1/graphics/random/rotator.php);
+	background-repeat: no-repeat;
+	height: 35px;
+	width: 505px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.3em;
+	color: #334B98;
+	padding-left: 10px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	padding-top: 20px;
+	vertical-align: bottom;
+}
+.liam {
+	/*background-image: url(graphics/random/rotator.php);
+	background-repeat: no-repeat;*/
+	height: 35px;
+	font-size: 1.3em;
+	text-indent: 8px;
+	padding-top: 20px;
+	width: 505px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #003;
+	font-weight: bold;
+}
+.thrColFixHdr #container #mainContent .story p {
+	text-align: left;
+}
+.noJustify {
+	text-align: left;
+}
+.thrColFixHdr #container #sidebar2-s14 ul {
+	text-align: left;
+	padding-left: 20px;
+	list-style-type: square;
+}
+.launchPageBox {
+	float: left;
+	width: 50%;
+	height: 325px;
+}
+.HighLight {
+	color: #E31818;
+}
+.highLigtUnderline {
+	color: #E31818;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #E31818;
+	display: block;
+	font-weight: normal;
+	font-size: 1.1em;
+}

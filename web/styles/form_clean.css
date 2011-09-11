@@ -1,0 +1,139 @@
+form.clean
+{
+	font-family: Arial, sans-serif;
+	margin: 0.6em;
+	padding: 0.25em;
+}
+
+form.clean *
+{
+	margin: 0;
+	padding: 0;
+}
+
+form.clean p
+{
+	margin: .5em 0;
+}
+
+form.clean input[type=text],
+form.clean input[type=password],
+form.clean textarea,
+form.clean select
+{
+	-webkit-border-radius: .4em;
+	-moz-border-radius: .4em;
+	border-radius: .4em;
+	background-color: #fafafa;
+	border: 1px solid #ddd;
+	color: #666;
+	font-size: 1em;
+	padding: .15em;
+	width: 100%;
+}
+
+form.clean input:focus,
+form.clean textarea:focus,
+form.clean select:focus
+{
+	background-color: #FFF;
+}
+
+form.clean fieldset
+{
+	-webkit-border-radius: 0.6em;
+	-moz-border-radius: 0.6em;
+	border-radius: 0.6em;
+	border: 1px solid #ddd;
+	margin: 1em 0;
+	padding: .5em 1em;
+	background-color: #FFFFF0;
+}
+
+form.clean fieldset legend
+{
+	color: #e31818;
+	font-size: 1.2em;
+	margin-left: 1em;
+}
+
+form.clean ol
+{
+	list-style: none;
+}
+
+form.clean ol li
+{
+	margin: .5em 0;
+}
+
+form.clean ol li label
+{
+	display: block;
+	color: #002e67;
+}
+
+form.clean ol.table
+{
+	list-style: none;
+	display: table;
+}
+
+form.clean ol.table li
+{
+	display: table-row;
+}
+
+form.clean ol.table li label[for]
+{
+	display: table-cell;
+	text-align: right;
+	padding: .5em;
+}
+
+form.clean div.col2 label
+{
+	float: left;
+	width: 50%;
+}
+
+form.clean div.col3 label
+{
+	float: left;
+	width: 33%;
+}
+
+form.clean div.col4 label
+{
+	float: left;
+	width: 25%;
+}
+
+form.clean fieldset:first-child
+{
+	margin-top: 0;
+}
+
+form.clean input[type=button],
+form.clean input[type=reset],
+form.clean input[type=submit],
+form.clean button
+{
+	-webkit-border-radius: .4em;
+	-moz-border-radius: .4em;
+	border-radius: .4em;
+	background-color: #fafafa;
+	border: 1px solid #ddd;
+	color: #666;
+	font-size: .85em;
+	padding: .15em .4em;
+	margin: 0 .3em;
+}
+
+form.clean input[type=submit]:hover,
+form.clean input[type=reset]:hover,
+form.clean input[type=button]:hover,
+form.clean button:hover
+{
+	background-color: #ffd;
+}

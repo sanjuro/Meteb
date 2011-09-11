@@ -81,7 +81,23 @@ page_contact:
 page_toolbox:
   url:   /Toolbox/
   param: { module: page, action: toolbox }
-  
+
+page_annuityexplained:
+  url:   /Annuityexplained/
+  param: { module: page, action: annuityexplained }
+
+page_annuityoptions:
+  url:   /Annuityoptions/
+  param: { module: page, action: annuityoptions }
+
+page_downloads:
+  url:   /Downloads/
+  param: { module: page, action: downloads }  
+
+page_help:
+  url:   /Help/
+  param: { module: page, action: help }
+    
 default:
   url:   /
   param: { module: page, action: index }
