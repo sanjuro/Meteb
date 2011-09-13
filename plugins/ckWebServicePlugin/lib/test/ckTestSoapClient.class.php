@@ -6,7 +6,7 @@
  * @author    Christian Kerl <christian-kerl@web.de>
  * @copyright Copyright (c) 2008, Christian Kerl
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- * @version   SVN: $Id: ckTestSoapClient.class.php 29911 2010-06-20 12:42:06Z chrisk $
+ * @version   SVN: $Id: ckTestSoapClient.class.php 20950 2009-08-08 20:45:00Z chrisk $
  */
 
 /**
@@ -86,16 +86,11 @@ class ckTestSoapClient extends SoapClient
    *
    * @param array $options An array of soap options
    */
-  public function __construct($options = array(), lime_test $test = null)
+  public function __construct($options = array())
   {
     $wsdl = sfConfig::get('app_ck_web_service_plugin_wsdl');
     $this->browser = new sfBrowser();
     $this->namespace = $this->getNamespaceFromWsdl($wsdl);
-
-    if(is_null(self::$test))
-    {
-      self::$test = !is_null($test) ? $test : new lime_test();
-    }
 
     parent::__construct($wsdl, $this->getOptions($options));
   }
@@ -135,6 +130,11 @@ class ckTestSoapClient extends SoapClient
    */
   public function test()
   {
+    if(is_null(self::$test))
+    {
+      self::$test = new lime_test(null, new lime_output_color());
+    }
+
     return self::$test;
   }
 

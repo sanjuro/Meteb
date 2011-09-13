@@ -6,7 +6,7 @@
  * @author    Christian Kerl <christian-kerl@web.de>
  * @copyright Copyright (c) 2008, Christian Kerl
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- * @version   SVN: $Id: ckWebServiceGenerateWsdlTask.class.php 29916 2010-06-20 16:02:55Z chrisk $
+ * @version   SVN: $Id: ckWebServiceGenerateWsdlTask.class.php 28149 2010-02-20 14:11:40Z chrisk $
  */
 
 /**
@@ -16,7 +16,7 @@
  * @subpackage task
  * @author     Christian Kerl <christian-kerl@web.de>
  */
-class ckWebServiceGenerateWsdlTask extends sfBaseTask
+class ckWebServiceGenerateWsdlTask extends sfGeneratorBaseTask
 {
   /**
    * The default environment.
@@ -39,9 +39,9 @@ Call it with:
 
   [./symfony webservice:generate-wsdl|INFO]
 
-The wsdl file will be created in the [data/wsdl/|COMMENT] directory:
+The wsdl file will be created in the [web/|COMMENT] directory:
 
-  [data/wsdl/%name%.wsdl|INFO]
+  [web/%name%.wsdl|INFO]
 
 This task also creates a front controller script in the [web/|COMMENT] directory:
 
@@ -73,7 +73,7 @@ EOF;
 
     $this->addArgument('application', sfCommandArgument::REQUIRED, 'The application name');
     $this->addArgument('name', sfCommandArgument::REQUIRED, 'The webservice name');
-    $this->addArgument('url', sfCommandArgument::REQUIRED, 'The target namespace for the webservice types');
+    $this->addArgument('url', sfCommandArgument::REQUIRED, 'The webservice url base');
 
     $this->addOption('environment', 'e', sfCommandOption::PARAMETER_REQUIRED, 'The environment to use for webservice mode', self::DEFAULT_ENVIRONMENT);
     $this->addOption('enabledebug', 'd', sfCommandOption::PARAMETER_NONE, 'Enables debugging in generated controller');
@@ -156,7 +156,10 @@ EOF;
 
     $this->buildHandlerFile($file);
     $this->buildBaseHandlerFile($file, $handler_methods);
-    $this->buildWsdlFile($gen, $file);
+
+    $file = sprintf('%s/%s.wsdl', sfConfig::get('sf_web_dir'), $file);
+    $gen->save($file);
+    $this->logSection('file+', $file);
   }
 
   protected function getModuleAndAction(ReflectionMethod $method)
@@ -236,16 +239,6 @@ EOF;
       'ENVIRONMENT' => $environment,
       'IS_DEBUG'    => $debug ? 'true' : 'false',
     ));
-  }
-
-  protected function buildWsdlFile(ckWsdlGenerator $generator, $service_name)
-  {
-    $wsdl_dir = sprintf('%s/wsdl', sfConfig::get('sf_data_dir'));
-    $wsdl_file = sprintf('%s/%s.wsdl', $wsdl_dir, $service_name);
-
-    $this->getFilesystem()->mkdirs($wsdl_dir);
-    $generator->save($wsdl_file);
-    $this->logSection('file+', $wsdl_file);
   }
 
   protected function buildHandlerFile($handler_name)

@@ -9,26 +9,34 @@ all:
  enable_soap_parameter: off
 
 # your environment for webservice mode
- soap:
+soap:
   # enable the `ckSoapParameterFilter`
   enable_soap_parameter: on
+
   ck_web_service_plugin:
     # the location of your wsdl file
-    wsdl: %SF_DATA_DIR%/wsdl/SOAPApi.wsdl
+    wsdl: %SF_WEB_DIR%/SOAPApi.wsdl
     # the class that will be registered as handler for webservice requests
     handler: SOAPApiHandler
-    persist: <?php echoln('SOAP_PERSISTENCE_SESSION') ?>
+    persist: <?php echoln(SOAP_PERSISTENCE_SESSION) ?>
     soap_options:
       encoding: utf-8
-      soap_version: <?php echoln('SOAP_1_2') ?>
-
-      # mapping of wsdl types to PHP types
+      soap_version: <?php echoln(SOAP_1_2) ?>
       classmap:
-        CreateClientRequest:            CreateClientRequest
-        CreateClientResponse:           ckGenericArray
-        CreateQuoteRequest:             CreateQuoteRequest
-        CreateQuoteResponse:            ckGenericArray
+        # mapping of wsdl types to PHP types
+        LoginRequest:        LoginRequest
+        LoginResponse:       LoginResponse
 
-    soap_headers:
-          AuthHeader:
-            class: AuthData
+soaptest:
+  # enable the `ckSoapParameterFilter`
+  enable_soap_parameter: on
+
+  ck_web_service_plugin:
+    # the location of your wsdl file
+    wsdl: %SF_WEB_DIR%/SOAPApi.wsdl
+    # the class that will be registered as handler for webservice requests
+    handler: SOAPApiHandler
+    persist: <?php echoln(SOAP_PERSISTENCE_SESSION) ?>
+    soap_options:
+      encoding: utf-8
+      soap_version: <?php echoln(SOAP_1_2) ?>

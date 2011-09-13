@@ -120,7 +120,7 @@ class ckWsdlPart implements ckDOMSerializable
    * @param boolean   $isHeader True, if the part holds header data, false otherwise
    */
   public function __construct($name = null, ckXsdType $type = null, $isHeader = false)
-  { 
+  {
     $this->setName($name);
     $this->setType($type);
     $this->setIsHeader($isHeader);

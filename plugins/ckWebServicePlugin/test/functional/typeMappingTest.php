@@ -6,7 +6,7 @@
  * @author    Christian Kerl <christian-kerl@web.de>
  * @copyright Copyright (c) 2008, Christian Kerl
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- * @version   SVN: $Id: typeMappingTest.php 29910 2010-06-20 12:02:42Z chrisk $
+ * @version   SVN: $Id: typeMappingTest.php 20950 2009-08-08 20:45:00Z chrisk $
  */
 
 $app = 'frontend';
@@ -24,7 +24,7 @@ $_options = array(
   ),
 );
 
-$c = new ckTestSoapClient($_options, $test);
+$c = new ckTestSoapClient($_options);
 
 // test executeNoArg
 $c->test_noArg()

@@ -1,4 +1,2 @@
-all:
-  soap: { authenticate: { parameter: [token, username, password], result: { class: ckPropertyResultAdapter, param: { property: result } } } }
 soap:
-  authenticate: { parameter: [token, username, password], result: { class: ckPropertyResultAdapter, param: { property: result } } }
+  authenticate: { parameter: [input], result: { class: ckPropertyResultAdapter, param: { property: result } } }

@@ -16,15 +16,16 @@ class MetebUser
 	/**
 	* Function authenticate an api user
 	* 
-	* @param array $parameters Authentication Variables
+	* @param string $username Username
+	* @param string $password Password
 	* @return string Generated username
 	* 
 	*/	
-	public static function getAuthenticatedUser($parameters)
+	public static function getAuthenticatedUser($username, $password)
 	{ 
 	  $q = Doctrine_Query::create()
 		   ->from('sfGuardUser sgu')
-		   ->where('sgu.username = ?', $parameters['username'])
+		   ->where('sgu.username = ?', $username)
 		   ->andWhere('sgu.is_active = ?', 1);
 		  
 	  $user = $q->fetchOne(); 	
@@ -33,7 +34,7 @@ class MetebUser
 	  if ($user)
 	  {
 	    // password is OK?
-	    if (sha1($user->getSalt().$parameters['password']) == $user->getPassword() && $user->getIsActive() == 1)
+	    if (sha1($user->getSalt().$password) == $user->getPassword() && $user->getIsActive() == 1)
 	    {
 	      return $user;
 	    }

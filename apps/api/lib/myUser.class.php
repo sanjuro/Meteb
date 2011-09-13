@@ -22,7 +22,7 @@ class myUser extends sfGuardSecurityUser
   */
   public function signIn($user, $remember = false, $con = null) 
   {    
-  	parent::signIn($user);
+  	// parent::signIn($user);
   	
   	$this->setAuthenticated(true);
   	

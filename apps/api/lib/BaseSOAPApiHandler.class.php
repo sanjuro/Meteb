@@ -5,23 +5,23 @@
  */
 class BaseSOAPApiHandler extends ckSoapHandler
 {
-  public function CreateClient($arrRequests)
+  public function client_create($request)
   {
-    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('client', 'create', array($arrRequests));
+    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('client', 'create', array($request));
   }
 
-  public function ShowClients($token)
+  public function client_show($token)
   {
     return sfContext::getInstance()->getController()->invokeSoapEnabledAction('client', 'show', array($token));
   }
 
-  public function Authenticate($token, $username, $password)
+  public function Login($input)
   {
-    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('login', 'authenticate', array($token, $username, $password));
+    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('login', 'authenticate', array($input));
   }
 
-  public function CreateQuote($arrRequests)
+  public function quote_create($request)
   {
-    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('quote', 'create', array($arrRequests));
+    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('quote', 'create', array($request));
   }
 }

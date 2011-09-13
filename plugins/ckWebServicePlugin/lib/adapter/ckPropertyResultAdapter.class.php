@@ -6,7 +6,7 @@
  * @author    Christian Kerl <christian-kerl@web.de>
  * @copyright Copyright (c) 2008, Christian Kerl
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- * @version   SVN: $Id: ckPropertyResultAdapter.class.php 29914 2010-06-20 12:44:43Z chrisk $
+ * @version   SVN: $Id: ckPropertyResultAdapter.class.php 29890 2010-06-18 14:29:24Z chrisk $
  */
 
 /**
@@ -50,8 +50,6 @@ class ckPropertyResultAdapter extends ckAbstractMemberResultAdapter
   public function __construct($parameters = array())
   {
     $this->resultProperty = isset($parameters['property']) ? $parameters['property'] : self::DEFAULT_RESULT_PROPERTY;
-
-    parent::__construct($parameters);
   }
 
   /**

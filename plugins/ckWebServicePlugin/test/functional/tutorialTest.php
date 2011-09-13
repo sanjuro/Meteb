@@ -6,7 +6,7 @@
  * @author    Christian Kerl <christian-kerl@web.de>
  * @copyright Copyright (c) 2008, Christian Kerl
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- * @version   SVN: $Id: tutorialTest.php 29910 2010-06-20 12:02:42Z chrisk $
+ * @version   SVN: $Id: tutorialTest.php 14021 2008-12-14 14:54:01Z chrisk $
  */
 
 $app = 'tutorial';
@@ -40,7 +40,7 @@ $_options = array(
   ),
 );
 
-$c = new ckTestSoapClient($_options, $test);
+$c = new ckTestSoapClient($_options);
 
 // test executeMultiply
 $c->math_multiply(2, 5)

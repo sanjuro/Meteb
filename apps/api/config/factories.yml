@@ -7,10 +7,6 @@ prod:
     param:
       level:   err
       loggers: ~
-      
-soap:
-  controller:
-    class:  ckWebServiceController    
 
 cli:
   controller:
@@ -35,10 +31,13 @@ test:
     param:
       delivery_strategy: none
 
+
 dev:
   mailer:
     param:
       delivery_strategy: none
+    # your environment for webservice mode
+
 
 all:
   routing:
@@ -52,3 +51,16 @@ all:
     param:
       cache_key_use_vary_headers: true
       cache_key_use_host_name:    true
+
+# your environment for webservice mode
+soap:
+  controller:
+    class: ckWebServiceController
+
+soaptest:
+    storage:
+      class: sfSessionTestStorage
+      param:
+        session_path: %SF_TEST_CACHE_DIR%/sessions
+      controller:
+         class: ckWebServiceController

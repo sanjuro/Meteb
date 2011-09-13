@@ -6,7 +6,7 @@
  * @author    Christian Kerl <christian-kerl@web.de>
  * @copyright Copyright (c) 2010, Christian Kerl
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- * @version   SVN: $Id: typeMappingDoctrineTest.php 29910 2010-06-20 12:02:42Z chrisk $
+ * @version   SVN: $Id: typeMappingDoctrineTest.php 28148 2010-02-20 14:02:31Z chrisk $
  */
 
 $project = 'projectWithDoctrine';
@@ -113,7 +113,7 @@ $_options = array(
   )
 );
 
-$c = new ckTestSoapClient($_options, $test);
+$c = new ckTestSoapClient($_options);
 
 checkFixtureModel($c->getFixtureModel(), true);
 

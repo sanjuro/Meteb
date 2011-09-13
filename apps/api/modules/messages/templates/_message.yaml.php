@@ -1,0 +1,1 @@
+<?php echo sfYaml::dump($message) ?>

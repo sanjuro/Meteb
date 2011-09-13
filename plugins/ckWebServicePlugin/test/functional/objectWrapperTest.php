@@ -43,6 +43,8 @@ class TreeBeanObject
   }
 }
 
+$test = new lime_test(null, new lime_output_color());
+
 $test->is(ckObjectWrapper::wrap(null), null);
 $test->is(ckObjectWrapper::unwrap(null), null);
 

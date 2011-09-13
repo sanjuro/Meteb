@@ -6,7 +6,7 @@
  * @author    Christian Kerl <christian-kerl@web.de>
  * @copyright Copyright (c) 2008, Christian Kerl
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- * @version   SVN: $Id: functional.php 29910 2010-06-20 12:02:42Z chrisk $
+ * @version   SVN: $Id: functional.php 26444 2010-01-10 00:30:13Z chrisk $
  */
 
 if (!isset($_SERVER['SYMFONY']))
@@ -14,10 +14,6 @@ if (!isset($_SERVER['SYMFONY']))
   throw new RuntimeException('Could not find symfony core libraries.');
 }
 require_once($_SERVER['SYMFONY'].'/vendor/lime/lime.php');
-
-$test = new lime_test(null, array(
-  'force_colors' => true
-));
 
 $project  = isset($project) ? $project : 'project';
 $root_dir = dirname(__FILE__).'/../fixtures/'.$project;

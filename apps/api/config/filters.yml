@@ -2,13 +2,14 @@
 # http://www.symfony-project.org/reference/1_4/en/12-Filters
 
 rendering: ~
-security:  
+security:
 
 # insert your own filters here
 soap_parameter:
   class: ckSoapParameterFilter
   param:
+    # `app_enable_soap_parameter` has to be set to `on` so the filter is only enabled in soap mode
     condition: %APP_ENABLE_SOAP_PARAMETER%
-     
+
 cache:     ~
 execution: ~

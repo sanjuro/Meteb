@@ -6,7 +6,7 @@
  * @author    Christian Kerl <christian-kerl@web.de>
  * @copyright Copyright (c) 2010, Christian Kerl
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- * @version   SVN: $Id: ckGenericArrayTest.php 29913 2010-06-20 12:43:44Z chrisk $
+ * @version   SVN: $Id: ckGenericArrayTest.php 26449 2010-01-10 18:55:16Z chrisk $
  */
 
 include(dirname(__FILE__).'/../bootstrap/unit.php');
@@ -45,11 +45,9 @@ $t->is($array[1], 2);
 $t->comment('ArrayAccess::offsetSet()');
 
 $empty[0] = 1;
-$empty[] = 2;
 $empty['test'] = 1;
 
 $t->is($empty[0], 1);
-$t->is($empty[1], 2);
 $t->is($empty['test'], 1);
 
 $t->comment('ArrayAccess::offsetUnset()');

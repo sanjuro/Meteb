@@ -6,7 +6,7 @@
  * @author    Christian Kerl <christian-kerl@web.de>
  * @copyright Copyright (c) 2008, Christian Kerl
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- * @version   SVN: $Id: ckAbstractMemberResultAdapter.class.php 29914 2010-06-20 12:44:43Z chrisk $
+ * @version   SVN: $Id: ckAbstractMemberResultAdapter.class.php 20950 2009-08-08 20:45:00Z chrisk $
  */
 
 /**
@@ -27,7 +27,7 @@ abstract class ckAbstractMemberResultAdapter extends ckAbstractResultAdapter
    */
   public function __construct($parameters = array())
   {
-    parent::__construct($parameters);
+
   }
 
   /**

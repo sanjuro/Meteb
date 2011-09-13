@@ -6,7 +6,7 @@
  * @author    Christian Kerl <christian-kerl@web.de>
  * @copyright Copyright (c) 2008, Christian Kerl
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- * @version   SVN: $Id: resultAdapterTest.php 29910 2010-06-20 12:02:42Z chrisk $
+ * @version   SVN: $Id: resultAdapterTest.php 29892 2010-06-18 14:53:30Z chrisk $
  */
 
 $app = 'frontend';
@@ -15,7 +15,7 @@ $debug = true;
 
 include_once(dirname(__FILE__).'/../bootstrap/functional.php');
 
-$c = new ckTestSoapClient(array(), $test);
+$c = new ckTestSoapClient();
 
 // test executeConfiguredProperty (Ticket #8769)
 $c->test_configuredProperty()

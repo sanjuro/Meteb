@@ -18,7 +18,7 @@ class clientActions extends sfActions
   */
   public function preExecute()
   { 
-  	sfConfig::set('sf_web_debug', false);
+  	/*sfConfig::set('sf_web_debug', false);
 
     if(!$this->getUser()->isAuthenticated())
     {
@@ -41,7 +41,7 @@ class clientActions extends sfActions
 	 		$e = new sfSecurityException('The user is not authenticated');
 	        throw $e;
     }
-	
+	*/
   }
   
   
@@ -49,14 +49,11 @@ class clientActions extends sfActions
   * Executes create client action for the API interface
   * based on the client id parameter using POST
   * 
-  * @WSMethod(name='CreateClient',webservice='SOAPApi')
-  * @WSHeader(name='AuthHeader', type='AuthData')
+  * @WSMethod(webservice='SOAPApi')
   * 
-  * @access public
-  * 
-  * @param CreateClientRequest[] $arrRequests
+  * @param array $request
   *
-  * @return CreateClientResponse[] $result
+  * @return array new client
   */    
   public function executeCreate(sfWebRequest $request)
   {
@@ -109,8 +106,7 @@ class clientActions extends sfActions
   * Executes get a client action for the API interface
   * based on the client id parameter
   * 
-  * @WSMethod(name='ShowClients', webservice="SOAPApi")
-  * @WSHeader(name='AuthHeader', type='AuthData')
+  * @WSMethod(webservice="SOAPApi")
   * 
   * @param string $token  Session token
   *

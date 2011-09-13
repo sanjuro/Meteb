@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <objects>
 <?php if (!($objects->isEmpty())): ?>
 	<?php $objects = $objects->toArray();?>

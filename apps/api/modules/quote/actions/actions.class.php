@@ -18,7 +18,8 @@ class quoteActions extends sfActions
   */
   public function preExecute()
   { 
-	sfConfig::set('sf_web_debug', false);
+	/*
+	 sfConfig::set('sf_web_debug', false);
 
   	$auth['token'] = $this->request->getParameter('token');
 
@@ -32,21 +33,18 @@ class quoteActions extends sfActions
  		$feedback = 'The user is not authenticated';
         return $this->renderPartial('messages/error', array('feedback' => $feedback));
 	}
-	
+	*/
   }
  
   /**
   * Executes create quote action for the API interface
   * based on the client id parameter using POST
   * 
-  * @WSMethod(name='CreateQuote', webservice='SOAPApi')
-  * @WSHeader(name='AuthHeader', type='AuthData')
+  * @WSMethod(webservice='SOAPApi')
   * 
-  * @access public
-  * 
-  * @param CreateQuoteRequest[] $arrRequests
+  * @param array $request
   *
-  * @return CreateQuoteResponse[] $result
+  * @return array $result
   */
   public function executeCreate(sfWebRequest $request)
   {		

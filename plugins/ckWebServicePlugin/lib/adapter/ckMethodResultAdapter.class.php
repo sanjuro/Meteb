@@ -6,7 +6,7 @@
  * @author    Christian Kerl <christian-kerl@web.de>
  * @copyright Copyright (c) 2008, Christian Kerl
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- * @version   SVN: $Id: ckMethodResultAdapter.class.php 29914 2010-06-20 12:44:43Z chrisk $
+ * @version   SVN: $Id: ckMethodResultAdapter.class.php 20950 2009-08-08 20:45:00Z chrisk $
  */
 
 /**
@@ -50,8 +50,6 @@ class ckMethodResultAdapter extends ckAbstractMemberResultAdapter
     }
 
     $this->resultMethod = $parameters['method'];
-
-    parent::__construct($parameters);
   }
 
   /**

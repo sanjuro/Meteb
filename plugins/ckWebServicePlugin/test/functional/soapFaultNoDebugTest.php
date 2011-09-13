@@ -6,7 +6,7 @@
  * @author    Christian Kerl <christian-kerl@web.de>
  * @copyright Copyright (c) 2008, Christian Kerl
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- * @version   SVN: $Id: soapFaultNoDebugTest.php 29910 2010-06-20 12:02:42Z chrisk $
+ * @version   SVN: $Id: soapFaultNoDebugTest.php 20950 2009-08-08 20:45:00Z chrisk $
  */
 
 $app = 'frontend';
@@ -15,7 +15,7 @@ $debug = false;
 
 include_once(dirname(__FILE__).'/../bootstrap/functional.php');
 
-$c = new ckTestSoapClient(array(), $test);
+$c = new ckTestSoapClient();
 
 // test executeException
 $c->test_exception()
