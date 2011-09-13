@@ -21,7 +21,7 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
 	{
 	    $this->currentUser = $this->getOption("currentUser");	    
 	}
-  	
+ 
     	unset(
       $this['user_profile_id'], $this['created_at'], $this['updated_at'],
       $this['status_id'], $this['spouseidnumber'], $this['spouse_dob'], 
@@ -42,7 +42,7 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
     	$this->validatorSchema['parent_user_id'] = new sfValidatorString(array('min_length' => 1));
     	
     	if($this->isNew()){
-    		$this->setDefault('parent_user_id', $currentUser->getGuardUser()->getId());
+    		$this->setDefault('parent_user_id', $this->currentUser->getGuardUser()->getId());
     	}else{
     		$this->setDefault('parent_user_id', $this->object->getParentUserId());
     	}

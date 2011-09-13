@@ -61,7 +61,7 @@ class BackendAdvisorForm extends sfGuardUserForm
 	{	
 		foreach( $userProfileObjs as $key => $userProfileObj )
 		{	 
-			  $userProfilesForm->embedForm($key, new BackendAdvisorUserProfileForm( $userProfileObj, array('currentUser' =>  $this->currentUser) ) );
+			  $userProfilesForm->embedForm($key, new BackendAdvisorUserProfileForm( '', array('currentUser' =>  $this->currentUser) ) );
 	     
 		}  
 	}else{
