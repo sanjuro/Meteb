@@ -21,6 +21,8 @@ class Quote extends BaseQuote
 	 */	
  	public function save(Doctrine_Connection $conn = null){
  		
+ 		$quote = parent::save();
+ 		
  		$calculations = $this->generateCalculations();
 		    		 		
 		$quoteOptionTypes = Doctrine_Core::getTable('QuoteOutputType')->getQuoteOutputTypes();  
@@ -36,9 +38,7 @@ class Quote extends BaseQuote
    	 			$quoteOutputTypeValue->setValue($value);
    	 			$quoteOutputTypeValue->save();
    	 		}
-   	 	}
-   	 	
-   	 	$quote = parent::save(); 
+   	 	} 
    	 	
  	}
 	

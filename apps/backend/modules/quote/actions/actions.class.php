@@ -33,6 +33,7 @@ class quoteActions extends autoQuoteActions
 	    $this->quote = $this->form->getObject();
 	  }
 	  
+	  
 	 /**
 	 * This Action will handle creating a new quote for a client
 	 * 
@@ -50,21 +51,24 @@ class quoteActions extends autoQuoteActions
 	    $this->setTemplate('new');
 
 	  }
-	  
+	    
 	  
 	 /**
-	 * This Action will handle Editting a quote and all its calculations
+	 * This Action will handle Refreshing a quote and all its calculations
 	 * 
 	 * @param object  $request
 	 * @return unknown
 	 */
-	  public function executeEdit(sfWebRequest $request)
+	  public function executeRefresh(sfWebRequest $request)
 	  {
 	    $this->quote = $this->getRoute()->getObject();
 	   
+	    $refreshQuote = new Quote();
+	    $refreshQuote = clone $this->quote;
+	    
 	    $userForQuote = Doctrine::getTable('sfGuardUser')->findOneById($this->quote->getClientId());
 	    
-	    $this->form = new BackendQuoteForm($this->quote, array('userForQuote' => $userForQuote,
+	    $this->form = new BackendQuoteForm($refreshQuote, array('userForQuote' => $userForQuote,
 	  													 'currentUser' => $this->getUser()));
 	  }
 	  
@@ -101,6 +105,8 @@ class quoteActions extends autoQuoteActions
             
         $this->quote = $quote;
         
+        $this->quote_calculations = $quote->getQuoteOutputTypes();
+        
         $this->client = $quote->getClient();
         
         $userprofile = $this->client->getUserProfile();
@@ -123,6 +129,8 @@ class quoteActions extends autoQuoteActions
 		sfConfig::set('sf_web_debug', false);
         
         $this->quote = $quote;
+        
+        $quote_calculations = $quote->getQuoteOutputTypes();
         
         $client = '';
         $userprofile = '';

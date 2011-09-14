@@ -1,0 +1,57 @@
+QuoteOutputType:
+  quoteoutputtype_1:
+   title: data_date
+  quoteoutputtype_2:
+   title: commencement_date
+  quoteoutputtype_3:
+   title: first_payment_date
+  quoteoutputtype_4:
+   title: first_increase_date
+  quoteoutputtype_5:
+   title: pp1
+  quoteoutputtype_6:
+   title: pp2
+  quoteoutputtype_7:
+   title: pp3
+  quoteoutputtype_8:
+   title: gross_annuity_1
+  quoteoutputtype_9:
+   title: gross_annuity_2
+  quoteoutputtype_10:
+   title: gross_annuity_3
+  quoteoutputtype_11:
+   title: tax1
+  quoteoutputtype_12:
+   title: tax2
+  quoteoutputtype_13:
+   title: tax3
+  quoteoutputtype_14:
+   title: net_annuity_1
+  quoteoutputtype_15:
+   title: net_annuity_2
+  quoteoutputtype_16:
+   title: net_annuity_3
+  quoteoutputtype_17:
+   title: commission_sacrificed
+  quoteoutputtype_18:
+   title: main_age_next
+  quoteoutputtype_19:
+   title: spouse_age_next
+  quoteoutputtype_20:
+   title: premium_charge_1
+  quoteoutputtype_21:
+   title: premium_charge_2
+  quoteoutputtype_22:
+   title: premium_charge_3
+  quoteoutputtype_23:
+   title: admin_charge_1
+  quoteoutputtype_24:
+   title: admin_charge_2
+  quoteoutputtype_25:
+   title: admin_charge_3
+  quoteoutputtype_26:
+   title: quote_date
+  quoteoutputtype_27:
+   title: expiry_date
+  quoteoutputtype_28:
+   title: guanratee_terms

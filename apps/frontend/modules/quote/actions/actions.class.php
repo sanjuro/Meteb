@@ -52,18 +52,22 @@ class quoteActions extends autoQuoteActions
 	  }	  
 	  
 	 /**
-	 * This Action will handle Editting a quote and all its calculations
+	 * This Action will handle Refreshing a quote and all its calculations
 	 * 
 	 * @param object  $request
 	 * @return unknown
 	 */
-	  public function executeEdit(sfWebRequest $request)
+	  public function executeListRefresh(sfWebRequest $request)
 	  {
 	    $this->quote = $this->getRoute()->getObject();
+	   
+	    $refreshQuote = new Quote();
+	    $refreshQuote = clone $this->quote;
 	    
 	    $userForQuote = Doctrine::getTable('sfGuardUser')->findOneById($this->quote->getClientId());
 	    
-	    $this->form = new FrontendQuoteForm($this->quote, array('currentUser' => $this->getUser()));
+	    $this->form = new BackendQuoteForm($refreshQuote, array('userForQuote' => $userForQuote,
+	  													 'currentUser' => $this->getUser()));
 	  }
 	  	  
 	 /**

@@ -15,12 +15,11 @@ quote_new:
   param:   { module: quote, action: new, sf_format: html }
   requirements: { sf_method: get }
 
-
-quote_edit:
-  url:     /quote/:id/edit.:sf_format
+quote_refresh:
+  url:     /quote/:id/refresh.:sf_format
   class:   sfDoctrineRoute
   options: { model: Quote, type: object }
-  param:   { module: quote, action: edit, sf_format: html }
+  param:   { module: quote, action: refresh, sf_format: html }
   requirements: { sf_method: get }
 
 quote_new_user:
