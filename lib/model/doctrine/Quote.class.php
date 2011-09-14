@@ -12,5 +12,87 @@
  */
 class Quote extends BaseQuote
 {
+	/**
+	 * Function to create all the quote calculations for a quote
+	 * 
+	 * @param void
+	 * 
+	 * @return array All calculations for the quoute
+	 */	
+ 	public function save(Doctrine_Connection $conn = null){
+ 		
+ 		$calculations = $this->generateCalculations();
+		    		 		
+		$quoteOptionTypes = Doctrine_Core::getTable('QuoteOutputType')->getQuoteOutputTypes();  
+		    		 		
+ 	    foreach($calculations as $key => $value){
+ 	    	
+ 	    	$quoteOutputTypeValue = '';
+ 	    	
+   	 		if(isset($quoteOptionTypes[$key])){
+   	 			$quoteOutputTypeValue = new QuoteOutputTypeValue();
+   	 			$quoteOutputTypeValue->setQuoteId($this->getId());
+   	 			$quoteOutputTypeValue->setQuoteOutputTypeId($quoteOptionTypes[$key]);
+   	 			$quoteOutputTypeValue->setValue($value);
+   	 			$quoteOutputTypeValue->save();
+   	 		}
+   	 	}
+   	 	
+   	 	$quote = parent::save(); 
+   	 	
+ 	}
+	
+	/**
+	 * Function to create all the quote calculations for a quote
+	 * 
+	 * @param void
+	 * 
+	 * @return array All calculations for the quoute
+	 */	
+ 	public function generateCalculations(){
 
+		$quoteInputArray = array();
+		$quoteInputArray['quote_type_id'] = $this->getQuoteTypeId();
+		$quoteInputArray['commission'] = $this->getCommission()->getTitle();
+		$quoteInputArray['main_sex'] = $this->getMainSex();
+		$quoteInputArray['main_dob'] = $this->getMainDob();
+		$quoteInputArray['second_life'] = $this->getSecondLife();
+		$quoteInputArray['spouse_sex'] = $this->getSpouseSex();
+		$quoteInputArray['spouse_dob'] = $this->getSpouseDob();
+		$quoteInputArray['gp'] = $this->getGp();
+		$quoteInputArray['spouse_rev'] = $this->getSpouseReversion()->getTitle();
+		$quoteInputArray['pp'] = $this->getPurchasePrice();
+		$quoteInputArray['annuity'] = $this->getAnnuity();
+		
+		/**
+		 * Create holder array from request
+		 */
+   	 	$quote_calculations = MetebQuote::generate($quoteInputArray);
+   	 	
+   	 	return $quote_calculations;
+ 	}
+ 	
+ 	
+    /**
+     * Returns all quote output types for a give quote
+     *
+     * @return array Quote Outputs in an array form
+     */
+    public function getQuoteOutputTypes()
+    {
+		$output = array();
+    	
+    	$query = Doctrine_Query::create()
+		    	->from('QuoteOutputTypeValue qotv')
+		    	->where('qotv.quote_id = ?', $this->getId())
+		    	->leftJoin('qotv.QuoteOutputType qot');
+		    	
+		$quoteOptionTypes = $query->fetchArray();
+		  
+		foreach($quoteOptionTypes as $value){
+			$output[$value['QuoteOutputType']['title']] = $value['value'];
+		}
+		
+		return $output;
+    }       	
 }

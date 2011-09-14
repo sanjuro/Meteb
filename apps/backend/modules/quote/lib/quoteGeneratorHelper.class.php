@@ -5,8 +5,8 @@
  *
  * @package    meteb
  * @subpackage quote
- * @author     Your name here
- * @version    SVN: $Id: helper.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ * @author     Shadley Wentzel <shad6ster@gmail.com>
+ * @version    GIT
  */
 class quoteGeneratorHelper extends BaseQuoteGeneratorHelper
 {
@@ -35,6 +35,19 @@ class quoteGeneratorHelper extends BaseQuoteGeneratorHelper
 	public function linkToGenerate($object, $params)
     {    
      return '<li class="sf_admin_action_generate_pdf"><input value="'.__($params['label'], array(), 'sf_admin').'" name="_generate_pdf" type="submit"></li>';
+    }
+    
+	/**
+	 * This function generates a link button in the quote to refersh the quote
+	 * 
+	 * @param sfWebRequest $request
+	 * @param sfForm $form
+	 * 
+	 * @return unknown
+	 */
+	public function linkToRefresh($object, $params)
+    {    
+     return '<li class="sf_admin_action_refresh">'.link_to(__($params['label'], array(), 'sf_admin'), $this->getUrlForAction('refresh'), $object).'</li>';
     }
 	
 }

@@ -14,79 +14,11 @@ ActivityType:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
     title:            { type: string(255) }
-
-Expensedata:
-  columns:
-    id:               { type: integer, primary: true, autoincrement: true }
-    renewal_expenses:
-      type: string(20)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    expense_inflation:
-      type: string(20)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    initial_expenses:
-      type: string(20)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    loadings:
-      type: string(20)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
       
 Commission:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
     title:            { type: decimal(15), scale: 2 }
-      
-Marketdata:
-  actAs: 
-   Timestampable: ~ 
-  columns:
-    id:               { type: integer, primary: true, autoincrement: true }
-    uploaded_at:      { type: timestamp, notnull: true }
-    inception_date:   { type: timestamp, notnull: true }
-    month_array:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    discounting_array:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    dhfactors_matrix:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  
-MortalityRate:
-  columns:
-    id:               { type: integer, primary: true, autoincrement: true }
-    age:              { type: integer } 
-    mortality_male:   { type: decimal(10), scale: 6 }
-    mortality_female: { type: decimal(10), scale: 6 }
        
 Quote:
   actAs: 
@@ -107,16 +39,9 @@ Quote:
     pri_id:                  { type: integer }
     annuity:                 { type: decimal(15), scale: 2 }
     purchase_price:          { type: decimal(15), scale: 2 }
-    initial_gross_annuity:   { type: decimal(15), scale: 2 }
-    initial_net_annuity:     { type: decimal(15), scale: 2 }
     commission_id:           { type: integer }
     commence_at:             { type: timestamp, notnull: true } 
     expires_at:              { type: timestamp, notnull: true } 
-    first_annuity_increase:  { type: timestamp, notnull: true } 
-    guaranteed_terms:        { type: integer }
-    premium_charge:          { type: decimal(15), scale: 5 }
-    fund_charge:             { type: decimal(15), scale: 5 }
-    administrative_charge:   { type: decimal(15), scale: 5 }
   relations:
     Client:                  { class: sfGuardUser, onDelete: CASCADE, local: client_id, foreign: id }
     QuoteType:               { class: QuoteType, local: quote_type_id, foreign: id }
@@ -126,6 +51,23 @@ Quote:
     Commission:              { class: Commission, local: commission_id, foreign: id }
     SpouseReversion:         { class: SpouseReversion, local: spouse_reversion_id, foreign: id }
     Pri:                     { class: Pri, local: pri_id, foreign: id }
+
+QuoteOutputType:
+  columns:
+    id:                     { type: integer, primary: true, autoincrement: true }
+    title:                  { type: string(255), notnull: true }
+
+QuoteOutputTypeValue:
+  actAs: 
+    Timestampable: ~ 
+  columns:
+    id:                     { type: integer, primary: true, autoincrement: true }
+    quote_id:               { type: integer }
+    quote_output_type_id:   { type: integer }
+    value:                  { type: string(255), notnull: true }
+  relations:
+    Quote:                  { class: Quote, onDelete: CASCADE, local: quote_id, foreign: id }
+    QuoteOutputType:        { class: QuoteOutputType, local: quote_output_type_id, foreign: id }
 
 QuoteType:
   columns:
@@ -251,19 +193,7 @@ UserProfile:
     sfGuardUser:      { class: sfGuardUser, onDelete: CASCADE, local: sfuser_id, foreign: id }
     Gender:           { class: Gender, local: gender_id, foreign: id }
     ClientStatus:     { class: ClientStatus, local: status_id, foreign: id }
-    ParentUser:       { class: sfGuardUser, local: parent_user_id, foreign: id }
-    
-TaxRate:
-  columns:
-    id:               { type: integer, primary: true, autoincrement: true }
-    tax_rate:         { type: decimal(10), scale: 5 }
-    start_bracket:    { type: integer } 
-    
-TaxRebate:
-  columns:
-    id:               { type: integer, primary: true, autoincrement: true }
-    age:              { type: integer }
-    rebate:           { type: integer } 
+    ParentUser:       { class: sfGuardUser, local: parent_user_id, foreign: id } 
     
 ClientStatus:
   columns:

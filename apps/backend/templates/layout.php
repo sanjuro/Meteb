@@ -46,7 +46,6 @@
 					      <li><?php echo link_to(__('Users'), 'sf_guard_user', array(), array( "class" => "users")) ?></li>
 					      <li><?php echo link_to(__('Groups'), 'sf_guard_group', array(), array( "class" => "group")) ?></li>
 					      <li><?php echo link_to(__('Permissions'), 'sf_guard_permission', array(), array( "class" => "group")) ?></li>
-					      <li><?php echo link_to(__('MarketData'), '@market_data') ?></li>
 					      <?php endif; ?>					
 					
 					    </ul>		
