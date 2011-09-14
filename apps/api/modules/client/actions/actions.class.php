@@ -40,13 +40,13 @@ class clientActions extends sfActions
   * Executes create client action for the API interface
   * based on the client id parameter using POST
   * 
-  * @WSMethod(name='CreateClient', webservice="SOAPApi")
+  * @WSMethod(name='newClient', webservice="soapApi")
   * 
   * @param string $token  Session token
   *
   * @return integer The id of the new created Client
   */
-  public function executeCreate(sfWebRequest $request)
+  public function executeNew(sfWebRequest $request)
   {
 	$api_user = $this->getUser()->getGuardUser();
 	
@@ -95,7 +95,7 @@ class clientActions extends sfActions
   * Executes get a client action for the API interface
   * based on the client id parameter
   * 
-  * @WSMethod(name='ListClients', webservice="SOAPApi")
+  * @WSMethod(name='listClients', webservice="soapApi")
   * 
   * @param string $token  Session token
   *
