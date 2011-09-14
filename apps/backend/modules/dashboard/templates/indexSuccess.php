@@ -86,7 +86,7 @@
 			<?php foreach ($quotes as $quote) :?>
 			<tr onmouseout="hideDelete('nocs_0')" onmouseover="showDelete('nocs_0')" id="nocs_0" class="dashRow">
 				<td width="100%">
-					<a href="<?php echo url_for('quote_edit', $quote )?>"><?php echo $quote['created_by'].' '.$quote['created_at']?></a>
+					<?php echo $quote->getClient().' '.$quote['created_at']?>
 				</td>
 				<td nowrap="" class="rowRight"><span style="display: none;" id="nocs_0_delete"><a onclick="hideDelete('nocs_0')" title="Delete this client" href=""><img width="10" height="11" alt="Delete" src="https://img.createsend1.com/img/icons/trash.gif"></a></span></td>
 			</tr>

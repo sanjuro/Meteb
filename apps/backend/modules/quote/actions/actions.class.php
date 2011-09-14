@@ -64,12 +64,10 @@ class quoteActions extends autoQuoteActions
 	    $this->quote = $this->getRoute()->getObject();
 	   
 	    $refreshQuote = new Quote();
-	    $refreshQuote = clone $this->quote;
+	    $refreshQuote = $this->quote->copy();
+	    $refreshQuote->save();
 	    
-	    $userForQuote = Doctrine::getTable('sfGuardUser')->findOneById($this->quote->getClientId());
-	    
-	    $this->form = new BackendQuoteForm($refreshQuote, array('userForQuote' => $userForQuote,
-	  													 'currentUser' => $this->getUser()));
+	    $this->redirect('@quote');
 	  }
 	  
 	 /**
