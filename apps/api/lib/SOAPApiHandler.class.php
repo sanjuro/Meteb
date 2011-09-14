@@ -1,8 +1,8 @@
 <?php
 
 /**
- * SoapHandler for the SOAPApi webservice.
+ * SoapHandler for the soapApi webservice.
  */
-class SOAPApiHandler extends BaseSOAPApiHandler
+class soapApiHandler extends BasesoapApiHandler
 {
 }

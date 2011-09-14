@@ -1,2 +1,3 @@
 soap:
   create: { parameter: [token], result: { class: ckPropertyResultAdapter, param: { property: result } } }
+  new: { parameter: [token], result: { class: ckPropertyResultAdapter, param: { property: result } } }
