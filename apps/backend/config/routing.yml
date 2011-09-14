@@ -35,7 +35,7 @@ quote_new:
   requirements: { sf_method: get }
 
 quote_refresh:
-  url:     /quote/:id/refresh.:sf_format
+  url:     /quote/refresh.:sf_format
   class:   sfDoctrineRoute
   options: { model: Quote, type: object }
   param:   { module: quote, action: refresh, sf_format: html }

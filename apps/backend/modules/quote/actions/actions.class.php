@@ -66,8 +66,11 @@ class quoteActions extends autoQuoteActions
 	    $refreshQuote = new Quote();
 	    $refreshQuote = $this->quote->copy();
 	    $refreshQuote->save();
-	    
 	    $this->redirect('@quote');
+	    //old edit quote to take user to the edit quote page for the new quote
+	    //$userForQuote = Doctrine::getTable('sfGuardUser')->findOneById($refreshQuote->getClientId());
+	    //$this->form = new BackendQuoteForm($refreshQuote, array('userForQuote' => $userForQuote, 'currentUser' => $this->getUser()));	
+	    //$this->setTemplate('edit');
 	  }
 	  
 	 /**

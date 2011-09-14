@@ -105,15 +105,6 @@
 		 </div>
 		 <div class="sf_admin_form_row">	 
 			<div>
-				<?php echo $form['userProfiles'][0]['company']->renderLabel() ?>
-			</div>			
-			<div  class="content" >
-				<?php echo $form['userProfiles'][0]['company'] ?>
-			</div>
-			<?php echo $form['userProfiles'][0]['company']->renderError() ?>
-		 </div>
-		 <div class="sf_admin_form_row">	 
-			<div>
 				<?php echo $form['userProfiles'][0]['gender_id']->renderLabel() ?>
 			</div>			
 			<div  class="content" >
@@ -122,6 +113,28 @@
 			<?php echo $form['userProfiles'][0]['gender_id']->renderError() ?>
 		 </div>
       </fieldset>
+
+      <fieldset id="sf_fieldset_user">  
+      	<h2>Advisor Details</h2>
+		 <div class="sf_admin_form_row">	 
+			<div>
+				<?php echo $form['userProfiles'][0]['fsp_license_number']->renderLabel() ?>
+			</div>			
+			<div  class="content" >
+				<?php echo $form['userProfiles'][0]['fsp_license_number'] ?>
+			</div>
+			<?php echo $form['userProfiles'][0]['fsp_license_number']->renderError() ?>
+		 </div>
+		 <div class="sf_admin_form_row">	 
+			<div>
+				<?php echo $form['userProfiles'][0]['company']->renderLabel() ?>
+			</div>			
+			<div  class="content" >
+				<?php echo $form['userProfiles'][0]['company'] ?>
+			</div>
+			<?php echo $form['userProfiles'][0]['company']->renderError() ?>
+		 </div>		 
+      </fieldset>      
       
       <fieldset id="sf_fieldset_user">  
       	<h2>Contact Details</h2>
