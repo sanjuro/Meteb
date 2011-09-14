@@ -7,7 +7,7 @@
 #
 # Host: dedi1082.nur4.host-h.net (MySQL 5.0.51a-24+lenny5)
 # Database: ebannngwrb_db2
-# Generation Time: 2011-09-08 01:02:43 +0200
+# Generation Time: 2011-09-13 22:52:31 +0200
 # ************************************************************
 
 

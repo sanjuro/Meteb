@@ -19,16 +19,9 @@
  * @property integer $pri_id
  * @property decimal $annuity
  * @property decimal $purchase_price
- * @property decimal $initial_gross_annuity
- * @property decimal $initial_net_annuity
  * @property integer $commission_id
  * @property timestamp $commence_at
  * @property timestamp $expires_at
- * @property timestamp $first_annuity_increase
- * @property integer $guaranteed_terms
- * @property decimal $premium_charge
- * @property decimal $fund_charge
- * @property decimal $administrative_charge
  * @property sfGuardUser $Client
  * @property QuoteType $QuoteType
  * @property sfGuardUser $Parent
@@ -37,71 +30,60 @@
  * @property Commission $Commission
  * @property SpouseReversion $SpouseReversion
  * @property Pri $Pri
+ * @property Doctrine_Collection $QuoteOutputTypeValue
  * 
- * @method integer         getId()                     Returns the current record's "id" value
- * @method integer         getClientId()               Returns the current record's "client_id" value
- * @method integer         getQuoteTypeId()            Returns the current record's "quote_type_id" value
- * @method integer         getCreatedBy()              Returns the current record's "created_by" value
- * @method integer         getSecondLife()             Returns the current record's "second_life" value
- * @method integer         getMainSex()                Returns the current record's "main_sex" value
- * @method date            getMainDob()                Returns the current record's "main_dob" value
- * @method integer         getSpouseSex()              Returns the current record's "spouse_sex" value
- * @method date            getSpouseDob()              Returns the current record's "spouse_dob" value
- * @method integer         getGp()                     Returns the current record's "gp" value
- * @method integer         getSpouseReversionId()      Returns the current record's "spouse_reversion_id" value
- * @method integer         getPriId()                  Returns the current record's "pri_id" value
- * @method decimal         getAnnuity()                Returns the current record's "annuity" value
- * @method decimal         getPurchasePrice()          Returns the current record's "purchase_price" value
- * @method decimal         getInitialGrossAnnuity()    Returns the current record's "initial_gross_annuity" value
- * @method decimal         getInitialNetAnnuity()      Returns the current record's "initial_net_annuity" value
- * @method integer         getCommissionId()           Returns the current record's "commission_id" value
- * @method timestamp       getCommenceAt()             Returns the current record's "commence_at" value
- * @method timestamp       getExpiresAt()              Returns the current record's "expires_at" value
- * @method timestamp       getFirstAnnuityIncrease()   Returns the current record's "first_annuity_increase" value
- * @method integer         getGuaranteedTerms()        Returns the current record's "guaranteed_terms" value
- * @method decimal         getPremiumCharge()          Returns the current record's "premium_charge" value
- * @method decimal         getFundCharge()             Returns the current record's "fund_charge" value
- * @method decimal         getAdministrativeCharge()   Returns the current record's "administrative_charge" value
- * @method sfGuardUser     getClient()                 Returns the current record's "Client" value
- * @method QuoteType       getQuoteType()              Returns the current record's "QuoteType" value
- * @method sfGuardUser     getParent()                 Returns the current record's "Parent" value
- * @method Gender          getGender()                 Returns the current record's "Gender" value
- * @method Gender          getSpouseGender()           Returns the current record's "SpouseGender" value
- * @method Commission      getCommission()             Returns the current record's "Commission" value
- * @method SpouseReversion getSpouseReversion()        Returns the current record's "SpouseReversion" value
- * @method Pri             getPri()                    Returns the current record's "Pri" value
- * @method Quote           setId()                     Sets the current record's "id" value
- * @method Quote           setClientId()               Sets the current record's "client_id" value
- * @method Quote           setQuoteTypeId()            Sets the current record's "quote_type_id" value
- * @method Quote           setCreatedBy()              Sets the current record's "created_by" value
- * @method Quote           setSecondLife()             Sets the current record's "second_life" value
- * @method Quote           setMainSex()                Sets the current record's "main_sex" value
- * @method Quote           setMainDob()                Sets the current record's "main_dob" value
- * @method Quote           setSpouseSex()              Sets the current record's "spouse_sex" value
- * @method Quote           setSpouseDob()              Sets the current record's "spouse_dob" value
- * @method Quote           setGp()                     Sets the current record's "gp" value
- * @method Quote           setSpouseReversionId()      Sets the current record's "spouse_reversion_id" value
- * @method Quote           setPriId()                  Sets the current record's "pri_id" value
- * @method Quote           setAnnuity()                Sets the current record's "annuity" value
- * @method Quote           setPurchasePrice()          Sets the current record's "purchase_price" value
- * @method Quote           setInitialGrossAnnuity()    Sets the current record's "initial_gross_annuity" value
- * @method Quote           setInitialNetAnnuity()      Sets the current record's "initial_net_annuity" value
- * @method Quote           setCommissionId()           Sets the current record's "commission_id" value
- * @method Quote           setCommenceAt()             Sets the current record's "commence_at" value
- * @method Quote           setExpiresAt()              Sets the current record's "expires_at" value
- * @method Quote           setFirstAnnuityIncrease()   Sets the current record's "first_annuity_increase" value
- * @method Quote           setGuaranteedTerms()        Sets the current record's "guaranteed_terms" value
- * @method Quote           setPremiumCharge()          Sets the current record's "premium_charge" value
- * @method Quote           setFundCharge()             Sets the current record's "fund_charge" value
- * @method Quote           setAdministrativeCharge()   Sets the current record's "administrative_charge" value
- * @method Quote           setClient()                 Sets the current record's "Client" value
- * @method Quote           setQuoteType()              Sets the current record's "QuoteType" value
- * @method Quote           setParent()                 Sets the current record's "Parent" value
- * @method Quote           setGender()                 Sets the current record's "Gender" value
- * @method Quote           setSpouseGender()           Sets the current record's "SpouseGender" value
- * @method Quote           setCommission()             Sets the current record's "Commission" value
- * @method Quote           setSpouseReversion()        Sets the current record's "SpouseReversion" value
- * @method Quote           setPri()                    Sets the current record's "Pri" value
+ * @method integer             getId()                   Returns the current record's "id" value
+ * @method integer             getClientId()             Returns the current record's "client_id" value
+ * @method integer             getQuoteTypeId()          Returns the current record's "quote_type_id" value
+ * @method integer             getCreatedBy()            Returns the current record's "created_by" value
+ * @method integer             getSecondLife()           Returns the current record's "second_life" value
+ * @method integer             getMainSex()              Returns the current record's "main_sex" value
+ * @method date                getMainDob()              Returns the current record's "main_dob" value
+ * @method integer             getSpouseSex()            Returns the current record's "spouse_sex" value
+ * @method date                getSpouseDob()            Returns the current record's "spouse_dob" value
+ * @method integer             getGp()                   Returns the current record's "gp" value
+ * @method integer             getSpouseReversionId()    Returns the current record's "spouse_reversion_id" value
+ * @method integer             getPriId()                Returns the current record's "pri_id" value
+ * @method decimal             getAnnuity()              Returns the current record's "annuity" value
+ * @method decimal             getPurchasePrice()        Returns the current record's "purchase_price" value
+ * @method integer             getCommissionId()         Returns the current record's "commission_id" value
+ * @method timestamp           getCommenceAt()           Returns the current record's "commence_at" value
+ * @method timestamp           getExpiresAt()            Returns the current record's "expires_at" value
+ * @method sfGuardUser         getClient()               Returns the current record's "Client" value
+ * @method QuoteType           getQuoteType()            Returns the current record's "QuoteType" value
+ * @method sfGuardUser         getParent()               Returns the current record's "Parent" value
+ * @method Gender              getGender()               Returns the current record's "Gender" value
+ * @method Gender              getSpouseGender()         Returns the current record's "SpouseGender" value
+ * @method Commission          getCommission()           Returns the current record's "Commission" value
+ * @method SpouseReversion     getSpouseReversion()      Returns the current record's "SpouseReversion" value
+ * @method Pri                 getPri()                  Returns the current record's "Pri" value
+ * @method Doctrine_Collection getQuoteOutputTypeValue() Returns the current record's "QuoteOutputTypeValue" collection
+ * @method Quote               setId()                   Sets the current record's "id" value
+ * @method Quote               setClientId()             Sets the current record's "client_id" value
+ * @method Quote               setQuoteTypeId()          Sets the current record's "quote_type_id" value
+ * @method Quote               setCreatedBy()            Sets the current record's "created_by" value
+ * @method Quote               setSecondLife()           Sets the current record's "second_life" value
+ * @method Quote               setMainSex()              Sets the current record's "main_sex" value
+ * @method Quote               setMainDob()              Sets the current record's "main_dob" value
+ * @method Quote               setSpouseSex()            Sets the current record's "spouse_sex" value
+ * @method Quote               setSpouseDob()            Sets the current record's "spouse_dob" value
+ * @method Quote               setGp()                   Sets the current record's "gp" value
+ * @method Quote               setSpouseReversionId()    Sets the current record's "spouse_reversion_id" value
+ * @method Quote               setPriId()                Sets the current record's "pri_id" value
+ * @method Quote               setAnnuity()              Sets the current record's "annuity" value
+ * @method Quote               setPurchasePrice()        Sets the current record's "purchase_price" value
+ * @method Quote               setCommissionId()         Sets the current record's "commission_id" value
+ * @method Quote               setCommenceAt()           Sets the current record's "commence_at" value
+ * @method Quote               setExpiresAt()            Sets the current record's "expires_at" value
+ * @method Quote               setClient()               Sets the current record's "Client" value
+ * @method Quote               setQuoteType()            Sets the current record's "QuoteType" value
+ * @method Quote               setParent()               Sets the current record's "Parent" value
+ * @method Quote               setGender()               Sets the current record's "Gender" value
+ * @method Quote               setSpouseGender()         Sets the current record's "SpouseGender" value
+ * @method Quote               setCommission()           Sets the current record's "Commission" value
+ * @method Quote               setSpouseReversion()      Sets the current record's "SpouseReversion" value
+ * @method Quote               setPri()                  Sets the current record's "Pri" value
+ * @method Quote               setQuoteOutputTypeValue() Sets the current record's "QuoteOutputTypeValue" collection
  * 
  * @package    meteb
  * @subpackage model
@@ -163,16 +145,6 @@ abstract class BaseQuote extends sfDoctrineRecord
              'scale' => 2,
              'length' => 15,
              ));
-        $this->hasColumn('initial_gross_annuity', 'decimal', 15, array(
-             'type' => 'decimal',
-             'scale' => 2,
-             'length' => 15,
-             ));
-        $this->hasColumn('initial_net_annuity', 'decimal', 15, array(
-             'type' => 'decimal',
-             'scale' => 2,
-             'length' => 15,
-             ));
         $this->hasColumn('commission_id', 'integer', null, array(
              'type' => 'integer',
              ));
@@ -183,28 +155,6 @@ abstract class BaseQuote extends sfDoctrineRecord
         $this->hasColumn('expires_at', 'timestamp', null, array(
              'type' => 'timestamp',
              'notnull' => true,
-             ));
-        $this->hasColumn('first_annuity_increase', 'timestamp', null, array(
-             'type' => 'timestamp',
-             'notnull' => true,
-             ));
-        $this->hasColumn('guaranteed_terms', 'integer', null, array(
-             'type' => 'integer',
-             ));
-        $this->hasColumn('premium_charge', 'decimal', 15, array(
-             'type' => 'decimal',
-             'scale' => 5,
-             'length' => 15,
-             ));
-        $this->hasColumn('fund_charge', 'decimal', 15, array(
-             'type' => 'decimal',
-             'scale' => 5,
-             'length' => 15,
-             ));
-        $this->hasColumn('administrative_charge', 'decimal', 15, array(
-             'type' => 'decimal',
-             'scale' => 5,
-             'length' => 15,
              ));
     }
 
@@ -244,6 +194,10 @@ abstract class BaseQuote extends sfDoctrineRecord
         $this->hasOne('Pri', array(
              'local' => 'pri_id',
              'foreign' => 'id'));
+
+        $this->hasMany('QuoteOutputTypeValue', array(
+             'local' => 'id',
+             'foreign' => 'quote_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

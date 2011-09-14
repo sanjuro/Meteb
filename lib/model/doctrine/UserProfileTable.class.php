@@ -33,7 +33,6 @@ class UserProfileTable extends Doctrine_Table
 	      ->where('sfug.group_id = 3');
 	 
 	    return $q;
-
 	}
     
     /**

@@ -2,9 +2,9 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 #api
-api_login:
-  url:   /login/:token/:username/:password.:sf_format
-  param: { module: login, action: authenticate }
+api_new_login:
+  url:   /login/new/:token/:username/:password.:sf_format
+  param: { module: login, action: new }
   requirements:
     token:      \w+
     username:   \w+
@@ -19,16 +19,16 @@ api_client_show:
     sf_format: (?:xml|json|yaml)
     sf_method: [get]
 
-api_client_create:
-  url: /clients/create/:token.:sf_format
-  param: { module: client, action: create }
+api_new_create:
+  url: /clients/new/:token.:sf_format
+  param: { module: client, action: new }
   requirements:
     sf_format: (?:xml|json|yaml)
     sf_method: [post]
       
-api_quote_generate:
-  url:   /quotes/create/:token.:sf_format
-  param: { module: quote, action: create }
+api_new_quote:
+  url:   /quotes/new/:token.:sf_format
+  param: { module: quote, action: new }
   requirements:
     clientid:   \w+
     sf_format: (?:xml|json|yaml)

@@ -23,15 +23,15 @@ class loginActions extends sfActions
 	/**
 	 * Action to authenticate the api request
 	 *
-	 * @WSMethod(name='Login',webservice='SOAPApi')
+	 * @WSMethod(name='newLogin',webservice="soapApi")
 	 * 
-	 * @access public
-	 *
-     * @param LoginRequest[] $input
-	 *
-	 * @return string $message
+     * @param string $token    Client Token
+     * @param string $username Client Username
+     * @param string $password Client Password
+     *
+     * @return array $object API Token and ID
 	 */
-	public function executeAuthenticate(sfWebRequest $request) {
+	public function executeNew(sfWebRequest $request) {
 	
 		// now, analayze the PHP_AUTH_DIGEST var  
 		$auth['token'] = $request->getParameter('token');

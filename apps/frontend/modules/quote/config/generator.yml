@@ -22,7 +22,7 @@ generator:
           Quote %%id%%, type <b>%%QuoteType%%</b> for <b>%%client%%</b> created on %%created_at%%  by <b>%%parent%%</b>
         title: Quote Management
         object_actions:
-         _edit:       ~
+         refresh:     ~
          _delete:     ~
          generate:    
       filter:         ~

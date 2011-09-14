@@ -3,25 +3,25 @@
 /**
  * This is an auto-generated SoapHandler. All changes to this file will be overwritten.
  */
-class BaseSOAPApiHandler extends ckSoapHandler
+class BasesoapApiHandler extends ckSoapHandler
 {
-  public function client_create($request)
+  public function newClient($request)
   {
-    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('client', 'create', array($request));
+    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('client', 'new', array($request));
   }
 
-  public function client_show($token)
+  public function listClients($token)
   {
     return sfContext::getInstance()->getController()->invokeSoapEnabledAction('client', 'show', array($token));
   }
 
-  public function Login($input)
+  public function newLogin($token, $username, $password)
   {
-    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('login', 'authenticate', array($input));
+    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('login', 'new', array($token, $username, $password));
   }
 
-  public function quote_create($request)
+  public function newQuote($request)
   {
-    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('quote', 'create', array($request));
+    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('quote', 'new', array($request));
   }
 }

@@ -11,7 +11,7 @@
     </xsd:schema>
   </wsdl:types>
   <wsdl:portType name="soapApiPortType">
-    <wsdl:operation name="newClient" parameterOrder="request">
+    <wsdl:operation name="newClient" parameterOrder="token">
       <wsdl:input message="tns:newClientRequest"/>
       <wsdl:output message="tns:newClientResponse"/>
     </wsdl:operation>
@@ -23,7 +23,7 @@
       <wsdl:input message="tns:newLoginRequest"/>
       <wsdl:output message="tns:newLoginResponse"/>
     </wsdl:operation>
-    <wsdl:operation name="newQuote" parameterOrder="request">
+    <wsdl:operation name="newQuote" parameterOrder="token">
       <wsdl:input message="tns:newQuoteRequest"/>
       <wsdl:output message="tns:newQuoteResponse"/>
     </wsdl:operation>
@@ -33,7 +33,7 @@
     <wsdl:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="newClient">
       <soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://meteb.localhost/newClient" style="rpc"/>
       <wsdl:input xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
-        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="request" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="token" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
       </wsdl:input>
       <wsdl:output xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
         <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="result" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
@@ -60,7 +60,7 @@
     <wsdl:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="newQuote">
       <soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://meteb.localhost/newQuote" style="rpc"/>
       <wsdl:input xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
-        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="request" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="token" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
       </wsdl:input>
       <wsdl:output xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
         <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="result" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
@@ -68,7 +68,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:message name="newClientRequest">
-    <wsdl:part name="request" type="tns:AnyTypeArray"/>
+    <wsdl:part name="token" type="xsd:string"/>
   </wsdl:message>
   <wsdl:message name="newClientResponse">
     <wsdl:part name="result" type="xsd:int"/>
@@ -88,7 +88,7 @@
     <wsdl:part name="result" type="tns:AnyTypeArray"/>
   </wsdl:message>
   <wsdl:message name="newQuoteRequest">
-    <wsdl:part name="request" type="tns:AnyTypeArray"/>
+    <wsdl:part name="token" type="xsd:string"/>
   </wsdl:message>
   <wsdl:message name="newQuoteResponse">
     <wsdl:part name="result" type="tns:AnyTypeArray"/>
@@ -99,3 +99,4 @@
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
+

@@ -33,6 +33,7 @@ class quoteActions extends autoQuoteActions
 	    $this->quote = $this->form->getObject();
 	  }
 	  
+	  
 	 /**
 	 * This Action will handle creating a new quote for a client
 	 * 
@@ -50,21 +51,23 @@ class quoteActions extends autoQuoteActions
 	    $this->setTemplate('new');
 
 	  }
+	    
 	  
 	 /**
-	 * This Action will handle Editting a quote and all its calculations
+	 * This Action will handle Refreshing a quote and all its calculations
 	 * 
 	 * @param object  $request
 	 * @return unknown
 	 */
-	  public function executeEdit(sfWebRequest $request)
+	  public function executeRefresh(sfWebRequest $request)
 	  {
 	    $this->quote = $this->getRoute()->getObject();
+	   
+	    $refreshQuote = new Quote();
+	    $refreshQuote = $this->quote->copy();
+	    $refreshQuote->save();
 	    
-	    $userForQuote = Doctrine::getTable('sfGuardUser')->findOneById($this->quote->getClientId());
-	    
-	    $this->form = new BackendQuoteForm($this->quote, array('userForQuote' => $userForQuote,
-	  													 'currentUser' => $this->getUser()));
+	    $this->redirect('@quote');
 	  }
 	  
 	 /**
@@ -100,31 +103,13 @@ class quoteActions extends autoQuoteActions
             
         $this->quote = $quote;
         
+        $this->quote_calculations = $quote->getQuoteOutputTypes();
+        
         $this->client = $quote->getClient();
         
         $userprofile = $this->client->getUserProfile();
+        
         $this->userprofile = $userprofile[0];
-			
-		$quoteInputArray = array();
-		$quoteInputArray['quote_type_id'] = $quote->getQuoteTypeId();
-		$quoteInputArray['commission'] = $quote->getCommission()->getTitle();
-		$quoteInputArray['main_sex'] = $quote->getMainSex();
-		$quoteInputArray['main_dob'] = $quote->getMainDob();
-		$quoteInputArray['second_life'] = $quote->getSecondLife();
-		$quoteInputArray['spouse_sex'] = $quote->getSpouseSex();
-		$quoteInputArray['spouse_dob'] = $quote->getSpouseDob();
-		$quoteInputArray['gp'] = $quote->getGp();
-		$quoteInputArray['spouse_rev'] = $quote->getSpouseReversion()->getTitle();
-		$quoteInputArray['pp'] = $quote->getPurchasePrice();
-		$quoteInputArray['annuity'] = $quote->getAnnuity();
-		
-		/**
-		 * Create holder array from request
-		 */
-   	 	$quote_calculations = MetebQuote::generate($quoteInputArray);
-   	 	$quote_calculations['id'] = $quote->getId();
-    	
-        $this->quote_calculations = $quote_calculations;
 
       }
       
@@ -143,29 +128,13 @@ class quoteActions extends autoQuoteActions
         
         $this->quote = $quote;
         
+        $quote_calculations = $quote->getQuoteOutputTypes();
+        
         $client = '';
         $userprofile = '';
         $client = $this->quote->getClient();
     	$userprofile = $client->getUserProfile();
     	$userprofile = $userprofile[0];
-
-		$quoteInputArray = array();
-		$quoteInputArray['quote_type_id'] = $quote->getQuoteTypeId();
-		$quoteInputArray['commission'] = $quote->getCommission()->getTitle();
-		$quoteInputArray['main_sex'] = $quote->getMainSex();
-		$quoteInputArray['main_dob'] = $quote->getMainDob();
-		$quoteInputArray['second_life'] = $quote->getSecondLife();
-		$quoteInputArray['spouse_sex'] = $quote->getSpouseSex();
-		$quoteInputArray['spouse_dob'] = $quote->getSpouseDob();
-		$quoteInputArray['gp'] = $quote->getGp();
-		$quoteInputArray['spouse_rev'] = $quote->getSpouseReversion()->getTitle();
-		$quoteInputArray['pp'] = $quote->getPurchasePrice();
-		$quoteInputArray['annuity'] = $quote->getAnnuity();
-		
-		/**
-		 * Create holder array from request
-		 */
-   	 	$quote_calculations = MetebQuote::generate($quoteInputArray);
 		
         // Get Partial for PDF
 		sfProjectConfiguration::getActive()->loadHelpers('Partial');
@@ -182,8 +151,6 @@ class quoteActions extends autoQuoteActions
 		
 		return sfView::NONE;
 	}
-	
- 
 	
 	/**
 	 * This Action will handle creating a new quote for a client, it also log this into

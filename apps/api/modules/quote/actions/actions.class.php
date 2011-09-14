@@ -40,13 +40,13 @@ class quoteActions extends sfActions
   * Executes create quote action for the API interface
   * based on the client id parameter using POST
   * 
-  * @WSMethod(webservice='SOAPApi')
+  * @WSMethod(name='newQuote', webservice="soapApi")
   * 
   * @param array $request
   *
   * @return array $result
   */
-  public function executeCreate(sfWebRequest $request)
+  public function executeNew(sfWebRequest $request)
   {		
 	$api_user = $this->getUser()->getGuardUser();
 	
