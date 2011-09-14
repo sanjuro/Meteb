@@ -36,7 +36,7 @@
 						  <li><?php echo link_to(__('Quotes'), '@quote') ?></li>
 						 
 						  <?php if ($sf_user->hasGroup('administrator')): ?>		
-						  <li><?php echo link_to(__('Advisor'), '@advisor') ?></li>
+						  <li><?php echo link_to(__('Advisors'), '@advisor') ?></li>
 						  <li><?php echo link_to(__('Profiles'), 'userprofile') ?></li>
 						  <?php endif; ?>
 						  
