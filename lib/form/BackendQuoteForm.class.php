@@ -76,7 +76,12 @@ class BackendQuoteForm extends BaseQuoteForm
 	$this->widgetSchema['annuity'] = new sfWidgetFormInputText(array('label' => 'Monthly Annuity'));
 	
 	
+	
 	$this->validatorSchema['main_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender'), array('required' => 'Please select a valid Main Memeber\'s Gender'));
+	
+	$this->validatorSchema['gp'] = new sfValidatorChoice( array(
+									  'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')
+									), array('required' => 'Please select a valid Guarantee Period'));
 	
 	$this->validatorSchema['spouse_sex'] = new sfValidatorDoctrineChoice(array('required' => false, 'multiple' => false, 'model' => 'Gender'), array('required' => 'Please select a valid Spouse\'s Gender'));
 	
@@ -88,7 +93,11 @@ class BackendQuoteForm extends BaseQuoteForm
 	
 	$this->validatorSchema['commission_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Commission'), array('required' => 'Please select a valid Commission Percentage'));
 	
-  	if($this->getOption("userForQuote")){
+  	
+    $this->mergePostValidator(new sfValidatorPostQuote()); 
+    	
+	
+	if($this->getOption("userForQuote")){
 		$this->setDefaults(array(
 			'client_id'      => $userForQuote->getId(),
 			'main_sex'       => $userprofile[0]->getGenderId(),
@@ -97,6 +106,8 @@ class BackendQuoteForm extends BaseQuoteForm
 			'spouse_reversion_id'     => 0
 		));
 	}
+	
+	
   }
   
   public function updateObject($values = null)

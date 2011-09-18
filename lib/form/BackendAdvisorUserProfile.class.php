@@ -67,8 +67,6 @@ class BackendAdvisorUserProfileForm extends BaseUserProfileForm
 	$this->validatorSchema['postaladdress'] = new sfValidatorString(array('required' => false));
 	
 	$this->validatorSchema['streetaddress'] = new sfValidatorString(array('required' => false));
-
-	$this->validatorSchema['telephone'] = new sfValidatorString(array('required' => false));	
 	
 	$this->validatorSchema['mobile'] = new sfValidatorString(array('required' => false));
 	

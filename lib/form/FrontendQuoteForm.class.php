@@ -72,6 +72,10 @@ class FrontendQuoteForm extends BaseQuoteForm
 
 	$this->validatorSchema['main_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender', 'min' => 1), array('required' => 'Please select a valid Main Memeber\'s Gender'));
 	
+	$this->validatorSchema['gp'] = new sfValidatorChoice( array(
+									  'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')
+									), array('required' => 'Please select a valid Guarantee Period'));
+	
 	$this->validatorSchema['spouse_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender', 'min' => 1), array('required' => 'Please select a valid Spouse\'s Gender'));
 	
 	$this->validatorSchema['main_dob'] =  new sfValidatorDate (array(), array('required' => 'Please select a valid Date of Birth'));
@@ -79,6 +83,11 @@ class FrontendQuoteForm extends BaseQuoteForm
 	$this->validatorSchema['spouse_dob'] = new sfValidatorDate (array('required' => false));
 	
 	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'SpouseReversion'), array('required' => 'Please select a valid Spouse Reversion'));
+	
+	
+    $this->mergePostValidator(new sfValidatorPostQuote()); 
+
+    
 	
 	$userprofile = $userForQuote->getUserProfile();
     	

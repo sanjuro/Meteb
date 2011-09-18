@@ -13,7 +13,7 @@
     
    <?php  foreach ($form->getErrorSchema() as $sField => $sError) : ?>
 	    <div class="error">
-		<?php  echo $sField.': '.$sError.'<br />' ?>
+		<?php  echo $sError.'<br />' ?>
 		</div>
    <?php  endforeach; ?>
     
