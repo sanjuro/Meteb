@@ -15,4 +15,6 @@ Please log in to request a quotation. You can adjust your quotes to your suit yo
 <p>View the historical increases that have been awarded and download product brochures <?php echo link_to('here', url_for('@page_downloads')) ?>.</p>
 
 <p>If you are close to retirement and need to invest in an annuity you are at the right place. If you require assistance please do not hesitate to <?php echo link_to('contact us', url_for('@page_contact')) ?> or have a scan through the <?php echo link_to('help', url_for('@page_help')) ?> section.</p>
+<p><a href="http://www.meteb.co.za" target="_blank">Click here</a> to visit the Momentum Employee Benefits website.</p>
+
 <br>

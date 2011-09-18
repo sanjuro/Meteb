@@ -38,7 +38,7 @@
 			<div  class="content" >
 				<?php echo $form['main_sex'] ?>
 				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Main Gender</b> the sex of the client') ?>" class="tip">
-			</div>			
+			</div>
 			<?php echo $form['main_sex']->renderError() ?>
 		 </div>
 		 <div class="sf_admin_form_row">			
