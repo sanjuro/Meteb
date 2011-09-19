@@ -39,6 +39,8 @@ class BackendQuoteForm extends BaseQuoteForm
       $this['created_at'], $this['updated_at'], $this['commence_at']
     );
     
+    $this->widgetSchema['client_id'] = new sfWidgetFormInputHidden();
+    
  	$this->widgetSchema['quote_type_id'] = new sfWidgetFormDoctrineChoice ( array('model' => 'QuoteType', 
 													  'add_empty' => "Select a Quote Type",
 													  'label' => 'Province/Region',
@@ -80,7 +82,7 @@ class BackendQuoteForm extends BaseQuoteForm
 	$this->validatorSchema['main_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender'), array('required' => 'Please select a valid Main Memeber\'s Gender'));
 	
 	$this->validatorSchema['gp'] = new sfValidatorChoice( array(
-									  'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')
+									  'choices' => array( 0, 60, 120)
 									), array('required' => 'Please select a valid Guarantee Period'));
 	
 	$this->validatorSchema['spouse_sex'] = new sfValidatorDoctrineChoice(array('required' => false, 'multiple' => false, 'model' => 'Gender'), array('required' => 'Please select a valid Spouse\'s Gender'));

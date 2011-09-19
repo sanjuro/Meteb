@@ -37,6 +37,8 @@ class FrontendQuoteForm extends BaseQuoteForm
       $this['created_at'], $this['updated_at'], $this['commence_at']
     );
     
+    $this->widgetSchema['client_id'] = new sfWidgetFormInputHidden();
+    
  	$this->widgetSchema['quote_type_id'] = new sfWidgetFormDoctrineChoice ( array('model' => 'QuoteType', 
 													  'add_empty' => "Select a Quote Type",
 													  'label' => 'Province/Region',

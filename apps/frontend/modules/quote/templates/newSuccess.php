@@ -2,7 +2,7 @@
 
 
 <div id="sf_admin_container">
-  <h1><?php echo __('New Quote', array(), 'messages') ?></h1>
+  <h1><?php echo __('New Quote for:'.$userForQuote->getName(), array(), 'messages') ?></h1>
 
   <?php include_partial('quote/flashes') ?>
 

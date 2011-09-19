@@ -30,6 +30,8 @@ class quoteActions extends autoQuoteActions
 	  		$this->form = new FrontendQuoteForm();
 	  	}
 	    
+	  	$this->userForQuote = $userForQuote;
+	    
 	    $this->quote = $this->form->getObject();
 	  }
 	  	  
@@ -42,13 +44,14 @@ class quoteActions extends autoQuoteActions
 	  public function executeCreate(sfWebRequest $request)
 	  {
 	    $this->form = new FrontendQuoteForm('', array('currentUser' => $this->getUser()));  													 
-	    
-	    $this->quote = $this->form->getObject();
 	
 	    $this->processForm($request, $this->form);
+	    
+	    $this->quote = $this->form->getObject();
+	    
+	  	$this->userForQuote = $this->quote->getGuardUser()->getName();
 	
 	    $this->setTemplate('new');
-
 	  }	  
 	  
 	 /**
@@ -93,38 +96,19 @@ class quoteActions extends autoQuoteActions
 	  * @param object  $request
 	  * @return unknown
 	  */
-  	  public function executeListGenerate(sfWebRequest $request)
+  	  public function executeListView(sfWebRequest $request)
   	  {
         $quote = $this->getRoute()->getObject();
             
         $this->quote = $quote;
         
+        $this->quote_calculations = $quote->getQuoteOutputTypes();
+        
         $this->client = $quote->getClient();
         
         $userprofile = $this->client->getUserProfile();
-        $this->userprofile = $userprofile[0];
-			
-		$quoteInputArray = array();
-		$quoteInputArray['quote_type_id'] = $quote->getQuoteTypeId();
-		$quoteInputArray['commission'] = $quote->getCommission()->getTitle();
-		$quoteInputArray['main_sex'] = $quote->getMainSex();
-		$quoteInputArray['main_dob'] = $quote->getMainDob();
-		$quoteInputArray['second_life'] = $quote->getSecondLife();
-		$quoteInputArray['spouse_sex'] = $quote->getSpouseSex();
-		$quoteInputArray['spouse_dob'] = $quote->getSpouseDob();
-		$quoteInputArray['gp'] = $quote->getGp();
-		$quoteInputArray['spouse_rev'] = $quote->getSpouseReversion()->getTitle();
-		$quoteInputArray['pp'] = $quote->getPurchasePrice();
-		$quoteInputArray['annuity'] = $quote->getAnnuity();
-		
-		/**
-		 * Create holder array from request
-		 */
-   	 	$quote_calculations = MetebQuote::generate($quoteInputArray);
-   	 	$quote_calculations['id'] = $quote->getId();
         
-    	
-        $this->quote_calculations = $quote_calculations;
+        $this->userprofile = $userprofile[0];
 
       }
       

@@ -12,12 +12,13 @@
  */
 class Quote extends BaseQuote
 {
+	
 	/**
 	 * Function to create all the quote calculations for a quote
 	 * 
 	 * @param void
 	 * 
-	 * @return array All calculations for the quoute
+	 * @return array All calculations for the quote
 	 */	
  	public function save(Doctrine_Connection $conn = null){
  		
@@ -40,6 +41,22 @@ class Quote extends BaseQuote
    	 		}
    	 	} 
    	 	
+ 	}
+ 	
+	/**
+	 * Function to retrieve the associated SfGuardUser owner of the
+	 * quote
+	 * 
+	 * @param void
+	 * 
+	 * @return sfGuardUser Associated SfGuardUser object
+	 */	
+ 	public function getGuardUser(){
+		
+       $guardUser = Doctrine::getTable('sfGuardUser')
+	      ->findOneById($this->getClientId()); 
+		
+	   return $guardUser;	
  	}
 	
 	/**

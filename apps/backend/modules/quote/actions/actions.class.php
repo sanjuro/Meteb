@@ -29,6 +29,8 @@ class quoteActions extends autoQuoteActions
 	  	}else{
 	  		$this->form = new BackendQuoteForm();
 	  	}
+	  	
+	  	$this->userForQuote = $userForQuote;
 	    
 	    $this->quote = $this->form->getObject();
 	  }
@@ -44,9 +46,16 @@ class quoteActions extends autoQuoteActions
 	  {
 	    $this->form = new BackendQuoteForm('', array( 'currentUser' => $this->getUser()));  													 
 	    
-	    $this->quote = $this->form->getObject();
-	
 	    $this->processForm($request, $this->form);
+	    
+	    $form_values = $this->form->getTaintedValues();
+	    
+        $guardUser = Doctrine::getTable('sfGuardUser')	    
+	      ->findOneById($form_values['client_id']); 
+	     
+	    $this->quote = $this->form->getObject();
+	    
+	    $this->userForQuote = $guardUser;
 	
 	    $this->setTemplate('new');
 
@@ -66,7 +75,9 @@ class quoteActions extends autoQuoteActions
 	    $refreshQuote = new Quote();
 	    $refreshQuote = $this->quote->copy();
 	    $refreshQuote->save();
+	    
 	    $this->redirect('@quote');
+	    
 	    //old edit quote to take user to the edit quote page for the new quote
 	    //$userForQuote = Doctrine::getTable('sfGuardUser')->findOneById($refreshQuote->getClientId());
 	    //$this->form = new BackendQuoteForm($refreshQuote, array('userForQuote' => $userForQuote, 'currentUser' => $this->getUser()));	
@@ -167,13 +178,14 @@ class quoteActions extends autoQuoteActions
 	  protected function processForm(sfWebRequest $request, sfForm $form)
 	  {
 	    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+	    	   
 	    if ($form->isValid())
 	    {
 	      $notice = $form->getObject()->isNew() ? 'The quote was created successfully.' : 'The quote was updated successfully.';
 		
 	      try {
 	      	
-	      	$values = $form ->getValues();
+	      	$values = $form->getValues();
 	      	
 	        $quote = $form->save();
 
@@ -193,6 +205,7 @@ class quoteActions extends autoQuoteActions
 	        $message = trim($message, ', ');
 	
 	        $this->getUser()->setFlash('error', $message);
+	        
 	        return sfView::SUCCESS;
 	      }
 	

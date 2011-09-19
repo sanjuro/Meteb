@@ -18,18 +18,7 @@
    <?php  endforeach; ?>
     
 	<fieldset>
-		<legend>Client Info</legend>
-		 <div class="sf_admin_form_row">			
-			<div>
-				<?php echo $form['client_id']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['client_id'] ?>
-				<img src="/images/backend/help_24.png" title="<?php echo __('Please enter the client\'s ID number') ?>" class="tip">
-			</div>			
-			<?php echo $form['client_id']->renderError() ?>
-		 </div>
+		<?php echo $form['client_id'] ?>
 		 <div class="sf_admin_form_row">			
 			<div>
 				<?php echo $form['main_sex']->renderLabel() ?>
