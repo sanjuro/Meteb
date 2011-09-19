@@ -23,6 +23,8 @@
 		<link href="/SpryAssets/SpryCollapsiblePanel.css" rel="stylesheet" type="text/css" />
 		<link rel='stylesheet' type='text/css' href='/TSScript/TSHelpHint/TSHelpHint.css' />
 		<link href="styles/oneColFixCtrHdr.css" rel="stylesheet" type="text/css" />
+		
+		<?php include_javascripts() ?>
 	</head>
 <body>
 <div class="container">
