@@ -113,7 +113,8 @@
 			<?php echo $form['userProfiles'][0]['gender_id']->renderError() ?>
 		 </div>
       </fieldset>
-
+  
+	  <?php if ($sf_user->hasGroup('advisor')): ?>
       <fieldset id="sf_fieldset_user">  
       	<h2>Advisor Details</h2>
 		 <div class="sf_admin_form_row">	 
@@ -135,6 +136,7 @@
 			<?php echo $form['userProfiles'][0]['company']->renderError() ?>
 		 </div>		 
       </fieldset>      
+      <?php endif; ?>
       
       <fieldset id="sf_fieldset_user">  
       	<h2>Contact Details</h2>
