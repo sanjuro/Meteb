@@ -29,7 +29,7 @@ class FrontendQuoteForm extends BaseQuoteForm
 	}
 
     unset(
-      $this['id'], $this['client_id'], $this['created_by'],
+      $this['id'], $this['created_by'],
       $this['initial_gross_annuity'], $this['initial_net_annuity'],
       $this['commence_at'], $this['expires_at'], $this['first_annuity_increase'],
       $this['guaranteed_terms'], $this['premium_charge'],
@@ -37,7 +37,6 @@ class FrontendQuoteForm extends BaseQuoteForm
       $this['created_at'], $this['updated_at'], $this['commence_at']
     );
     
-    $this->widgetSchema['client_id'] = new sfWidgetFormInputHidden();
     
  	$this->widgetSchema['quote_type_id'] = new sfWidgetFormDoctrineChoice ( array('model' => 'QuoteType', 
 													  'add_empty' => "Select a Quote Type",
@@ -75,16 +74,16 @@ class FrontendQuoteForm extends BaseQuoteForm
 	$this->validatorSchema['main_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender', 'min' => 1), array('required' => 'Please select a valid Main Memeber\'s Gender'));
 	
 	$this->validatorSchema['gp'] = new sfValidatorChoice( array(
-									  'choices' => array( 0 => '0 months', 60 => '60 months', 120 => '120 months')
+									  'choices' => array(0, 60, 120)
 									), array('required' => 'Please select a valid Guarantee Period'));
 	
-	$this->validatorSchema['spouse_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender', 'min' => 1), array('required' => 'Please select a valid Spouse\'s Gender'));
+	$this->validatorSchema['spouse_sex'] = new sfValidatorDoctrineChoice(array('required' => false, 'multiple' => false, 'model' => 'Gender'), array('required' => 'Please select a valid Spouse\'s Gender'));
 	
 	$this->validatorSchema['main_dob'] =  new sfValidatorDate (array(), array('required' => 'Please select a valid Date of Birth'));
 	
-	$this->validatorSchema['spouse_dob'] = new sfValidatorDate (array('required' => false));
+	$this->validatorSchema['spouse_dob'] = new sfValidatorDate (array('required' => false), array('invalid' => 'Please select a valid Spouse\'s Date of Birth'));
 	
-	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'SpouseReversion'), array('required' => 'Please select a valid Spouse Reversion'));
+	$this->validatorSchema['spouse_reversion_id'] = new sfValidatorDoctrineChoice(array('required' => false, 'multiple' => false, 'model' => 'SpouseReversion'), array('required' => 'Please select a valid Spouse Reversion'));
 	
 	
     $this->mergePostValidator(new sfValidatorPostQuote()); 
