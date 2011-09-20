@@ -148,7 +148,7 @@ class quoteActions extends autoQuoteActions
 		/**
 		 * Create holder array from request
 		 */
-   	 	$quote_calculations = MetebQuote::generate($quoteInputArray);
+   	 	$quote_calculations = $quote->getQuoteOutputTypes();
 		
         // Get Partial for PDF
 		sfProjectConfiguration::getActive()->loadHelpers('Partial');
