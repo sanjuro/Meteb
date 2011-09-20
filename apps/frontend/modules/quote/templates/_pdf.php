@@ -1,3 +1,11 @@
+<?php 
+	$num = rand(0, 26);
+    $az = "abcdefghijklmnopqrstuvwxyz";
+    $letter = "";
+    $quotenumber = "";
+    $letter = $az[$num];
+	$quotenumber = date('ymdHis') . $letter;
+?>
 <script type="text/php"> 
   if ( isset($pdf) ) {  
      $font = Font_Metrics::get_font("helvetica", "bold");
@@ -116,14 +124,14 @@
 			<td style="width: 200px;">Name</td>
 			<td style="width: 200px;"><?php echo $client->getFirstName().' '.$client->getLastName() ?></td>
 			<?php if($quote->getSecondLife() == 1) :?>
-			<td><?php echo $userprofile->getName().' '.$userprofile->getSurname() ?></td>			
+			<td><?php echo $userprofile->getSpouseName().' '.$userprofile->getSpouseSurname() ?></td>			
 			<?php endif;?>
 		</tr>
 		<tr>
 			<td>Date of Birth</td>
 			<td><?php echo $userprofile->getDob() ?></td>
 			<?php if($quote->getSecondLife() == 1) :?>
-			<td><?php echo $userprofile->getSpouseDob() ?></td>
+			<td><?php echo $quote->getSpouseDob() ?></td>
 			<?php endif;?>
 		</tr>
 		<tr>
@@ -143,6 +151,7 @@
 		</tbody>
 	</table>
 </p>
+<br><br><br><br><div align="right">Gross Annuity Quote No. <?php echo $quotenumber; ?></div>
 <h3>Application Form(s)</h3>
 <p>
 	<table>
@@ -202,6 +211,7 @@
 	<br><br>
 	Metropolitan will provide commission on the initial premium not exceeding 1.5%<br>
 </p>
+<br><br><br><br><br><br><br><div align="right">Gross Annuity Quote No. <?php echo $quotenumber; ?></div>
 <h3>Policy charges and fees</h3>
 <p>
 		The following charges will be levied against the policy, in addition to the commission or remuneration:
@@ -289,6 +299,7 @@
 	</ul>
 	<br><br>
 </p>
+<br><br><br><br><br><br><br><div align="right">Gross Annuity Quote No. <?php echo $quotenumber; ?></div>
 <h3>Complaints</h3>
 <p>
 	Should the applicant have a complaint of any nature, including a complaint in terms of the Policyholder<br>
@@ -323,8 +334,7 @@
 	Metropolitan.
 	<br><br>
 </p>
-	<br><br>
-	<br><br>
+
 <h3>Insurer's Address</h3>
 <p style="padding-bottom:30px;">
 	<table>
@@ -357,7 +367,7 @@
 </p>
 <h3>History of annuity increases</h3>
 <p>
-	<table style="border: 1px solid #000;">
+	<table border=1 style="border: 1px solid #000;">
 		<tr>
 			<th>Year</th>
 			<th>Bonus on with profit annuties</th>
@@ -456,6 +466,7 @@
 	    </tr>
 	</table>
 </p>
+<div align="right">Gross Annuity Quote No. <?php echo $quotenumber; ?></div>
 <h3>Explanatory notes and conditions</h3>
 <p style="padding-left:10px;">
 	This is not an offer of life insurance, but merely an illustration of benefits based on certain information.
@@ -516,5 +527,5 @@
 	</table>
 	<br>
 	<span style="font-size:10px;">Metropolitan Life Limited is an authorised Financial Services Provider</span>
-	<div class="clearer" style="height:676px;"><div>
+	<div class="clearer" style="height:10px;"><div>
 </p>
