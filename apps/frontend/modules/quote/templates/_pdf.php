@@ -1,10 +1,6 @@
 <?php 
-	$num = rand(0, 26);
-    $az = "abcdefghijklmnopqrstuvwxyz";
-    $letter = "";
-    $quotenumber = "";
-    $letter = $az[$num];
-	$quotenumber = date('ymdHis') . $letter;
+	$quotedate = new DateTime($quote->getCreatedAt());
+	$quotenumber = $quotedate->format('ymdHis') . $quote->getId();
 ?>
 <script type="text/php"> 
   if ( isset($pdf) ) {  
