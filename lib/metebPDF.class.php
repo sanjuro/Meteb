@@ -55,15 +55,10 @@ class metebPDF extends DOMPDF{
 	 * @return
 	 */
 	private function renderTemplate(  ) {
-
-		$num = rand(0, 26);
-    	$az = "abcdefghijklmnopqrstuvwxyz";
-    	$letter = $az[$num];
-		$quotenumber = date('ymdHis') . $this->PDFNumber . $letter;
-		
+		$PDFDate = new DateTime($this->PDFDate);	
+		$quotenumber = $PDFDate->format('ymdHis') . $this->PDFNumber;
 		$TemplatePageName = $this->TemplatePageName;
 		$TemplateTitle = $this->TemplateTitle;
-		$PDFDate = new DateTime($this->PDFDate);
 		$PDFNumber = $quotenumber;
 		$PDFContent = $this->PDFContent;
 

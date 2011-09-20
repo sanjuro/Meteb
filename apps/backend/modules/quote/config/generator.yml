@@ -19,7 +19,7 @@ generator:
         fields:
         display: [client_id, created_by, created_at]
         params:  |
-          Quote %%id%%, type <b>%%QuoteType%%</b> for <b>%%client%%</b> created on %%created_at%%  by <b>%%parent%%</b>
+          <b>%%QuoteType%%</b> quote no. %%id%% for <b>%%client%%</b> created on %%created_at%% by <b>%%parent%%</b> (<b>PP val:</b> %%purchase_price%% <b>Annuity val:</b> %%annuity%% <b>GP:</b> %%gp%%)
         title: Quote Management
         object_actions:
          refresh:     ~

@@ -152,9 +152,9 @@ class quoteActions extends autoQuoteActions
 		
         // Get Partial for PDF
 		sfProjectConfiguration::getActive()->loadHelpers('Partial');
-				
+
 		$PDFContent = get_partial('quote/pdf', array( 'quote_calculations' => $quote_calculations, 'client' => $client, 'userprofile' => $userprofile, 'quote' => $quote) );        
-        
+
         // Generate PDF
 		$metebPDF = new metebPDF();
 		$metebPDF->CreateQuote($quote, $PDFContent);
