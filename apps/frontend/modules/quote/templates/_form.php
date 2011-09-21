@@ -119,7 +119,7 @@
 				</div>
 				
 				<div id="annuity_field">
-				quote for Purchase Price of
+				quote for a Purchase Price of
 				<span class="small">
 				<?php echo $form['purchase_price'] ?>
 				</span>
@@ -128,7 +128,7 @@
 				</div>	
 				
 				<div id="purchase_price_field" style="display:none;padding-right:10px;">
-				quote for monhtly Annuity of
+				quote for a monthly Annuity of
 				<span class="small">
 				<?php echo $form['annuity'] ?>
 				</span>

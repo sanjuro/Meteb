@@ -34,7 +34,7 @@ class BackendProfileForm extends sfGuardUserForm
     );
      
     $this->widgetSchema['password'] = new sfWidgetFormInputPassword();
-    $this->validatorSchema['password']->setOption('required', false);
+    $this->validatorSchema['password']->setOption('required', true);
     
     $this->widgetSchema['confirm_password'] = new sfWidgetFormInputPassword();
  	$this->validatorSchema['confirm_password'] = new sfValidatorPass();

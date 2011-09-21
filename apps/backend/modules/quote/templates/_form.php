@@ -91,7 +91,7 @@
 			
 			<div  class="content" >
 				<?php echo $form['gp'] ?>
-				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Guarantee Periond</b> Annuities are guaranteed to be paid for life; additionally you can opt for a guaranteed minimum payment period.') ?>" class="tip">
+				<img src="/images/backend/help_24.png" title="<?php echo __('<b>Guarantee Period</b> Annuities are guaranteed to be paid for life; additionally you can opt for a guaranteed minimum payment period.') ?>" class="tip">
 			</div>			
 			<?php echo $form['gp']->renderError() ?>
 		 </div>
@@ -119,7 +119,7 @@
 				</div>
 				
 				<div id="annuity_field">
-				quote for Purchase Price of
+				quote for a Purchase Price of
 				<span class="small">
 				<?php echo $form['purchase_price'] ?>
 				</span>
@@ -128,7 +128,7 @@
 				</div>	
 				
 				<div id="purchase_price_field" style="display:none;padding-right:10px;">
-				quote for monhtly Annuity of
+				quote for a monthly Annuity of
 				<span class="small">
 				<?php echo $form['annuity'] ?>
 				</span>
