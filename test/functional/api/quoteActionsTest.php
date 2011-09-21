@@ -32,13 +32,9 @@
 	    
 	    public $purchase_price;  
 	
-	    public $commission;    
+	    public $commission;  
 	    
-	    public $commence_at;     
-	
-	    public $expires_at; 
-	    
-		public function __construct($quote_type, $second_life, $main_sex, $main_dob, $spouse_sex, $spouse_dob, $gp, $spouse_reversion, $annuity, $purchase_price, $commission, $commence_at, $expires_at)
+		public function __construct($quote_type, $second_life, $main_sex, $main_dob, $spouse_sex, $spouse_dob, $gp, $spouse_reversion, $annuity, $purchase_price, $commission)
 	    {
 	        $this->quote_type  = $quote_type;
 	        $this->second_life = $second_life;
@@ -51,8 +47,6 @@
 	        $this->annuity = $annuity;
 	        $this->purchase_price = $purchase_price;
 	        $this->commission  = $commission;
-	        $this->commence_at = $commence_at;
-	        $this->expires_at = $expires_at;
 	    }
 	    
 	}
@@ -64,16 +58,17 @@
     );	
     
  	$newClient = new newQuoteRequest(                   
-					'Jack Test',
-                    'jack@test.co.za',
-                    'Somecompany',
-    				'812312312323',
-                    '1',
-                    '01/07/1936',
-                    'Jill Test',
-                    'jill@test.co.za',
-    				'812312312323',
-                    '01/07/1946');
+					1,
+                    2,
+                    1,
+    				'01/07/1936',
+                    2,
+                    '01/07/1946',
+                    60,
+                    0.75,
+    				0.00,
+                    10000000,
+                    0.15);
 
     $c = new ckTestSoapClient($options);
 

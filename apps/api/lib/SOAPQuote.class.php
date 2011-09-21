@@ -89,20 +89,6 @@ class CreateQuoteRequest
      */
     public $commission;    
     
-    /**
-     * Quoute commencement date
-     *
-     * @var string
-     */
-    public $commence_at;     
-
-    /**
-     * Quoute expire date
-     *
-     * @var string
-     */
-    public $expires_at; 
-    
 }
 
 class CreateQuoteResponse 

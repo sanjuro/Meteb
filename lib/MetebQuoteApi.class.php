@@ -82,8 +82,6 @@ class MetebQuoteApi
 		$quote->setAnnuity($request['annuity']);
 		$quote->setPurchasePrice($request['purchase_price']);
 		$quote->setCommissionId($request['commission']);
-		$quote->setCommenceAt($request['commence_at']);
-		$quote->setExpiresAt($request['expires_at']);
 		$quote->save();
 		
 		return $quote;
