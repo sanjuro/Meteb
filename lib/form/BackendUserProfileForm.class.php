@@ -73,7 +73,7 @@ class BackendUserProfileForm extends BaseUserProfileForm
     
 	$this->validatorSchema['dob'] =  new sfValidatorDate (array(), array('required' => 'Please select a valid Date of Birth'));
 
-	$this->validatorSchema['gender_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender'), array('required' => 'Please select a valid Main Memeber\'s Gender'));
+	$this->validatorSchema['gender_id'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender'), array('required' => 'Please select a valid Main Member\'s Gender'));
     
 	$this->validatorSchema['spouse_name'] = new sfValidatorString(array('required' => false));
 

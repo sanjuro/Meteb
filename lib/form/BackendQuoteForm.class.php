@@ -79,7 +79,7 @@ class BackendQuoteForm extends BaseQuoteForm
 	
 	
 	
-	$this->validatorSchema['main_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender'), array('required' => 'Please select a valid Main Memeber\'s Gender'));
+	$this->validatorSchema['main_sex'] = new sfValidatorDoctrineChoice(array('multiple' => false, 'model' => 'Gender'), array('required' => 'Please select a valid Main Member\'s Gender'));
 	
 	$this->validatorSchema['gp'] = new sfValidatorChoice( array(
 									  'choices' => array( 0, 60, 120)
