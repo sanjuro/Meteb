@@ -18,30 +18,8 @@ class clientActions extends sfActions
   */
   public function preExecute()
   { 
-  	/*sfConfig::set('sf_web_debug', false);
+  	sfConfig::set('sf_web_debug', false);
 
-    if(!$this->getUser()->isAuthenticated())
-    {
-         if($this->isSoapRequest())
-         {
-	    	 $e = $this->isSoapRequest() ? new SoapFault('Server', 'Unauthenticated user!') : new sfSecurityException('Unauthenticated user!');
-	         throw $e;
-
-        }else{
-			$this->response->setStatusCode('401');
-	 		$e = new sfSecurityException('The user is not authenticated');
-	        // return $this->renderPartial('messages/error', array('feedback' => $feedback));
-	        throw $e;
-         }
-    }
-
-    if(!$this->isSoapRequest() &&  $this->request->getParameter('token') != $this->getUser()->getApiToken()){
-
-			$this->response->setStatusCode('401');
-	 		$e = new sfSecurityException('The user is not authenticated');
-	        throw $e;
-    }
-	*/
   }
   
   
@@ -51,53 +29,101 @@ class clientActions extends sfActions
   * 
   * @WSMethod(name='newClient', webservice="soapApi")
   * 
-  * @param array $request
+  * @param string $token Api token
+  * @param newClientRequest $newClient  Client Information to be used for the new license
   *
-  * @return integer The id of the new created Client
+  * @return string $result
   */
   public function executeNew(sfWebRequest $request)
   {
-	$api_user = $this->getUser()->getGuardUser();
-	
-	if ($request->isMethod('post'))
-    {  
-			/**
-			 * Create new Client object
-			 */
-			$client = new sfGuardUser();
-			$client->setFirstName($request['first_name']);
-			$client->setLastName($request['last_name']);
-			$client->setEmailAddress($request['email_address']);
-			$client->setUsername($request['id_number']);
-			$client->setIsActive(1);
-			$client->save();
-			
-			/**
-			 * Create new associated UserProfile object
-			 */
-			$userProfile = new UserProfile();
-			$userProfile->setSfuserId($client->getId());
-			$userProfile->setGenderId($request['gender']);
-			$userProfile->setName($request['first_name']);
-			$userProfile->setSurname($request['last_name']);
-			$userProfile->setDob($request['dob']);
-			$userProfile->setIdnumber($request['id_number']);
-			$userProfile->setSpouseDob($request['spouse_dob']);
-			$userProfile->setSpouseName($request['spouse_first_name']);
-			$userProfile->setSpouseSurname($request['spouse_last_name']);
-			$userProfile->setSpouseGenderId($request['spouse_gender']);
-			$userProfile->setSpouseidnumber($request['spouse_id_number']);
-			$userProfile->setParentUser($api_user);
-			$userProfile->save();
+  	
+    $token = $request->getParameter('token');
 
-			$clients = array();
-			$clients[$client->getId()] = $client;
-			
-			$this->client = $client->toArray();
-	   	 	
-	   		$this->response->setStatusCode('200');           
-			return $this->renderPartial('messages/object', array('object' => $client->toArray()));
+    $api_token = $this->getUser()->getAttribute('api_token', '', 'user');
+
+    if (empty($token) && $token != $api_token) {
+		if($this->isSoapRequest()){
+			$e = new SoapFault('Server', 'The user is not authenticated!');
+			throw $e;
+		}else{
+		    $this->response->setStatusCode('401');
+			$feedback = 'The user is not authenticated';
+			$this->feedback  = $feedback;
+			return $this->renderPartial('messages/error', array('feedback' => $this->feedback));
+		}
     }
+
+	$c = $request->getParameter('newClient');
+	
+       if(empty($client)){
+
+            /**
+            * Adding all client associated entities
+            */
+         try {
+				/**
+				 * Create new Client object
+				 */
+				$client = new sfGuardUser();
+				$client->setFirstName($c->first_name);
+				$client->setLastName($c->last_name);
+				$client->setEmailAddress($c->email_address);
+				$client->setUsername($c->id_number);
+				$client->setIsActive(1);
+				$client->save();
+				
+				/**
+				 * Create new associated UserProfile object
+				 */
+				$userProfile = new UserProfile();
+				$userProfile->setSfuserId($client->getId());
+				$userProfile->setGenderId($c->gender);
+				$userProfile->setName($c->first_name);
+				$userProfile->setSurname($c->last_name);
+				$userProfile->setDob($c->dob);
+				$userProfile->setIdnumber($c->id_number);
+				$userProfile->setSpouseDob($c->spouse_dob);
+				$userProfile->setSpouseName($c->spouse_first_name);
+				$userProfile->setSpouseSurname($c->spouse_last_name);
+				$userProfile->setSpouseGenderId($c->spouse_gender);
+				$userProfile->setSpouseidnumber($c->spouse_id_number);
+				$userProfile->setParentUser($this->getUser());
+				$userProfile->save();
+	
+				$clients = array();
+				$clients[$client->getId()] = $client;
+				
+				$this->client = $client->toArray();
+	   	 	
+
+                $this->$result = $client->getId();
+
+                $this->response->setStatusCode('200');
+
+                return $this->renderPartial('messages/message', array('message' => $this->$result));
+
+
+         } catch (Exception $e) {
+
+
+             if($this->isSoapRequest()){
+                 $e = new SoapFault('Server',  $e->getMessage());
+                 throw $e;
+             }else{
+                 $this->response->setStatusCode('401');
+                 $feedback = $e->getMessage();
+                 $this->feedback  = $feedback;
+                 return $this->renderPartial('messages/error', array('feedback' => $this->feedback));
+             }
+
+         }
+
+     }else{
+         $this->$result = $client->getId();
+
+	     return $this->renderPartial('messages/message', array('message' => $this->$result));
+
+     }	
   }
 
   

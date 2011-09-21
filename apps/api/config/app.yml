@@ -26,6 +26,7 @@ soap:
         # mapping of wsdl types to PHP types
         LoginRequest:        LoginRequest
         LoginResponse:       LoginResponse
+        newClientRequest:    newClientRequest
 
 soaptest:
   # enable the `ckSoapParameterFilter`

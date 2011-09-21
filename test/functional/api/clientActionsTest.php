@@ -1,35 +1,87 @@
 <?php
 
-  // test/functional/mathApiTest.php
     $app   = 'api';
     $debug = true;
     include(dirname(__FILE__).'/../../bootstrap/soaptest.php');
+    
+    /**
+	 * Declare ComplexType object
+	 *
+	 */
+	
+	class newClientRequest
+	{
+	    public $first_name;
+	
+	    public $last_name;
+	    
+	    public $email_address;
+	
+	    public $id_number;	    
+	
+	    public $gender;
+	
+	    public $dob;
+	
+	    public $spouse_first_name;	    
+	
+	    public $spouse_last_name;
+	
+	    public $spouse_id_number;
 
-
-    $clientarray = array(
-                    'first_name' => 'Jack Test',
-                    'last_name' => 'jack@test.co.za',
-                    'email_address' => 'Somecompany',
-    				'id_number' => '812312312323',
-                    'gender' => '1',
-                    'dob' => '01/07/1936',
-                    'spouse_first_name' => 'Jill Test',
-                    'spouse_last_name' => 'jill@test.co.za',
-    				'spouse_id_number' => '812312312323',
-                    'spouse_dob' => '01/07/1946',
-    );
+	    public $spouse_dob;		    
+	    
+	    public function __construct($first_name, $last_name, $email_address, $id_number, $gender, $dob, $spouse_first_name, $spouse_last_name, $spouse_id_number, $spouse_dob)
+	    {
+	        $this->first_name  = $first_name;
+	        $this->last_name = $last_name;
+	        $this->email_address  = $email_address;
+	        $this->id_number = $id_number;
+	        $this->gender  = $gender;
+	        $this->dob = $dob;
+	        $this->spouse_first_name  = $spouse_first_name;
+	        $this->spouse_last_name  = $spouse_last_name;
+	        $this->spouse_id_number = $spouse_id_number;
+	        $this->spouse_dob = $spouse_dob;
+	    }
+	
+	}    
 
 
     $options = array(
-      'classmap' => array(
-      ),
+		'classmap' => array(
+			'newClientRequest' => 'newClientRequest',
+		),
     );
+
+	$newClient = new newClientRequest(                   
+					'Jack Test',
+                    'jack@test.co.za',
+                    'Somecompany',
+    				'812312312323',
+                    '1',
+                    '01/07/1936',
+                    'Jill Test',
+                    'jill@test.co.za',
+    				'812312312323',
+                    '01/07/1946');
 
     $c = new ckTestSoapClient($options);
 
-    // test executeMultiply
-    //$authData = new ClientAuthData('shadleypartner', 'rad6hia','5f24e4b8b6f7ce6287adb266ec8c45a950f55450');
-	$c->CreateClient($clientarray)
+	# Test newLogin
+	
+	$c->newLogin('11qqadwW333ssdsdssaas2', 'shadley', 'rad6hia')
+	->isFaultEmpty()
+	->isType('', 'string')
+	;
+	
+	var_dump($c->__getLastResponse());
+	
+	$test_token = $c->getResult();
+	
+	# Test neClient
+	
+	$c->newClient($test_token,$newClient)
       ->isFaultEmpty()
         ;
-   var_dump($c->getResult());
+   var_dump($c->getFault());

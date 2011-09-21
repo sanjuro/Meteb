@@ -18,22 +18,7 @@ class quoteActions extends sfActions
   */
   public function preExecute()
   { 
-	/*
 	 sfConfig::set('sf_web_debug', false);
-
-  	$auth['token'] = $this->request->getParameter('token');
-
-	// If the session does not have the generated api token. the session is
-	// not authenticated or the passed api token does not match the session token
-	// set 401 headers
-	if(!($this->getUser()->isAuthenticated()) || !isset($auth['token']) 
-		|| $auth['token'] != $this->getUser()->getApiToken())
-	{
- 		$this->response->setStatusCode('401');
- 		$feedback = 'The user is not authenticated';
-        return $this->renderPartial('messages/error', array('feedback' => $feedback));
-	}
-	*/
   }
  
   /**
@@ -42,81 +27,126 @@ class quoteActions extends sfActions
   * 
   * @WSMethod(name='newQuote', webservice="soapApi")
   * 
-  * @param array $request
+  * @param string $token Api Session token
+  * @param string $clientId Client id 
+  * @param CreateQuoteRequest $quoteData
   *
-  * @return array $result
+  * @return CreateQuoteResponse $result
   */
   public function executeNew(sfWebRequest $request)
   {		
-	$api_user = $this->getUser()->getGuardUser();
+	$token = $request->getParameter('token');
+
+	$api_token = $this->getUser()->getAttribute('api_token', '', 'user');
+
+	if (empty($token) && $token != $api_token) {
+            if($this->isSoapRequest()){
+                $e = new SoapFault('Server', 'The user is not authenticated!');
+                throw $e;
+	}else{
+                $this->response->setStatusCode('401');
+                $feedback = 'The user is not authenticated';
+                $this->feedback  = $feedback;
+                return $this->renderPartial('messages/error', array('feedback' => $this->feedback));
+            }
+	}
 	
-	if ($request->isMethod('post'))
-    {    
-    	/**
-    	 * Get the request data and generate the quote date 
-    	 * catch any input errors
-    	 */
-    	try 
-		{  
+	$clientId = $request->getParameter('clientId');
+	
+	$quoteData = $request->getParameter('quoteData'); 
+	
+	# Validate incoming info
+	if (!self::validateName($clientId)) {
+
+            # Customer id might not be valid...
+
+            if($this->isSoapRequest()){
+                $e = $this->isSoapRequest() ? new SoapFault('Server', 'Invalid customer ID!') : new InvalidArgumentException('Invalid customer ID!');
+                throw $e;
+	}else{
+                $this->response->setStatusCode('401');
+                $feedback = 'Invalid customer ID';
+                $this->feedback  = $feedback;
+                return $this->renderPartial('messages/error', array('feedback' => $this->feedback));
+            }
+	}	
+        
+    $client = Doctrine::getTable('sfGuardUser')	    
+	      ->findOneById($clientId); 	
+        
+	if(empty($client)){
+
+            if($this->isSoapRequest()){
+                $e = $this->isSoapRequest() ? new SoapFault('Server', 'Client requested could not be found.!') : new InvalidArgumentException('Client could not be found.!');
+                throw $e;
+            }else{
+                $this->response->setStatusCode('401');
+                $feedback = 'Client requested could not be found.';
+                $this->feedback  = $feedback;
+                return $this->renderPartial('messages/error', array('feedback' => $this->feedback));
+            }
+
+	}       
+	
+	try {	
+
 			/**
 			 * Create new Client object
 			 */
-			$client = MetebQuoteApi::createClient($request);
+			// $client = MetebQuoteApi::createClient($request);
 			
 			/**
 			 * Create new associated UserProfile object
 			 */
-			$userProfile = MetebQuoteApi::createUserProfile($request, $client->getId(), $api_user);
+			// $userProfile = MetebQuoteApi::createUserProfile($request, $client->getId(), $api_user);
 							
 			/**
 			 * Create new Quote object
 			 */
-			$quote = MetebQuoteApi::createQuote($request, $client->getId());
-
-			/**
-			 * Build Quote Array for Shit Function
-			 */
-			$quoteInputArray = array();
-			$quoteInputArray['quote_type_id'] = $quote->getQuoteTypeId();
-			$quoteInputArray['commission'] = $quote->getCommission()->getTitle();
-			$quoteInputArray['main_sex'] = $quote->getMainSex();
-			$quoteInputArray['main_dob'] = $quote->getMainDob();
-			$quoteInputArray['second_life'] = $quote->getSecondLife();
-			$quoteInputArray['spouse_sex'] = $quote->getSpouseSex();
-			$quoteInputArray['spouse_dob'] = $quote->getSpouseDob();
-			$quoteInputArray['gp'] = $quote->getGp();
-			$quoteInputArray['spouse_rev'] = $quote->getSpouseReversion()->getTitle();
-			$quoteInputArray['pp'] = $quote->getPurchasePrice();
-			$quoteInputArray['annuity'] = $quote->getAnnuity();
+			$quote = MetebQuoteApi::createQuote($quoteData, $client->getId());
 			
 			/**
-			 * Use the Shit function to get shit from it
+			 * Use the function 
 			 */
-	   	 	$quote_calculations = MetebQuote::generate($quoteInputArray);
-	   	 	$quote_calculations['id'] = $quote->getId();
+	   	 	$this->quote_calculations = $quote->getQuoteOutputTypes();
 	   	 	
-	   	 	$this->quote = $quote_calculations;
+	   	 	$this->quote = $quote;
 	   	 	
 	   		$this->response->setStatusCode('200');           
-			return $this->renderPartial('messages/object', array('object' => $quote_calculations));
-	   	 	
-		}catch (Exception $e){
-			 			 	 
-	 		$this->response->setStatusCode('401');
-	 		$feedback = $e->getMessage();
-	        return $this->renderPartial('messages/error', array('feedback' => $feedback));
-				 	    
-		}
-		  
-	   	$this->response->setStatusCode('200');           
-		return $this->renderPartial('messages/entry', array('objects' => $clients));
-    }
-    else if ($request->isMethod('get'))
-    {
- 		$this->response->setStatusCode('401');
- 		$feedback = 'Invalid request';
-        return $this->renderPartial('messages/error', array('feedback' => $feedback));
-    }  	
+			return $this->renderPartial('messages/object', array('object' => $this->quote_calculations ));		
+
+	}catch (Exception $e){
+
+            if($this->isSoapRequest()){
+                $e = new SoapFault('Server', $e->getMessage());
+                throw $e;
+            }else{
+                $this->response->setStatusCode('401');
+                $feedback = $e->getMessage();
+                $this->feedback  = $feedback;
+                return $this->renderPartial('messages/error', array('feedback' => $this->feedback));
+            }
+	}	
 
   } 
+  
+    /**
+    * Validate clientId
+    *
+    * @param string $name
+    * @return boolean
+    */
+
+    private static function validateName($name)
+    {
+        $validate = new sfValidatorString(array('min_length' => 4, 'max_length' => 20 ));
+
+        try{
+            $result = $validate->clean($name);
+        }catch (sfValidatorError $e){
+            return false;
+        }
+
+        return true;
+    }  
 }

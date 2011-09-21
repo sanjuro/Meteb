@@ -10,7 +10,7 @@
  * @author     Shadley Wentzel<shad6ster@gmail.com>
  * @version    GIT
  */
-class CreateClientRequest
+class newClientRequest
 {
     /**
      * Client first name

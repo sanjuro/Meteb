@@ -5,9 +5,9 @@
  */
 class BasesoapApiHandler extends ckSoapHandler
 {
-  public function newClient($request)
+  public function newClient($token, $newClient)
   {
-    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('client', 'new', array($request));
+    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('client', 'new', array($token, $newClient));
   }
 
   public function listClients($token)
@@ -20,8 +20,8 @@ class BasesoapApiHandler extends ckSoapHandler
     return sfContext::getInstance()->getController()->invokeSoapEnabledAction('login', 'new', array($token, $username, $password));
   }
 
-  public function newQuote($request)
+  public function newQuote($token, $clientId, $quote)
   {
-    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('quote', 'new', array($request));
+    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('quote', 'new', array($token, $clientId, $quote));
   }
 }
