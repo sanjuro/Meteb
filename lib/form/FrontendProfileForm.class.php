@@ -33,10 +33,10 @@ class FrontendProfileForm extends sfGuardUserForm
       $this['groups_list'], $this['permissions_list']
     );
     
-    $this->widgetSchema['password'] = new sfWidgetFormInputPassword();
+    $this->widgetSchema['password'] = new sfWidgetFormInputPassword(array(), array('placeholder' => 'Password Hidden'));
     $this->validatorSchema['password']->setOption('required', false);
     
-    $this->widgetSchema['confirm_password'] = new sfWidgetFormInputPassword();
+    $this->widgetSchema['confirm_password'] = new sfWidgetFormInputPassword(array(), array('placeholder' => 'Password Hidden'));
  	$this->validatorSchema['confirm_password'] = new sfValidatorPass();
     
 	/**
