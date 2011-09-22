@@ -47,14 +47,12 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
         	
         	$createdAt = $this->getUser()->getGuardUser()->getCreatedAt();
         	
-        	$creationDate = strtotime($createdAt);
+			$datetime1 = new DateTime($createdAt);
+			$datetime2 = new DateTime(date('Y-m-d'));
+			$interval = $datetime1->diff($datetime2);
+
 			
-        	$todayDate = time();   
-        	
-			$interval = '';
-        	$interval = Meteb::getMonthsBetweenDates($creationDate, $todayDate);
-			//Meteb::TKO($interval);
-			if($interval->m > 2){
+			if($interval->m > 2 || $interval->y > 1){
         		$this->getUser()->getGuardUser()->setIsActive(false);
         		$this->getUser()->getGuardUser()->save();
         	}

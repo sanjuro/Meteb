@@ -159,7 +159,7 @@ class Meteb
 
         //$months = array(date('mY', $time1));
         $f      = '';
-
+		
         while ($time1 < $time2) {
             $time1 = strtotime((date('Y-m-d', $time1).' +15days'));
             if (date('F', $time1) != $f) {
