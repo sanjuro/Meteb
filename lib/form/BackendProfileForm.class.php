@@ -25,7 +25,7 @@ class BackendProfileForm extends sfGuardUserForm
 	}
 	
     unset(
-      $this['id'], $this['algorithm'],
+      $this['id'], $this['algorithm'],  $this['password'],  $this['confirm_password'],
       $this['first_name'], $this['last_name'],
       $this['salt'], $this['is_active'],
       $this['is_super_admin'], $this['last_login'],
@@ -33,11 +33,11 @@ class BackendProfileForm extends sfGuardUserForm
       $this['groups_list'], $this['permissions_list']
     );
      
-    $this->widgetSchema['password'] = new sfWidgetFormInputPassword(array(), array('placeholder' => 'Password Hidden'));
-    $this->validatorSchema['password']->setOption('required', true);
+    // $this->widgetSchema['password'] = new sfWidgetFormInputPassword(array(), array('placeholder' => 'Password Hidden'));
+    // $this->validatorSchema['password']->setOption('required', true);
     
-    $this->widgetSchema['confirm_password'] = new sfWidgetFormInputPassword(array(), array('placeholder' => 'Password Hidden'));
- 	$this->validatorSchema['confirm_password'] = new sfValidatorPass();
+    // $this->widgetSchema['confirm_password'] = new sfWidgetFormInputPassword(array(), array('placeholder' => 'Password Hidden'));
+ 	// $this->validatorSchema['confirm_password'] = new sfValidatorPass();
     
 	/**
 	 * Embed UserProfile Form

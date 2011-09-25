@@ -32,30 +32,15 @@
 				<?php echo $form['username']->renderLabel() ?>
 			</div>
 			
-			<div  class="content" >
+			<div class="content" >
 				<?php echo $form['username'] ?>
 			</div>			
 			<?php echo $form['username']->renderError() ?>
 		 </div>
-		 <div class="sf_admin_form_row">			
+		 <div class="sf_admin_form_row">		
 			<div>
-				<?php echo $form['password']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['password'] ?>
-			</div>			
-			<?php echo $form['password']->renderError() ?>
-		 </div>
-		 <div class="sf_admin_form_row">			
-			<div>
-				<?php echo $form['confirm_password']->renderLabel() ?>
-			</div>
-			
-			<div  class="content" >
-				<?php echo $form['confirm_password'] ?>
-			</div>			
-			<?php echo $form['confirm_password']->renderError() ?>
+				<?php echo link_to('Change your password', 'profile_change_password', $sf_guard_user)?>
+			</div>		
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>
