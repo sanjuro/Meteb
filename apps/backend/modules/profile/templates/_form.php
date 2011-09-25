@@ -1,7 +1,5 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
- 
-<?php use_helper('jQuery')?> 
 
 <?php use_stylesheet('/sfDoctrinePlugin/css/default.css') ?>
  

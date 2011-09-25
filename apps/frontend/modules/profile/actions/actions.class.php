@@ -93,6 +93,25 @@ class profileActions extends autoProfileActions
 
     $this->redirect('@profile');
   }
+  
+  public function executeChangePassword($request)
+  {
+    $this->sf_guard_user = $this->getUser()->getGuardUser();
+    
+    $this->form = new sfGuardChangeUserPasswordForm($this->sf_guard_user);
+
+    if ($request->isMethod('post'))
+    {
+      $this->form->bind($request->getParameter($this->form->getName()));
+      if ($this->form->isValid())
+      {
+        $this->form->save();
+
+        $this->getUser()->setFlash('notice', 'Password updated successfully!');
+       
+      }
+    }
+  }  
 
   public function executeBatch(sfWebRequest $request)
   {

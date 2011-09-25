@@ -45,6 +45,13 @@ profile:
     prefix_path:          /profile
     column:               id
     with_wildcard_routes: true
+
+profile_change_password:
+  url:     /password/update.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: sfGuardUser, type: object }
+  param:   { module: profile, action: changePassword, sf_format: html }
+  requirements: { sf_method: [get,post] }
     
 #client 
 client:
