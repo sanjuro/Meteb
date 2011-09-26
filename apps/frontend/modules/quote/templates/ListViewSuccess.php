@@ -87,7 +87,7 @@
 					</tr>
 					<tr>
 						<td><span class="quotedetails_label"><?php echo __('Commission Percentage')?></span></td>
-						<td><span class="quotedetails_data">R <?php echo number_format($quote_calculations['commission_sacrificed'], 2, '.', ',')  ?></span></td>
+						<td><span class="quotedetails_data"><?php echo number_format($quote_calculations['commission_sacrificed'], 2, '.', ',') ?>%</span></td>
 					</tr>
 					<tr>
 						<td><span class="quotedetails_label"><?php echo __('Main Age Next')?></span></td>
