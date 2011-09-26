@@ -49,7 +49,7 @@ class quoteActions extends autoQuoteActions
 	    
 	    $this->quote = $this->form->getObject();
 	    
-	  	$this->userForQuote = $this->quote->getGuardUser()->getName();
+	  	$this->userForQuote = $this->getUser();
 	
 	    $this->setTemplate('new');
 	  }	  

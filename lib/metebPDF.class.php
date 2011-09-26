@@ -107,8 +107,6 @@ class metebPDF extends DOMPDF{
 			<div id="pdfinfo">
 				<div style="float: right; text-align: right;">
 					<font id="date" >'.$PDFDate->format('d F Y').'</font>
-					<br>
-					<font id="vatno" class="lighter">VAT Reg. No. '.sfConfig::get('app_vat_number').'</font>
 				</div>
 				<div id="pdfnumber" style="float: right;">Gross Annuity Quote '.(!empty($PDFNumber)?'No. '.$PDFNumber:'').'</div>
 			</div>';
