@@ -50,7 +50,7 @@ class FrontendQuoteForm extends BaseQuoteForm
 	     	array( 'label' => 'Guarantee Period', 'choices' => array( '' => 'Select a Guarantee Period', 0 => '0 months', 60 => '60 months', 120 => '120 months')));
 	     	
 	$this->widgetSchema['spouse_reversion_id'] =  new sfWidgetFormChoice(array( 'label' => 'Spouse\'s Reversion',
-								  'choices' => array('' => "Select a Spouse Reversion",  '2' => '25%', '3' => '50%', '4' => '75%', '5' => '100%'),
+								  'choices' => array('' => "Select a Spouse Reversion",  '1' => '25%', '2' => '50%', '3' => '75%', '4' => '100%'),
 								));
     
 	$this->widgetSchema['second_life'] = new sfWidgetFormChoice(
