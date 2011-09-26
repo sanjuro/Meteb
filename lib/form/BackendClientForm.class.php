@@ -32,16 +32,8 @@ class BackendClientForm extends sfGuardUserForm
       $this['groups_list'], $this['permissions_list']
     );
     
-    $this->widgetSchema['password'] = new sfWidgetFormInputPassword();
-    $this->validatorSchema['password']->setOption('required', true);
-    
-    $this->widgetSchema['confirm_password'] = new sfWidgetFormInputPassword();
- 	$this->validatorSchema['confirm_password'] = new sfValidatorPass();
- 	
-	$this->validatorSchema['email_address'] = new sfValidatorString(array('required' => false));
+    $this->validatorSchema['email_address'] = new sfValidatorString(array('required' => false));
 	
-	$this->mergePostValidator(new sfValidatorSchemaCompare('password', sfValidatorSchemaCompare::EQUAL, 'confirm_password', array(),  array('invalid' => 'Passwords do not match.'))); 
-    
 	/**
 	 * Embed UserProfile Form
 	 */

@@ -96,7 +96,7 @@ class profileActions extends autoProfileActions
   
   public function executeChangePassword($request)
   {
-    $this->sf_guard_user = $this->getUser()->getGuardUser();
+    $this->sf_guard_user = $this->getRoute()->getObject();
     
     $this->form = new sfGuardChangeUserPasswordForm($this->sf_guard_user);
 
