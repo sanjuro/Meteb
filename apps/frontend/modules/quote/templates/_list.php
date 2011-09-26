@@ -5,7 +5,6 @@
     <table cellspacing="0">
       <thead>
         <tr>
-          <th id="sf_admin_list_batch_actions"><input id="sf_admin_list_batch_checkbox" type="checkbox" onclick="checkAll();" /></th>
           <?php include_partial('quote/list_th_stacked', array('sort' => $sort)) ?>
           <th id="sf_admin_list_th_actions"><?php echo __('Actions', array(), 'sf_admin') ?></th>
         </tr>
@@ -27,7 +26,6 @@
       <tbody>
         <?php foreach ($pager->getResults() as $i => $quote): $odd = fmod(++$i, 2) ? 'odd' : 'even' ?>
           <tr class="sf_admin_row <?php echo $odd ?>">
-            <?php include_partial('quote/list_td_batch_actions', array('quote' => $quote, 'helper' => $helper)) ?>
             <?php include_partial('quote/list_td_stacked', array('quote' => $quote)) ?>
             <?php include_partial('quote/list_td_actions', array('quote' => $quote, 'helper' => $helper)) ?>
           </tr>
@@ -36,11 +34,3 @@
     </table>
   <?php endif; ?>
 </div>
-<script type="text/javascript">
-/* <![CDATA[ */
-function checkAll()
-{
-  var boxes = document.getElementsByTagName('input'); for(var index = 0; index < boxes.length; index++) { box = boxes[index]; if (box.type == 'checkbox' && box.className == 'sf_admin_batch_checkbox') box.checked = document.getElementById('sf_admin_list_batch_checkbox').checked } return true;
-}
-/* ]]> */
-</script>
