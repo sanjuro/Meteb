@@ -37,8 +37,6 @@
           <xsd:element name="annuity" type="xsd:string"/>
           <xsd:element name="purchase_price" type="xsd:double"/>
           <xsd:element name="commission" type="xsd:double"/>
-          <xsd:element name="commence_at" type="xsd:string"/>
-          <xsd:element name="expires_at" type="xsd:string"/>
         </xsd:sequence>
       </xsd:complexType>
       <xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CreateQuoteRequestElement" type="tns:CreateQuoteRequest"/>
@@ -63,7 +61,7 @@
       <wsdl:input message="tns:newLoginRequest"/>
       <wsdl:output message="tns:newLoginResponse"/>
     </wsdl:operation>
-    <wsdl:operation name="newQuote" parameterOrder="token clientId quote">
+    <wsdl:operation name="newQuote" parameterOrder="token clientId quoteData">
       <wsdl:input message="tns:newQuoteRequest"/>
       <wsdl:output message="tns:newQuoteResponse"/>
     </wsdl:operation>
@@ -100,7 +98,7 @@
     <wsdl:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="newQuote">
       <soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://meteb.localhost/newQuote" style="rpc"/>
       <wsdl:input xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
-        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="token clientId quote" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="token clientId quoteData" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
       </wsdl:input>
       <wsdl:output xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
         <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="result" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
@@ -131,7 +129,7 @@
   <wsdl:message name="newQuoteRequest">
     <wsdl:part name="token" type="xsd:string"/>
     <wsdl:part name="clientId" type="xsd:string"/>
-    <wsdl:part name="quote" type="tns:CreateQuoteRequest"/>
+    <wsdl:part name="quoteData" type="tns:CreateQuoteRequest"/>
   </wsdl:message>
   <wsdl:message name="newQuoteResponse">
     <wsdl:part name="result" type="tns:CreateQuoteResponse"/>

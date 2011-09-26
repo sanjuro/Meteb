@@ -140,8 +140,24 @@ class clientActions extends sfActions
   */
   public function executeShow(sfWebRequest $request)
   {		
-	$api_user = $this->getUser()->getGuardUser();
+    $token = $request->getParameter('token');
+
+    $api_token = $this->getUser()->getAttribute('api_token', '', 'user');
+
+    if (empty($token) && $token != $api_token) {
+		if($this->isSoapRequest()){
+			$e = new SoapFault('Server', 'The user is not authenticated!');
+			throw $e;
+		}else{
+		    $this->response->setStatusCode('401');
+			$feedback = 'The user is not authenticated';
+			$this->feedback  = $feedback;
+			return $this->renderPartial('messages/error', array('feedback' => $this->feedback));
+		}
+    }
   	
+	$api_user = $this->getUser()->getGuardUser();    
+    
   	$clients = $api_user->getClientsForUser();
 	  
    	if(count($clients) > 0){

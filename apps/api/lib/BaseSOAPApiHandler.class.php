@@ -20,8 +20,8 @@ class BasesoapApiHandler extends ckSoapHandler
     return sfContext::getInstance()->getController()->invokeSoapEnabledAction('login', 'new', array($token, $username, $password));
   }
 
-  public function newQuote($token, $clientId, $quote)
+  public function newQuote($token, $clientId, $quoteData)
   {
-    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('quote', 'new', array($token, $clientId, $quote));
+    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('quote', 'new', array($token, $clientId, $quoteData));
   }
 }
