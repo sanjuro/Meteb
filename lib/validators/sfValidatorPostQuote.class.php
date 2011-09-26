@@ -40,8 +40,8 @@ class sfValidatorPostQuote extends sfValidatorBase {
 			if ( $key == 'second_life' && $values['second_life'] == 1 && $values['spouse_dob'] == '') {
 				$errorSchemaLocal->addError(new sfValidatorError($this, 'spousedetails2') );
 			}
-			
-					if ( $key == 'second_life' && $values['second_life'] == 1 && $values['spouse_reversion_id'] == '') {
+			//METeb::TKO($values);
+			if ( $key == 'second_life' && $values['second_life'] == 1 && $values['spouse_reversion_id'] == '') {
 				$errorSchemaLocal->addError(new sfValidatorError($this, 'spousedetails3') );
 			}
 
