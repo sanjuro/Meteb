@@ -29,7 +29,7 @@ class loginActions extends sfActions
      * @param string $username Client Username
      * @param string $password Client Password
      *
-     * @return array $object API Token and ID
+     * @return string $result
 	 */
 	public function executeNew(sfWebRequest $request) {
 	
@@ -37,14 +37,6 @@ class loginActions extends sfActions
 		$auth['token'] = $request->getParameter('token');
 		$auth['username'] = $request->getParameter('username');
 		$auth['password'] = $request->getParameter('password');
-		
-		$soap_request = $request->getParameter('input');
-		
-		if(!empty($soap_request)){
-		$auth['token'] = $soap_request->item->token;
-		$auth['username'] = $soap_request->item->username;
-		$auth['password'] = $soap_request->item->password;
-		}
 	
  		$api_userprofile = Doctrine::getTable('UserProfile')->findOneByToken($auth['token']);
  	
@@ -68,9 +60,15 @@ class loginActions extends sfActions
 			
  		}else{
  		    $this->response->setStatusCode('401');
- 		    $feedback = 'The user is not authenticated';
- 		    $this->feedback  = $feedback;
-            return $this->renderPartial('messages/error', array('feedback' => $this->feedback));
+
+ 		 	if($this->isSoapRequest()){
+ 				$e = new SoapFault('Server', 'The user is not authenticated!');
+ 				throw $e;
+ 			}else{
+ 				$feedback = 'The user is not authenticated';
+ 		   		$this->feedback  = $feedback;
+            	return $this->renderPartial('messages/error', array('feedback' => $this->feedback));
+ 			}
  		}
 		
 	}

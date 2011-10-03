@@ -70,7 +70,7 @@ class FrontendUserProfileForm extends BaseUserProfileForm
 	
 	$this->validatorSchema['spouse_surname'] = new sfValidatorString(array('required' => false));
 	
-	$this->validatorSchema['spouse_dob'] = new sfValidatorString(array('required' => false));
+	$this->validatorSchema['spouse_dob'] =  new sfValidatorDate (array('required' => false), array('required' => 'Please select a valid Spouse\'s Date of Birth'));
 	
 	$this->validatorSchema['spouseidnumber'] = new sfValidatorString(array('required' => false));
 	

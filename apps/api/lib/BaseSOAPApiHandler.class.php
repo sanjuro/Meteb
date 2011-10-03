@@ -20,8 +20,8 @@ class BasesoapApiHandler extends ckSoapHandler
     return sfContext::getInstance()->getController()->invokeSoapEnabledAction('login', 'new', array($token, $username, $password));
   }
 
-  public function newQuote($token, $clientId, $quoteData)
+  public function newQuote($token, $dateOfFundCredit, $dateOfInvestment, $fundAmount, $fundCode, $fundCredit, $fundPercentage, $fundPercentInd, $jointLifeDateOfBirth, $jointLifeGnder, $jointLifeInd, $jointLifeInitials, $jointLifePerc, $jointLifeSurname, $jointLifeTitle, $memberCellNo, $memberDateOfBirth, $memberDateOfRetirement, $memberGender, $memberIdIsPassport, $memberIdNumber, $memberInitials, $memberRefNumber, $memberSurname, $memberTitle, $productCode, $requestBy, $requestDateTime, $requestId, $requestSource, $requestStatus, $spCode, $statusComment, $statusDate)
   {
-    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('quote', 'new', array($token, $clientId, $quoteData));
+    return sfContext::getInstance()->getController()->invokeSoapEnabledAction('quote', 'new', array($token, $dateOfFundCredit, $dateOfInvestment, $fundAmount, $fundCode, $fundCredit, $fundPercentage, $fundPercentInd, $jointLifeDateOfBirth, $jointLifeGnder, $jointLifeInd, $jointLifeInitials, $jointLifePerc, $jointLifeSurname, $jointLifeTitle, $memberCellNo, $memberDateOfBirth, $memberDateOfRetirement, $memberGender, $memberIdIsPassport, $memberIdNumber, $memberInitials, $memberRefNumber, $memberSurname, $memberTitle, $productCode, $requestBy, $requestDateTime, $requestId, $requestSource, $requestStatus, $spCode, $statusComment, $statusDate));
   }
 }

@@ -24,22 +24,6 @@
         </xsd:sequence>
       </xsd:complexType>
       <xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AnyTypeArrayElement" type="tns:AnyTypeArray"/>
-      <xsd:complexType name="CreateQuoteRequest">
-        <xsd:sequence>
-          <xsd:element name="quote_type" type="xsd:int"/>
-          <xsd:element name="second_life" type="xsd:int"/>
-          <xsd:element name="main_sex" type="xsd:int"/>
-          <xsd:element name="main_dob" type="xsd:string"/>
-          <xsd:element name="spouse_sex" type="xsd:int"/>
-          <xsd:element name="spouse_dob" type="xsd:string"/>
-          <xsd:element name="gp" type="xsd:int"/>
-          <xsd:element name="spouse_reversion" type="xsd:double"/>
-          <xsd:element name="annuity" type="xsd:string"/>
-          <xsd:element name="purchase_price" type="xsd:double"/>
-          <xsd:element name="commission" type="xsd:double"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CreateQuoteRequestElement" type="tns:CreateQuoteRequest"/>
       <xsd:complexType name="CreateQuoteResponse">
         <xsd:sequence>
           <xsd:element name="quote_id" type="xsd:int"/>
@@ -61,7 +45,7 @@
       <wsdl:input message="tns:newLoginRequest"/>
       <wsdl:output message="tns:newLoginResponse"/>
     </wsdl:operation>
-    <wsdl:operation name="newQuote" parameterOrder="token clientId quoteData">
+    <wsdl:operation name="newQuote" parameterOrder="token dateOfFundCredit dateOfInvestment fundAmount fundCode fundCredit fundPercentage fundPercentInd jointLifeDateOfBirth jointLifeGnder jointLifeInd jointLifeInitials jointLifePerc jointLifeSurname jointLifeTitle memberCellNo memberDateOfBirth memberDateOfRetirement memberGender memberIdIsPassport memberIdNumber memberInitials memberRefNumber memberSurname memberTitle productCode requestBy requestDateTime requestId requestSource requestStatus spCode statusComment statusDate">
       <wsdl:input message="tns:newQuoteRequest"/>
       <wsdl:output message="tns:newQuoteResponse"/>
     </wsdl:operation>
@@ -98,7 +82,7 @@
     <wsdl:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="newQuote">
       <soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://meteb.localhost/newQuote" style="rpc"/>
       <wsdl:input xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
-        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="token clientId quoteData" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="token dateOfFundCredit dateOfInvestment fundAmount fundCode fundCredit fundPercentage fundPercentInd jointLifeDateOfBirth jointLifeGnder jointLifeInd jointLifeInitials jointLifePerc jointLifeSurname jointLifeTitle memberCellNo memberDateOfBirth memberDateOfRetirement memberGender memberIdIsPassport memberIdNumber memberInitials memberRefNumber memberSurname memberTitle productCode requestBy requestDateTime requestId requestSource requestStatus spCode statusComment statusDate" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
       </wsdl:input>
       <wsdl:output xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
         <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="result" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
@@ -124,12 +108,43 @@
     <wsdl:part name="password" type="xsd:string"/>
   </wsdl:message>
   <wsdl:message name="newLoginResponse">
-    <wsdl:part name="result" type="tns:AnyTypeArray"/>
+    <wsdl:part name="result" type="xsd:string"/>
   </wsdl:message>
   <wsdl:message name="newQuoteRequest">
     <wsdl:part name="token" type="xsd:string"/>
-    <wsdl:part name="clientId" type="xsd:string"/>
-    <wsdl:part name="quoteData" type="tns:CreateQuoteRequest"/>
+    <wsdl:part name="dateOfFundCredit" type="xsd:string"/>
+    <wsdl:part name="dateOfInvestment" type="xsd:string"/>
+    <wsdl:part name="fundAmount" type="xsd:string"/>
+    <wsdl:part name="fundCode" type="xsd:string"/>
+    <wsdl:part name="fundCredit" type="xsd:string"/>
+    <wsdl:part name="fundPercentage" type="xsd:string"/>
+    <wsdl:part name="fundPercentInd" type="xsd:string"/>
+    <wsdl:part name="jointLifeDateOfBirth" type="xsd:string"/>
+    <wsdl:part name="jointLifeGnder" type="xsd:string"/>
+    <wsdl:part name="jointLifeInd" type="xsd:string"/>
+    <wsdl:part name="jointLifeInitials" type="xsd:string"/>
+    <wsdl:part name="jointLifePerc" type="xsd:string"/>
+    <wsdl:part name="jointLifeSurname" type="xsd:string"/>
+    <wsdl:part name="jointLifeTitle" type="xsd:string"/>
+    <wsdl:part name="memberCellNo" type="xsd:string"/>
+    <wsdl:part name="memberDateOfBirth" type="xsd:string"/>
+    <wsdl:part name="memberDateOfRetirement" type="xsd:string"/>
+    <wsdl:part name="memberGender" type="xsd:string"/>
+    <wsdl:part name="memberIdIsPassport" type="xsd:string"/>
+    <wsdl:part name="memberIdNumber" type="xsd:string"/>
+    <wsdl:part name="memberInitials" type="xsd:string"/>
+    <wsdl:part name="memberRefNumber" type="xsd:string"/>
+    <wsdl:part name="memberSurname" type="xsd:string"/>
+    <wsdl:part name="memberTitle" type="xsd:string"/>
+    <wsdl:part name="productCode" type="xsd:string"/>
+    <wsdl:part name="requestBy" type="xsd:string"/>
+    <wsdl:part name="requestDateTime" type="xsd:string"/>
+    <wsdl:part name="requestId" type="xsd:string"/>
+    <wsdl:part name="requestSource" type="xsd:string"/>
+    <wsdl:part name="requestStatus" type="xsd:string"/>
+    <wsdl:part name="spCode" type="xsd:string"/>
+    <wsdl:part name="statusComment" type="xsd:string"/>
+    <wsdl:part name="statusDate" type="xsd:string"/>
   </wsdl:message>
   <wsdl:message name="newQuoteResponse">
     <wsdl:part name="result" type="tns:CreateQuoteResponse"/>

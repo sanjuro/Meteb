@@ -24,8 +24,6 @@ soap:
       soap_version: <?php echoln(SOAP_1_2) ?>
       classmap:
         # mapping of wsdl types to PHP types
-        LoginRequest:        LoginRequest
-        LoginResponse:       LoginResponse
         newClientRequest:    newClientRequest
 
 soaptest:

@@ -28,9 +28,40 @@ class quoteActions extends sfActions
   * @WSMethod(name='newQuote', webservice="soapApi")
   * 
   * @param string $token Api Session token
-  * @param string $clientId Client id 
-  * @param CreateQuoteRequest $quoteData
-  *
+  * @param string $dateOfFundCredit 
+  * @param string $dateOfInvestment 
+  * @param string $fundAmount
+  * @param string $fundCode
+  * @param string $fundCredit
+  * @param string $fundPercentage
+  * @param string $fundPercentInd 
+  * @param string $jointLifeDateOfBirth
+  * @param string $jointLifeGender
+  * @param string $jointLifeInd
+  * @param string $jointLifeInitials
+  * @param string $jointLifePerc
+  * @param string $jointLifeSurname
+  * @param string $jointLifeTitle
+  * @param string $memberCellNo
+  * @param string $memberDateOfBirth
+  * @param string $memberDateOfRetirement
+  * @param string $memberGender
+  * @param string $memberIdIsPassport
+  * @param string $memberIdNumber
+  * @param string $memberInitials
+  * @param string $memberRefNumber
+  * @param string $memberSurname
+  * @param string $memberTitle
+  * @param string $productCode
+  * @param string $requestBy
+  * @param string $requestDateTime
+  * @param string $requestId
+  * @param string $requestSource
+  * @param string $requestStatus
+  * @param string $spCode
+  * @param string $statusComment
+  * @param string $statusDate
+  * 
   * @return CreateQuoteResponse $result
   */
   public function executeNew(sfWebRequest $request)

@@ -1,2 +1,2 @@
 soap:
-  new: { parameter: [token, clientId, quoteData], result: { class: ckPropertyResultAdapter, param: { property: result } } }
+  new: { parameter: [token, dateOfFundCredit, dateOfInvestment, fundAmount, fundCode, fundCredit, fundPercentage, fundPercentInd, jointLifeDateOfBirth, jointLifeGnder, jointLifeInd, jointLifeInitials, jointLifePerc, jointLifeSurname, jointLifeTitle, memberCellNo, memberDateOfBirth, memberDateOfRetirement, memberGender, memberIdIsPassport, memberIdNumber, memberInitials, memberRefNumber, memberSurname, memberTitle, productCode, requestBy, requestDateTime, requestId, requestSource, requestStatus, spCode, statusComment, statusDate], result: { class: ckPropertyResultAdapter, param: { property: result } } }
