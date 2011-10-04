@@ -10,7 +10,7 @@
  * @author     Shadley Wentzel<shad6ster@gmail.com>
  * @version    GIT
  */
-class CreateQuoteRequest
+class newQuoteRequest
 {
     /**
      * Quote Type
@@ -91,7 +91,7 @@ class CreateQuoteRequest
     
 }
 
-class CreateQuoteResponse 
+class newQuoteResponse 
 {
 	
     /**
