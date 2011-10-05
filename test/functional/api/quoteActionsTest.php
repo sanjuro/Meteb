@@ -73,18 +73,23 @@
 
 	# Test newLogin
 	
-	$c->newLogin('11qqadwW333ssdsdssaas2', '1', 'rad6hia')
+	$c->newLogin('11qqadwW333ssdsdssaas2', 'shadley', 'rad6hia')
 	->isFaultEmpty()
 	->isType('', 'string')
 	;
 	
-	var_dump($c->__getLastResponse());
+	// var_dump($c->__getLastResponse());
 	
 	$test_token = $c->getResult(); 
 	
-	$c->newQuote($test_token,$productCode,$newQuote)
+	// echo '<pre>';print_r($test_token);
+	
+	$c->newQuote($test_token,5,$newQuote)
 	->isFaultEmpty()
 	->isType('', 'stdClass')
 	;
-	var_dump($c->__getLastRequest());
+	
+	var_dump($c->__getLastResponse());	
+	
+	// var_dump($c->getFault());
 	

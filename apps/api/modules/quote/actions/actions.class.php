@@ -36,7 +36,7 @@ class quoteActions extends sfActions
 	public function executeNew(sfWebRequest $request)
 	{		
 		$token = $request->getParameter('token');
-	
+		
 		$api_token = $this->getUser()->getAttribute('api_token', '', 'user');
 	
 		if (empty($token) && $token != $api_token) {
@@ -99,7 +99,7 @@ class quoteActions extends sfActions
 				 * Create new associated UserProfile object
 				 */
 				// $userProfile = MetebQuoteApi::createUserProfile($request, $client->getId(), $api_user);
-								
+						
 				/**
 				 * Create new Quote object
 				 */
@@ -110,8 +110,8 @@ class quoteActions extends sfActions
 				 */
 		   	 	$this->quote_calculations = $quote->getQuoteOutputTypes();
 		   	 	
-		   	 	$this->quote = $quote;
-		   	 	
+		   	 	$this->quote = $quote->toArray();
+		   	 	// Meteb::TKO($this->quote);
 		   		$this->response->setStatusCode('200');           
 				return $this->renderPartial('messages/object', array('object' => $this->quote_calculations ));		
 	
@@ -139,7 +139,7 @@ class quoteActions extends sfActions
 
     private static function validateName($name)
     {
-        $validate = new sfValidatorString(array('min_length' => 4, 'max_length' => 20 ));
+        $validate = new sfValidatorString(array('min_length' => 1, 'max_length' => 20 ));
 
         try{
             $result = $validate->clean($name);

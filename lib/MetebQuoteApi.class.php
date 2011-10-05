@@ -70,7 +70,7 @@ class MetebQuoteApi
 	 */	
 	public function createQuote($params, $client_id){
 		$quote = new Quote();
-		$quote->setClientId($client->getId());
+		$quote->setClientId($client_id);
 		$quote->setQuoteTypeId($request['quote_type']);
 		$quote->setSecondLife($request['second_life']);
 		$quote->setMainSex($request['main_sex']);
