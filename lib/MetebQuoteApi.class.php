@@ -71,17 +71,17 @@ class MetebQuoteApi
 	public function createQuote($params, $client_id){
 		$quote = new Quote();
 		$quote->setClientId($client_id);
-		$quote->setQuoteTypeId($request['quote_type']);
-		$quote->setSecondLife($request['second_life']);
-		$quote->setMainSex($request['main_sex']);
-		$quote->setMainDob($request['main_dob']);
-		$quote->setSpouseSex($request['spouse_sex']);
-		$quote->setSpouseDob($request['spouse_dob']);
-		$quote->setGp($request['gp']);
-		$quote->setSpouseReversionId($request['spouse_reversion']);
-		$quote->setAnnuity($request['annuity']);
-		$quote->setPurchasePrice($request['purchase_price']);
-		$quote->setCommissionId($request['commission']);
+		$quote->setQuoteTypeId($params->quote_type);
+		$quote->setSecondLife($params->second_life);
+		$quote->setMainSex($params->main_sex);
+		$quote->setMainDob($params->main_dob);
+		$quote->setSpouseSex($params->spouse_sex);
+		$quote->setSpouseDob($params->spouse_dob);
+		$quote->setGp($params->gp);
+		$quote->setSpouseReversionId($params->spouse_reversion);
+		$quote->setAnnuity($params->annuity);
+		$quote->setPurchasePrice($params->purchase_price);
+		$quote->setCommissionId($params->commission);
 		$quote->save();
 		
 		return $quote;

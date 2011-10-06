@@ -24,25 +24,13 @@
         </xsd:sequence>
       </xsd:complexType>
       <xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AnyTypeArrayElement" type="tns:AnyTypeArray"/>
-      <xsd:complexType name="newQuoteRequest">
-        <xsd:sequence>
-          <xsd:element name="quote_type" type="xsd:int"/>
-          <xsd:element name="second_life" type="xsd:int"/>
-          <xsd:element name="main_sex" type="xsd:int"/>
-          <xsd:element name="main_dob" type="xsd:string"/>
-          <xsd:element name="spouse_sex" type="xsd:int"/>
-          <xsd:element name="spouse_dob" type="xsd:string"/>
-          <xsd:element name="gp" type="xsd:int"/>
-          <xsd:element name="spouse_reversion" type="xsd:double"/>
-          <xsd:element name="annuity" type="xsd:string"/>
-          <xsd:element name="purchase_price" type="xsd:double"/>
-          <xsd:element name="commission" type="xsd:double"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="newQuoteRequestElement" type="tns:newQuoteRequest"/>
       <xsd:complexType name="newQuoteResponse">
         <xsd:sequence>
           <xsd:element name="quote_id" type="xsd:int"/>
+          <xsd:element name="data_date" type="xsd:string"/>
+          <xsd:element name="quote_date" type="xsd:string"/>
+          <xsd:element name="commencement_date" type="xsd:string"/>
+          <xsd:element name="first_payment_date" type="xsd:string"/>
         </xsd:sequence>
       </xsd:complexType>
       <xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="newQuoteResponseElement" type="tns:newQuoteResponse"/>
@@ -129,7 +117,7 @@
   <wsdl:message name="newQuoteRequest">
     <wsdl:part name="token" type="xsd:string"/>
     <wsdl:part name="clientId" type="xsd:string"/>
-    <wsdl:part name="quoteData" type="tns:newQuoteRequest"/>
+    <wsdl:part name="quoteData" type="tns:AnyTypeArray"/>
   </wsdl:message>
   <wsdl:message name="newQuoteResponse">
     <wsdl:part name="result" type="tns:newQuoteResponse"/>

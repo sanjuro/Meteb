@@ -29,7 +29,7 @@ class quoteActions extends sfActions
 	*
 	* @param string $token Api Session token
 	* @param string $clientId Client id
-	* @param newQuoteRequest $quoteData
+	* @param array $quoteData
 	*
 	* @return newQuoteResponse $result
 	*/
@@ -108,12 +108,21 @@ class quoteActions extends sfActions
 				/**
 				 * Use the function 
 				 */
-		   	 	$this->quote_calculations = $quote->getQuoteOutputTypes();
+				
+		   	 	$quote_calculations = $quote->getQuoteOutputTypes();
+		   	 	$quote_calculations['id'] = $quote->getId();
+		   	 	$quote_calculations['quote_id'] = $quote->getId();
 		   	 	
-		   	 	$this->quote = $quote->toArray();
-		   	 	// Meteb::TKO($this->quote);
-		   		$this->response->setStatusCode('200');           
-				return $this->renderPartial('messages/object', array('object' => $this->quote_calculations ));		
+	            $newQuoteResponseObj = new newQuoteResponse($quote->getId(),
+	            											$quote_calculations['data_date'],
+	            											$quote_calculations['quote_date'],
+	            											$quote_calculations['commencement_date'],
+	            											$quote_calculations['first_payment_date']);
+	
+	            $this->response->setStatusCode('200'); 
+	            $this->result = $newQuoteResponseObj;
+		   		          
+				return $this->renderPartial('messages/object', array('object' => $quote_calculations ));		
 	
 		}catch (Exception $e){
 	

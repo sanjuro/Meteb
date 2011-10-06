@@ -25,9 +25,8 @@ soap:
       classmap:
         # mapping of wsdl types to PHP types
         newClientRequest:    newClientRequest
-        newQuoteRequest:    newQuoteRequest
-        # newQuoteResponse:   newQuoteResponse
-        newQuoteResponse: ckGenericArray
+        # newQuoteRequest:    newQuoteRequest
+        newQuoteResponse:   newQuoteResponse
 
 
 soaptest:

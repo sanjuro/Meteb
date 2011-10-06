@@ -10,94 +10,52 @@
  * @author     Shadley Wentzel<shad6ster@gmail.com>
  * @version    GIT
  */
-class newQuoteRequest
-{
-    /**
-     * Quote Type
-     * 
-     * @var integer
-     */
-    public $quote_type;
 
-    /**
-     * Second Life for quote
-     * 
-     * @var integer
-    */
-    public $second_life;
-
-    /**
-     * Main sex for quote
-     *
-     * @var integer
-     */
-    public $main_sex;
-    
-    /**
-     * Date of Birth of main member
-     *
-     * @var string
-     */
-    public $main_dob;
-    
-    /**
-     * Spouses gender
-     *
-     * @var integer
-     */
-    public $spouse_sex;
-    
-    /**
-     * Spouse Date of Birth
-     *
-     * @var string
-     */
-    public $spouse_dob;
-    
-    /**
-     * Guarantee Period in months
-     *
-     * @var integer
-     */
-    public $gp;
-    
-     /**
-     * Spouse Reversion if second life is on quote
-     *
-     * @var double
-     */
-    public $spouse_reversion;
-    
-    /**
-     * Annutity value
-     *
-     * @var string
-     */
-    public $annuity;    
-    
-     /**
-     * Purhcase price for quote
-     *
-     * @var double
-     */
-    public $purchase_price;  
-
-    /**
-     * Quoute commission
-     *
-     * @var double
-     */
-    public $commission;    
-    
-}
 
 class newQuoteResponse 
 {
 	
     /**
-     * Qute first name
+     * Quote Id
      * 
      * @var integer
      */
     public $quote_id;
+    
+    /**
+     * Quote data date
+     * 
+     * @var string
+     */
+    public $data_date;
+    
+    /**
+     * Quote date
+     * 
+     * @var string
+     */
+    public $quote_date;   
+
+    /**
+     * Quote commencement date
+     * 
+     * @var string
+     */
+    public $commencement_date;     
+
+    /**
+     * Quote first payment date
+     * 
+     * @var string
+     */
+    public $first_payment_date;    
+
+	public function __construct($quote_id, $data_date, $quote_date, $commencement_date, $first_payment_date)
+	{
+		$this->quote_id = $quote_id;
+		$this->data_date = $data_date;
+		$this->quote_date = $quote_date;
+		$this->commencement_date = $commencement_date;
+		$this->first_payment_date = $first_payment_date;
+	}    
 }
