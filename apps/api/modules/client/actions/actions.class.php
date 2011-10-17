@@ -27,7 +27,7 @@ class clientActions extends sfActions
   * Executes create client action for the API interface
   * based on the client id parameter using POST
   * 
-  * @WSMethod(name='newClient', webservice="SOAPApi")
+  * @WSMethod(name='newClient', webservice="SoapApi")
   * 
   * @param string $token Api token
   * @param newClientRequest $newClient  Client Information to be used for the new license
@@ -132,7 +132,7 @@ class clientActions extends sfActions
   * Executes get a client action for the API interface
   * based on the client id parameter
   * 
-  * @WSMethod(name='listClients', webservice="SOAPApi")
+  * @WSMethod(name='listClients', webservice="SoapApi")
   * 
   * @param string $token  Session token
   *
