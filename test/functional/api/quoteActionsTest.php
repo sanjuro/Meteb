@@ -56,7 +56,7 @@
 	),
 	    );
     
-  $newQuote = new newQuoteRequest(
+  $newQuote = array(
 	1,
     2,
 	1,

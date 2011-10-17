@@ -17,7 +17,7 @@
     // test Login Authenticate
     $c->newLogin('11qqadwW333ssdsdssaas2', 'shadley', 'rad6hia')    // call the action
       ->isFaultEmpty()
-      ->isType('', 'stdClass')
+      ->isType('', 'string')
      # var_dump($c->getFault());
      ;
      

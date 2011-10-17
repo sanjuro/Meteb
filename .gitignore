@@ -6,4 +6,8 @@
 .settings/
 cache/*
 log/*
+config/*
+lib/model/doctrine/base/*
+lib/form/doctrine/base/*
+lib/filter/doctrine/base/*
 lib/MetebQuote.class.php
