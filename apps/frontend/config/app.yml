@@ -4,33 +4,7 @@
 # default values
 all:
   datagrid:
-    jsframwork: jquery # prototype or jquery 
-
-soap:
-  enable_soap_parameter: on
-  ck_web_service_plugin:
-    wsdl: soap.wsdl 
-    handler: ckSoapHandler
-    persist: %SOAP_PERSISTENCE_SESSION%
-    render: off
-    result_callback: getSoapResult
-    soap_options:
-      encoding: utf-8
-      soap_version: %SOAP_1_2%
-
-soaptest:
-  # enable the `ckSoapParameterFilter`
-  enable_soap_parameter: on
-
-  ck_web_service_plugin:
-    # the location of your wsdl file
-    wsdl: %SF_WEB_DIR%/SOAPApi.wsdl
-    # the class that will be registered as handler for webservice requests
-    handler: SOAPApiHandler
-    persist: <?php echoln(SOAP_PERSISTENCE_SESSION) ?>
-    soap_options:
-      encoding: utf-8
-      soap_version: <?php echoln(SOAP_1_2) ?>    
+    jsframwork: jquery # prototype or jquery  
 
 dev:
   url:
