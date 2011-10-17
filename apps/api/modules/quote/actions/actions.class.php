@@ -25,7 +25,7 @@ class quoteActions extends sfActions
 	* Executes create quote action for the API interface
 	* based on the client id parameter using POST
 	*
-	* @WSMethod(name='newQuote', webservice="soapApi")
+	* @WSMethod(name='newQuote', webservice="SOAPApi")
 	*
 	* @param string $token Api Session token
 	* @param string $clientId Client id
