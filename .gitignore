@@ -3,6 +3,7 @@
 .DS_Store
 .buildpath
 .project
+Capfile
 .settings/
 cache/*
 log/*
