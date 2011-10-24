@@ -105,6 +105,8 @@ class quoteActions extends sfActions
 				 */
 				$quote = MetebQuoteApi::createQuote($quoteData, $client->getId());
 				
+				$client = $quote->getClient();
+				
 				/**
 				 * Use the function 
 				 */
@@ -113,11 +115,21 @@ class quoteActions extends sfActions
 		   	 	$quote_calculations['id'] = $quote->getId();
 		   	 	$quote_calculations['quote_id'] = $quote->getId();
 		   	 	
-	            $newQuoteResponseObj = new newQuoteResponse($quote->getId(),
-	            											$quote_calculations['data_date'],
-	            											$quote_calculations['quote_date'],
-	            											$quote_calculations['commencement_date'],
-	            											$quote_calculations['first_payment_date']);
+        		# Get Partial for PDF
+				sfProjectConfiguration::getActive()->loadHelpers('Partial');
+				
+				$PDFContent = get_partial('quote/pdf', array( 'quote_calculations' => $quote_calculations, 'client' => $client, 'userprofile' => $client->getUserProfile(), 'quote' => $quote) );        
+        		   	 	
+		   	 	
+		        # Generate PDF
+				$metebPDF = new metebPDF();
+				$metebPDF->CreateQuote($quote, $PDFContent);
+				$metebPDF->load_html($metebPDF->HTML);		
+				$metebPDF->render();
+				
+				$quotePDf = $metebPDF->stream("Quotation_".$quote->getId().".pdf");
+		   	 	
+	            $newQuoteResponseObj = new newQuoteResponse(base64_encode($quotePDf));
 	
 	            $this->response->setStatusCode('200'); 
 	            $this->result = $newQuoteResponseObj;

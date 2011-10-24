@@ -2,72 +2,58 @@
 
     include(dirname(__FILE__).'/../../bootstrap/functional.php');
     include(dirname(__FILE__).'/../../bootstrap/soaptest.php');
-    
-    /**
-	* Declare ComplexType object
-	*
-	*/
-    
-	class newQuoteRequest
-	{
-		
-		public $quote_type;
-		
-		public $second_life;
-		
-		public $main_sex;
-		
-		public $main_dob;
-		
-		public $spouse_sex;
-		
-		public $spouse_dob;
-		
-		public $gp;
-		
-		public $spouse_reversion;
-		
-		public $annuity;
-		
-		public $purchase_price;
-		
-		public $commission;
-		
-		public function __construct($quote_type, $second_life, $main_sex, $main_dob, $spouse_sex, $spouse_dob, $gp, $spouse_reversion, $annuity, $purchase_price, $commission)
-		{
-		$this->quote_type = $quote_type;
-		$this->second_life = $second_life;
-		$this->main_sex = $main_sex;
-		$this->main_dob = $main_dob;
-		$this->spouse_sex = $spouse_sex;
-		$this->spouse_dob = $spouse_dob;
-		$this->gp = $gp;
-		$this->spouse_reversion = $spouse_reversion;
-		$this->annuity = $annuity;
-		$this->purchase_price = $purchase_price;
-		$this->commission = $commission;
-		}
-	
-	}
 
     $options = array(
-	'classmap' => array(
-	'newQuoteRequest' => 'newQuoteRequest',
-	),
-	    );
+		'classmap' => array(
+		),
+	);
     
   $newQuote = array(
-	1,
-    2,
-	1,
-	'01/07/1936',
-	2,
-	'01/07/1946',
- 	60,
-	1,
-	0.00,
-	10000000,
-	3);
+	'quote_type_id' => 1,
+    'commission' => 2,
+	'main_sex' => 1,
+	'main_dob' => '01/07/1936',
+	'spouse_sex' => 2,
+	'spouse_dob' => '01/07/1946',
+ 	'gp' => 60,
+	'second_life' => 1,
+	'annuity' => 0.00,
+	'pp' => 10000000,
+	'spouse_rev' => 3,
+  	'date_of_fund_credit' => '01/07/2011',
+   	'date_of_investment' => '01/10/2011',
+  	'fund_amount' => '100000',
+  	'fund_code' => 't',
+    'fund_credit' => '100000',
+    'fund_percentage' => '20.00',
+ 	'fund_percentage_ind' => '20.00',
+  	'joint_life_date_of_birth' => '01/07/1946',
+  	'joint_life_gender' => ,
+  	'joint_life_ind' => ,
+  	'joint_life_initials' => ,
+  	'joint_life_perc' => ,
+  	'joint_life_surname' => ,
+  	'joint_life_title' => ,
+  	'member_cell_no' => ,
+  	'member_gender' => ,
+  	'member_date_of_birth' => ,
+  	'member_gender' => ,
+  	'member_id_is_passport' => ,
+  	'member_id_number' => ,
+  	'member_initials' => ,
+  	'member_ref_number' => ,
+  	'member_surname' => ,
+  	'member_title' => ,
+  	'product_code' => ,
+  	'request_by' => ,
+  	'request_date_time' => ,
+  	'request_id' => ,
+  	'request_source' => ,
+  	'request_status' => ,
+  	'sp_code' => ,
+  	'status_comment' => ,
+  	'status_date' => ,
+  );
 
     $c = new ckTestSoapClient($options);
 

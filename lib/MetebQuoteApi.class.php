@@ -66,22 +66,33 @@ class MetebQuoteApi
 	 * @param array $params All the params from the request
 	 * @param integer $client_id Client Id of client object to associate profile with
 	 * 
-	 * @return client Client Object
+	 * @return quote Object of type quote
 	 */	
 	public function createQuote($params, $client_id){
+		
+		# Antons function suppose to return data for new client
+		$quote_calculations = MetebQuote::generate($params);
+		
+		# Create Client
+		
+		
+		# Create Userprofile
+		
+		
+		# Create Quote
 		$quote = new Quote();
 		$quote->setClientId($client_id);
-		$quote->setQuoteTypeId($params->quote_type);
-		$quote->setSecondLife($params->second_life);
-		$quote->setMainSex($params->main_sex);
-		$quote->setMainDob($params->main_dob);
-		$quote->setSpouseSex($params->spouse_sex);
-		$quote->setSpouseDob($params->spouse_dob);
-		$quote->setGp($params->gp);
-		$quote->setSpouseReversionId($params->spouse_reversion);
-		$quote->setAnnuity($params->annuity);
-		$quote->setPurchasePrice($params->purchase_price);
-		$quote->setCommissionId($params->commission);
+		$quote->setQuoteTypeId($quote_calculations['quote_type']);
+		$quote->setSecondLife($quote_calculations['second_life']);
+		$quote->setMainSex($quote_calculations['main_sex']);
+		$quote->setMainDob($quote_calculations['main_dob']);
+		$quote->setSpouseSex($quote_calculations['spouse_sex']);
+		$quote->setSpouseDob($quote_calculations['spouse_dob']);
+		$quote->setGp($quote_calculations['gp']);
+		$quote->setSpouseReversionId($quote_calculations['spouse_reversion']);
+		$quote->setAnnuity($quote_calculations['annuity']);
+		$quote->setPurchasePrice($quote_calculations['purchase_price']);
+		$quote->setCommissionId($quote_calculations['commission']);
 		$quote->save();
 		
 		return $quote;
