@@ -96,11 +96,11 @@ class clientActions extends sfActions
 				$this->client = $client->toArray();
 	   	 	
 
-                $this->$result = $client->getId();
+                $this->result = $client->getId();
 
                 $this->response->setStatusCode('200');
 
-                return $this->renderPartial('messages/message', array('message' => $this->$result));
+                return $this->renderPartial('messages/message', array('message' => $this->result));
 
 
          } catch (Exception $e) {
@@ -121,7 +121,7 @@ class clientActions extends sfActions
      }else{
          $this->$result = $client->getId();
 
-	     return $this->renderPartial('messages/message', array('message' => $this->$result));
+	     return $this->renderPartial('messages/message', array('message' => $this->result));
 
      }	
   }

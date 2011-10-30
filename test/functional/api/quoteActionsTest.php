@@ -54,7 +54,7 @@
 	->isType('', 'string')
 	;
 	
-	var_dump($c->__getLastResponse());
+	// var_dump($c->__getLastResponse());
 	
 	$test_token = $c->getResult();
 	
@@ -66,5 +66,5 @@
 	
     var_dump($c->__getLastResponse());	
 	
-	var_dump($c->getFault());
+	// var_dump($c->getFault());
 	

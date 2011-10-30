@@ -58,14 +58,14 @@
 
 	$newClient = new newClientRequest(                   
 					'Jack Test',
-                    'jacsssk@test.co.za',
-                    'Some3comspany',
-    				'81233123212323',
+                    'jacsssssk@test.co.za',
+                    'Some2ss3comspany',
+    				'8123223123212323',
                     '1',
                     '01/07/1936',
                     'Jill Test',
                     'jill@3test.co.za',
-    				'81233212312323',
+    				'8123322212312323',
                     '01/07/1946',
 					'1');
 

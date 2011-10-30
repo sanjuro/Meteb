@@ -30,7 +30,8 @@ class quoteActions extends sfActions
 	* @param string $token Api Session token
     * @param newQuoteRequest $newQuote  Quote Information to be used for the new license
 	*
-	* @return newQuoteResponse $result
+	* @return string $result
+	* 
 	*/
 	public function executeNew(sfWebRequest $request)
 	{		
@@ -98,11 +99,14 @@ class quoteActions extends sfActions
 	            // $newQuoteResponseObj = new newQuoteResponse();
 	            $newQuoteResponseObj = base64_encode($metebPDF->output_html());
 					
-	            $this->response->setStatusCode('200'); 
-	            $this->result = $newQuoteResponseObj;
-		   		          
-				return $this->renderPartial('messages/object', array('object' => $quote_calculations ));		
-	
+	            $this->response->setStatusCode('200'); 	            
+	  
+	            $this->result = $newQuoteResponseObj; 
+				//echo '<pre>';var_dump($this->result);exit;
+	            return $this->renderPartial('messages/message', array('message' => $this->result));
+	               
+	            // return $this->renderPartial('messages/object', array('object' => $quote_calculations ));
+						
 		}catch (Exception $e){
 	
 	            if($this->isSoapRequest()){
