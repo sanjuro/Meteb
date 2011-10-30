@@ -10,7 +10,44 @@
  * @author     Shadley Wentzel<shad6ster@gmail.com>
  * @version    GIT
  */
+class newQuoteRequest
+{
+     /**
+	 * client_id
+     * 
+     * @var string
+     */
+    public $client_id;	
+	
+     /**
+	 * date_prepared
+     * 
+     * @var string
+     */
+    public $date_prepared;
+    
+     /**
+	 * main_name
+     * 
+     * @var string
+     */
+    public $main_name;
 
+     /**
+	 * main_dob
+     * 
+     * @var string
+     */
+    public $main_dob;
+
+     /**
+	 * gender_main
+     * 
+     * @var string
+     */
+    public $gender_main;    
+    
+}
 
 class newQuoteResponse 
 {
@@ -20,11 +57,5 @@ class newQuoteResponse
      * 
      * @var integer
      */
-    public $quote_data;
-     
-
-	public function __construct($quote_data)
-	{
-		$this->quote_id = $quote_data;
-	}    
+    public $quote_data;   
 }

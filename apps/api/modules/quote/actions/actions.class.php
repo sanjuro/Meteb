@@ -28,8 +28,7 @@ class quoteActions extends sfActions
 	* @WSMethod(name='newQuote', webservice="SoapApi")
 	*
 	* @param string $token Api Session token
-	* @param string $clientId Client id
-	* @param array $quoteData
+    * @param newQuoteRequest $newQuote  Quote Information to be used for the new license
 	*
 	* @return newQuoteResponse $result
 	*/
@@ -51,9 +50,8 @@ class quoteActions extends sfActions
 	            }
 		}
 		
-		$clientId = $request->getParameter('clientId');
+		$q = $request->getParameter('newQuote');
 		
-		$quoteData = $request->getParameter('quoteData'); 
 		
 		# Validate incoming info
 		if (!self::validateName($clientId)) {
@@ -99,11 +97,11 @@ class quoteActions extends sfActions
 				 * Create new associated UserProfile object
 				 */
 				// $userProfile = MetebQuoteApi::createUserProfile($request, $client->getId(), $api_user);
-						
+					
 				/**
 				 * Create new Quote object
 				 */
-				$quote = MetebQuoteApi::createQuote($quoteData, $client->getId());
+				$quote = MetebQuoteApi::createQuote($q, $client->getId());
 				
 				$client = $quote->getClient();
 				

@@ -1,7 +1,6 @@
 <?php
 
-    $app   = 'api';
-    $debug = true;
+    include(dirname(__FILE__).'/../../bootstrap/functional.php');
     include(dirname(__FILE__).'/../../bootstrap/soaptest.php');
     
     /**
@@ -29,9 +28,11 @@
 	
 	    public $spouse_id_number;
 
-	    public $spouse_dob;		    
+	    public $spouse_dob;		  
+
+	    public $spouse_gender; 
 	    
-	    public function __construct($first_name, $last_name, $email_address, $id_number, $gender, $dob, $spouse_first_name, $spouse_last_name, $spouse_id_number, $spouse_dob)
+	    public function __construct($first_name, $last_name, $email_address, $id_number, $gender, $dob, $spouse_first_name, $spouse_last_name, $spouse_id_number, $spouse_dob, $spouse_gender)
 	    {
 	        $this->first_name  = $first_name;
 	        $this->last_name = $last_name;
@@ -43,6 +44,7 @@
 	        $this->spouse_last_name  = $spouse_last_name;
 	        $this->spouse_id_number = $spouse_id_number;
 	        $this->spouse_dob = $spouse_dob;
+	        $this->spouse_gender = $spouse_gender; 
 	    }
 	
 	}    
@@ -56,15 +58,16 @@
 
 	$newClient = new newClientRequest(                   
 					'Jack Test',
-                    'jack@test.co.za',
-                    'Somecompany',
-    				'812312312323',
+                    'jacsssk@test.co.za',
+                    'Some3comspany',
+    				'81233123212323',
                     '1',
                     '01/07/1936',
                     'Jill Test',
-                    'jill@test.co.za',
-    				'812312312323',
-                    '01/07/1946');
+                    'jill@3test.co.za',
+    				'81233212312323',
+                    '01/07/1946',
+					'1');
 
     $c = new ckTestSoapClient($options);
 
@@ -82,6 +85,7 @@
 	# Test neClient
 	
 	$c->newClient($test_token,$newClient)
-      ->isFaultEmpty()
-        ;
+    ->isFaultEmpty()
+    ;
+        
    var_dump($c->getFault());

@@ -91,7 +91,7 @@ class newClientRequest
     
 }
 
-class CreateClientResponse 
+class newClientResponse 
 {
 	
     /**

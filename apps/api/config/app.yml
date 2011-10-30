@@ -24,8 +24,8 @@ soap:
       soap_version: <?php echoln(SOAP_1_2) ?>
       classmap:
         # mapping of wsdl types to PHP types
-        newClientRequest:    newClientRequest
-        # newQuoteRequest:    newQuoteRequest
+        newClientRequest:   newClientRequest
+        newQuoteRequest:    newQuoteRequest
         newQuoteResponse:   newQuoteResponse
 
 
@@ -41,4 +41,11 @@ soaptest:
     persist: <?php echoln(SOAP_PERSISTENCE_SESSION) ?>
     soap_options:
       encoding: utf-8
+    soap_options:
+      encoding: utf-8
       soap_version: <?php echoln(SOAP_1_2) ?>
+      classmap:
+        # mapping of wsdl types to PHP types
+        newClientRequest:   newClientRequest
+        newQuoteRequest:    newQuoteRequest
+        newQuoteResponse:   newQuoteResponse

@@ -63,15 +63,21 @@ class MetebQuoteApi
 	/**
 	 * This function creates a Quote Object from a request params array and client id
 	 * 
-	 * @param array $params All the params from the request
+	 * @param array $quote_object Quote ob
 	 * @param integer $client_id Client Id of client object to associate profile with
 	 * 
 	 * @return quote Object of type quote
 	 */	
-	public function createQuote($params, $client_id){
+	public function createQuote($quote_object, $client_id){
+		
+		$params = array();
+		$params["date_prepared"] = $quote_object->date_prepared;
+		$params["main_name"] = $quote_object->main_name;
+		$params["main_dob"] = $quote_object->main_dob;
+		$params["gender_main"] = $quote_object->gender_main;
 		
 		# Antons function suppose to return data for new client
-		$quote_calculations = MetebQuote::generate($params);
+		$quote_calculations = MetebQuote::Web_service_quote($params);
 		
 		# Create Client
 		
