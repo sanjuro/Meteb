@@ -31,16 +31,17 @@
 	
 	}     
     
+	
     $options = array(
 		'classmap' => array(
 			'newQuoteRequest' => 'newQuoteRequest',
 		),
     );
 
-	$newQuoteRequestObj = new newQuoteRequest(    
+	$newQuoteRequest = new newQuoteRequest(    
 					'5',               
 					'01/07/1936',
-					'Jill Test',
+					'JillTest',
 					'01/07/1936',
 					'm');	
 
@@ -53,17 +54,17 @@
 	->isType('', 'string')
 	;
 	
-	// var_dump($c->__getLastResponse());
+	var_dump($c->__getLastResponse());
 	
-	$test_token = $c->getResult(); 
+	$test_token = $c->getResult();
 	
 	// echo '<pre>';var_dump($newQuoteRequestObj);exit;
 	
-	$c->newQuote($test_token, $newQuoteRequestObj)
+	$c->newQuote($test_token, $newQuote)
 	->isFaultEmpty()
 	;
 	
-	var_dump($c->__getLastResponse());	
+    var_dump($c->__getLastResponse());	
 	
-	// var_dump($c->getFault());
+	var_dump($c->getFault());
 	

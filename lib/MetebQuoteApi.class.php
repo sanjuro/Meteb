@@ -68,7 +68,7 @@ class MetebQuoteApi
 	 * 
 	 * @return quote Object of type quote
 	 */	
-	public function createQuote($quote_object, $client_id){
+	public function createQuote($quote_object){
 		
 		$params = array();
 		$params["date_prepared"] = $quote_object->date_prepared;
@@ -86,20 +86,20 @@ class MetebQuoteApi
 		
 		
 		# Create Quote
-		$quote = new Quote();
-		$quote->setClientId($client_id);
-		$quote->setQuoteTypeId($quote_calculations['quote_type']);
-		$quote->setSecondLife($quote_calculations['second_life']);
-		$quote->setMainSex($quote_calculations['main_sex']);
-		$quote->setMainDob($quote_calculations['main_dob']);
-		$quote->setSpouseSex($quote_calculations['spouse_sex']);
-		$quote->setSpouseDob($quote_calculations['spouse_dob']);
-		$quote->setGp($quote_calculations['gp']);
-		$quote->setSpouseReversionId($quote_calculations['spouse_reversion']);
-		$quote->setAnnuity($quote_calculations['annuity']);
-		$quote->setPurchasePrice($quote_calculations['purchase_price']);
-		$quote->setCommissionId($quote_calculations['commission']);
-		$quote->save();
+		// $quote = new Quote();
+		// $quote->setClientId($client_id);
+		// $quote->setQuoteTypeId($quote_calculations['quote_type']);
+		// $quote->setSecondLife($quote_calculations['second_life']);
+		// $quote->setMainSex($quote_calculations['main_sex']);
+		// $quote->setMainDob($quote_calculations['main_dob']);
+		// $quote->setSpouseSex($quote_calculations['spouse_sex']);
+		// $quote->setSpouseDob($quote_calculations['spouse_dob']);
+		// $quote->setGp($quote_calculations['gp']);
+		// $quote->setSpouseReversionId($quote_calculations['spouse_reversion']);
+		// $quote->setAnnuity($quote_calculations['annuity']);
+		// $quote->setPurchasePrice($quote_calculations['purchase_price']);
+		// $quote->setCommissionId($quote_calculations['commission']);
+		// $quote->save();
 		
 		return $quote;
 	}	

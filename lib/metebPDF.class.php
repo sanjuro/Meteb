@@ -46,6 +46,25 @@ class metebPDF extends DOMPDF{
 		return $this->renderTemplate( );
 
 	}
+	
+	/**
+	 * Function to create a SOAP Quote, this uses the partial for a Quote document
+	 * gets al the needed variables and generates a PDF
+	 *
+	 * @param unknown $PDFContent  Quote content for PDF
+	 * @return boolean if any values are found it returns true
+	 */
+	public function CreateSOAPQuote($PDFContent) {		
+
+		$this->setTemplatePageName('Metropolitan Life Quotation');
+		$this->setTemplateTitle('');
+		$this->setPDFNumber(1);
+		$this->setPDFDate(date('d-m-Y'));
+		$this->setPDFContent($PDFContent);
+		
+		return $this->renderTemplate( );
+
+	}	
 
 
 	/**
