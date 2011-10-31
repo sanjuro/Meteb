@@ -26,6 +26,7 @@ soap:
         # mapping of wsdl types to PHP types
         newClientRequest:   newClientRequest
         newQuoteRequest:    newQuoteRequest
+        newQuoteResponse:   newQuoteResponse
 
 
 soaptest:
@@ -47,3 +48,4 @@ soaptest:
         # mapping of wsdl types to PHP types
         newClientRequest:   newClientRequest
         newQuoteRequest:    newQuoteRequest
+        newQuoteResponse:   newQuoteResponse

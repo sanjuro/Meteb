@@ -7,7 +7,7 @@
 	 * Declare ComplexType object
 	 *
 	 */
-	
+	/**
 	class newQuoteRequest
 	{
 	    public $client_id;		
@@ -29,7 +29,8 @@
 	        $this->gender_main = $gender_main;
 	    }
 	
-	}     
+	}
+	*/     
     
 	
     $options = array(
@@ -38,7 +39,8 @@
 		),
     );
 
-	$newQuoteRequest = new newQuoteRequest(    
+	$newQuoteRequest = new newQuoteRequest( 
+					'1',   
 					'5',               
 					'01/07/1936',
 					'JillTest',
@@ -64,7 +66,7 @@
 	->isFaultEmpty()
 	;
 	
-    var_dump($c->__getLastResponse());	
+    // var_dump($c->__getLastResponse());	
 	
-	// var_dump($c->getFault());
+	var_dump($c->getFault());
 	

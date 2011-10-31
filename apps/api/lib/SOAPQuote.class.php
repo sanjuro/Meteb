@@ -12,6 +12,7 @@
  */
 class newQuoteRequest
 {
+	
      /**
 	 * client_id
      * 
