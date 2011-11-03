@@ -1,0 +1,206 @@
+Activity:
+  actAs: 
+    Timestampable: ~ 
+  columns:
+    id:                 { type: integer, primary: true, autoincrement: true }
+    sfuser_id:          { type: integer }
+    title:              { type: string(255) }
+    activitytype_id:    { type: integer }
+  relations:
+    ActivityType:      { class: ActivityType, local: activitytype_id, foreign: id }
+    sfGuardUser:       { class: sfGuardUser, onDelete: CASCADE, local: sfuser_id, foreign: id }
+    
+ActivityType:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: string(255) }
+      
+Commission:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: decimal(15), scale: 2 }
+       
+Quote:
+  actAs: 
+    Timestampable: ~ 
+  columns:
+    id:                      { type: integer, primary: true, autoincrement: true }
+    client_id:               { type: integer }
+    quote_type_id:           { type: integer }
+    created_by:              { type: integer }
+    second_life:             { type: integer }
+    main_sex:                { type: integer }
+    main_dob:                { type: date, notnull: true }
+    second_life:             { type: integer }
+    spouse_sex:              { type: integer }
+    spouse_dob:              { type: date, notnull: true }
+    gp:                      { type: integer }
+    spouse_reversion_id:     { type: integer }
+    pri_id:                  { type: integer }
+    annuity:                 { type: decimal(15), scale: 2 }
+    purchase_price:          { type: decimal(15), scale: 2 }
+    commission_id:           { type: integer }
+    commence_at:             { type: timestamp, notnull: true } 
+    expires_at:              { type: timestamp, notnull: true } 
+  relations:
+    Client:                  { class: sfGuardUser, onDelete: CASCADE, local: client_id, foreign: id }
+    QuoteType:               { class: QuoteType, local: quote_type_id, foreign: id }
+    Parent:                  { class: sfGuardUser, onDelete: CASCADE, local: created_by, foreign: id }
+    Gender:                  { class: Gender, local: main_sex, foreign: id } 
+    SpouseGender:            { class: Gender, local: spouse_sex, foreign: id }
+    Commission:              { class: Commission, local: commission_id, foreign: id }
+    SpouseReversion:         { class: SpouseReversion, local: spouse_reversion_id, foreign: id }
+    Pri:                     { class: Pri, local: pri_id, foreign: id }
+
+QuoteOutputType:
+  columns:
+    id:                     { type: integer, primary: true, autoincrement: true }
+    title:                  { type: string(255), notnull: true }
+
+QuoteOutputTypeValue:
+  actAs: 
+    Timestampable: ~ 
+  columns:
+    id:                     { type: integer, primary: true, autoincrement: true }
+    quote_id:               { type: integer }
+    quote_output_type_id:   { type: integer }
+    value:                  { type: string(255), notnull: true }
+  relations:
+    Quote:                  { class: Quote, onDelete: CASCADE, local: quote_id, foreign: id }
+    QuoteOutputType:        { class: QuoteOutputType, local: quote_output_type_id, foreign: id }
+
+QuoteType:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: string(255), notnull: true }
+      
+Pri:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: decimal(15), scale: 3 }
+      
+SpouseReversion:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: decimal(15), scale: 2 }
+      
+System:
+  columns:
+     id:                      { type: integer, primary: true, autoincrement: true }
+      
+UserProfile:
+  actAs: 
+    Timestampable: ~ 
+    Searchable:
+       fields: [name, surname]  
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    sfuser_id:        { type: integer }
+    gender_id:        { type: integer }
+    status_id:        { type: integer }
+    parent_user_id:   { type: integer }
+    fsp_license_number:   { type: string(12) }
+    title:            { type: string(30) }
+    token:            { type: string(30) }
+    name:
+      type: string(30)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    surname:
+      type: string(30)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    dob:         { type: date, notnull: true }
+    telephone:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    mobile:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    idnumber:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    fax:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    postaladdress:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    streetaddress:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    spouse_name:
+      type: string(30)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    spouse_surname:
+      type: string(30)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    spouse_dob:        { type: date }
+    spouse_gender_id:  { type: integer }
+    spouseidnumber:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    company:
+      type: string(30)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    sfGuardUser:      { class: sfGuardUser, onDelete: CASCADE, local: sfuser_id, foreign: id }
+    Gender:           { class: Gender, local: gender_id, foreign: id }
+    ClientStatus:     { class: ClientStatus, local: status_id, foreign: id }
+    ParentUser:       { class: sfGuardUser, local: parent_user_id, foreign: id } 
+    
+ClientStatus:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: string(255), notnull: true }
+
+Gender:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: string(255), notnull: true }
