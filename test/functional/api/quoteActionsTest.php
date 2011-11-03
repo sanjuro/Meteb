@@ -68,5 +68,9 @@
 	
     // var_dump($c->__getLastResponse());	
 	
-	var_dump($c->getFault());
+	var_dump($c->getResult());
+	
+	$quote_data = $c->getResult();
+	
+	echo '<pre>';var_dump($quote_data);exit;
 	

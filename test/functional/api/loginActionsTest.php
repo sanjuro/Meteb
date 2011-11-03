@@ -15,7 +15,7 @@
     $c = new ckTestSoapClient($options);
     
     // test Login Authenticate
-    $c->newLogin('11qqadwW333ssdsdssaas2', 'shadley', 'rad6hia')    // call the action
+    $c->newLogin('67b77c6106bb1bcf47934a5837498c', 'advisor', 'advisor')    // call the action
       ->isFaultEmpty()
       ->isType('', 'string')
      # var_dump($c->getFault());

@@ -5,9 +5,10 @@ prod:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn:      mysql:host=127.0.0.1;dbname=meteb
+      dsn:      mysql:host=localhost;dbname=ebannuities
       username: root
-      password:
+      password: annuities_db_pw
+
 
 dev:
   doctrine:

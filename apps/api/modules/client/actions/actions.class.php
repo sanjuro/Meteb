@@ -119,7 +119,7 @@ class clientActions extends sfActions
          }
 
      }else{
-         $this->$result = $client->getId();
+         $this->result = $client->getId();
 
 	     return $this->renderPartial('messages/message', array('message' => $this->result));
 
