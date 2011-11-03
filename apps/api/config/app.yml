@@ -15,9 +15,9 @@ soap:
 
   ck_web_service_plugin:
     # the location of your wsdl file
-    wsdl: %SF_WEB_DIR%/SoapApi.wsdl
+    wsdl: %SF_WEB_DIR%/soapApi.wsdl
     # the class that will be registered as handler for webservice requests
-    handler: SoapApiHandler
+    handler: soapApiHandler
     persist: <?php echoln(SOAP_PERSISTENCE_SESSION) ?>
     soap_options:
       encoding: utf-8
@@ -35,9 +35,9 @@ soaptest:
 
   ck_web_service_plugin:
     # the location of your wsdl file
-    wsdl: %SF_WEB_DIR%/SoapApi.wsdl
+    wsdl: %SF_WEB_DIR%/soapApi.wsdl
     # the class that will be registered as handler for webservice requests
-    handler: SoapApiHandler
+    handler: soapApiHandler
     persist: <?php echoln(SOAP_PERSISTENCE_SESSION) ?>
     soap_options:
       encoding: utf-8
