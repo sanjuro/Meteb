@@ -7,7 +7,7 @@ Capfile
 .settings/
 cache/*
 log/*
-config/*
+config/databases.yml
 lib/model/doctrine/base/*
 lib/form/doctrine/base/*
 lib/filter/doctrine/base/*
