@@ -12,3 +12,9 @@ lib/model/doctrine/base/*
 lib/form/doctrine/base/*
 lib/filter/doctrine/base/*
 lib/MetebQuote.class.php
+apps/api/lib/BasesoapApiHandler.class.php
+apps/api/lib/soapApiHandler.class.php
+data/sql/meteb_live_data.sql
+web/soapApi.php
+web/soapApi.wsdl
+

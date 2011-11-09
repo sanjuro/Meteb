@@ -56,6 +56,9 @@ class loginActions extends sfActions
             $object['api_key'] =  $api_token;
               	
             $this->message = $api_token;
+            
+            $this->result = $api_token;
+            
 	 		return $this->renderPartial('messages/message', array('message' => $this->message));        
 			
  		}else{

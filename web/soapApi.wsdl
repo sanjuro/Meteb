@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="soapApi" targetNamespace="http://meteb.localhost/" xmlns:tns="http://meteb.localhost/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:types xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://meteb.localhost/">
+      <xsd:complexType name="newClientRequest">
+        <xsd:sequence>
+          <xsd:element name="first_name" type="xsd:string"/>
+          <xsd:element name="last_name" type="xsd:string"/>
+          <xsd:element name="email_address" type="xsd:string"/>
+          <xsd:element name="id_number" type="xsd:string"/>
+          <xsd:element name="gender" type="xsd:int"/>
+          <xsd:element name="dob" type="xsd:string"/>
+          <xsd:element name="spouse_first_name" type="xsd:string"/>
+          <xsd:element name="spouse_last_name" type="xsd:string"/>
+          <xsd:element name="spouse_id_number" type="xsd:string"/>
+          <xsd:element name="spouse_gender" type="xsd:int"/>
+          <xsd:element name="spouse_dob" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="newClientRequestElement" type="tns:newClientRequest"/>
+      <xsd:complexType name="AnyTypeArray">
+        <xsd:sequence>
+          <xsd:element name="item" type="xsd:anyType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AnyTypeArrayElement" type="tns:AnyTypeArray"/>
+      <xsd:complexType name="newQuoteRequest">
+        <xsd:sequence>
+          <xsd:element name="client_id" type="xsd:string"/>
+          <xsd:element name="date_prepared" type="xsd:string"/>
+          <xsd:element name="main_name" type="xsd:string"/>
+          <xsd:element name="main_dob" type="xsd:string"/>
+          <xsd:element name="gender_main" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="newQuoteRequestElement" type="tns:newQuoteRequest"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:portType name="soapApiPortType">
+    <wsdl:operation name="newClient" parameterOrder="token newClient">
+      <wsdl:input message="tns:newClientRequest"/>
+      <wsdl:output message="tns:newClientResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="listClients" parameterOrder="token">
+      <wsdl:input message="tns:listClientsRequest"/>
+      <wsdl:output message="tns:listClientsResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="newLogin" parameterOrder="token username password">
+      <wsdl:input message="tns:newLoginRequest"/>
+      <wsdl:output message="tns:newLoginResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="newQuote" parameterOrder="token newQuote">
+      <wsdl:input message="tns:newQuoteRequest"/>
+      <wsdl:output message="tns:newQuoteResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="soapApiBinding" type="tns:soapApiPortType">
+    <soap:binding xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="newClient">
+      <soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://meteb.localhost/newClient" style="rpc"/>
+      <wsdl:input xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="token newClient" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="result" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="listClients">
+      <soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://meteb.localhost/listClients" style="rpc"/>
+      <wsdl:input xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="token" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="result" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="newLogin">
+      <soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://meteb.localhost/newLogin" style="rpc"/>
+      <wsdl:input xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="token username password" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="result" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="newQuote">
+      <soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://meteb.localhost/newQuote" style="rpc"/>
+      <wsdl:input xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="token newQuote" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" parts="result" use="literal" namespace="http://meteb.localhost/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:message name="newClientRequest">
+    <wsdl:part name="token" type="xsd:string"/>
+    <wsdl:part name="newClient" type="tns:newClientRequest"/>
+  </wsdl:message>
+  <wsdl:message name="newClientResponse">
+    <wsdl:part name="result" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="listClientsRequest">
+    <wsdl:part name="token" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="listClientsResponse">
+    <wsdl:part name="result" type="tns:AnyTypeArray"/>
+  </wsdl:message>
+  <wsdl:message name="newLoginRequest">
+    <wsdl:part name="token" type="xsd:string"/>
+    <wsdl:part name="username" type="xsd:string"/>
+    <wsdl:part name="password" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="newLoginResponse">
+    <wsdl:part name="result" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="newQuoteRequest">
+    <wsdl:part name="token" type="xsd:string"/>
+    <wsdl:part name="newQuote" type="tns:newQuoteRequest"/>
+  </wsdl:message>
+  <wsdl:message name="newQuoteResponse">
+    <wsdl:part name="result" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:service xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="soapApiService">
+    <wsdl:port xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="soapApiPort" binding="tns:soapApiBinding">
+      <soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" location="http://meteb.localhost/soapApi.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

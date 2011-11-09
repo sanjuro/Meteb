@@ -29,7 +29,7 @@ namespace(:customs) do
   task :symlink, :roles => :app do
     run <<-CMD
       ln -s /usr/share/ebannuities.co.za/shared/MetebQuote.class.php #{release_path}/lib/
-      # ln -s /usr/share/ebannuities.co.za/shared/config/database.yml /usr/share/ebannuities.co.za/releases/20111103181438/config/ 
+      # ln -s /usr/share/ebannuities.co.za/shared/config/databases.yml /usr/share/ebannuities.co.za/current/config/ 
     CMD
   end
 end

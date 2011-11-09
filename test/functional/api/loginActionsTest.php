@@ -21,4 +21,4 @@
      # var_dump($c->getFault());
      ;
      
- 	 # var_dump($c->__getLastResponse());
+ 	 var_dump($c->__getLastResponse());
