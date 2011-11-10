@@ -98,6 +98,7 @@ UserProfile:
     sfuser_id:        { type: integer }
     gender_id:        { type: integer }
     status_id:        { type: integer }
+    fund_code_id:     { type: integer }
     parent_user_id:   { type: integer }
     fsp_license_number:   { type: string(12) }
     title:            { type: string(30) }
@@ -194,8 +195,14 @@ UserProfile:
     Gender:           { class: Gender, local: gender_id, foreign: id }
     ClientStatus:     { class: ClientStatus, local: status_id, foreign: id }
     ParentUser:       { class: sfGuardUser, local: parent_user_id, foreign: id } 
+    FundCode:         { class: FundCode, local: fund_code_id, foreign: id }
     
 ClientStatus:
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: string(255), notnull: true }
+
+FundCode:
   columns:
     id:               { type: integer, primary: true, autoincrement: true }
     title:            { type: string(255), notnull: true }

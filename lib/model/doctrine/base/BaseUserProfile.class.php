@@ -9,6 +9,7 @@
  * @property integer $sfuser_id
  * @property integer $gender_id
  * @property integer $status_id
+ * @property integer $fund_code_id
  * @property integer $parent_user_id
  * @property string $fsp_license_number
  * @property string $title
@@ -32,11 +33,13 @@
  * @property Gender $Gender
  * @property ClientStatus $ClientStatus
  * @property sfGuardUser $ParentUser
+ * @property FundCode $FundCode
  * 
  * @method integer      getId()                 Returns the current record's "id" value
  * @method integer      getSfuserId()           Returns the current record's "sfuser_id" value
  * @method integer      getGenderId()           Returns the current record's "gender_id" value
  * @method integer      getStatusId()           Returns the current record's "status_id" value
+ * @method integer      getFundCodeId()         Returns the current record's "fund_code_id" value
  * @method integer      getParentUserId()       Returns the current record's "parent_user_id" value
  * @method string       getFspLicenseNumber()   Returns the current record's "fsp_license_number" value
  * @method string       getTitle()              Returns the current record's "title" value
@@ -60,10 +63,12 @@
  * @method Gender       getGender()             Returns the current record's "Gender" value
  * @method ClientStatus getClientStatus()       Returns the current record's "ClientStatus" value
  * @method sfGuardUser  getParentUser()         Returns the current record's "ParentUser" value
+ * @method FundCode     getFundCode()           Returns the current record's "FundCode" value
  * @method UserProfile  setId()                 Sets the current record's "id" value
  * @method UserProfile  setSfuserId()           Sets the current record's "sfuser_id" value
  * @method UserProfile  setGenderId()           Sets the current record's "gender_id" value
  * @method UserProfile  setStatusId()           Sets the current record's "status_id" value
+ * @method UserProfile  setFundCodeId()         Sets the current record's "fund_code_id" value
  * @method UserProfile  setParentUserId()       Sets the current record's "parent_user_id" value
  * @method UserProfile  setFspLicenseNumber()   Sets the current record's "fsp_license_number" value
  * @method UserProfile  setTitle()              Sets the current record's "title" value
@@ -87,6 +92,7 @@
  * @method UserProfile  setGender()             Sets the current record's "Gender" value
  * @method UserProfile  setClientStatus()       Sets the current record's "ClientStatus" value
  * @method UserProfile  setParentUser()         Sets the current record's "ParentUser" value
+ * @method UserProfile  setFundCode()           Sets the current record's "FundCode" value
  * 
  * @package    meteb
  * @subpackage model
@@ -110,6 +116,9 @@ abstract class BaseUserProfile extends sfDoctrineRecord
              'type' => 'integer',
              ));
         $this->hasColumn('status_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('fund_code_id', 'integer', null, array(
              'type' => 'integer',
              ));
         $this->hasColumn('parent_user_id', 'integer', null, array(
@@ -265,6 +274,10 @@ abstract class BaseUserProfile extends sfDoctrineRecord
 
         $this->hasOne('sfGuardUser as ParentUser', array(
              'local' => 'parent_user_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('FundCode', array(
+             'local' => 'fund_code_id',
              'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();

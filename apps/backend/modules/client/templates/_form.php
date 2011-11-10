@@ -70,6 +70,16 @@
 		 </div>
 		 <div class="sf_admin_form_row">			
 			<div>
+				<?php echo $form['userProfiles'][0]['fund_code_id']->renderLabel() ?>
+			</div>
+			
+			<div  class="content" >
+				<?php echo $form['userProfiles'][0]['fund_code_id'] ?>
+			</div>			
+			<?php echo $form['userProfiles'][0]['fund_code_id']->renderError() ?>
+		 </div>	 
+		 <div class="sf_admin_form_row">			
+			<div>
 				<?php echo $form['is_active']->renderLabel() ?>
 			</div>
 			

@@ -9,7 +9,7 @@
  * @author     Shadley Wentzel
  * @version    GIT:
  */
-class FrontendQuoteForm extends BaseQuoteForm
+class FrontendTransnetQuoteForm extends BaseQuoteForm
 {
   public $currentUser;
   public $userForQuote;

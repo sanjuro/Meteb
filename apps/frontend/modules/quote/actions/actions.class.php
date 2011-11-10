@@ -1,3 +1,4 @@
+
 <?php
 
 require_once dirname(__FILE__).'/../lib/quoteGeneratorConfiguration.class.php';
@@ -25,7 +26,23 @@ class quoteActions extends autoQuoteActions
 	  	$userForQuote = $this->getRoute()->getObject();
 	  	
 	  	if(!empty($userForQuote)){ 
-	  		$this->form = new FrontendQuoteForm('', array('currentUser' => $this->getUser()));
+	  		
+	  		$userProfile = $userForQuote->getUserProfile();
+	  		
+	  		/**
+		  	 * Switch to different quote per fund code
+		  	 */
+	  		switch($userProfile[0]->getFundCodeId())
+	  		{
+	  			case 2:
+	  				$this->form = new FrontendTransnetQuoteForm('', array('currentUser' => $this->getUser()));
+	  				break;
+	  			case 1:
+	  			default:
+	  				$this->form = new FrontendQuoteForm('', array('currentUser' => $this->getUser()));
+	  				break;
+	  		}
+	  			
 	  	}else{
 	  		$this->form = new FrontendQuoteForm();
 	  	}
